@@ -22,7 +22,7 @@ Route::group(["namespace" => "general"], function () {
     Route::get("/feedback", "FeedbackController@index")->name("feedback");
     Route::post("/feedback/store", "FeedbackController@store")->name("feedback.store");
     Route::get("/products/{id}", "ProductController@index")->name("products.view");
-    Route::get("/search/{id}", "ProductController@index")->name("search");
+    Route::get("/search", "ProductController@search")->name("search");
 });
 
 ///login Dashboard Panel Routes

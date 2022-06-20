@@ -81,8 +81,10 @@ if (Setting::count() > 0) {
                             <a class="nav-link active" href="{{ route('contact') }}">تواصل معنا</a>
                         </li>
                     </ul>
-                    <form class="d-flex">
-                        <input class="form-control me-2" type="search" placeholder="بحث عن منتج" aria-label="Search">
+                    <form action="{{ route('search') }}" class="d-flex">
+                        @csrf
+                        <input name="search" class="form-control me-2" type="search" placeholder="بحث عن منتج"
+                            aria-label="Search">
                         <button class="btn btn-outline-light" type="submit">بحث</button>
                     </form>
                 </div>

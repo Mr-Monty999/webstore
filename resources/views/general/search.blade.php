@@ -76,7 +76,7 @@
                      </div>
                  @endforeach
              @else
-                 <div class="alert alert-danger text-center">عفوا لايوجد منتجات</div>
+                 <div class="alert alert-danger text-center">عفوا لم يتم العثور على المنتج</div>
              @endif
 
              <div class="d-flex flex-column justify-content-center align-items-center">
