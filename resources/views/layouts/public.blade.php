@@ -83,7 +83,7 @@ if (Setting::count() > 0) {
                     </ul>
                     <form class="d-flex">
                         <input class="form-control me-2" type="search" placeholder="بحث عن منتج" aria-label="Search">
-                        <button class="btn btn-outline-light" type="submit"></button>
+                        <button class="btn btn-outline-light" type="submit">بحث</button>
                     </form>
                 </div>
             </div>
