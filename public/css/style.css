@@ -1,0 +1,186 @@
+* {
+    font-family: 'Cairo', sans-serif;
+    text-transform: capitalize;
+}
+
+main {
+    min-height: 90vh;
+    background-color: #eee;
+}
+
+a {
+    text-decoration: none;
+}
+
+.signUp>* {
+
+    margin-bottom: 10px;
+
+}
+
+/* .collapse>div {
+    margin-top: 30px !important;
+} */
+
+.collapse>div>* {
+    margin-top: 10px !important;
+}
+
+.collapse .amount {
+    width: 100px;
+}
+
+
+
+.card img {
+    width: 100%;
+    height: 200px;
+}
+
+.card {
+    padding: 0px !important;
+    /* background-color: rgb(38, 52, 71); */
+    /* color: white; */
+    margin-bottom: 30px;
+}
+
+.card-body>* {
+    margin-top: 5px;
+}
+
+.card-body i {
+    margin-right: 5px;
+}
+
+.card-title {
+    font-size: 20px;
+}
+
+.mycart {
+    position: fixed;
+    left: 3%;
+    bottom: 5%;
+    cursor: pointer;
+    color: rgb(105, 105, 105);
+}
+
+.mycart .fa-cart-shopping {
+    font-size: 50px;
+}
+
+.section-title {
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.mycart .products {
+    width: 200px;
+    font-size: 16px;
+    height: 50vh;
+    overflow-y: scroll;
+    background-color: rgb(255, 255, 255) !important;
+    border-radius: 20px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    display: none;
+
+}
+
+.mycart .products>* {
+    margin: 0px;
+}
+
+
+.mycart hr {
+    color: black !important;
+    background-color: black !important;
+    width: 100%;
+}
+
+.mycart .form-group {
+    margin-bottom: 10px;
+    width: 150px;
+}
+
+.mycart .delete {
+    font-size: 15px;
+    margin-top: 10px;
+}
+
+.mycart .delete i {
+    margin-right: 5px;
+}
+
+section {
+    padding: 50px;
+}
+
+textarea {
+    resize: none;
+}
+
+nav {
+    /* background-color: rgb(60, 121, 80) !important; */
+}
+
+.feedback button {
+    margin-top: 10px;
+}
+
+footer {
+    padding: 20px;
+    background-color: rgb(60, 121, 80) !important;
+    color: white;
+}
+
+/* nav .dropdown-menu {
+    background-color: rgb(195, 231, 207);
+} */
+
+
+.photo {
+    width: 300px;
+    height: 300px;
+
+}
+
+.mar-3 {
+    margin-top: 30px;
+    margin-bottom: 20px;
+}
+
+.btn-radius {
+    border-radius: 5px;
+}
+
+.main-nav a {
+    padding: 10px !important;
+}
+
+.mydata {
+    display: none !important;
+}
+
+
+.items-menu {
+    max-height: 400px;
+    overflow-y: scroll;
+    background-color: gainsboro;
+    width: 200px;
+}
+
+
+
+/* .pagination a {
+    color: #212529 !important;
+}
+
+.pagination {
+    background-color: #212529;
+
+} */
+
+
+.mark {
+    background-color: greenyellow;
+}

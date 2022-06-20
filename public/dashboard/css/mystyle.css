@@ -1,0 +1,41 @@
+section {
+    min-height: 90vh;
+    padding: 50px;
+}
+
+main * {
+    font-family: 'Cairo', sans-serif;
+}
+
+
+.margin {
+    margin-right: 50px;
+}
+
+
+table img {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+}
+
+.photo {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+}
+
+table td {
+    white-space: unset !important;
+    height: 1px;
+}
+
+textarea {
+    resize: none !important;
+}
+
+
+.feedback-article {
+    word-wrap: break-word;
+
+}
