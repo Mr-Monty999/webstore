@@ -1,7 +1,7 @@
 @extends('layouts.public')
 
 @section('content')
-    <section class="feedback container d-flex flex-column justify-content-center align-items-center">
+    <section class="feedback  d-flex flex-column justify-content-center align-items-center">
         <h3 class="text-center mar-3">ساعدنا بتطوير خدماتنا بارسالك اقتراحات ونصائح </h3>
         <form class="mar-3" action="{{ route('feedback.store') }}" method="post">
             @csrf
