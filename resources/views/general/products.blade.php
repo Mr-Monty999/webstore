@@ -13,17 +13,9 @@
                              @if ($product->product_discount > 0)
                                  @php
                                      
-                                     $currency = '';
+                                     $currency = $setting->store_currency;
                                      
-                                     ///Get The Custom Currancy of User
-                                     for ($x = 0; $x < strlen($product->product_price); $x++) {
-                                         if (!is_numeric($product->product_price[$x])) {
-                                             $currency .= $product->product_price[$x] . '';
-                                         }
-                                     }
-                                     
-                                     $price = filter_var($product->product_price, FILTER_SANITIZE_NUMBER_FLOAT);
-                                     
+                                     $price = $product->product_price;
                                      if (!is_numeric($price)) {
                                          $price = 0;
                                      }
@@ -38,14 +30,16 @@
                                  @endphp
                                  <h5 class="product_price text-dark"> خصم %{{ $product->product_discount }}
 
-                                     <h5 class="product_price text-dark"> <del>{{ $product->product_price }} </del></h5>
+                                     <h5 class="product_price text-dark">
+                                         <del>{{ number_format($product->product_price) }} </del>
+                                     </h5>
                                  </h5>
 
                                  <h5 class="product_price text-dark">
-                                     <mark class="mark">{{ $finalPrice }}{{ $currency }}</mark>
+                                     <mark class="mark">{{ number_format($finalPrice) }} {{ $currency }}</mark>
                                  </h5>
                              @else
-                                 <h5 class="product_price text-dark"> {{ $product->product_price }}</h5>
+                                 <h5 class="product_price text-dark"> {{ number_format($product->product_price) }}</h5>
                              @endif
 
                              <a href="https://wa.me/{{ $setting->whatsapp_phone }}?text=اريد شراء {{ $product->product_name }}"

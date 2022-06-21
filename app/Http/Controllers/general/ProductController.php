@@ -28,6 +28,7 @@ class ProductController extends Controller
     {
 
 
+
         $products  = Product::where("product_name", "like", "%$request->search%")->paginate(6);
         if (Setting::count() < 1)
             Setting::create();

@@ -17,7 +17,7 @@
                         </div>
                         <div class="text-start pt-1">
                             <p class="text-sm mb-0 text-capitalize">عدد الزوار</p>
-                            <h4 class="mb-0">{{ Vistor::count() }}</h4>
+                            <h4 class="mb-0">{{ number_format(Vistor::count()) }}</h4>
                         </div>
                     </div>
                 </div>
@@ -31,7 +31,7 @@
                         </div>
                         <div class="text-start pt-1">
                             <p class="text-sm mb-0 text-capitalize">زوار اليوم</p>
-                            <h4 class="mb-0">{{ $todayVistors }}</h4>
+                            <h4 class="mb-0">{{ number_format($todayVistors) }}</h4>
                         </div>
                     </div>
 

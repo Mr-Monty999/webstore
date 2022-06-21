@@ -11,5 +11,5 @@ class Setting extends Model
 
     protected $table = "settings";
 
-    protected $fillable = ["store_name", "store_logo", "home_title", "contact_phone1", "contact_phone2", "contact_address", "whatsapp_phone"];
+    protected $fillable = ["store_name", "store_logo", "store_currency", "home_title", "contact_phone1", "contact_phone2", "contact_address", "whatsapp_phone"];
 }

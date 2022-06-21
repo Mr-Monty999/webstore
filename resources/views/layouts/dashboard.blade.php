@@ -19,9 +19,9 @@
 use Illuminate\Support\Facades\Auth;
 use App\Models\Setting;
 
-$storeLogo = null;
+$store = null;
 if (Setting::count() > 0) {
-    $storeLogo = Setting::first()->store_logo;
+    $store = Setting::first();
 }
 
 @endphp
@@ -32,7 +32,7 @@ if (Setting::count() > 0) {
     <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
     <link rel="icon" type="image/png" href="../assets/img/favicon.png">
     <title>
-        موقع الكتروني
+        {{ $store->store_name }}
     </title>
     <!--     Fonts and icons     -->
     <link rel="stylesheet" type="text/css"
@@ -51,7 +51,7 @@ if (Setting::count() > 0) {
     <!-- CSS Files -->
     <link id="pagestyle" href="{{ asset('dashboard/css/material-dashboard.min.css') }}" rel="stylesheet" />
     <link rel="stylesheet" href="{{ asset('dashboard/css/mystyle.css') }}">
-    <link rel="icon" href="{{ asset($storeLogo) }}">
+    <link rel="icon" href="{{ asset($store->store_logo) }}">
 
 </head>
 

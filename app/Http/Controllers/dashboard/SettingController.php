@@ -61,7 +61,8 @@ class SettingController extends Controller
             "contact_phone1" => trim($request->contact_phone1),
             "contact_phone2" => trim($request->contact_phone2),
             "contact_address" => trim($request->contact_address),
-            "store_logo" => $photoName
+            "store_logo" => $photoName,
+            "store_currency" => trim($request->store_currency)
         ]);
 
         return redirect()->back()->with("success", "تم الحفظ بنجاح ");

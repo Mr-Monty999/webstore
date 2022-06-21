@@ -11,6 +11,10 @@
                 <input type="text" name="store_name" value="{{ $setting->store_name }}" class="form-control">
             </div>
             <div class="input-group input-group-outline my-3 bg-white is-filled focus is-focused">
+                <label class="form-label">عملة المتجر</label>
+                <input type="text" name="store_currency" value="{{ $setting->store_currency }}" class="form-control">
+            </div>
+            <div class="input-group input-group-outline my-3 bg-white is-filled focus is-focused">
                 <label class="form-label">رقم هاتف الواتس اب</label>
                 <input type="text" name="whatsapp_phone" value="{{ $setting->whatsapp_phone }}" class="form-control">
             </div>

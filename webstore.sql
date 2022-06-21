@@ -125,6 +125,7 @@ CREATE TABLE `settings` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `store_name` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `store_logo` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `store_currency` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `home_title` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `whatsapp_phone` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `contact_phone1` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,

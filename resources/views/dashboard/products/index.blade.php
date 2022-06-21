@@ -86,7 +86,8 @@
                                                     <p class="text-dark text-center">{{ $product->product_name }}</p>
                                                 </td>
                                                 <td>
-                                                    <p class="text-dark text-center">{{ $product->product_price }}</p>
+                                                    <p class="text-dark text-center">
+                                                        {{ number_format($product->product_price) }}</p>
                                                 </td>
                                                 <td>
                                                     @if ($product->product_discount != null)
