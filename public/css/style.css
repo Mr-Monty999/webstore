@@ -165,10 +165,18 @@ footer {
 .items-menu {
     max-height: 400px;
     overflow-y: scroll;
-    background-color: gainsboro;
+    background-color: rgb(245, 245, 245);
     width: 200px;
+    padding: 0px;
 }
 
+.items-menu a {
+    padding: 3px !important;
+}
+
+.items-menu li {
+    /* padding: 5px !important; */
+}
 
 
 /* .pagination a {

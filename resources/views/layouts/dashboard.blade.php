@@ -23,6 +23,7 @@ $storeLogo = null;
 if (Setting::count() > 0) {
     $storeLogo = Setting::first()->store_logo;
 }
+
 @endphp
 
 <head>

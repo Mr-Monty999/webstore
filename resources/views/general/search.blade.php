@@ -24,6 +24,10 @@
                                      
                                      $price = filter_var($product->product_price, FILTER_SANITIZE_NUMBER_FLOAT);
                                      
+                                     if (!is_numeric($price)) {
+                                         $price = 0;
+                                     }
+                                     
                                      $finalPrice = ($product->product_discount * $price) / 100;
                                      $finalPrice = $price - $finalPrice;
                                      
