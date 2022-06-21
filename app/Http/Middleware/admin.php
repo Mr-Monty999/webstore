@@ -22,7 +22,7 @@ class admin
             return redirect()->route("dashboard.login");
 
         if (Auth::guard("admin")->check() && Route::currentRouteName() == "dashboard.login")
-            return redirect()->route("dashboard");
+            return redirect()->route("dashboard.index");
 
 
         return $next($request);
