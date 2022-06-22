@@ -85,7 +85,7 @@
                     </div>
                 </div>
             </div>
-            {{ $feedbacks->links() }}
+            {!! $feedbacks->links() !!}
 
         </div>
         <form action="{{ route('dashboard.feedbacks.delete.all') }}" method="post">

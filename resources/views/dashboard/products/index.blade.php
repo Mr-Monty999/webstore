@@ -129,7 +129,7 @@
                         </div>
                     </div>
                 </div>
-                {{ $products->links() }}
+                {!! $products->links() !!}
 
             </div>
         @else
