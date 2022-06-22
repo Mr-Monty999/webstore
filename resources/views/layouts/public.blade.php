@@ -136,7 +136,7 @@ if (Setting::count() > 0) {
     <script src="{{ asset('js/jquery-3.6.0.min.js') }}"></script>
     <script src="{{ asset('js/bootstrap.min.js') }}"></script>
     <script src="{{ asset('js/script.js') }}"></script>
-    <script></script>
+    @yield('scripts')
     @yield('ajax')
 </body>
 

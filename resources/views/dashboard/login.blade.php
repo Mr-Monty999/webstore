@@ -99,6 +99,10 @@
                                         <button type="submit" class="btn bg-gradient-primary w-100 my-4 mb-2">تسجيل
                                             دخول</button>
                                     </div>
+                                    @foreach ($errors->all() as $error)
+                                        <div class="alert alert-danger text-center text-white">
+                                            {{ $error }} </div>
+                                    @endforeach
                                     @if (Session::has('error'))
                                         <div class="alert alert-danger text-center text-white">
                                             {{ Session::get('error') }}</div>

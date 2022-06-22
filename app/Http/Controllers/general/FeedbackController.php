@@ -8,6 +8,7 @@ use App\Models\Feedback;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Route;
 use Illuminate\Support\Facades\Request as FacadesRequest;
+use Illuminate\Support\Facades\Validator;
 
 class FeedbackController extends Controller
 {
@@ -18,6 +19,7 @@ class FeedbackController extends Controller
      */
     public function index()
     {
+
         return view("general.feedback");
     }
 
@@ -27,12 +29,8 @@ class FeedbackController extends Controller
     public function store(FeedbackRequest $request)
     {
 
-
         $request->validated();
 
-
-        if (!empty($request->mydata))
-            return redirect()->back();
 
         // preg_match_all('#\bhttps?://[^,\s()<>]+(?:\([\w\d]+\)|([^,[:punct:]\s]|/))#', $request->message, $match);
 

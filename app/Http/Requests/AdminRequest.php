@@ -33,7 +33,7 @@ class AdminRequest extends FormRequest
     public function messages()
     {
         return [
-            "admin_name.required" => "الرجاء كتابة الاسم الخاص بك !",
+            "admin_name.required" => "الرجاء كتابة اسم الادمن !",
             // "password.required" => "الرجاء كتابة كلمة المرور !",
             "admin_photo.image" => "الرجاء اختيار صورة فقط !"
         ];

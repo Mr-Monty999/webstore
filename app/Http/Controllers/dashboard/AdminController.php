@@ -5,6 +5,7 @@ namespace App\Http\Controllers\dashboard;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\AdminRequest;
 use App\Models\Admin;
+use App\Models\Vistor;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -28,7 +29,16 @@ class AdminController extends Controller
 
     public function dashboard()
     {
-        return view("dashboard.index");
+
+        $todayVistors = number_format(Vistor::where('created_at', 'like', '%' . date('Y-m-d') . '%')->count());
+        $allVistors =  number_format(Vistor::count());
+        $adminName = Auth::guard('admin')->user()->admin_name;
+
+        return view("dashboard.index", [
+            "todayVistors" => $todayVistors,
+            "allVistors" => $allVistors,
+            "adminName" => $adminName
+        ]);
     }
 
     public function login()
@@ -51,9 +61,9 @@ class AdminController extends Controller
 
         return redirect()->route("dashboard.login");
     }
-    public function attemptLogin(Request $request)
+    public function attemptLogin(AdminRequest $request)
     {
-
+        $request->validated();
         $data = $request->only("admin_name", "password");
         if (Auth::guard("admin")->attempt($data, true)) {
             return redirect()->route("dashboard.index");

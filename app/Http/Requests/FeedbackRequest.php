@@ -26,6 +26,8 @@ class FeedbackRequest extends FormRequest
         return [
             "name" => "required",
             "message" => "required",
+            'g-recaptcha-response' => 'required|captcha',
+
 
         ];
     }
@@ -34,7 +36,8 @@ class FeedbackRequest extends FormRequest
     {
         return [
             "name.required" => "الرجاء كتابة اسمك !",
-            "message.required" => "الرجاء كتابة الرسالة !"
+            "message.required" => "الرجاء كتابة الرسالة !",
+            "g-recaptcha-response.required" => "الرجاء اجتياز التحقق الامني !"
         ];
     }
 }

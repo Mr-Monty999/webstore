@@ -1,11 +1,6 @@
 @extends('layouts.dashboard')
 
 @section('status')
-    @php
-    use App\Models\Vistor;
-    $todayVistors = Vistor::where('created_at', 'like', '%' . date('Y-m-d') . '%')->count();
-
-    @endphp
     <div class="container-fluid py-4">
         <div class="row">
             <div class="col-lg-3 col-sm-6 mb-lg-0 mb-4">
@@ -17,7 +12,7 @@
                         </div>
                         <div class="text-start pt-1">
                             <p class="text-sm mb-0 text-capitalize">عدد الزوار</p>
-                            <h4 class="mb-0">{{ number_format(Vistor::count()) }}</h4>
+                            <h4 class="mb-0">{{ $allVistors }}</h4>
                         </div>
                     </div>
                 </div>
@@ -31,7 +26,7 @@
                         </div>
                         <div class="text-start pt-1">
                             <p class="text-sm mb-0 text-capitalize">زوار اليوم</p>
-                            <h4 class="mb-0">{{ number_format($todayVistors) }}</h4>
+                            <h4 class="mb-0">{{ $todayVistors }}</h4>
                         </div>
                     </div>
 
@@ -43,6 +38,6 @@
 @endsection
 @section('section')
     <div class="">
-        <h2>مرحبا بك {{ Auth::guard('admin')->user()->admin_name }}</h2>
+        <h2>مرحبا بك {{ $adminName }}</h2>
     </div>
 @endsection
