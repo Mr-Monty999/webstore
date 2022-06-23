@@ -53,10 +53,7 @@ class SettingController extends Controller
             $photo->move($path . "/images/settings", "$photoName");
             $photoName = "/images/settings/" . $photoName;
         }
-        $data = [];
-        foreach ($request->all() as $key => $value) {
-            $data[$key] = trim($value);
-        }
+        $data = $request->all();
         $data["store_logo"] = $photoName;
 
         $setting->update($data);

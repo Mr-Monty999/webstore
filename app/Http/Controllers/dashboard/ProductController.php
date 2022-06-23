@@ -54,10 +54,7 @@ class ProductController extends Controller
             $photoName = "/images/products/" . $photoName;
         }
 
-        $data = [];
-        foreach ($request->all() as $key => $value) {
-            $data[$key] = trim($value);
-        }
+        $data = $request->all();
         $data["product_photo"] = $photoName;
         $data["product_discount"] = $productDiscount;
 
@@ -114,10 +111,8 @@ class ProductController extends Controller
             $photoName = "/images/products/" . $photoName;
         }
 
-        $data = [];
-        foreach ($request->all() as $key => $value) {
-            $data[$key] = trim($value);
-        }
+        $data = $request->all();
+
         $data["product_photo"] = $photoName;
         $data["product_discount"] = $productDiscount;
 
