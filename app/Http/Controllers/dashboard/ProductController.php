@@ -54,13 +54,14 @@ class ProductController extends Controller
             $photoName = "/images/products/" . $photoName;
         }
 
-        Product::create([
-            "product_name" => trim($request->product_name),
-            "product_price" => trim($request->product_price),
-            "product_discount" => $productDiscount,
-            "product_photo" => $photoName,
-            "item_id" => trim($request->item_id)
-        ]);
+        $data = [];
+        foreach ($request->all() as $key => $value) {
+            $data[$key] = trim($value);
+        }
+        $data["product_photo"] = $photoName;
+        $data["product_discount"] = $productDiscount;
+
+        Product::create($data);
         return redirect()->back()->with("success", "تم اضافة المنتج بنجاح ");
     }
 
@@ -113,16 +114,14 @@ class ProductController extends Controller
             $photoName = "/images/products/" . $photoName;
         }
 
-        $product->update(
-            [
-                "product_name" => trim($request->product_name),
-                "product_price" => trim($request->product_price),
-                "product_photo" => $photoName,
-                "product_discount" => $productDiscount,
-                "item_id" => trim($request->item_id)
-            ]
+        $data = [];
+        foreach ($request->all() as $key => $value) {
+            $data[$key] = trim($value);
+        }
+        $data["product_photo"] = $photoName;
+        $data["product_discount"] = $productDiscount;
 
-        );
+        $product->update($data);
 
         return redirect()->back()->with("success", "تم التعديل بنجاح ");
     }

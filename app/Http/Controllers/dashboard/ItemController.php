@@ -27,6 +27,7 @@ class ItemController extends Controller
 
         $exists = Item::where("item_name", $request->item_name)->exists();
 
+
         if (!$exists) {
             Item::create([
                 "item_name" => trim($request->item_name)

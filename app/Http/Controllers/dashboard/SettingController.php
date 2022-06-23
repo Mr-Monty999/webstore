@@ -53,17 +53,13 @@ class SettingController extends Controller
             $photo->move($path . "/images/settings", "$photoName");
             $photoName = "/images/settings/" . $photoName;
         }
+        $data = [];
+        foreach ($request->all() as $key => $value) {
+            $data[$key] = trim($value);
+        }
+        $data["store_logo"] = $photoName;
 
-        $setting->update([
-            "store_name" => trim($request->store_name),
-            "home_title" => trim($request->home_title),
-            "whatsapp_phone" => trim($request->whatsapp_phone),
-            "contact_phone1" => trim($request->contact_phone1),
-            "contact_phone2" => trim($request->contact_phone2),
-            "contact_address" => trim($request->contact_address),
-            "store_logo" => $photoName,
-            "store_currency" => trim($request->store_currency)
-        ]);
+        $setting->update($data);
 
         return redirect()->back()->with("success", "تم الحفظ بنجاح ");
     }
