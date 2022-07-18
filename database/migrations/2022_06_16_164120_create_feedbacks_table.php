@@ -17,6 +17,8 @@ class CreateFeedbacksTable extends Migration
             $table->id();
             $table->string("name", 255);
             $table->string("message", 255);
+            $table->string("ip", 100)->nullable();
+
             $table->timestamps();
         });
     }

@@ -14,8 +14,7 @@ class ProductController extends Controller
     public function index($id)
     {
 
-        $products = Item::find($id)->products()->paginate(6);
-
+        $products = Item::find($id)->products()->with("item")->paginate(6);
         if (Setting::count() < 1)
             Setting::create([]);
 
@@ -29,7 +28,7 @@ class ProductController extends Controller
 
 
 
-        $products  = Product::where("product_name", "like", "%$request->search%")->paginate(6);
+        $products  = Product::where("product_name", "like", "%$request->search%")->with("item")->paginate(6);
         if (Setting::count() < 1)
             Setting::create([]);
 

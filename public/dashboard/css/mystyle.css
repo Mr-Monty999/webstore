@@ -33,3 +33,8 @@ table td {
 textarea {
     resize: none !important;
 }
+
+
+.height-auto {
+    height: auto !important;
+}

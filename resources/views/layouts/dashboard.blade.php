@@ -20,9 +20,10 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\Setting;
 
 $store = null;
-if (Setting::count() > 0) {
-    $store = Setting::first();
+if (Setting::count() < 1) {
+    Setting::create([]);
 }
+$store = Setting::first();
 
 @endphp
 
@@ -73,7 +74,7 @@ if (Setting::count() > 0) {
             </a>
         </div>
         <hr class="horizontal light mt-0 mb-2">
-        <div class="collapse navbar-collapse px-0 w-auto " id="sidenav-collapse-main">
+        <div class="collapse navbar-collapse px-0 w-auto height-auto" id="sidenav-collapse-main">
             <ul class="navbar-nav">
                 <li class="nav-item">
                     <a class="nav-link bg-success" href="{{ route('home') }}">
@@ -500,8 +501,7 @@ if (Setting::count() > 0) {
     <script async defer src="https://buttons.github.io/buttons.js"></script>
     <!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
     <script src="{{ asset('dashboard/js/material-dashboard.min.js') }}"></script>
-    @yield('scripts')
-    @yield('ajax')
+    @stack('ajax')
 
 </body>
 

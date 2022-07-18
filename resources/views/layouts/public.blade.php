@@ -3,8 +3,14 @@
 
 @php
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Cookie;
 use App\Models\Setting;
 use App\Models\Item;
+use App\Models\Cart;
+
+$products = Cart::with('products')
+    ->where('cart_uid', Cookie::get('cart_uid'))
+    ->first()->products;
 
 $navItems = Item::all();
 
@@ -95,29 +101,33 @@ if (Setting::count() > 0) {
     <main class="">
         @yield('content')
     </main>
-    <div class="mycart" hidden dir="ltr">
+    <div class="mycart" dir="ltr">
         <div class="products">
-            <div class="d-flex flex-column justify-content-center align-items-center">
-                <div class="product d-flex flex-column justify-content-center align-items-center">
-                    <h6 class="text-dark">منتج</h6>
-                    <h6 class="text-dark">13300</h6>
-                    <div class="form-group" dir="rtl">
-                        <label class="text-dark" for="">الكمية</label>
-                        <input min="1" type="number" value="1"
-                            class="form-control text-center product-amount" name="qty" id="">
+            @foreach ($products as $product)
+                <div class="d-flex flex-column justify-content-center align-items-center">
+                    <div id="product{{ $product->id }}"
+                        class="product d-flex flex-column justify-content-center align-items-center product{{ $product->id }}">
+                        <input type="text" class="product-id" value="" hidden>
+                        <h6 class="text-dark">{{ $product->product_name }}</h6>
+                        <h6 class="text-dark product-new-price">{{ $product->product_price }}</h6>
+                        <div class="form-group" dir="rtl">
+                            <label class="text-dark" for="">الكمية</label>
+                            <input min="1" type="number" value="1"
+                                class="form-control text-center product-amount" name="qty" id="">
+                        </div>
+                        <div>
+                            <button type="button" class="btn btn-danger inside-cart-decrease decrease">-</button>
+                            <button type="button" class="btn btn-success inside-cart-increase increase">+</button>
+                        </div>
+                        <button type="button"
+                            class="btn btn-danger delete d-flex justify-content-center align-items-center">
+                            <i class="fa-solid fa-trash"></i>
+                            ازالة
+                        </button>
                     </div>
-                    <div>
-                        <button type="button" class="btn btn-danger inside-cart-decrease">-</button>
-                        <button type="button" class="btn btn-success inside-cart-increase">+</button>
-                    </div>
-                    <button type="button"
-                        class="btn btn-danger delete d-flex justify-content-center align-items-center">
-                        <i class="fa-solid fa-trash"></i>
-                        ازالة
-                    </button>
+                    <hr>
                 </div>
-                <hr>
-            </div>
+            @endforeach
         </div>
         <i class="fa-solid fa-cart-shopping" class="btn btn-primary"></i>
     </div>
@@ -136,8 +146,10 @@ if (Setting::count() > 0) {
     <script src="{{ asset('js/jquery-3.6.0.min.js') }}"></script>
     <script src="{{ asset('js/bootstrap.min.js') }}"></script>
     <script src="{{ asset('js/script.js') }}"></script>
-    @yield('scripts')
-    @yield('ajax')
+    @stack('scripts')
+    @stack('ajax')
+
+
 </body>
 
 </html>

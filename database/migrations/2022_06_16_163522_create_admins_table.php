@@ -17,6 +17,7 @@ class CreateAdminsTable extends Migration
             $table->id();
             $table->string("admin_name", 255);
             $table->string("password", 255);
+            $table->string("admin_photo", 255)->nullable();
             $table->string("admin_rank", 50);
             $table->string("admin_status", 50);
             $table->rememberToken();

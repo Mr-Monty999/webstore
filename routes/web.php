@@ -1,5 +1,7 @@
 <?php
 
+use App\Models\Feedback;
+use App\Models\Product;
 use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -15,14 +17,27 @@ use Illuminate\Support\Facades\Route;
 */
 
 
+
+
 /// General Pages Routes
 Route::group(["namespace" => "general"], function () {
+
     Route::get("/", "HomeController@index")->name("home");
-    Route::get("/contact", "ContactController@index")->name("contact");
-    Route::get("/feedback", "FeedbackController@index")->name("feedback");
-    Route::post("/feedback/store", "FeedbackController@store")->name("feedback.store");
-    Route::get("/products/{id}", "ProductController@index")->name("products.view");
-    Route::get("/search", "ProductController@search")->name("search");
+
+    Route::group(["middleware" => "cart"], function () {
+        Route::get("/contact", "ContactController@index")->name("contact");
+        Route::get("/feedback", "FeedbackController@index")->name("feedback");
+        Route::post("/feedback/store", "FeedbackController@store")->name("feedback.store");
+        Route::get("/products/{id}", "ProductController@index")->name("products.view");
+        Route::get("/search", "ProductController@search")->name("search");
+    });
+
+    ///Cart Routes
+    Route::resource("carts", "CartController");
+    // Route::post("/carts/store", "SettingController@index")->name("carts.index");
+    // Route::delete("/carts/delete/", "SettingController@update")->name("carts.update");
+
+
 });
 
 ///login Dashboard Panel Routes
@@ -49,6 +64,7 @@ Route::group(["prefix" => "wbc", "middleware" => "admin", "namespace" => "dashbo
     Route::get("/items/edit/{id}", "ItemController@edit")->name("items.edit");
     Route::put("/items/update/{id}", "ItemController@update")->name("items.update");
     Route::delete("/items/delete/{id}", "ItemController@destroy")->name("items.delete");
+    // Route::resource("items", "ItemController");
 
 
     ///Products Routes

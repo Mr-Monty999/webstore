@@ -18,4 +18,9 @@ class Product extends Model
     {
         return $this->belongsTo(Item::class, "item_id");
     }
+
+    public function carts()
+    {
+        return $this->belongsToMany(Cart::class, "cart_produssct");
+    }
 }

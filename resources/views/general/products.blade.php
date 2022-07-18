@@ -6,7 +6,8 @@
 
              @if ($products->count() > 0)
                  @foreach ($products as $product)
-                     <div class="card d-flex flex-column justify-content-center align-items-center col-10 col-md-4 col-lg-3">
+                     <div
+                         class="card d-flex flex-column justify-content-center align-items-center col-10 col-md-4 col-lg-3 product{{ $product->id }}">
                          <img src="{{ asset($product->product_photo) }}" class="" width="" alt="...">
                          <div class="card-body d-flex flex-column justify-content-center align-items-center">
                              <h5 class="product_name card-title text-dark">{{ $product->product_name }}</h5>
@@ -28,9 +29,9 @@
                                  
                              @endphp
                              @if ($product->product_discount > 0)
-                                 <h5 class="product_price text-dark"> خصم %{{ $product->product_discount }}
+                                 <h5 class="text-dark"> خصم %{{ $product->product_discount }}
 
-                                     <h5 class="product_price text-dark">
+                                     <h5 class="product_old_price text-dark">
                                          <del>{{ number_format($product->product_price) }} </del>
                                      </h5>
                                  </h5>
@@ -45,21 +46,21 @@
 
                              <a href="https://wa.me/{{ $setting->whatsapp_phone }}?text=اريد شراء {{ $product->product_name }}"
                                  target="_blank" class="btn btn-success mar-3">شراء الان
-                                 <i class="fa-solid fa-cash-register"></i>
                              </a>
                              @if (Auth::guard('admin')->check())
                                  <a href="{{ route('products.edit', $product->id) }}" class="btn btn-dark">تعديل
                                  </a>
                              @endif
-                             <a hidden href="#collapseExample" class="btn btn-success" data-bs-toggle="collapse"
-                                 href="#collapseExample" role="button" aria-expanded="false"
-                                 aria-controls="collapseExample">اضف
+                             <input type="text" class="product-id" hidden value="{{ $product->id }}">
+                             <a href="#cart{{ $product->id }}" class="btn btn-success add-to-cart"
+                                 data-bs-toggle="collapse" href="#cart{{ $product->id }}" role="button"
+                                 aria-expanded="false" aria-controls="cart{{ $product->id }}">اضف
                                  الي السلة
                                  <i class="fa-solid fa-cart-shopping"></i>
                              </a>
-                             <div class="collapse" id="collapseExample">
+                             <div class="collapse" id="cart{{ $product->id }}">
                                  <div class="d-flex flex-column justify-content-center align-items-center">
-                                     <h1 class="product-new-price">{{ $product->product_price }}</h1>
+                                     <h1 class="product-new-price">{{ $finalPrice }}</h1>
                                      <div class="form-group">
                                          <label for="">الكمية:</label>
                                          <input min="1" type="number" value="1"
@@ -87,3 +88,80 @@
 
      </div>
  @endsection
+ @push('ajax')
+     <script>
+         //  $("input[type=date]").val(new Date().toISOString().slice(0, 10));
+
+
+         let addToCart = $(".add-to-cart");
+
+         addToCart.on("click", function() {
+             //  alert("success");
+             let productId = $(this).parent().find(".product-id").val(),
+                 productNewPrice = $(this).parent().find(".product-new-price").text(),
+                 productName = $(this).parent().find(".product_name").text(),
+                 productAmount = $(this).parent().find(".product-amount").val();
+
+             $.ajax({
+                 headers: {
+                     'X-CSRF-TOKEN': "{{ csrf_token() }}"
+                 },
+                 method: "post",
+                 url: "{{ route('carts.store') }}",
+                 data: {
+                     "product_id": productId
+                 },
+                 dataType: "json",
+                 //  processData: false,
+                 //  contentType: false,
+                 success: function(response) {
+
+                     let product = $(".mycart #product" + productId + "");
+
+                     if (product.length < 1) {
+                         product =
+                             '<div class="d-flex flex-column justify-content-center align-items-center">' +
+                             '<div id="product' + productId +
+                             '" class="product d-flex flex-column justify-content-center align-items-center product' +
+                             productId + '">' +
+                             '<input type="text" class="product-id"  value="' +
+                             productId + '" hidden>' +
+                             '<h6 class="text-dark">' + productName + '</h6>' +
+                             '<h6 class="text-dark product-new-price">' + productNewPrice + '</h6>' +
+                             '<div class="form-group" dir="rtl">' +
+                             ' <label class="text-dark" for="">الكمية</label>' +
+                             '<input min="1" type="number" value="' + productAmount +
+                             '" class="form-control text-center product-amount" name="qty" id="">' +
+                             '</div>' +
+                             '<div>' +
+                             '<button type="button" class="btn btn-danger inside-cart-decrease">-</button>' +
+                             ' <button type="button" class="btn btn-success inside-cart-increase">+</button>' +
+                             '</div>' +
+                             '<button type="button" class="btn btn-danger delete d-flex justify-content-center align-items-center">' +
+                             '<i class="fa-solid fa-trash"></i>' +
+                             'ازالة' +
+                             '</button>' +
+                             '</div>' +
+                             '<hr>' +
+                             '</div>';
+
+
+                         $(".mycart .products").append(product);
+                         console.log(response);
+                     }
+
+
+                 },
+                 error: function(response) {
+
+
+                     let errors = response.responseJSON;
+                     console.log(errors);
+
+                 }
+
+             });
+
+         });
+     </script>
+ @endpush

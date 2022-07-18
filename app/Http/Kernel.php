@@ -21,7 +21,8 @@ class Kernel extends HttpKernel
         \Illuminate\Foundation\Http\Middleware\ValidatePostSize::class,
         \App\Http\Middleware\TrimStrings::class,
         \Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull::class,
-        \App\Http\Middleware\vistors::class
+        \App\Http\Middleware\vistors::class,
+        // \App\Http\Middleware\CartMiddleware::class
     ];
 
     /**
@@ -65,6 +66,7 @@ class Kernel extends HttpKernel
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
         "admin" => \App\Http\Middleware\admin::class,
-        "owner" => \App\Http\Middleware\owner::class
+        "owner" => \App\Http\Middleware\owner::class,
+        "cart" => \App\Http\Middleware\CartMiddleware::class
     ];
 }

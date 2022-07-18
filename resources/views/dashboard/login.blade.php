@@ -83,7 +83,7 @@
                                     @csrf
 
                                     <div class="input-group input-group-outline my-3">
-                                        <label class="form-label">اسم الادمن</label>
+                                        <label class="form-label">اسم المدير</label>
                                         <input type="text" name="admin_name" class="form-control">
                                     </div>
                                     <div class="input-group input-group-outline mb-3">

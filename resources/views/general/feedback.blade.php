@@ -32,6 +32,6 @@
     </section>
 @endsection
 
-@section('scripts')
+@push('scripts')
     {!! NoCaptcha::renderJs() !!}
-@endsection
+@endpush

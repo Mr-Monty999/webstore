@@ -107,6 +107,7 @@ class AdminController extends Controller
             "admin_status" => "offline",
             "admin_photo" => $photoName,
         ]);
+
         return redirect()->back()->with("success", "تم اضافة المشرف بنجاح ");
     }
 
