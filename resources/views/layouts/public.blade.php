@@ -107,7 +107,7 @@ if (Setting::count() > 0) {
                 <div class="d-flex flex-column justify-content-center align-items-center">
                     <div id="product{{ $product->id }}"
                         class="product d-flex flex-column justify-content-center align-items-center product{{ $product->id }}">
-                        <input type="text" class="product-id" value="" hidden>
+                        <input type="text" class="product-id" value="{{ $product->id }}" hidden>
                         <h6 class="text-dark">{{ $product->product_name }}</h6>
                         <h6 class="text-dark product-new-price">{{ $product->product_price }}</h6>
                         <div class="form-group" dir="rtl">
@@ -116,8 +116,8 @@ if (Setting::count() > 0) {
                                 class="form-control text-center product-amount" name="qty" id="">
                         </div>
                         <div>
-                            <button type="button" class="btn btn-danger inside-cart-decrease decrease">-</button>
-                            <button type="button" class="btn btn-success inside-cart-increase increase">+</button>
+                            <button type="button" class="btn btn-danger inside-cart-decrease">-</button>
+                            <button type="button" class="btn btn-success inside-cart-increase">+</button>
                         </div>
                         <button type="button"
                             class="btn btn-danger delete d-flex justify-content-center align-items-center">
@@ -148,6 +148,48 @@ if (Setting::count() > 0) {
     <script src="{{ asset('js/script.js') }}"></script>
     @stack('scripts')
     @stack('ajax')
+    <script>
+        //  $("input[type=date]").val(new Date().toISOString().slice(0, 10));
+
+
+        let deleteCart = $(".mycart .delete");
+
+        deleteCart.on("click", function() {
+            //  alert("success");
+
+            let productId = $(this).parent().find(".product-id").val();
+
+            $.ajax({
+                headers: {
+                    'X-CSRF-TOKEN': "{{ csrf_token() }}"
+                },
+                method: "delete",
+                url: "{{ route('carts.destroy', '+productId+') }}",
+                data: {
+                    "product_id": productId
+                },
+                dataType: "json",
+                //  processData: false,
+                //  contentType: false,
+                success: function(response) {
+
+
+                    console.log(response);
+
+
+
+                },
+                error: function(response) {
+
+
+                    let errors = response.responseJSON;
+                    console.log(errors);
+
+                }
+
+            });
+        });
+    </script>
 
 
 </body>

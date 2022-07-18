@@ -46,7 +46,7 @@ class CartController extends Controller
             "success" => true,
             "message" => "تم الاضافة بنجاح"
         ];
-        return response($data, 200);
+        return response()->json($data, 200);
     }
 
     /**
@@ -89,8 +89,17 @@ class CartController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request)
     {
-        //
+        $uid = Cookie::get("cart_uid");
+        Cart::where("cart_uid", $uid)->first()->products()->detach($request->product_id);
+
+        return  $request->all();
+        $data = [
+            "success" => true,
+            "message" => "تم الحذف بنجاخ"
+        ];
+
+        return response()->json($data, 200);
     }
 }
