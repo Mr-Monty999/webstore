@@ -13,7 +13,7 @@ $(document).ready(function () {
         addToCart = $(".add-to-cart");
     // deleteProduct = $(".product .delete");
 
-    $(".products").on("click", ".delete", function () {
+    $(".mycart .products").on("click", ".delete", function () {
         $(this).parent().next().remove();
         $(this).parent().parent().remove();
     });

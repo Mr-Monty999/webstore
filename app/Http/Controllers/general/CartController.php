@@ -80,7 +80,13 @@ class CartController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $uid = Cookie::get("cart_uid");
+        Cart::where("cart_uid", $uid)->first()->products()->syncWithoutDetaching([$request->product_id => ["product_amount" => $request->product_amount]]);
+        $data = [
+            "success" => true,
+            "message" => "تم التعديل بنجاح"
+        ];
+        return response()->json($data, 200);
     }
 
     /**
@@ -89,7 +95,7 @@ class CartController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Request $request)
+    public function destroy(Request $request, $id)
     {
         $uid = Cookie::get("cart_uid");
         Cart::where("cart_uid", $uid)->first()->products()->detach($request->product_id);

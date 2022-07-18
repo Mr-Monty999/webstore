@@ -58,12 +58,18 @@
                                  الي السلة
                                  <i class="fa-solid fa-cart-shopping"></i>
                              </a>
+                             <button type="button"
+                                 class="btn btn-danger delete d-flex justify-content-center align-items-center">
+                                 ازالة من السلة
+                                 <i class="fa-solid fa-trash"></i>
+                             </button>
+
                              <div class="collapse" id="cart{{ $product->id }}">
                                  <div class="d-flex flex-column justify-content-center align-items-center">
                                      <h1 class="product-new-price">{{ $finalPrice }}</h1>
                                      <div class="form-group">
                                          <label for="">الكمية:</label>
-                                         <input min="1" type="number" value="1"
+                                         <input min="1" type="number" value="3"
                                              class="form-control text-center product-amount" name="" id="">
                                      </div>
                                      <div>
@@ -147,7 +153,6 @@
 
 
                          $(".mycart .products").append(product);
-                         console.log(response);
                      }
 
 
@@ -156,7 +161,6 @@
 
 
                      let errors = response.responseJSON;
-                     console.log(errors);
 
                  }
 

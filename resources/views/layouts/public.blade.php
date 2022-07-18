@@ -112,7 +112,7 @@ if (Setting::count() > 0) {
                         <h6 class="text-dark product-new-price">{{ $product->product_price }}</h6>
                         <div class="form-group" dir="rtl">
                             <label class="text-dark" for="">الكمية</label>
-                            <input min="1" type="number" value="1"
+                            <input min="1" type="number" value="3"
                                 class="form-control text-center product-amount" name="qty" id="">
                         </div>
                         <div>
@@ -152,10 +152,10 @@ if (Setting::count() > 0) {
         //  $("input[type=date]").val(new Date().toISOString().slice(0, 10));
 
 
-        let deleteCart = $(".mycart .delete");
 
-        deleteCart.on("click", function() {
-            //  alert("success");
+
+        $(".mycart .delete").on("click", function() {
+            // alert("success");
 
             let productId = $(this).parent().find(".product-id").val();
 
@@ -164,9 +164,83 @@ if (Setting::count() > 0) {
                     'X-CSRF-TOKEN': "{{ csrf_token() }}"
                 },
                 method: "delete",
-                url: "{{ route('carts.destroy', '+productId+') }}",
+                url: "{{ route('carts.destroy', 1) }}",
                 data: {
                     "product_id": productId
+                },
+                dataType: "json",
+                //  processData: false,
+                //  contentType: false,
+                success: function(response) {
+
+
+                    console.log(response);
+
+
+
+                },
+                error: function(response) {
+
+
+                    let errors = response.responseJSON;
+                    console.log(errors);
+
+                }
+
+            });
+        });
+        $(document).on("click", ".mycart .inside-cart-increase", function() {
+
+
+            let productId = $(this).parent().parent().find(".product-id").val();
+            let productAmount = $("#product" + productId + "").find(".product-amount").val();
+
+
+            $.ajax({
+                headers: {
+                    'X-CSRF-TOKEN': "{{ csrf_token() }}"
+                },
+                method: "put",
+                url: "{{ route('carts.update', 1) }}",
+                data: {
+                    "product_id": productId,
+                    "product_amount": productAmount,
+                },
+                dataType: "json",
+                //  processData: false,
+                //  contentType: false,
+                success: function(response) {
+
+
+                    console.log(response);
+
+
+
+                },
+                error: function(response) {
+
+
+                    let errors = response.responseJSON;
+                    console.log(errors);
+
+                }
+
+            });
+        });
+        $(document).on("click", ".mycart .inside-cart-decrease", function() {
+            //  alert("success");
+
+            let productId = $(this).parent().parent().find(".product-id").val();
+
+            $.ajax({
+                headers: {
+                    'X-CSRF-TOKEN': "{{ csrf_token() }}"
+                },
+                method: "put",
+                url: "{{ route('carts.update', 1) }}",
+                data: {
+                    "product_id": productId,
+                    "product_amount": productAmount
                 },
                 dataType: "json",
                 //  processData: false,
