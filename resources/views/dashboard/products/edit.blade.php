@@ -4,7 +4,7 @@
     <div class="d-flex flex-column justify-content-center align-items-center">
         <h1>تعديل منتج</h1>
 
-        <form action="{{ route('products.update', $product->id) }}" enctype="multipart/form-data" method="POST">
+        <form action="" id="products" enctype="multipart/form-data" method="POST">
             @csrf
             @method('PUT')
             <div class="input-group input-group-outline my-3 bg-white is-filled focus is-focused">
@@ -17,8 +17,7 @@
             </div>
             <div class="input-group input-group-outline my-3 bg-white is-filled focus is-focused">
                 <label class="form-label">تخفيض %</label>
-                <input type="text" name="product_discount" value="{{ $product->product_discount }}"
-                    class="form-control">
+                <input type="text" name="product_discount" value="{{ $product->product_discount }}" class="form-control">
             </div>
             <label class="text-dark">صنف المنتج :</label>
             <div class="input-group input-group-outline  bg-white">
@@ -38,7 +37,7 @@
             </div>
             <button type="submit" class="btn btn-success margin my-3">تعديل</button>
 
-            <a href="{{ route('products.index') }}" type="submit" class="btn btn-dark  my-3">رجوع</a>
+            <a href="{{ URL::previous() }}" type="submit" class="btn btn-dark  my-3">رجوع</a>
 
         </form>
 
@@ -58,3 +57,64 @@
 
     </div>
 @endsection
+@push('ajax')
+    <script>
+        $("form#products").on("submit", function(e) {
+            e.preventDefault();
+
+            $(".alert").remove();
+
+
+
+
+
+            $.ajax({
+                headers: {
+                    'X-CSRF-TOKEN': "{{ csrf_token() }}"
+                },
+                method: "post",
+                url: "{{ route('products.update', $product->id) }}",
+                data: new FormData(this),
+                dataType: "json",
+                processData: false,
+                contentType: false,
+                success: function(response) {
+
+                    if (response.photo_path != null)
+                        $("form img").attr("src", response.photo_path);
+
+                    if (response.success)
+                        $("form").after(
+                            '<div class = "alert alert-success text-white" >' + response.message +
+                            ' </div>'
+                        );
+                    else
+                        $("form").after(
+                            '<div class = "alert alert-danger text-white" >' + response.message +
+                            ' </div>'
+                        );
+
+
+
+
+                },
+                error: function(response) {
+
+
+                    let errors = response.responseJSON.errors;
+
+                    for (let error in errors) {
+
+
+                        $("form").after(
+                            '<div class = "alert alert-danger text-white" >' + errors[error] +
+                            ' </div>'
+                        );
+                    }
+
+                }
+
+            });
+        });
+    </script>
+@endpush

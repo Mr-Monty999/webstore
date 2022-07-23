@@ -112,7 +112,7 @@ if (Setting::count() > 0) {
                         <h6 class="text-dark product-new-price">{{ $product->product_price }}</h6>
                         <div class="form-group" dir="rtl">
                             <label class="text-dark" for="">الكمية</label>
-                            <input min="1" type="number" value="3"
+                            <input min="1" type="number" value="{{ $product->pivot->product_amount }}"
                                 class="form-control text-center product-amount" name="qty" id="">
                         </div>
                         <div>
@@ -154,7 +154,7 @@ if (Setting::count() > 0) {
 
 
 
-        $(".mycart .delete").on("click", function() {
+        $(document).on("click", ".mycart .delete", function() {
             // alert("success");
 
             let productId = $(this).parent().find(".product-id").val();
@@ -189,12 +189,14 @@ if (Setting::count() > 0) {
 
             });
         });
-        $(document).on("click", ".mycart .inside-cart-increase", function() {
+
+        $(document).on("change", ".mycart input[type='number']", function() {
 
 
             let productId = $(this).parent().parent().find(".product-id").val();
             let productAmount = $("#product" + productId + "").find(".product-amount").val();
 
+            console.log(productAmount);
 
             $.ajax({
                 headers: {
@@ -212,7 +214,7 @@ if (Setting::count() > 0) {
                 success: function(response) {
 
 
-                    console.log(response);
+                    // console.log(response);
 
 
 
@@ -227,10 +229,54 @@ if (Setting::count() > 0) {
 
             });
         });
+        $(document).on("click", ".mycart .inside-cart-increase", function() {
+
+            // $(document).on("change", ".mycart input[type='number']", function() {
+
+            let productId = $(this).parent().parent().find(".product-id").val();
+            let productAmount = $("#product" + productId + "").find(".product-amount").val();
+
+            console.log(productAmount);
+
+            $.ajax({
+                headers: {
+                    'X-CSRF-TOKEN': "{{ csrf_token() }}"
+                },
+                method: "put",
+                url: "{{ route('carts.update', 1) }}",
+                data: {
+                    "product_id": productId,
+                    "product_amount": productAmount,
+                },
+                dataType: "json",
+                //  processData: false,
+                //  contentType: false,
+                success: function(response) {
+
+
+                    // console.log(response);
+
+
+
+                },
+                error: function(response) {
+
+
+                    let errors = response.responseJSON;
+                    console.log(errors);
+
+                }
+
+                // });
+            });
+        });
         $(document).on("click", ".mycart .inside-cart-decrease", function() {
             //  alert("success");
 
             let productId = $(this).parent().parent().find(".product-id").val();
+            let productAmount = $("#product" + productId + "").find(".product-amount").val();
+
+            console.log(productAmount);
 
             $.ajax({
                 headers: {
@@ -248,7 +294,7 @@ if (Setting::count() > 0) {
                 success: function(response) {
 
 
-                    console.log(response);
+                    // console.log(response);
 
 
 

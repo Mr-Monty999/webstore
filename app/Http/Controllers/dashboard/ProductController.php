@@ -18,21 +18,34 @@ class ProductController extends Controller
     public function index()
     {
 
-        $products = Product::with("item")->paginate(5);
+        $products = Product::with("item")->paginate(5)->onEachSide(0);
         $items = Item::all();
         return view("dashboard.products.index", ["products" => $products, "items" => $items]);
     }
 
+    public function table()
+    {
+        $products = Product::with("item")->paginate(5)->withPath(route("products.index"))->onEachSide(0);
+        $items = Item::all();
+        return view("dashboard.products.table", ["products" => $products, "items" => $items]);
+    }
 
 
 
     public function store(ProductRequest $request)
     {
+
+
+
         $request->validated();
+        $data = $request->all();
+
         $product = Product::where("product_name", $request->product_name);
 
         if ($product->exists()) {
-            return redirect()->back()->with("error", "هذا المنتج موجود بالفعل");
+            $data["success"] = false;
+            $data["message"] = "هذا المنتج موجود بالفعل !";
+            return response()->json($data, 200);
         }
 
         $path = null;
@@ -55,12 +68,13 @@ class ProductController extends Controller
             $photoName = "/images/products/" . $photoName;
         }
 
-        $data = $request->all();
         $data["product_photo"] = $photoName;
         $data["product_discount"] = $productDiscount;
 
         Product::create($data);
-        return redirect()->back()->with("success", "تم اضافة المنتج بنجاح ");
+        $data["success"] = true;
+        $data["message"] = "تم الاضافة بنجاح";
+        return response()->json($data, 200);
     }
 
 
@@ -79,13 +93,17 @@ class ProductController extends Controller
     {
 
 
-
         $request->validated();
+        $data = $request->all();
+
         $product = Product::find($id);
         $oldProduct = Product::where("product_name", $request->product_name);
 
         if ($oldProduct->exists() && $oldProduct->first()->product_name != $product->product_name) {
-            return redirect()->back()->with("error", "هذا المنتج موجود بالفعل");
+            $data["success"] = false;
+            $data["message"] = "هذا المنتج موجود بالفعل";
+
+            return response()->json($data, 200);
         }
 
         $path = null;
@@ -100,34 +118,48 @@ class ProductController extends Controller
             $productDiscount = trim($request->product_discount);
 
         $photo = null;
-        $photoName = $product->product_photo;
+        $photoPath = $product->product_photo;
+        $photoName = null;
         if ($request->hasFile("product_photo")) {
             $photo = $request->file("product_photo");
             $photoName = time() . "." . $photo->getClientOriginalExtension();
-
+            // $photo
             if (file_exists($path . $product->product_photo) && is_file($path . $product->product_photo))
                 unlink($path . $product->product_photo);
 
             $photo->move($path . "/images/products", "$photoName");
-            $photoName = "/images/products/" . $photoName;
+            $photoPath = "/images/products/" . $photoName;
         }
 
-        $data = $request->all();
 
-        $data["product_photo"] = $photoName;
+        $data["product_photo"] = $photoPath;
         $data["product_discount"] = $productDiscount;
 
         $product->update($data);
 
-        return redirect()->back()->with("success", "تم التعديل بنجاح ");
+        $data["success"] = true;
+        $data["message"] = "تم تعديل المنتج بنجاح";
+        $data["photo_path"] = asset($photoPath);
+
+        return response()->json($data, 200);
     }
 
 
-    public function destroy($id)
+    public function destroy(Request $request, $id)
     {
-        $product = Product::find($id);
+        $product = Product::find($request->id);
+        $data["product"] = $product;
         $product->delete();
 
-        return redirect()->back()->with("success", "تم الحذف بنجاح");
+        $data["success"] = true;
+        $data["message"] = "تم الحذف بنجاح";
+
+        return response()->json($data, 200);
+    }
+    public function destroyAll()
+    {
+        Product::truncate();
+        $data["success"] = true;
+        $data["message"] = "تم حذف جميع المنتجات بنجاح";
     }
 }

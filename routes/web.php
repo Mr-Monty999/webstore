@@ -40,13 +40,12 @@ Route::group(["namespace" => "general"], function () {
 
 });
 
-///login Dashboard Panel Routes
+///login  Panel Routes
 Route::get("/lbc", "dashboard\AdminController@login")->name("dashboard.login")->middleware("admin");
 Route::post("/lbc/login", "dashboard\AdminController@attemptLogin")->name("dashboard.attempt");
 
 
-/// Dashboard Panel Routes
-
+/// Dashboard  Routes
 Route::group(["prefix" => "wbc", "middleware" => "admin", "namespace" => "dashboard"], function () {
     Route::get("/", "AdminController@dashboard")->name("dashboard.index");
     Route::get("/logout", "AdminController@logout")->name("dashboard.logout");
@@ -64,6 +63,7 @@ Route::group(["prefix" => "wbc", "middleware" => "admin", "namespace" => "dashbo
     Route::get("/items/edit/{id}", "ItemController@edit")->name("items.edit");
     Route::put("/items/update/{id}", "ItemController@update")->name("items.update");
     Route::delete("/items/delete/{id}", "ItemController@destroy")->name("items.delete");
+    Route::get("/items-table", "ItemController@table")->name("items.table");
     // Route::resource("items", "ItemController");
 
 
@@ -73,13 +73,15 @@ Route::group(["prefix" => "wbc", "middleware" => "admin", "namespace" => "dashbo
     Route::get("/products/edit/{id}", "ProductController@edit")->name("products.edit");
     Route::put("/products/update/{id}", "ProductController@update")->name("products.update");
     Route::delete("/products/delete/{id}", "ProductController@destroy")->name("products.delete");
+    Route::get("/products-table", "ProductController@table")->name("products.table");
+
 
 
     ///Privacy Routes
     Route::get("/privacy", "PrivacyController@index")->name("privacy.index");
     Route::put("/privacy/update/", "PrivacyController@update")->name("privacy.update");
 
-    ///Products Routes
+    ///Admins Routes
     Route::group(["middleware" => "owner"], function () {
         Route::get("/admins", "AdminController@index")->name("admins.index");
         Route::post("/admins/store", "AdminController@store")->name("admins.store");

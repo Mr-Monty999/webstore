@@ -4,8 +4,9 @@
     <div class="d-flex flex-column justify-content-center align-items-center">
         <h1>المنتجات</h1>
         @if ($items->count() > 0)
-            <form action="{{ route('products.store') }}" enctype="multipart/form-data" method="POST">
+            <form id="products" enctype="multipart/form-data" method="POST">
                 @csrf
+                @method('post')
                 <div class="input-group input-group-outline my-3 bg-white">
                     <label class="form-label">اسم المنتج</label>
                     <input type="text" name="product_name" class="form-control">
@@ -44,8 +45,11 @@
                 <div class="alert alert-danger text-white">{{ Session::get('error') }}</div>
             @endif
 
+            <div class="container-fluid d-flex flex-column justify-content-center align-items-center row my-8 mytable">
+                @include('dashboard.products.table')
+            </div>
 
-            <div class="container-fluid row my-8">
+            {{-- <div class="container-fluid row my-8">
                 <div class="col-12">
                     <div class="card my-4">
                         <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
@@ -131,7 +135,7 @@
                 </div>
                 {!! $products->links() !!}
 
-            </div>
+            </div> --}}
         @else
             <div class="alert alert-danger text-white"> عفوا لايوجد اصناف, الرجاء ادخال الاصناف اولا</div>
         @endif
@@ -139,3 +143,142 @@
 
     </div>
 @endsection
+@push('ajax')
+    <script>
+        // Insert Product And Update Table //
+        $("form#products").on("submit", function(e) {
+            e.preventDefault();
+
+            $(".alert").remove();
+
+
+
+
+            $.ajax({
+                headers: {
+                    'X-CSRF-TOKEN': "{{ csrf_token() }}"
+                },
+                method: "post",
+                url: "{{ route('products.store') }}",
+                data: new FormData(this),
+                dataType: "json",
+                processData: false,
+                contentType: false,
+                success: function(response) {
+
+
+                    let table = $(".mytable");
+                    table.load("{{ route('products.table') }}", function(response, status,
+                        request) {
+
+
+                    });
+
+                    if (response.success)
+                        $("form#products").after(
+                            '<div class = "alert alert-success text-white" >' + response.message +
+                            ' </div>'
+                        );
+                    else
+                        $("form#products").after(
+                            '<div class = "alert alert-danger text-white" >' + response.message +
+                            ' </div>'
+                        );
+
+
+                },
+                error: function(response) {
+
+
+                    let errors = response.responseJSON.errors;
+
+                    for (let error in errors) {
+
+
+                        $("form#products").after(
+                            '<div class = "alert alert-danger text-white" >' + errors[error] +
+                            ' </div>'
+                        );
+                    }
+
+
+                }
+
+            });
+        });
+
+
+        ////Delete Product And Update Table ////
+        $(document).on("submit", "form#product-delete", function(e) {
+            e.preventDefault();
+
+            $(".alert").remove();
+
+
+            let deleteProduct = confirm("هل أنت متأكد من حذف المنتج ؟");
+
+            // let productId = $(this).find("#product-id");
+
+            if (deleteProduct) {
+                $.ajax({
+                    headers: {
+                        'X-CSRF-TOKEN': "{{ csrf_token() }}"
+                    },
+                    method: "post",
+                    url: "{{ route('products.delete', '0') }}",
+                    data: new FormData(this),
+                    dataType: "json",
+                    processData: false,
+                    contentType: false,
+                    success: function(response) {
+
+
+                        console.log(response);
+                        let table = $(".mytable");
+                        table.load("{{ route('products.table') }}", function(res, status,
+                            request) {
+
+                            if (response.success)
+                                $(".mytable").append(
+                                    '<div class = "alert alert-success text-center col-7 col-md-3 text-white" >' +
+                                    response
+                                    .message +
+                                    ' </div>'
+                                );
+                            else
+                                $(".mytable").append(
+                                    '<div class = "alert alert-success text-center col-7 col-md-3 text-white" >' +
+                                    response
+                                    .message +
+                                    ' </div>'
+                                );
+
+                        });
+
+
+
+
+                    },
+                    error: function(response) {
+
+
+                        let errors = response.responseJSON.errors;
+
+                        for (let error in errors) {
+
+
+                            $(".mytable").append(
+                                '<div class = "alert alert-danger text-center col-7 col-md-3 text-white" >' +
+                                errors[error] +
+                                ' </div>'
+                            );
+                        }
+
+
+                    }
+
+                });
+            }
+        });
+    </script>
+@endpush

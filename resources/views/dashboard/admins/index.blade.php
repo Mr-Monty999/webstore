@@ -95,8 +95,7 @@
                                                 <td class="align-middle text-center">
                                                     <a href="{{ route('admins.edit', $admin->id) }}"
                                                         class="btn btn-dark">تعديل </a>
-                                                    <form action="{{ route('admins.delete', $admin->id) }}"
-                                                        method="post">
+                                                    <form action="{{ route('admins.delete', $admin->id) }}" method="post">
                                                         @csrf
                                                         @method('DELETE')
                                                         <button type="submit" class="btn btn-danger">حذف </button>
@@ -122,3 +121,146 @@
 
     </div>
 @endsection
+
+@push('ajax')
+    <script>
+        // Insert Product And Update Table //
+        $("form#items").on("submit", function(e) {
+            e.preventDefault();
+
+            $(".alert").remove();
+
+
+
+
+            $.ajax({
+                headers: {
+                    'X-CSRF-TOKEN': "{{ csrf_token() }}"
+                },
+                method: "post",
+                url: "{{ route('items.store') }}",
+                data: new FormData(this),
+                dataType: "json",
+                processData: false,
+                contentType: false,
+                success: function(response) {
+
+
+                    console.log(response);
+                    let table = $(".mytable");
+                    table.load("{{ route('items.table') }}", function(response, status,
+                        request) {
+
+
+                    });
+
+                    if (response.success)
+                        $("form#items").after(
+                            '<div class = "alert alert-success text-white" >' + response.message +
+                            ' </div>'
+                        );
+                    else
+                        $("form#items").after(
+                            '<div class = "alert alert-danger text-white" >' + response.message +
+                            ' </div>'
+                        );
+
+                    $("form#items input").val("");
+
+
+                },
+                error: function(response) {
+
+
+                    let errors = response.responseJSON.errors;
+
+                    for (let error in errors) {
+
+
+                        $("form#items").after(
+                            '<div class = "alert alert-danger text-white" >' + errors[error] +
+                            ' </div>'
+                        );
+                    }
+
+
+                }
+
+            });
+        });
+
+
+        ////Delete Product And Update Table ////
+        $(document).on("submit", "form#item-delete", function(e) {
+            e.preventDefault();
+
+            $(".alert").remove();
+
+
+            let deleteProduct = confirm("هل أنت متأكد من حذف المنتج ؟");
+
+            // let productId = $(this).find("#item-id");
+
+            if (deleteProduct) {
+                $.ajax({
+                    headers: {
+                        'X-CSRF-TOKEN': "{{ csrf_token() }}"
+                    },
+                    method: "post",
+                    url: "{{ route('items.delete', '0') }}",
+                    data: new FormData(this),
+                    dataType: "json",
+                    processData: false,
+                    contentType: false,
+                    success: function(response) {
+
+
+                        console.log(response);
+                        let table = $(".mytable");
+                        table.load("{{ route('items.table') }}", function(res, status,
+                            request) {
+
+                            if (response.success)
+                                $(".mytable").append(
+                                    '<div class = "alert alert-success text-center col-7 col-md-3 text-white" >' +
+                                    response
+                                    .message +
+                                    ' </div>'
+                                );
+                            else
+                                $(".mytable").append(
+                                    '<div class = "alert alert-success text-center col-7 col-md-3 text-white" >' +
+                                    response
+                                    .message +
+                                    ' </div>'
+                                );
+
+                        });
+
+
+
+
+                    },
+                    error: function(response) {
+
+
+                        let errors = response.responseJSON.errors;
+
+                        for (let error in errors) {
+
+
+                            $(".mytable").append(
+                                '<div class = "alert alert-danger text-center col-7 col-md-3 text-white" >' +
+                                errors[error] +
+                                ' </div>'
+                            );
+                        }
+
+
+                    }
+
+                });
+            }
+        });
+    </script>
+@endpush

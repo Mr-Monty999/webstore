@@ -3,7 +3,7 @@
 @section('section')
     <div class="d-flex flex-column justify-content-center align-items-center">
         <h1>تعديل صنف</h1>
-        <form action="{{ route('items.update', $item->id) }}" method="POST">
+        <form id="items" action="">
             @csrf
             @method('PUT')
             <div class="input-group input-group-outline my-3 bg-white is-filled focus is-focused">
@@ -11,7 +11,7 @@
                 <input type="text" name="item_name" value="{{ $item->item_name }}" class="form-control">
             </div>
             <button type="submit" class="btn btn-success margin">تعديل</button>
-            <a href="{{ route('items.index') }}" class="btn btn-dark">رجوع</a>
+            <a href="{{ URL::previous() }}" class="btn btn-dark">رجوع</a>
 
         </form>
 
@@ -29,3 +29,62 @@
 
     </div>
 @endsection
+
+@push('ajax')
+    <script>
+        $("form#items").on("submit", function(e) {
+            e.preventDefault();
+
+            $(".alert").remove();
+
+
+
+
+
+            $.ajax({
+                headers: {
+                    'X-CSRF-TOKEN': "{{ csrf_token() }}"
+                },
+                method: "post",
+                url: "{{ route('items.update', $item->id) }}",
+                data: new FormData(this),
+                dataType: "json",
+                processData: false,
+                contentType: false,
+                success: function(response) {
+
+                    if (response.success)
+                        $("form").after(
+                            '<div class = "alert alert-success text-white" >' + response.message +
+                            ' </div>'
+                        );
+                    else
+                        $("form").after(
+                            '<div class = "alert alert-danger text-white" >' + response.message +
+                            ' </div>'
+                        );
+
+
+
+
+                },
+                error: function(response) {
+
+
+                    let errors = response.responseJSON.errors;
+
+                    for (let error in errors) {
+
+
+                        $("form").after(
+                            '<div class = "alert alert-danger text-white" >' + errors[error] +
+                            ' </div>'
+                        );
+                    }
+
+                }
+
+            });
+        });
+    </script>
+@endpush

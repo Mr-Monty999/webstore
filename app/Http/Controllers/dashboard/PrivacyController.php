@@ -21,12 +21,17 @@ class PrivacyController extends Controller
     public function update(AdminRequest $request)
     {
         $request->validated();
+        $data = $request->all();
+
         $admin = Admin::find(Auth::guard("admin")->id());
 
         $oldAdmin = Admin::where("admin_name", $request->admin_name);
 
         if ($oldAdmin->exists() && $oldAdmin->first()->admin_name != $admin->admin_name) {
-            return redirect()->back()->with("error", "هذا المشرف موجود بالفعل");
+            $data["success"] = false;
+            $data["message"] = "هذا المشرف موجود بالفعل";
+
+            return response()->json($data, 200);
         }
 
 
@@ -54,14 +59,17 @@ class PrivacyController extends Controller
         if (trim($request->password) != "")
             $password = Hash::make(trim($request->password));
 
-        $admin->update([
-            "admin_name" => trim($request->admin_name),
-            "password" => $password,
-            "admin_photo" => $photoName,
-            "admin_rank" => $admin->admin_rank,
-            "admin_status" => "online"
-        ]);
+        $data["password"] = $password;
 
-        return redirect()->back()->with("success", "تم الحفظ بنجاح ");
+        $data["admin_photo"] = asset($photoName);
+        $data["admin_rank"] = $admin->admin_rank;
+        $data["admin_status"] = "online";
+
+        $admin->update($data);
+
+        $data["success"] = true;
+        $data["message"] = "تم الحفظ بنجاح";
+
+        return response()->json($data);
     }
 }

@@ -7,6 +7,7 @@ use App\Models\Cart;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cookie;
+use Illuminate\Support\Facades\URL;
 
 class CartController extends Controller
 {
@@ -84,7 +85,8 @@ class CartController extends Controller
         Cart::where("cart_uid", $uid)->first()->products()->syncWithoutDetaching([$request->product_id => ["product_amount" => $request->product_amount]]);
         $data = [
             "success" => true,
-            "message" => "تم التعديل بنجاح"
+            "message" => "تم التعديل بنجاح",
+            "data" => $request->all()
         ];
         return response()->json($data, 200);
     }

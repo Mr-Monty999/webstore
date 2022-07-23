@@ -3,7 +3,7 @@
 @section('section')
     <div class="d-flex flex-column justify-content-center align-items-center">
         <h1>اعدادت الموقع</h1>
-        <form action="{{ route('settings.update') }}" enctype="multipart/form-data" method="POST">
+        <form action="" enctype="multipart/form-data" method="POST">
             @csrf
             @method('PUT')
             <div class="input-group input-group-outline my-3 bg-white is-filled focus is-focused">
@@ -61,3 +61,64 @@
 
     </div>
 @endsection
+@push('ajax')
+    <script>
+        $("form").on("submit", function(e) {
+            e.preventDefault();
+
+            $(".alert").remove();
+
+
+
+
+
+            $.ajax({
+                headers: {
+                    'X-CSRF-TOKEN': "{{ csrf_token() }}"
+                },
+                method: "post",
+                url: "{{ route('settings.update') }}",
+                data: new FormData(this),
+                dataType: "json",
+                processData: false,
+                contentType: false,
+                success: function(response) {
+
+                    if (response.photo_path != null)
+                        $("form img").attr("src", response.photo_path);
+
+                    if (response.success)
+                        $("form").after(
+                            '<div class = "alert alert-success text-white" >' + response.message +
+                            ' </div>'
+                        );
+                    else
+                        $("form").after(
+                            '<div class = "alert alert-danger text-white" >' + response.message +
+                            ' </div>'
+                        );
+
+
+
+
+                },
+                error: function(response) {
+
+
+                    let errors = response.responseJSON.errors;
+
+                    for (let error in errors) {
+
+
+                        $("form").after(
+                            '<div class = "alert alert-danger text-white" >' + errors[error] +
+                            ' </div>'
+                        );
+                    }
+
+                }
+
+            });
+        });
+    </script>
+@endpush

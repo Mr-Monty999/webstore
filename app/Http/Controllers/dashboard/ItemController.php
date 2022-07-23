@@ -6,6 +6,9 @@ use App\Http\Controllers\Controller;
 use App\Models\Item;
 use Illuminate\Http\Request;
 use App\Http\Requests\ItemRequest;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Route;
 
 class ItemController extends Controller
 {
@@ -16,27 +19,36 @@ class ItemController extends Controller
      */
     public function index()
     {
-        $items = Item::paginate(5);
+        $items = Item::paginate(5)->onEachSide(0);
         return view("dashboard.items.index", ["items" => $items]);
     }
 
+    public function table()
+    {
+        $items = Item::paginate(5)->withPath(route("items.index"))->onEachSide(0);
+        return view("dashboard.items.table", ["items" => $items]);
+    }
 
     public function store(ItemRequest $request)
     {
         $request->validated();
+        $data = $request->all();
 
         $exists = Item::where("item_name", $request->item_name)->exists();
 
 
         if (!$exists) {
-            Item::create([
-                "item_name" => trim($request->item_name)
-            ]);
+            Item::create($data);
+            $data["success"] = true;
+            $data["message"] = "تم الاضافة بنجاح";
 
-            return redirect()->back()->with("success", "تم الاضافة بنجاح");
+            return response()->json($data, 200);
         }
 
-        return redirect()->back()->with("error", "هذا الصنف موجود بالفعل");
+        $data["success"] = false;
+        $data["message"] = "هذا المنتج موجود بالفعل !";
+
+        return response()->json($data, 200);
     }
 
 
@@ -50,27 +62,44 @@ class ItemController extends Controller
     public function update(ItemRequest $request, $id)
     {
         $request->validated();
+        $data = $request->all();
+
         $item = Item::find($id);
         $oldItem = Item::where("item_name", $request->item_name);
 
 
 
         if ($oldItem->exists() && $item->item_name != $oldItem->first()->item_name) {
-            return redirect()->back()->with("error", "هذا الصنف موجود فعلا !");
+            $data["success"] = false;
+            $data["message"] = "هذا الصنف موجود فعلا !";
+
+            return response()->json($data, 200);
         }
 
-        $item->update([
-            "item_name" => trim($request->item_name)
-        ]);
-        return redirect()->back()->with("success", "تم التعديل بنجاح");
+        $item->update($data);
+
+        $data["success"] = true;
+        $data["message"] = "تم التعديل بنجاح";
+
+        return response()->json($data, 200);
     }
 
-    public function destroy($id)
+    public function destroy(Request $request, $id)
     {
-        $item = Item::find($id);
-
+        $item = Item::find($request->id);
+        $data["item"] = $item;
         $item->delete();
+        $data["success"] = true;
+        $data["message"] = "تم الحذف بنجاح";
 
-        return redirect()->back()->with("success", "تم الحذف بنجاح");
+        return response()->json($data);
+    }
+
+    public function destroyAll()
+    {
+
+        Item::truncate();
+        $data["success"] = true;
+        $data["message"] = "تم حذف جميع الاصناف بنجاح";
     }
 }

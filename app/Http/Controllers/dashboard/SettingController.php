@@ -29,7 +29,9 @@ class SettingController extends Controller
 
     public function update(SettingRequest $request)
     {
+
         $request->validated();
+        $data = $request->all();
 
         $setting = Setting::first();
 
@@ -53,11 +55,15 @@ class SettingController extends Controller
             $photo->move($path . "/images/settings", "$photoName");
             $photoName = "/images/settings/" . $photoName;
         }
-        $data = $request->all();
+        // $data = $request->all();
         $data["store_logo"] = $photoName;
 
         $setting->update($data);
 
-        return redirect()->back()->with("success", "تم الحفظ بنجاح ");
+        $data["success"] = true;
+        $data["message"] = "تم الحفظ بنجاح";
+        $data["photo_path"] = asset($photoName);
+
+        return response()->json($data, 200);
     }
 }
