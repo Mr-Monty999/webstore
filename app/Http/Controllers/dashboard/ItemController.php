@@ -97,9 +97,9 @@ class ItemController extends Controller
 
     public function destroyAll()
     {
-
-        Item::truncate();
+        DB::table("items")->delete();
         $data["success"] = true;
         $data["message"] = "تم حذف جميع الاصناف بنجاح";
+        return response()->json($data);
     }
 }

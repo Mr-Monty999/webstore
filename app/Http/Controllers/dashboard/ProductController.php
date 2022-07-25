@@ -6,7 +6,10 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\ProductRequest;
 use App\Models\Item;
 use App\Models\Product;
+use App\Services\DeleteService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\File;
 
 class ProductController extends Controller
 {
@@ -123,9 +126,9 @@ class ProductController extends Controller
         if ($request->hasFile("product_photo")) {
             $photo = $request->file("product_photo");
             $photoName = time() . "." . $photo->getClientOriginalExtension();
-            // $photo
-            if (file_exists($path . $product->product_photo) && is_file($path . $product->product_photo))
-                unlink($path . $product->product_photo);
+
+            // Delete Old Photo
+            DeleteService::deleteFile($product->product_photo);
 
             $photo->move($path . "/images/products", "$photoName");
             $photoPath = "/images/products/" . $photoName;
@@ -151,6 +154,9 @@ class ProductController extends Controller
         $data["product"] = $product;
         $product->delete();
 
+        //Delete Old Photo
+        DeleteService::deleteFile($product->product_photo);
+
         $data["success"] = true;
         $data["message"] = "تم الحذف بنجاح";
 
@@ -158,8 +164,14 @@ class ProductController extends Controller
     }
     public function destroyAll()
     {
-        Product::truncate();
+
+        DB::table("products")->delete();
+
+        //Delete All Photos
+        DeleteService::deleteAllFiles("/images/products");
+
         $data["success"] = true;
         $data["message"] = "تم حذف جميع المنتجات بنجاح";
+        return response()->json($data);
     }
 }

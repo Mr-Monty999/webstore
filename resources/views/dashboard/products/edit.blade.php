@@ -78,6 +78,17 @@
                 dataType: "json",
                 processData: false,
                 contentType: false,
+                beforeSend: function() {
+                    $("form").after(
+                        '<div class="d-flex spinner"><p>جار المعالجة...</p>' +
+                        '<div class="spinner-border text-primary margin-1" role="status"></div>' +
+                        '</div>'
+                    );
+                },
+                complete: function() {
+                    $(".spinner").remove();
+
+                },
                 success: function(response) {
 
                     if (response.photo_path != null)

@@ -7,6 +7,9 @@ use Illuminate\Support\Facades\Cookie;
 use App\Models\Setting;
 use App\Models\Item;
 use App\Models\Cart;
+use App\Services\CheckService;
+
+CheckService::cartChecker();
 
 $products = Cart::with('products')
     ->where('cart_uid', Cookie::get('cart_uid'))
@@ -105,25 +108,32 @@ if (Setting::count() > 0) {
         <div class="products">
             @foreach ($products as $product)
                 <div class="d-flex flex-column justify-content-center align-items-center">
-                    <div id="product{{ $product->id }}"
-                        class="product d-flex flex-column justify-content-center align-items-center product{{ $product->id }}">
-                        <input type="text" class="product-id" value="{{ $product->id }}" hidden>
-                        <h6 class="text-dark">{{ $product->product_name }}</h6>
-                        <h6 class="text-dark product-new-price">{{ $product->product_price }}</h6>
-                        <div class="form-group" dir="rtl">
-                            <label class="text-dark" for="">الكمية</label>
-                            <input min="1" type="number" value="{{ $product->pivot->product_amount }}"
-                                class="form-control text-center product-amount" name="qty" id="">
-                        </div>
-                        <div>
-                            <button type="button" class="btn btn-danger inside-cart-decrease">-</button>
-                            <button type="button" class="btn btn-success inside-cart-increase">+</button>
-                        </div>
-                        <button type="button"
-                            class="btn btn-danger delete d-flex justify-content-center align-items-center">
-                            <i class="fa-solid fa-trash"></i>
-                            ازالة
-                        </button>
+                    <div id="product{{ $product->id }}" class="product product{{ $product->id }}">
+                        <form class="d-flex flex-column justify-content-center align-items-center" method="POST"
+                            id="product-delete">
+                            @csrf
+                            @method('DELETE')
+                            <input type="text" class="product-id" name="product_id" value="{{ $product->id }}"
+                                hidden>
+                            <h6 class="text-dark" name="product_name">{{ $product->product_name }}</h6>
+                            <h6 class="text-dark product-new-price" name="product_price">{{ $product->product_price }}
+                            </h6>
+                            <div class="form-group" dir="rtl">
+                                <label class="text-dark" for="">الكمية</label>
+                                <input min="1" type="number" value="{{ $product->pivot->product_amount }}"
+                                    class="form-control text-center product-amount" name="product_amount"
+                                    id="">
+                            </div>
+                            <div>
+                                <button type="button" class="btn btn-danger inside-cart-decrease">-</button>
+                                <button type="button" class="btn btn-success inside-cart-increase">+</button>
+                            </div>
+                            <button type="submit"
+                                class="btn btn-danger delete d-flex justify-content-center align-items-center">
+                                <i class="fa-solid fa-trash"></i>
+                                ازالة
+                            </button>
+                        </form>
                     </div>
                     <hr>
                 </div>
@@ -153,28 +163,25 @@ if (Setting::count() > 0) {
 
 
 
+        $(document).on("submit", "form#product-delete", function() {
+            $(this).parent().parent().remove();
 
-        $(document).on("click", ".mycart .delete", function() {
-            // alert("success");
-
-            let productId = $(this).parent().find(".product-id").val();
 
             $.ajax({
                 headers: {
                     'X-CSRF-TOKEN': "{{ csrf_token() }}"
                 },
-                method: "delete",
-                url: "{{ route('carts.destroy', 1) }}",
-                data: {
-                    "product_id": productId
-                },
+                method: "post",
+                url: "{{ route('carts.destroy', 0) }}",
+                data: new FormData(this),
                 dataType: "json",
-                //  processData: false,
-                //  contentType: false,
+                processData: false,
+                contentType: false,
                 success: function(response) {
 
 
                     console.log(response);
+
 
 
 
@@ -190,20 +197,25 @@ if (Setting::count() > 0) {
             });
         });
 
-        $(document).on("change", ".mycart input[type='number']", function() {
+        $(document).on("change", ".mycart .product-amount", function() {
 
 
-            let productId = $(this).parent().parent().find(".product-id").val();
-            let productAmount = $("#product" + productId + "").find(".product-amount").val();
+            let productId = $(this).parent().parent().find(".product-id").val(),
+                productAmount = $(this).val(),
+                productPrice = $(".product" + productId + " .product_price"),
+                productNewPrice = parseFloat(productPrice.text().match(/\d/g).join("")) * productAmount;
 
-            console.log(productAmount);
+            $(".product" + productId + " .product-amount").val(productAmount);
+            $(".product" + productId + " .product-new-price").text(productNewPrice);
+
+
 
             $.ajax({
                 headers: {
                     'X-CSRF-TOKEN': "{{ csrf_token() }}"
                 },
                 method: "put",
-                url: "{{ route('carts.update', 1) }}",
+                url: "{{ route('carts.update', 0) }}",
                 data: {
                     "product_id": productId,
                     "product_amount": productAmount,
@@ -223,7 +235,6 @@ if (Setting::count() > 0) {
 
 
                     let errors = response.responseJSON;
-                    console.log(errors);
 
                 }
 
@@ -243,7 +254,7 @@ if (Setting::count() > 0) {
                     'X-CSRF-TOKEN': "{{ csrf_token() }}"
                 },
                 method: "put",
-                url: "{{ route('carts.update', 1) }}",
+                url: "{{ route('carts.update', 0) }}",
                 data: {
                     "product_id": productId,
                     "product_amount": productAmount,
@@ -275,7 +286,6 @@ if (Setting::count() > 0) {
 
             let productId = $(this).parent().parent().find(".product-id").val();
             let productAmount = $("#product" + productId + "").find(".product-amount").val();
-
             console.log(productAmount);
 
             $.ajax({
@@ -283,7 +293,7 @@ if (Setting::count() > 0) {
                     'X-CSRF-TOKEN': "{{ csrf_token() }}"
                 },
                 method: "put",
-                url: "{{ route('carts.update', 1) }}",
+                url: "{{ route('carts.update', 0) }}",
                 data: {
                     "product_id": productId,
                     "product_amount": productAmount

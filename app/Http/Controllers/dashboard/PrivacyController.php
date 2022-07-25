@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 
 use App\Http\Requests\AdminRequest;
 use App\Models\Admin;
+use App\Services\DeleteService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -49,8 +50,9 @@ class PrivacyController extends Controller
             $photo = $request->file("admin_photo");
             $photoName = time() . "." . $photo->getClientOriginalExtension();
 
-            if (file_exists($path . $admin->admin_photo) && is_file($path . $admin->admin_photo))
-                unlink($path . $admin->admin_photo);
+            // Delete Old Photo
+            DeleteService::deleteFile($admin->admin_photo);
+
 
             $photo->move($path . "/images/admins", "$photoName");
             $photoName = "/images/admins/" . $photoName;
@@ -60,8 +62,7 @@ class PrivacyController extends Controller
             $password = Hash::make(trim($request->password));
 
         $data["password"] = $password;
-
-        $data["admin_photo"] = asset($photoName);
+        $data["admin_photo"] = $photoName;
         $data["admin_rank"] = $admin->admin_rank;
         $data["admin_status"] = "online";
 
@@ -69,6 +70,7 @@ class PrivacyController extends Controller
 
         $data["success"] = true;
         $data["message"] = "تم الحفظ بنجاح";
+        $data["photo_path"] = asset($photoName);
 
         return response()->json($data);
     }

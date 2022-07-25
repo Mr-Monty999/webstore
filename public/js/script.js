@@ -13,10 +13,11 @@ $(document).ready(function () {
         addToCart = $(".add-to-cart");
     // deleteProduct = $(".product .delete");
 
-    $(".mycart .products").on("click", ".delete", function () {
-        $(this).parent().next().remove();
-        $(this).parent().parent().remove();
-    });
+    // $(".mycart .products").on("click", ".delete", function () {
+    //     $(this).parent().next().remove();
+    //     $(this).parent().parent().remove();
+    // });
+
     cart.on("click", function () {
         cart.prev().toggle();
     });
@@ -39,7 +40,6 @@ $(document).ready(function () {
 
 
     });
-
     $(document).on("click", ".decrease", function () {
         let = productId = $(this).parent().parent().parent().parent().find(".product-id"),
             productAmount = $(".product" + productId.val() + "").find(".product-amount"),
@@ -75,6 +75,7 @@ $(document).ready(function () {
     });
 
     $(document).on("click", ".inside-cart-decrease", function () {
+
         let = productId = $(this).parent().parent().find(".product-id"),
             productAmount = $(".product" + productId.val() + "").find(".product-amount"),
             productPrice = $(".product" + productId.val() + "").find(".product_price"),

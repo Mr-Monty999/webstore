@@ -49,6 +49,12 @@
                 @include('dashboard.products.table')
             </div>
 
+            <form id="delete-all-products" action="" method="POST">
+                @csrf
+                @method('DELETE')
+                <button type="submit" class="btn btn-warning">حذف جميع المنتجات</button>
+            </form>
+
             {{-- <div class="container-fluid row my-8">
                 <div class="col-12">
                     <div class="card my-4">
@@ -164,8 +170,18 @@
                 dataType: "json",
                 processData: false,
                 contentType: false,
-                success: function(response) {
+                beforeSend: function() {
+                    $("form#products").after(
+                        '<div class="d-flex spinner"><p>جار المعالجة...</p>' +
+                        '<div class="spinner-border text-primary margin-1" role="status"></div>' +
+                        '</div>'
+                    );
+                },
+                complete: function() {
+                    $(".spinner").remove();
 
+                },
+                success: function(response) {
 
                     let table = $(".mytable");
                     table.load("{{ route('products.table') }}", function(response, status,
@@ -174,12 +190,14 @@
 
                     });
 
-                    if (response.success)
+                    if (response.success) {
                         $("form#products").after(
                             '<div class = "alert alert-success text-white" >' + response.message +
                             ' </div>'
                         );
-                    else
+                        $("form#products input").val("");
+
+                    } else
                         $("form#products").after(
                             '<div class = "alert alert-danger text-white" >' + response.message +
                             ' </div>'
@@ -233,7 +251,6 @@
                     success: function(response) {
 
 
-                        console.log(response);
                         let table = $(".mytable");
                         table.load("{{ route('products.table') }}", function(res, status,
                             request) {
@@ -268,6 +285,75 @@
 
 
                             $(".mytable").append(
+                                '<div class = "alert alert-danger text-center col-7 col-md-3 text-white" >' +
+                                errors[error] +
+                                ' </div>'
+                            );
+                        }
+
+
+                    }
+
+                });
+            }
+        });
+        //Delete All Products ////
+        $(document).on("submit", "form#delete-all-products", function(e) {
+            e.preventDefault();
+
+            $(".alert").remove();
+
+
+            let deleteProduct = confirm("هل أنت متأكد من حذف جميع المنتجات؟");
+
+            // let productId = $(this).find("#item-id");
+
+            if (deleteProduct) {
+                $.ajax({
+                    headers: {
+                        'X-CSRF-TOKEN': "{{ csrf_token() }}"
+                    },
+                    method: "post",
+                    url: "{{ route('products.delete.all') }}",
+                    data: new FormData(this),
+                    dataType: "json",
+                    processData: false,
+                    contentType: false,
+                    beforeSend: function() {
+                        $("form#delete-all-products").after(
+                            '<div class="d-flex spinner"><p>جار المعالجة...</p>' +
+                            '<div class="spinner-border text-primary margin-1" role="status"></div>' +
+                            '</div>'
+                        );
+                    },
+                    complete: function() {
+                        $(".spinner").remove();
+
+                    },
+                    success: function(response) {
+
+                        let table = $(".mytable");
+                        table.load("{{ route('products.table') }}", function(res, status, request) {
+                            if (response.success)
+                                $("form#delete-all-products").after(
+                                    '<div class = "alert alert-success text-center col-7 col-md-3 text-white" >' +
+                                    response
+                                    .message +
+                                    ' </div>'
+                                );
+                            else $("form#delete-all-products").after(
+                                '<div class = "alert alert-success text-center col-7 col-md-3 text-white" >' +
+                                response.message + ' </div>'
+                            );
+
+                        });
+                    },
+                    error: function(response) {
+
+
+                        let errors = response.responseJSON.errors;
+                        for (let error in errors) {
+                            $("form#delete-all-products").after(
                                 '<div class = "alert alert-danger text-center col-7 col-md-3 text-white" >' +
                                 errors[error] +
                                 ' </div>'

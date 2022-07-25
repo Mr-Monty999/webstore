@@ -6,6 +6,7 @@ namespace App\Http\Controllers\dashboard;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\SettingRequest;
 use App\Models\Setting;
+use App\Services\DeleteService;
 use Illuminate\Http\Request;
 
 class SettingController extends Controller
@@ -49,13 +50,12 @@ class SettingController extends Controller
             $photo = $request->file("store_logo");
             $photoName = time() . "." . $photo->getClientOriginalExtension();
 
-            if (file_exists($path . $setting->store_logo) && is_file($path . $setting->store_logo))
-                unlink($path . $setting->store_logo);
+            // Delete Old Photo
+            DeleteService::deleteFile($setting->store_logo);
 
             $photo->move($path . "/images/settings", "$photoName");
             $photoName = "/images/settings/" . $photoName;
         }
-        // $data = $request->all();
         $data["store_logo"] = $photoName;
 
         $setting->update($data);

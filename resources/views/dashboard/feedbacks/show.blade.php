@@ -10,7 +10,7 @@
             @csrf
             @method('DELETE')
 
-            <a href="{{ route('dashboard.feedbacks.index') }}" class="btn btn-dark">رجوع</a>
+            <a href="{{ URL::previous() }}" class="btn btn-dark">رجوع</a>
             <button type="submit" class="btn btn-danger">حذف</button>
 
         </form>

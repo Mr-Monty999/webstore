@@ -24,13 +24,13 @@ Route::group(["namespace" => "general"], function () {
 
     Route::get("/", "HomeController@index")->name("home");
 
-    Route::group(["middleware" => "cart"], function () {
-        Route::get("/contact", "ContactController@index")->name("contact");
-        Route::get("/feedback", "FeedbackController@index")->name("feedback");
-        Route::post("/feedback/store", "FeedbackController@store")->name("feedback.store");
-        Route::get("/products/{id}", "ProductController@index")->name("products.view");
-        Route::get("/search", "ProductController@search")->name("search");
-    });
+    // Route::group(["middleware" => "cart"], function () {
+    Route::get("/contact", "ContactController@index")->name("contact");
+    Route::get("/feedback", "FeedbackController@index")->name("feedback");
+    Route::post("/feedback/store", "FeedbackController@store")->name("feedback.store");
+    Route::get("/products/{id}", "ProductController@index")->name("products.view");
+    Route::get("/search", "ProductController@search")->name("search");
+    // });
 
     ///Cart Routes
     Route::resource("carts", "CartController");
@@ -41,14 +41,14 @@ Route::group(["namespace" => "general"], function () {
 });
 
 ///login  Panel Routes
-Route::get("/lbc", "dashboard\AdminController@login")->name("dashboard.login")->middleware("admin");
-Route::post("/lbc/login", "dashboard\AdminController@attemptLogin")->name("dashboard.attempt");
+Route::get("/lbc", "dashboard\DashboardController@login")->name("dashboard.login")->middleware("admin");
+Route::post("/lbc/login", "dashboard\DashboardController@attemptLogin")->name("dashboard.attempt");
 
 
 /// Dashboard  Routes
 Route::group(["prefix" => "wbc", "middleware" => "admin", "namespace" => "dashboard"], function () {
-    Route::get("/", "AdminController@dashboard")->name("dashboard.index");
-    Route::get("/logout", "AdminController@logout")->name("dashboard.logout");
+    Route::get("/", "DashboardController@index")->name("dashboard.index");
+    Route::get("/logout", "DashboardController@logout")->name("dashboard.logout");
 
 
     ///Feedback Routes
@@ -56,6 +56,7 @@ Route::group(["prefix" => "wbc", "middleware" => "admin", "namespace" => "dashbo
     Route::get("/feedbacks/show/{id}", "FeedbackController@show")->name("dashboard.feedbacks.show");
     Route::delete("/feedbacks/delete/{id}", "FeedbackController@delete")->name("dashboard.feedbacks.delete");
     Route::delete("/feedbacks/all/delete", "FeedbackController@deleteAll")->name("dashboard.feedbacks.delete.all");
+    Route::get("/feedbacks-table", "FeedbackController@table")->name("dashboard.feedbacks.table");
 
     ///Items Routes
     Route::get("/items", "ItemController@index")->name("items.index");
@@ -64,6 +65,7 @@ Route::group(["prefix" => "wbc", "middleware" => "admin", "namespace" => "dashbo
     Route::put("/items/update/{id}", "ItemController@update")->name("items.update");
     Route::delete("/items/delete/{id}", "ItemController@destroy")->name("items.delete");
     Route::get("/items-table", "ItemController@table")->name("items.table");
+    Route::delete("/items/delete-all", "ItemController@destroyAll")->name("items.delete.all");
     // Route::resource("items", "ItemController");
 
 
@@ -74,6 +76,8 @@ Route::group(["prefix" => "wbc", "middleware" => "admin", "namespace" => "dashbo
     Route::put("/products/update/{id}", "ProductController@update")->name("products.update");
     Route::delete("/products/delete/{id}", "ProductController@destroy")->name("products.delete");
     Route::get("/products-table", "ProductController@table")->name("products.table");
+    Route::delete("/products/delete-all", "ProductController@destroyAll")->name("products.delete.all");
+
 
 
 
@@ -81,13 +85,15 @@ Route::group(["prefix" => "wbc", "middleware" => "admin", "namespace" => "dashbo
     Route::get("/privacy", "PrivacyController@index")->name("privacy.index");
     Route::put("/privacy/update/", "PrivacyController@update")->name("privacy.update");
 
-    ///Admins Routes
+    ///Supervisors Routes
     Route::group(["middleware" => "owner"], function () {
-        Route::get("/admins", "AdminController@index")->name("admins.index");
-        Route::post("/admins/store", "AdminController@store")->name("admins.store");
-        Route::get("/admins/edit/{id}", "AdminController@edit")->name("admins.edit");
-        Route::put("/admins/update/{id}", "AdminController@update")->name("admins.update");
-        Route::delete("/admins/delete/{id}", "AdminController@destroy")->name("admins.delete");
+        Route::get("/admins", "SupervisorController@index")->name("admins.index");
+        Route::post("/admins/store", "SupervisorController@store")->name("admins.store");
+        Route::get("/admins/edit/{id}", "SupervisorController@edit")->name("admins.edit");
+        Route::put("/admins/update/{id}", "SupervisorController@update")->name("admins.update");
+        Route::delete("/admins/delete/{id}", "SupervisorController@destroy")->name("admins.delete");
+        Route::delete("/admins/delete-all", "SupervisorController@destroyAll")->name("admins.delete.all");
+        Route::get("/admin-table", "SupervisorController@table")->name("admins.table");
     });
 
     //Setting Routes

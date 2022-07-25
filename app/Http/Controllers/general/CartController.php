@@ -102,10 +102,10 @@ class CartController extends Controller
         $uid = Cookie::get("cart_uid");
         Cart::where("cart_uid", $uid)->first()->products()->detach($request->product_id);
 
-        return  $request->all();
         $data = [
             "success" => true,
-            "message" => "تم الحذف بنجاخ"
+            "message" => "تم الحذف بنجاخ",
+            "product" => $request->all()
         ];
 
         return response()->json($data, 200);

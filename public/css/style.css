@@ -190,3 +190,10 @@ footer {
 .mark {
     background-color: greenyellow;
 }
+
+.increase,
+.decrease,
+.inside-cart-increase,
+.inside-cart-decrease {
+    display: none !important;
+}

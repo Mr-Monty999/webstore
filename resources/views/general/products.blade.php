@@ -1,6 +1,6 @@
  @extends('layouts.public')
  @section('content')
-     <div class="products container d-flex flex-column">
+     <div class="main-products container d-flex flex-column">
          <h1 class="title section-title align-self-center">المنتجات</h1>
          <form action="" class="row gap-3 d-flex align-items-center justify-content-center" method="post">
 
@@ -58,18 +58,18 @@
                                  الي السلة
                                  <i class="fa-solid fa-cart-shopping"></i>
                              </a>
-                             <button type="button"
+                             {{-- <button type="button"
                                  class="btn btn-danger delete d-flex justify-content-center align-items-center">
                                  ازالة من السلة
                                  <i class="fa-solid fa-trash"></i>
-                             </button>
+                             </button> --}}
 
                              <div class="collapse" id="cart{{ $product->id }}">
                                  <div class="d-flex flex-column justify-content-center align-items-center">
                                      <h1 class="product-new-price">{{ $finalPrice }}</h1>
                                      <div class="form-group">
                                          <label for="">الكمية:</label>
-                                         <input min="1" type="number" value="3"
+                                         <input min="1" type="number" value="1"
                                              class="form-control text-center product-amount" name="" id="">
                                      </div>
                                      <div>
@@ -128,10 +128,14 @@
                          product =
                              '<div class="d-flex flex-column justify-content-center align-items-center">' +
                              '<div id="product' + productId +
-                             '" class="product d-flex flex-column justify-content-center align-items-center product' +
+                             '" class="product  product' +
                              productId + '">' +
+                             '<form class="d-flex flex-column justify-content-center align-items-center" method="POST"' +
+                             ' id="product-delete">' +
+                             '@csrf' +
+                             '@method('delete')' +
                              '<input type="text" class="product-id"  value="' +
-                             productId + '" hidden>' +
+                             productId + '" name="product_id" hidden>' +
                              '<h6 class="text-dark">' + productName + '</h6>' +
                              '<h6 class="text-dark product-new-price">' + productNewPrice + '</h6>' +
                              '<div class="form-group" dir="rtl">' +
@@ -143,10 +147,11 @@
                              '<button type="button" class="btn btn-danger inside-cart-decrease">-</button>' +
                              ' <button type="button" class="btn btn-success inside-cart-increase">+</button>' +
                              '</div>' +
-                             '<button type="button" class="btn btn-danger delete d-flex justify-content-center align-items-center">' +
+                             '<button type="submit" class="btn btn-danger delete d-flex justify-content-center align-items-center">' +
                              '<i class="fa-solid fa-trash"></i>' +
                              'ازالة' +
                              '</button>' +
+                             '</form>' +
                              '</div>' +
                              '<hr>' +
                              '</div>';
@@ -154,6 +159,50 @@
 
                          $(".mycart .products").append(product);
                      }
+
+
+                 },
+                 error: function(response) {
+
+
+                     let errors = response.responseJSON;
+
+                 }
+
+             });
+
+         });
+
+         $(document).on("change", ".main-products .product-amount", function() {
+
+             let productId = $(this).parent().parent().parent().parent().find(".product-id").val(),
+                 productAmount = $(this).val(),
+                 productPrice = $(".product" + productId + " .product_price"),
+                 productNewPrice = parseFloat(productPrice.text().match(/\d/g).join("")) * productAmount;
+
+             $(".product" + productId + " .product-amount").val(productAmount);
+             $(".product" + productId + " .product-new-price").text(productNewPrice);
+
+
+
+             $.ajax({
+                 headers: {
+                     'X-CSRF-TOKEN': "{{ csrf_token() }}"
+                 },
+                 method: "put",
+                 url: "{{ route('carts.update', 0) }}",
+                 data: {
+                     "product_id": productId,
+                     "product_amount": productAmount,
+                 },
+                 dataType: "json",
+                 //  processData: false,
+                 //  contentType: false,
+                 success: function(response) {
+
+
+                     // console.log(response);
+
 
 
                  },

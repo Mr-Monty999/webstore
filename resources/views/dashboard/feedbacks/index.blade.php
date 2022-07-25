@@ -14,84 +14,87 @@
             <div class="alert alert-danger text-white">{{ Session::get('error') }}</div>
         @endif
 
-        <div class="container-fluid row my-8">
-            <div class="col-12">
-                <div class="card my-4">
-                    <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
-                        <div class="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3">
-                            <h6 class="text-white text-capitalize ps-3 text-center">جدول الاصناف</h6>
-                        </div>
-                    </div>
-                    <div class="card-body px-0 pb-2">
-                        <div class="table-responsive p-0">
-                            <table class="table align-items-center mb-0">
-                                <thead>
-                                    <tr>
-                                        <th class="text-uppercase text-primary font-weight-bolder">
-                                            الرقم</th>
-                                        <th class="text-uppercase text-primary  font-weight-bolder  ps-2">
-                                            اسم الزائر</th>
-
-                                        <th class="text-uppercase text-primary  font-weight-bolder">الرسالة</th>
-                                        <th class="text-uppercase text-primary  font-weight-bolder">تاريخ الارسال</th>
-                                        <th class="text-uppercase text-primary  font-weight-bolder">الاحداث</th>
-
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @php
-                                        $i = 0;
-                                    @endphp
-                                    @foreach ($feedbacks as $feedback)
-                                        <tr>
-                                            <td>
-                                                <p class="text-dark text-center">{{ ++$i }}</p>
-                                            </td>
-                                            <td>
-                                                <p class="text-dark text-center">{{ $feedback->name }}</p>
-                                            </td>
-                                            <td>
-                                                <p style="height:30px;width:150px;"
-                                                    class="text-dark text-center overflow-hidden">
-                                                    {{ $feedback->message }}
-                                                </p>
-                                                <a href="{{ route('dashboard.feedbacks.show', $feedback->id) }}"
-                                                    class="text-primary">قراءة المزيد</a>
-
-                                            </td>
-                                            <td>
-                                                <p class="text-dark text-center">
-                                                    {{ $feedback->created_at->diffForHumans() }}</p>
-                                            </td>
-                                            <td class="align-middle text-center">
-                                                <a href="{{ route('dashboard.feedbacks.show', $feedback->id) }}"
-                                                    class="btn btn-dark">عرض
-                                                </a>
-                                                <form action="{{ route('dashboard.feedbacks.delete', $feedback->id) }}"
-                                                    method="post">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <button type="submit" class="btn btn-danger">حذف </button>
-                                                </form>
-                                            </td>
-                                        </tr>
-                                    @endforeach
-
-
-                                </tbody>
-                            </table>
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-            {!! $feedbacks->links() !!}
-
+        <div class="container-fluid d-flex flex-column justify-content-center align-items-center row my-8 mytable">
+            @include('dashboard.feedbacks.table')
         </div>
-        <form action="{{ route('dashboard.feedbacks.delete.all') }}" method="post">
+        <form action="" id="delete-all-feedbacks" method="post">
             @method('DELETE')
             @csrf
             <button type="submit" class="btn btn-warning">مسح جميع الرسائل</button>
         </form>
     </div>
 @endsection
+@push('ajax')
+    <script>
+        //Delete All Feedbacks ////
+        $(document).on("submit", "form#delete-all-feedbacks", function(e) {
+            e.preventDefault();
+
+            $(".alert").remove();
+
+
+            let deleteProduct = confirm("هل أنت متأكد من حذف جميع الرسائل؟");
+
+            // let productId = $(this).find("#item-id");
+
+            if (deleteProduct) {
+                $.ajax({
+                    headers: {
+                        'X-CSRF-TOKEN': "{{ csrf_token() }}"
+                    },
+                    method: "post",
+                    url: "{{ route('dashboard.feedbacks.delete.all') }}",
+                    data: new FormData(this),
+                    dataType: "json",
+                    processData: false,
+                    contentType: false,
+                    beforeSend: function() {
+                        $("form#delete-all-feedbacks").after(
+                            '<div class="d-flex spinner"><p>جار المعالجة...</p>' +
+                            '<div class="spinner-border text-primary margin-1" role="status"></div>' +
+                            '</div>'
+                        );
+                    },
+                    complete: function() {
+                        $(".spinner").remove();
+
+                    },
+                    success: function(response) {
+
+                        let table = $(".mytable");
+                        table.load("{{ route('dashboard.feedbacks.table') }}", function(res, status,
+                            request) {
+                            if (response.success)
+                                $("form#delete-all-feedbacks").after(
+                                    '<div class = "alert alert-success text-center col-7 col-md-3 text-white" >' +
+                                    response
+                                    .message +
+                                    ' </div>'
+                                );
+                            else $("form#delete-all-feedbacks").after(
+                                '<div class = "alert alert-success text-center col-7 col-md-3 text-white" >' +
+                                response.message + ' </div>'
+                            );
+
+                        });
+                    },
+                    error: function(response) {
+
+
+                        let errors = response.responseJSON.errors;
+                        for (let error in errors) {
+                            $("form#delete-all-feedbacks").after(
+                                '<div class = "alert alert-danger text-center col-7 col-md-3 text-white" >' +
+                                errors[error] +
+                                ' </div>'
+                            );
+                        }
+
+
+                    }
+
+                });
+            }
+        });
+    </script>
+@endpush

@@ -27,12 +27,16 @@
             @include('dashboard.items.table')
 
         </div>
-
+        <form id="delete-all-items" action="" method="POST">
+            @csrf
+            @method('DELETE')
+            <button type="submit" class="btn btn-warning">حذف جميع الاصناف</button>
+        </form>
     </div>
 @endsection
 @push('ajax')
     <script>
-        // Insert Product And Update Table //
+        // Insert Item And Update Table //
         $("form#items").on("submit", function(e) {
             e.preventDefault();
 
@@ -51,10 +55,20 @@
                 dataType: "json",
                 processData: false,
                 contentType: false,
+                beforeSend: function() {
+                    $("form#items").after(
+                        '<div class="d-flex spinner"><p>جار المعالجة...</p>' +
+                        '<div class="spinner-border text-primary margin-1" role="status"></div>' +
+                        '</div>'
+                    );
+                },
+                complete: function() {
+                    $(".spinner").remove();
+
+                },
                 success: function(response) {
 
 
-                    console.log(response);
                     let table = $(".mytable");
                     table.load("{{ route('items.table') }}", function(response, status,
                         request) {
@@ -62,18 +76,19 @@
 
                     });
 
-                    if (response.success)
+                    if (response.success) {
                         $("form#items").after(
                             '<div class = "alert alert-success text-white" >' + response.message +
                             ' </div>'
                         );
-                    else
+                        $("form#items input").val("");
+
+                    } else
                         $("form#items").after(
                             '<div class = "alert alert-danger text-white" >' + response.message +
                             ' </div>'
                         );
 
-                    $("form#items input").val("");
 
 
                 },
@@ -98,14 +113,14 @@
         });
 
 
-        ////Delete Product And Update Table ////
+        ////Delete Item And Update Table ////
         $(document).on("submit", "form#item-delete", function(e) {
             e.preventDefault();
 
             $(".alert").remove();
 
 
-            let deleteProduct = confirm("هل أنت متأكد من حذف المنتج ؟");
+            let deleteProduct = confirm("هل أنت متأكد من حذف الصنف؟");
 
             // let productId = $(this).find("#item-id");
 
@@ -122,11 +137,8 @@
                     contentType: false,
                     success: function(response) {
 
-
                         let table = $(".mytable");
-                        table.load("{{ route('items.table') }}", function(res, status,
-                            request) {
-
+                        table.load("{{ route('items.table') }}", function(res, status, request) {
                             if (response.success)
                                 $(".mytable").append(
                                     '<div class = "alert alert-success text-center col-7 col-md-3 text-white" >' +
@@ -134,29 +146,89 @@
                                     .message +
                                     ' </div>'
                                 );
-                            else
-                                $(".mytable").append(
-                                    '<div class = "alert alert-success text-center col-7 col-md-3 text-white" >' +
-                                    response
-                                    .message +
-                                    ' </div>'
-                                );
+                            else $(".mytable").append(
+                                '<div class = "alert alert-success text-center col-7 col-md-3 text-white" >' +
+                                response.message + ' </div>'
+                            );
 
                         });
-
-
-
-
                     },
                     error: function(response) {
 
 
                         let errors = response.responseJSON.errors;
-
                         for (let error in errors) {
-
-
                             $(".mytable").append(
+                                '<div class = "alert alert-danger text-center col-7 col-md-3 text-white" >' +
+                                errors[error] +
+                                ' </div>'
+                            );
+                        }
+
+
+                    }
+
+                });
+            }
+        });
+
+        //Delete All Items ////
+        $(document).on("submit", "form#delete-all-items", function(e) {
+            e.preventDefault();
+
+            $(".alert").remove();
+
+
+            let deleteProduct = confirm("هل أنت متأكد من حذف جميع الاصناف؟");
+
+            // let productId = $(this).find("#item-id");
+
+            if (deleteProduct) {
+                $.ajax({
+                    headers: {
+                        'X-CSRF-TOKEN': "{{ csrf_token() }}"
+                    },
+                    method: "post",
+                    url: "{{ route('items.delete.all') }}",
+                    data: new FormData(this),
+                    dataType: "json",
+                    processData: false,
+                    contentType: false,
+                    beforeSend: function() {
+                        $("form#delete-all-items").after(
+                            '<div class="d-flex spinner"><p>جار المعالجة...</p>' +
+                            '<div class="spinner-border text-primary margin-1" role="status"></div>' +
+                            '</div>'
+                        );
+                    },
+                    complete: function() {
+                        $(".spinner").remove();
+
+                    },
+                    success: function(response) {
+
+                        let table = $(".mytable");
+                        table.load("{{ route('items.table') }}", function(res, status, request) {
+                            if (response.success)
+                                $("form#delete-all-items").after(
+                                    '<div class = "alert alert-success text-center col-7 col-md-3 text-white" >' +
+                                    response
+                                    .message +
+                                    ' </div>'
+                                );
+                            else $("form#delete-all-items").after(
+                                '<div class = "alert alert-success text-center col-7 col-md-3 text-white" >' +
+                                response.message + ' </div>'
+                            );
+
+                        });
+                    },
+                    error: function(response) {
+
+
+                        let errors = response.responseJSON.errors;
+                        for (let error in errors) {
+                            $("form#delete-all-items").after(
                                 '<div class = "alert alert-danger text-center col-7 col-md-3 text-white" >' +
                                 errors[error] +
                                 ' </div>'

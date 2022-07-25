@@ -3,7 +3,7 @@
 @section('section')
     <div class="d-flex flex-column justify-content-center align-items-center">
         <h1>اعدادت الموقع</h1>
-        <form action="" enctype="multipart/form-data" method="POST">
+        <form id="settings" action="" enctype="multipart/form-data" method="POST">
             @csrf
             @method('PUT')
             <div class="input-group input-group-outline my-3 bg-white is-filled focus is-focused">
@@ -82,6 +82,17 @@
                 dataType: "json",
                 processData: false,
                 contentType: false,
+                beforeSend: function() {
+                    $("form").after(
+                        '<div class="d-flex spinner"><p>جار المعالجة...</p>' +
+                        '<div class="spinner-border text-primary margin-1" role="status"></div>' +
+                        '</div>'
+                    );
+                },
+                complete: function() {
+                    $(".spinner").remove();
+
+                },
                 success: function(response) {
 
                     if (response.photo_path != null)

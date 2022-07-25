@@ -17,6 +17,7 @@ class owner
      */
     public function handle(Request $request, Closure $next)
     {
+
         if (Auth::guard("admin")->user()->admin_rank != "owner")
             return redirect()->route("dashboard.index");
 

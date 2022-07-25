@@ -78,8 +78,7 @@
                                 </div>
                             </div>
                             <div class="card-body">
-                                <form role="form" method="POST" action="{{ route('dashboard.attempt') }}"
-                                    class="text-start">
+                                <form role="form" method="POST" id="login" class="text-start">
                                     @csrf
 
                                     <div class="input-group input-group-outline my-3">
@@ -171,6 +170,82 @@
     <script async defer src="https://buttons.github.io/buttons.js"></script>
     <!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
     <script src="{{ asset('dashboard/js/material-dashboard.min.js') }}"></script>
+    <script src="{{ asset('js/jquery-3.6.0.min.js') }}"></script>
+    <script>
+        // Login //
+        $("form#login").on("submit", function(e) {
+            e.preventDefault();
+
+            $(".alert").remove();
+
+
+
+
+            $.ajax({
+                headers: {
+                    'X-CSRF-TOKEN': "{{ csrf_token() }}"
+                },
+                method: "post",
+                url: "{{ route('dashboard.attempt') }}",
+                data: new FormData(this),
+                dataType: "json",
+                processData: false,
+                contentType: false,
+                beforeSend: function() {
+                    $("form#login").after(
+                        '<div class="d-flex spinner"><p>جار تسجيل الدخول...</p>' +
+                        '<div class="spinner-border text-primary margin-1" role="status"></div>' +
+                        '</div>'
+                    );
+                },
+                complete: function() {
+                    $(".spinner").remove();
+
+                },
+                success: function(response) {
+
+
+
+
+                    if (response.success) {
+                        $("form#login").after(
+                            '<div class = "alert alert-success text-white text-center" >' + response
+                            .message +
+                            ' </div>'
+                        );
+
+                        location.href = "{{ route('dashboard.index') }}";
+                    } else
+                        $("form#login").after(
+                            '<div class = "alert alert-danger text-white text-center" >' + response
+                            .message +
+                            ' </div>'
+                        );
+
+
+
+                },
+                error: function(response) {
+
+
+                    let errors = response.responseJSON.errors;
+
+                    for (let error in errors) {
+
+
+                        $("form#login").after(
+                            '<div class = "alert alert-danger text-white text-center" >' + errors[
+                                error] +
+                            ' </div>'
+                        );
+                    }
+
+
+                }
+
+            });
+        });
+    </script>
 </body>
 
 </html>

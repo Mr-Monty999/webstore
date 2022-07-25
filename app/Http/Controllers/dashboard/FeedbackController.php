@@ -11,10 +11,15 @@ class FeedbackController extends Controller
 {
     public function index()
     {
-        $feedbacks = Feedback::latest()->paginate(5);
+        $feedbacks = Feedback::latest()->paginate(5)->onEachSide(0);
         return view("dashboard.feedbacks.index", ["feedbacks" => $feedbacks]);
     }
 
+    public function table()
+    {
+        $feedbacks = Feedback::latest()->paginate(5)->withPath(route('dashboard.feedbacks.index'))->onEachSide(0);
+        return view("dashboard.feedbacks.table", ["feedbacks" => $feedbacks]);
+    }
     public function show($id)
     {
         $feedback = Feedback::findOrFail($id);
@@ -33,6 +38,8 @@ class FeedbackController extends Controller
     public function deleteAll()
     {
         Feedback::truncate();
-        return redirect()->back()->with("success", "تم حذف جميع الرسائل بنجاح");
+        $data["success"] = true;
+        $data["message"] = "تم حذف جميع الرسائل بنجاح";
+        return response()->json($data);
     }
 }

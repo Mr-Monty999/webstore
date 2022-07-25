@@ -38,3 +38,7 @@ textarea {
 .height-auto {
     height: auto !important;
 }
+
+.margin-1 {
+    margin-right: 10px;
+}
