@@ -158,6 +158,9 @@
             $(".alert").remove();
 
 
+            let pageNumber = $(".pagination .active").text();
+            if (pageNumber == "")
+                pageNumber = 1;
 
 
             $.ajax({
@@ -184,7 +187,7 @@
                 success: function(response) {
 
                     let table = $(".mytable");
-                    table.load("{{ route('products.table') }}", function(response, status,
+                    table.load("products-table/" + pageNumber + "", function(res, status,
                         request) {
 
 
@@ -235,7 +238,10 @@
 
             let deleteProduct = confirm("هل أنت متأكد من حذف المنتج ؟");
 
-            // let productId = $(this).find("#product-id");
+            let pageNumber = $(".pagination .active").text();
+            if (pageNumber == "")
+                pageNumber = 1;
+
 
             if (deleteProduct) {
                 $.ajax({
@@ -250,23 +256,21 @@
                     contentType: false,
                     success: function(response) {
 
-
+                        console.log(response.message);
                         let table = $(".mytable");
-                        table.load("{{ route('products.table') }}", function(res, status,
+                        table.load("products-table/" + pageNumber + "", function(res, status,
                             request) {
 
                             if (response.success)
                                 $(".mytable").append(
-                                    '<div class = "alert alert-success text-center col-7 col-md-3 text-white" >' +
-                                    response
-                                    .message +
-                                    ' </div>'
+                                    '<div class="alert alert-success text-center col-7 col-md-3 text-white" >' +
+                                    response.message +
+                                    '</div>'
                                 );
                             else
                                 $(".mytable").append(
-                                    '<div class = "alert alert-success text-center col-7 col-md-3 text-white" >' +
-                                    response
-                                    .message +
+                                    '<div class="alert alert-danger text-center col-7 col-md-3 text-white" >' +
+                                    response.message +
                                     ' </div>'
                                 );
 
@@ -306,7 +310,7 @@
 
             let deleteProduct = confirm("هل أنت متأكد من حذف جميع المنتجات؟");
 
-            // let productId = $(this).find("#item-id");
+            let productId = $(this).find("#item-id");
 
             if (deleteProduct) {
                 $.ajax({
@@ -333,7 +337,7 @@
                     success: function(response) {
 
                         let table = $(".mytable");
-                        table.load("{{ route('products.table') }}", function(res, status, request) {
+                        table.load("products-table/1", function(res, status, request) {
                             if (response.success)
                                 $("form#delete-all-products").after(
                                     '<div class = "alert alert-success text-center col-7 col-md-3 text-white" >' +
@@ -365,6 +369,28 @@
 
                 });
             }
+        });
+
+        //Load Table By Page Link//
+        $(document).on("click", ".pagination .page-link", function(e) {
+            e.preventDefault();
+
+
+
+            let pageNumber = parseInt($(this).text());
+
+            if ($(this).attr("rel") == "prev")
+                pageNumber = parseInt($(".pagination .active").text()) - 1;
+            else if ($(this).attr("rel") == "next")
+                pageNumber = parseInt($(".pagination .active").text()) + 1;
+
+
+            let table = $(".mytable");
+            table.load("products-table/" + pageNumber + "", function(response, status,
+                request) {
+
+
+            });
         });
     </script>
 @endpush

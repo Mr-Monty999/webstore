@@ -44,6 +44,9 @@
 
 
 
+            let pageNumber = $(".pagination .active").text();
+            if (pageNumber == "")
+                pageNumber = 1;
 
             $.ajax({
                 headers: {
@@ -70,7 +73,7 @@
 
 
                     let table = $(".mytable");
-                    table.load("{{ route('items.table') }}", function(response, status,
+                    table.load("items-table/" + pageNumber + "", function(response, status,
                         request) {
 
 
@@ -122,7 +125,9 @@
 
             let deleteProduct = confirm("هل أنت متأكد من حذف الصنف؟");
 
-            // let productId = $(this).find("#item-id");
+            let pageNumber = $(".pagination .active").text();
+            if (pageNumber == "")
+                pageNumber = 1;
 
             if (deleteProduct) {
                 $.ajax({
@@ -138,7 +143,7 @@
                     success: function(response) {
 
                         let table = $(".mytable");
-                        table.load("{{ route('items.table') }}", function(res, status, request) {
+                        table.load("items-table/" + pageNumber + "", function(res, status, request) {
                             if (response.success)
                                 $(".mytable").append(
                                     '<div class = "alert alert-success text-center col-7 col-md-3 text-white" >' +
@@ -147,7 +152,7 @@
                                     ' </div>'
                                 );
                             else $(".mytable").append(
-                                '<div class = "alert alert-success text-center col-7 col-md-3 text-white" >' +
+                                '<div class = "alert alert-danger text-center col-7 col-md-3 text-white" >' +
                                 response.message + ' </div>'
                             );
 
@@ -181,7 +186,7 @@
 
             let deleteProduct = confirm("هل أنت متأكد من حذف جميع الاصناف؟");
 
-            // let productId = $(this).find("#item-id");
+            // let pageNumber = $(".pagination .active").text();
 
             if (deleteProduct) {
                 $.ajax({
@@ -208,7 +213,7 @@
                     success: function(response) {
 
                         let table = $(".mytable");
-                        table.load("{{ route('items.table') }}", function(res, status, request) {
+                        table.load("items-table/1", function(res, status, request) {
                             if (response.success)
                                 $("form#delete-all-items").after(
                                     '<div class = "alert alert-success text-center col-7 col-md-3 text-white" >' +
@@ -217,7 +222,7 @@
                                     ' </div>'
                                 );
                             else $("form#delete-all-items").after(
-                                '<div class = "alert alert-success text-center col-7 col-md-3 text-white" >' +
+                                '<div class = "alert alert-danger text-center col-7 col-md-3 text-white" >' +
                                 response.message + ' </div>'
                             );
 
@@ -240,6 +245,28 @@
 
                 });
             }
+        });
+
+        //Load Table By Page Link//
+        $(document).on("click", ".pagination .page-link", function(e) {
+            e.preventDefault();
+
+
+
+            let pageNumber = parseInt($(this).text());
+
+            if ($(this).attr("rel") == "prev")
+                pageNumber = parseInt($(".pagination .active").text()) - 1;
+            else if ($(this).attr("rel") == "next")
+                pageNumber = parseInt($(".pagination .active").text()) + 1;
+
+
+            let table = $(".mytable");
+            table.load("items-table/" + pageNumber + "", function(response, status,
+                request) {
+
+
+            });
         });
     </script>
 @endpush

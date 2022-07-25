@@ -5,7 +5,7 @@ namespace App\Services;
 use Illuminate\Support\Facades\File;
 
 
-class DeleteService
+trait DeleteService
 {
 
     public static function deleteFile($photoPath)

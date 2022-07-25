@@ -19,12 +19,14 @@ class SupervisorController extends Controller
         $admins = Admin::paginate(5)->onEachSide(0);
         return view("dashboard.admins.index", ["admins" => $admins]);
     }
-    public function table()
+    public function table($pageNumber)
     {
 
-        $admins = Admin::paginate(5)->withPath(route("admins.index"))->onEachSide(0);
+        $admins = Admin::paginate(5, ['*'], 'page', $pageNumber)->withPath(route("admins.index"))->onEachSide(0);
         return view("dashboard.admins.table", ["admins" => $admins]);
     }
+
+
 
     public function store(AdminRequest $request)
     {

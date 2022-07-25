@@ -38,7 +38,6 @@ $(document).ready(function () {
         productAmount.val(amount);
         productNewPrice.text(price);
 
-
     });
     $(document).on("click", ".decrease", function () {
         let = productId = $(this).parent().parent().parent().parent().find(".product-id"),

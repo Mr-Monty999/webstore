@@ -29,7 +29,9 @@ Route::group(["namespace" => "general"], function () {
     Route::get("/feedback", "FeedbackController@index")->name("feedback");
     Route::post("/feedback/store", "FeedbackController@store")->name("feedback.store");
     Route::get("/products/{id}", "ProductController@index")->name("products.view");
-    Route::get("/search", "ProductController@search")->name("search");
+    Route::get("/search/{pageNumber}", "ProductController@search")->name("search");
+    // Route::get("/products-by-name","ProductController@getProducts")
+
     // });
 
     ///Cart Routes
@@ -56,7 +58,8 @@ Route::group(["prefix" => "wbc", "middleware" => "admin", "namespace" => "dashbo
     Route::get("/feedbacks/show/{id}", "FeedbackController@show")->name("dashboard.feedbacks.show");
     Route::delete("/feedbacks/delete/{id}", "FeedbackController@delete")->name("dashboard.feedbacks.delete");
     Route::delete("/feedbacks/all/delete", "FeedbackController@deleteAll")->name("dashboard.feedbacks.delete.all");
-    Route::get("/feedbacks-table", "FeedbackController@table")->name("dashboard.feedbacks.table");
+    Route::get("/feedbacks-table/{pageNumber}", "FeedbackController@table")->name("dashboard.feedbacks.table");
+
 
     ///Items Routes
     Route::get("/items", "ItemController@index")->name("items.index");
@@ -64,7 +67,7 @@ Route::group(["prefix" => "wbc", "middleware" => "admin", "namespace" => "dashbo
     Route::get("/items/edit/{id}", "ItemController@edit")->name("items.edit");
     Route::put("/items/update/{id}", "ItemController@update")->name("items.update");
     Route::delete("/items/delete/{id}", "ItemController@destroy")->name("items.delete");
-    Route::get("/items-table", "ItemController@table")->name("items.table");
+    Route::get("/items-table/{pageNumber}", "ItemController@table")->name("items.table");
     Route::delete("/items/delete-all", "ItemController@destroyAll")->name("items.delete.all");
     // Route::resource("items", "ItemController");
 
@@ -75,9 +78,8 @@ Route::group(["prefix" => "wbc", "middleware" => "admin", "namespace" => "dashbo
     Route::get("/products/edit/{id}", "ProductController@edit")->name("products.edit");
     Route::put("/products/update/{id}", "ProductController@update")->name("products.update");
     Route::delete("/products/delete/{id}", "ProductController@destroy")->name("products.delete");
-    Route::get("/products-table", "ProductController@table")->name("products.table");
+    Route::get("/products-table/{pageNumber}", "ProductController@table")->name("products.table");
     Route::delete("/products/delete-all", "ProductController@destroyAll")->name("products.delete.all");
-
 
 
 
@@ -93,7 +95,7 @@ Route::group(["prefix" => "wbc", "middleware" => "admin", "namespace" => "dashbo
         Route::put("/admins/update/{id}", "SupervisorController@update")->name("admins.update");
         Route::delete("/admins/delete/{id}", "SupervisorController@destroy")->name("admins.delete");
         Route::delete("/admins/delete-all", "SupervisorController@destroyAll")->name("admins.delete.all");
-        Route::get("/admin-table", "SupervisorController@table")->name("admins.table");
+        Route::get("/admins-table/{pageNumber}", "SupervisorController@table")->name("admins.table");
     });
 
     //Setting Routes

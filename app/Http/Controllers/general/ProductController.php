@@ -14,7 +14,7 @@ class ProductController extends Controller
     public function index($id)
     {
 
-        $products = Item::find($id)->products()->with("item")->paginate(6);
+        $products = Item::find($id)->products()->with("item")->paginate(6)->onEachSide(0);
         if (Setting::count() < 1)
             Setting::create([]);
 
@@ -23,12 +23,11 @@ class ProductController extends Controller
         return view("general.products", ["products" => $products, "setting" => $setting]);
     }
 
-    public function search(Request $request)
+    public function search(Request $request, $pageNumber)
     {
 
 
-
-        $products  = Product::where("product_name", "like", "%$request->search%")->with("item")->paginate(6);
+        $products  = Product::where("product_name", "like", "%$request->search%")->with("item")->paginate(6, ['*'], 'page', $pageNumber)->onEachSide(0);
         if (Setting::count() < 1)
             Setting::create([]);
 

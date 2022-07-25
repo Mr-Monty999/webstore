@@ -15,9 +15,9 @@ class FeedbackController extends Controller
         return view("dashboard.feedbacks.index", ["feedbacks" => $feedbacks]);
     }
 
-    public function table()
+    public function table($pageNumber)
     {
-        $feedbacks = Feedback::latest()->paginate(5)->withPath(route('dashboard.feedbacks.index'))->onEachSide(0);
+        $feedbacks = Feedback::latest()->paginate(5, ['*'], 'page', $pageNumber)->withPath(route('dashboard.feedbacks.index'))->onEachSide(0);
         return view("dashboard.feedbacks.table", ["feedbacks" => $feedbacks]);
     }
     public function show($id)
@@ -27,12 +27,13 @@ class FeedbackController extends Controller
         return view("dashboard.feedbacks.show", ["feedback" => $feedback]);
     }
 
-    public function delete($id)
+    public function delete(Request $request, $id)
     {
-        $feedback = Feedback::findOrFail($id);
+        $feedback = Feedback::findOrFail($request->id);
         $feedback->delete();
-
-        return redirect()->back()->with("success", "تم الحذف بنجاح");
+        $data["success"] = true;
+        $data["message"] = "تم حذف الرسالة بنجاح";
+        return response()->json($data);
     }
 
     public function deleteAll()

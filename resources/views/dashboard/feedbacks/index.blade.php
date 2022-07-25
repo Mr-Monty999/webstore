@@ -33,11 +33,11 @@
             $(".alert").remove();
 
 
-            let deleteProduct = confirm("هل أنت متأكد من حذف جميع الرسائل؟");
+            let deleteFeedback = confirm("هل أنت متأكد من حذف جميع الرسائل؟");
 
             // let productId = $(this).find("#item-id");
 
-            if (deleteProduct) {
+            if (deleteFeedback) {
                 $.ajax({
                     headers: {
                         'X-CSRF-TOKEN': "{{ csrf_token() }}"
@@ -62,7 +62,7 @@
                     success: function(response) {
 
                         let table = $(".mytable");
-                        table.load("{{ route('dashboard.feedbacks.table') }}", function(res, status,
+                        table.load("feedbacks-table/1", function(res, status,
                             request) {
                             if (response.success)
                                 $("form#delete-all-feedbacks").after(
@@ -72,7 +72,7 @@
                                     ' </div>'
                                 );
                             else $("form#delete-all-feedbacks").after(
-                                '<div class = "alert alert-success text-center col-7 col-md-3 text-white" >' +
+                                '<div class = "alert alert-danger text-center col-7 col-md-3 text-white" >' +
                                 response.message + ' </div>'
                             );
 
@@ -95,6 +95,98 @@
 
                 });
             }
+        });
+        ////Delete Feedback And Update Table ////
+        $(document).on("submit", "form#feedback-delete", function(e) {
+            e.preventDefault();
+
+            $(".alert").remove();
+
+
+            let deleteFeedback = confirm("هل أنت متأكد من حذف هذه الرسالة؟");
+
+            let pageNumber = $(".pagination .active").text();
+            if (pageNumber == "")
+                pageNumber = 1;
+
+
+            if (deleteFeedback) {
+                $.ajax({
+                    headers: {
+                        'X-CSRF-TOKEN': "{{ csrf_token() }}"
+                    },
+                    method: "post",
+                    url: "{{ route('dashboard.feedbacks.delete', 0) }}",
+                    data: new FormData(this),
+                    dataType: "json",
+                    processData: false,
+                    contentType: false,
+                    success: function(response) {
+                        console.log(response.message);
+                        let table = $(".mytable");
+                        table.load("feedbacks-table/" + pageNumber + "", function(res, status,
+                            request) {
+
+                            if (response.success)
+                                $(".mytable").append(
+                                    '<div class="alert alert-success text-center col-7 col-md-3 text-white" >' +
+                                    response.message +
+                                    '</div>'
+                                );
+                            else
+                                $(".mytable").append(
+                                    '<div class="alert alert-danger text-center col-7 col-md-3 text-white" >' +
+                                    response.message +
+                                    ' </div>'
+                                );
+
+                        });
+
+
+
+
+                    },
+                    error: function(response) {
+
+
+                        let errors = response.responseJSON.errors;
+
+                        for (let error in errors) {
+
+
+                            $(".mytable").append(
+                                '<div class = "alert alert-danger text-center col-7 col-md-3 text-white" >' +
+                                errors[error] +
+                                ' </div>'
+                            );
+                        }
+
+
+                    }
+
+                });
+            }
+        });
+        //Load Table By Page Link//
+        $(document).on("click", ".pagination .page-link", function(e) {
+            e.preventDefault();
+
+
+
+            let pageNumber = parseInt($(this).text());
+
+            if ($(this).attr("rel") == "prev")
+                pageNumber = parseInt($(".pagination .active").text()) - 1;
+            else if ($(this).attr("rel") == "next")
+                pageNumber = parseInt($(".pagination .active").text()) + 1;
+
+
+            let table = $(".mytable");
+            table.load("feedbacks-table/" + pageNumber + "", function(res, status,
+                request) {
+
+
+            });
         });
     </script>
 @endpush

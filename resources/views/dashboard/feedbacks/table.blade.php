@@ -50,10 +50,10 @@
                                         <a href="{{ route('dashboard.feedbacks.show', $feedback->id) }}"
                                             class="btn btn-dark">عرض
                                         </a>
-                                        <form action="{{ route('dashboard.feedbacks.delete', $feedback->id) }}"
-                                            method="post">
+                                        <form id="feedback-delete" method="post">
                                             @csrf
                                             @method('DELETE')
+                                            <input type="text" hidden name="id" value="{{ $feedback->id }}">
                                             <button type="submit" class="btn btn-danger">حذف </button>
                                         </form>
                                     </td>

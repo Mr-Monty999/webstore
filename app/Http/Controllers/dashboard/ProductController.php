@@ -26,12 +26,13 @@ class ProductController extends Controller
         return view("dashboard.products.index", ["products" => $products, "items" => $items]);
     }
 
-    public function table()
+    public function table($pageNumber)
     {
-        $products = Product::with("item")->paginate(5)->withPath(route("products.index"))->onEachSide(0);
+        $products = Product::with("item")->paginate(5, ['*'], 'page', $pageNumber)->withPath(route("products.index"))->onEachSide(0);
         $items = Item::all();
         return view("dashboard.products.table", ["products" => $products, "items" => $items]);
     }
+
 
 
 

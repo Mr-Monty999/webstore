@@ -6,14 +6,12 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cookie;
 use App\Models\Setting;
 use App\Models\Item;
-use App\Models\Cart;
 use App\Services\CheckService;
+use App\Services\GetService;
 
 CheckService::cartChecker();
 
-$products = Cart::with('products')
-    ->where('cart_uid', Cookie::get('cart_uid'))
-    ->first()->products;
+$products = GetService::getCartProducts(Cookie::get('cart_uid'));
 
 $navItems = Item::all();
 
@@ -90,10 +88,10 @@ if (Setting::count() > 0) {
                             <a class="nav-link active" href="{{ route('contact') }}">تواصل معنا</a>
                         </li>
                     </ul>
-                    <form action="{{ route('search') }}" class="d-flex">
+                    <form id="product-search" class="d-flex">
                         @csrf
-                        <input name="search" class="form-control me-2" type="search" placeholder="بحث عن منتج"
-                            aria-label="Search">
+                        <input name="search" id="search" class="form-control me-2" type="search"
+                            placeholder="بحث عن منتج" aria-label="Search">
                         <button class="btn btn-outline-light" type="submit">بحث</button>
                     </form>
                 </div>
@@ -180,7 +178,7 @@ if (Setting::count() > 0) {
                 success: function(response) {
 
 
-                    console.log(response);
+                    // console.log(response);
 
 
 
@@ -190,7 +188,7 @@ if (Setting::count() > 0) {
 
 
                     let errors = response.responseJSON;
-                    console.log(errors);
+                    // console.log(errors);
 
                 }
 
@@ -318,6 +316,161 @@ if (Setting::count() > 0) {
                 }
 
             });
+        });
+
+        // Search For Products //
+        $("form#product-search").on("submit", function(e) {
+            e.preventDefault();
+
+            $(".alert").remove();
+
+
+
+
+            $.ajax({
+                headers: {
+                    'X-CSRF-TOKEN': "{{ csrf_token() }}"
+                },
+                method: "get",
+                url: "{{ route('search', 1) }}",
+                data: {
+                    "search": $("#search").val()
+                },
+                // dataType: "json",
+                beforeSend: function() {
+                    $("main").after(
+                        '<div class="d-flex spinner"><p>جار البحث...</p>' +
+                        '<div class="spinner-border text-primary margin-1" role="status"></div>' +
+                        '</div>'
+                    );
+                },
+                complete: function() {
+                    $(".spinner").remove();
+
+                },
+                success: function(response) {
+
+
+                    let main = $("main");
+                    main.empty();
+                    main.append(response);
+
+
+
+
+                },
+                error: function(response) {
+
+
+                    let errors = response.responseJSON.errors;
+
+
+
+                }
+
+            });
+        });
+
+        // Search For Products //
+        $("#search").on("keyup change", function(e) {
+            e.preventDefault();
+
+            $(".alert").remove();
+
+
+
+
+            $.ajax({
+                headers: {
+                    'X-CSRF-TOKEN': "{{ csrf_token() }}"
+                },
+                method: "get",
+                url: "{{ route('search', 1) }}",
+                data: {
+                    "search": $("#search").val()
+                },
+                // dataType: "json",
+                beforeSend: function() {
+                    $("main").after(
+                        '<div class="d-flex spinner"><p>جار البحث...</p>' +
+                        '<div class="spinner-border text-primary margin-1" role="status"></div>' +
+                        '</div>'
+                    );
+                },
+                complete: function() {
+                    $(".spinner").remove();
+
+                },
+                success: function(response) {
+
+
+                    let main = $("main");
+                    main.empty();
+                    main.append(response);
+
+
+
+
+                },
+                error: function(response) {
+
+
+                    let errors = response.responseJSON.errors;
+
+
+
+                }
+
+            });
+        });
+        //Load Products By Page Link//
+        $(document).on("click", ".pagination .page-link", function(e) {
+            e.preventDefault();
+
+
+            let pageNumber = parseInt($(this).text());
+
+            if ($(this).attr("rel") == "prev")
+                pageNumber = parseInt($(".pagination .active").text()) - 1;
+            else if ($(this).attr("rel") == "next")
+                pageNumber = parseInt($(".pagination .active").text()) + 1;
+
+
+
+            $.ajax({
+                headers: {
+                    'X-CSRF-TOKEN': "{{ csrf_token() }}"
+                },
+                method: "get",
+                url: "search/" + pageNumber + "",
+                data: {
+                    "search": $("#search").val()
+                },
+                // dataType: "json",
+                success: function(response) {
+
+
+                    let main = $("main");
+                    main.empty();
+                    main.append(response);
+
+
+
+
+                },
+                error: function(response) {
+
+
+                    let errors = response.responseJSON.errors;
+
+
+
+                }
+
+            });
+
+
+
         });
     </script>
 

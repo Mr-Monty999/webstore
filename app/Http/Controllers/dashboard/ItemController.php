@@ -23,11 +23,13 @@ class ItemController extends Controller
         return view("dashboard.items.index", ["items" => $items]);
     }
 
-    public function table()
+    public function table($pageNumber)
     {
-        $items = Item::paginate(5)->withPath(route("items.index"))->onEachSide(0);
+        $items = Item::paginate(5, ['*'], 'page', $pageNumber)->withPath(route("items.index"))->onEachSide(0);
         return view("dashboard.items.table", ["items" => $items]);
     }
+
+
 
     public function store(ItemRequest $request)
     {
