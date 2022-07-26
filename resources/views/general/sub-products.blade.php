@@ -43,7 +43,10 @@
                          @endif
 
                          <a href="https://wa.me/{{ $setting->whatsapp_phone }}?text=اريد شراء {{ $product->product_name }}"
-                             target="_blank" class="btn btn-success mar-3">شراء الان
+                             target="_blank" class="btn btn-success mar-3">
+                             شراء الان
+                             <i class="fa-solid fa-cash-register"></i>
+
                          </a>
                          @if (Auth::guard('admin')->check())
                              <a href="{{ route('products.edit', $product->id) }}" class="btn btn-dark">تعديل

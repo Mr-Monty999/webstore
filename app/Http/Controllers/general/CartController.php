@@ -104,8 +104,20 @@ class CartController extends Controller
 
         $data = [
             "success" => true,
-            "message" => "تم الحذف بنجاخ",
+            "message" => "تم الحذف بنجاح",
             "product" => $request->all()
+        ];
+
+        return response()->json($data, 200);
+    }
+    public function destroyAll(Request $request)
+    {
+        $uid = Cookie::get("cart_uid");
+        Cart::where("cart_uid", $uid)->first()->products()->detach();
+
+        $data = [
+            "success" => true,
+            "message" => "تم الحذف بنجاح",
         ];
 
         return response()->json($data, 200);

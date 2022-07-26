@@ -107,14 +107,19 @@ if (Setting::count() > 0) {
             @foreach ($products as $product)
                 <div class="d-flex flex-column justify-content-center align-items-center">
                     <div id="product{{ $product->id }}" class="product product{{ $product->id }}">
-                        <form class="d-flex flex-column justify-content-center align-items-center" method="POST"
-                            id="product-delete">
+                        <form class="d-flex flex-column justify-content-center align-items-center product-delete"
+                            method="POST" id="">
                             @csrf
                             @method('DELETE')
                             <input type="text" class="product-id" name="product_id" value="{{ $product->id }}"
                                 hidden>
-                            <h6 class="text-dark" name="product_name">{{ $product->product_name }}</h6>
-                            <h6 class="text-dark product-new-price" name="product_price">{{ $product->product_price }}
+                            <h6 class="text-white product-name" name="product_name">
+                                {{ $product->product_name }}</h6>
+                            <h6 class="text-white product-new-price" dir="rtl" name="product_price">
+                                {{ $product->product_price * $product->pivot->product_amount }}
+
+                                {{ $store->store_currency }}
+
                             </h6>
                             <div class="form-group" dir="rtl">
                                 <label class="text-dark" for="">الكمية</label>
@@ -136,7 +141,20 @@ if (Setting::count() > 0) {
                     <hr>
                 </div>
             @endforeach
+            <div class="buttons d-flex justify-content-around">
+                <button type="button" id="delete-all"
+                    class="btn btn-danger d-flex justify-content-center align-items-center">
+                    <i class="fa-solid fa-trash"></i>
+                    ازالة الكل
+                </button>
+                <button type="button" id="buy-all"
+                    class="btn btn-success d-flex justify-content-center align-items-center">
+                    <i class="fa-solid fa-cash-register"></i>
+                    شراء الكل
+                </button>
+            </div>
         </div>
+
         <i class="fa-solid fa-cart-shopping" class="btn btn-primary"></i>
     </div>
     <footer dir="ltr" class="footer bg-dark d-flex flex-column justify-content-center align-items-center">
@@ -159,9 +177,178 @@ if (Setting::count() > 0) {
     <script>
         //  $("input[type=date]").val(new Date().toISOString().slice(0, 10));
 
+        // let addToCart = $(".add-to-cart");
+
+        $(document).on("click", ".add-to-cart", function() {
+            //  alert("success");
+            let productId = $(this).parent().find(".product-id").val(),
+                productNewPrice = $(this).parent().find(".product-new-price").text(),
+                productName = $(this).parent().find(".product_name").text(),
+                productAmount = $(this).parent().find(".product-amount").val();
+
+            $.ajax({
+                headers: {
+                    'X-CSRF-TOKEN': "{{ csrf_token() }}"
+                },
+                method: "post",
+                url: "{{ route('carts.store') }}",
+                data: {
+                    "product_id": productId
+                },
+                dataType: "json",
+                //  processData: false,
+                //  contentType: false,
+                success: function(response) {
+
+                    let product = $(".mycart #product" + productId + "");
+
+                    if (product.length < 1) {
+                        product =
+                            '<div class="d-flex flex-column justify-content-center align-items-center">' +
+                            '<div id="product' + productId +
+                            '" class="product  product' +
+                            productId + '">' +
+                            '<form class="d-flex flex-column justify-content-center align-items-center" method="POST"' +
+                            ' id="product-delete">' +
+                            '@csrf' +
+                            '@method('delete')' +
+                            '<input type="text" class="product-id"  value="' +
+                            productId + '" name="product_id" hidden>' +
+                            '<h6 class="text-white product-name" name="product_name">' +
+                            productName + '</h6>' +
+                            '<h6 class="text-white product-new-price">' + productNewPrice + '</h6>' +
+                            '<div class="form-group" dir="rtl">' +
+                            ' <label class="text-dark" for="">الكمية</label>' +
+                            '<input min="1" type="number" value="' + productAmount +
+                            '" class="form-control text-center product-amount" name="qty" id="">' +
+                            '</div>' +
+                            '<div>' +
+                            '<button type="button" class="btn btn-danger inside-cart-decrease">-</button>' +
+                            ' <button type="button" class="btn btn-success inside-cart-increase">+</button>' +
+                            '</div>' +
+                            '<button type="submit" class="btn btn-danger delete d-flex justify-content-center align-items-center">' +
+                            '<i class="fa-solid fa-trash"></i>' +
+                            'ازالة' +
+                            '</button>' +
+                            '</form>' +
+                            '</div>' +
+                            '<hr>' +
+                            '</div>';
 
 
-        $(document).on("submit", "form#product-delete", function() {
+                        $(".mycart .products").append(product);
+                    }
+
+
+                },
+                error: function(response) {
+
+
+                    let errors = response.responseJSON;
+
+                }
+
+            });
+
+        });
+
+        $(document).on("change", ".main-products .product-amount", function() {
+
+            let productId = $(this).parent().parent().parent().parent().find(".product-id").val(),
+                productAmount = $(this).val(),
+                productPrice = $(".product" + productId + " .product_price"),
+                productNewPrice = parseFloat(productPrice.text().match(/\d/g).join("")) * productAmount;
+
+            $(".product" + productId + " .product-amount").val(productAmount);
+            $(".product" + productId + " .product-new-price").text(productNewPrice);
+
+
+
+            $.ajax({
+                headers: {
+                    'X-CSRF-TOKEN': "{{ csrf_token() }}"
+                },
+                method: "put",
+                url: "{{ route('carts.update', 0) }}",
+                data: {
+                    "product_id": productId,
+                    "product_amount": productAmount,
+                },
+                dataType: "json",
+                //  processData: false,
+                //  contentType: false,
+                success: function(response) {
+
+
+                    // console.log(response);
+
+
+
+                },
+                error: function(response) {
+
+
+                    let errors = response.responseJSON;
+
+                }
+
+            });
+
+        });
+
+        $(document).on("click", ".mycart #delete-all", function() {
+
+
+            let deleteAll = confirm("هل أنت متأكد من إزالة جميع المنتجات من السلة؟");
+            if (deleteAll) {
+                $.ajax({
+                    headers: {
+                        'X-CSRF-TOKEN': "{{ csrf_token() }}"
+                    },
+                    method: "delete",
+                    url: "{{ route('carts.destroy.all') }}",
+                    data: "",
+                    dataType: "json",
+                    success: function(response) {
+
+                        $(".mycart .products > *:not(.buttons)").remove();
+
+
+                    },
+                    error: function(response) {
+
+
+                        let errors = response.responseJSON;
+                        // console.log(errors);
+
+                    }
+
+                });
+            }
+        });
+        $(document).on("click", ".mycart #buy-all", function() {
+
+            let productNames = $(".mycart .product .product-name"),
+                productAmouts = $(".mycart .product .product-amount"),
+                products = "";
+            for (let x = 0; x < productNames.length; x++) {
+                products += productAmouts[x].value + " " + productNames[x].innerText;
+                if (x < productNames.length - 1)
+                    products += " و ";
+
+            }
+            console.log(products);
+            let url =
+                "https://wa.me/{{ $store->whatsapp_phone }}?text=اريد شراء " + products + "";
+
+
+            open(url);
+
+
+
+
+        });
+        $(document).on("submit", "form.product-delete", function() {
             $(this).parent().parent().remove();
 
 
@@ -207,7 +394,6 @@ if (Setting::count() > 0) {
             $(".product" + productId + " .product-new-price").text(productNewPrice);
 
 
-
             $.ajax({
                 headers: {
                     'X-CSRF-TOKEN': "{{ csrf_token() }}"
@@ -238,86 +424,87 @@ if (Setting::count() > 0) {
 
             });
         });
-        $(document).on("click", ".mycart .inside-cart-increase", function() {
+        /*
+                $(document).on("click", ".mycart .inside-cart-increase", function() {
 
-            // $(document).on("change", ".mycart input[type='number']", function() {
+                    // $(document).on("change", ".mycart input[type='number']", function() {
 
-            let productId = $(this).parent().parent().find(".product-id").val();
-            let productAmount = $("#product" + productId + "").find(".product-amount").val();
+                    let productId = $(this).parent().parent().find(".product-id").val();
+                    let productAmount = $("#product" + productId + "").find(".product-amount").val();
 
-            console.log(productAmount);
+                    console.log(productAmount);
 
-            $.ajax({
-                headers: {
-                    'X-CSRF-TOKEN': "{{ csrf_token() }}"
-                },
-                method: "put",
-                url: "{{ route('carts.update', 0) }}",
-                data: {
-                    "product_id": productId,
-                    "product_amount": productAmount,
-                },
-                dataType: "json",
-                //  processData: false,
-                //  contentType: false,
-                success: function(response) {
-
-
-                    // console.log(response);
+                    $.ajax({
+                        headers: {
+                            'X-CSRF-TOKEN': "{{ csrf_token() }}"
+                        },
+                        method: "put",
+                        url: "{{ route('carts.update', 0) }}",
+                        data: {
+                            "product_id": productId,
+                            "product_amount": productAmount,
+                        },
+                        dataType: "json",
+                        //  processData: false,
+                        //  contentType: false,
+                        success: function(response) {
 
 
-
-                },
-                error: function(response) {
-
-
-                    let errors = response.responseJSON;
-                    console.log(errors);
-
-                }
-
-                // });
-            });
-        });
-        $(document).on("click", ".mycart .inside-cart-decrease", function() {
-            //  alert("success");
-
-            let productId = $(this).parent().parent().find(".product-id").val();
-            let productAmount = $("#product" + productId + "").find(".product-amount").val();
-            console.log(productAmount);
-
-            $.ajax({
-                headers: {
-                    'X-CSRF-TOKEN': "{{ csrf_token() }}"
-                },
-                method: "put",
-                url: "{{ route('carts.update', 0) }}",
-                data: {
-                    "product_id": productId,
-                    "product_amount": productAmount
-                },
-                dataType: "json",
-                //  processData: false,
-                //  contentType: false,
-                success: function(response) {
-
-
-                    // console.log(response);
+                            // console.log(response);
 
 
 
-                },
-                error: function(response) {
+                        },
+                        error: function(response) {
 
 
-                    let errors = response.responseJSON;
-                    console.log(errors);
+                            let errors = response.responseJSON;
+                            console.log(errors);
 
-                }
+                        }
 
-            });
-        });
+                        // });
+                    });
+                });
+                $(document).on("click", ".mycart .inside-cart-decrease", function() {
+                    //  alert("success");
 
+                    let productId = $(this).parent().parent().find(".product-id").val();
+                    let productAmount = $("#product" + productId + "").find(".product-amount").val();
+                    console.log(productAmount);
+
+                    $.ajax({
+                        headers: {
+                            'X-CSRF-TOKEN': "{{ csrf_token() }}"
+                        },
+                        method: "put",
+                        url: "{{ route('carts.update', 0) }}",
+                        data: {
+                            "product_id": productId,
+                            "product_amount": productAmount
+                        },
+                        dataType: "json",
+                        //  processData: false,
+                        //  contentType: false,
+                        success: function(response) {
+
+
+                            // console.log(response);
+
+
+
+                        },
+                        error: function(response) {
+
+
+                            let errors = response.responseJSON;
+                            console.log(errors);
+
+                        }
+
+                    });
+                });
+        */
         // Search For Products //
         $("form#product-search").on("submit", function(e) {
             e.preventDefault();
@@ -454,6 +641,7 @@ if (Setting::count() > 0) {
                     main.empty();
                     main.append(response);
 
+                    location.href = "#";
 
 
 

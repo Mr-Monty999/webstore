@@ -36,7 +36,7 @@ Route::group(["namespace" => "general"], function () {
 
     ///Cart Routes
     Route::resource("carts", "CartController");
-    // Route::post("/carts/store", "SettingController@index")->name("carts.index");
+    Route::delete("/carts/delete-all-products", "SettingController@destroyAll")->name("carts.destroy.all");
     // Route::delete("/carts/delete/", "SettingController@update")->name("carts.update");
 
 
