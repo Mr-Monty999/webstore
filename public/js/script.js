@@ -9,8 +9,7 @@
 $(document).ready(function () {
 
 
-    let cart = $(".mycart i"),
-        addToCart = $(".add-to-cart");
+    let cart = $(".mycart .container");
     // deleteProduct = $(".product .delete");
 
     // $(".mycart .products").on("click", ".delete", function () {
@@ -19,7 +18,7 @@ $(document).ready(function () {
     // });
 
     cart.on("click", function () {
-        cart.prev().toggle();
+        $(".mycart .products").toggle();
     });
 
 

@@ -9,6 +9,7 @@
                      <img src="{{ asset($product->product_photo) }}" class="" width="" alt="...">
                      <div class="card-body d-flex flex-column justify-content-center align-items-center">
                          <h5 class="product_name card-title text-dark">{{ $product->product_name }}</h5>
+
                          @php
                              
                              $currency = $setting->store_currency;
@@ -67,7 +68,8 @@
 
                          <div class="collapse" id="cart{{ $product->id }}">
                              <div class="d-flex flex-column justify-content-center align-items-center">
-                                 <h1 class="product-new-price">{{ $finalPrice }}</h1>
+                                 <h1 class="product-new-price">{{ number_format($finalPrice) }}
+                                     {{ $setting->store_currency }}</h1>
                                  <div class="form-group">
                                      <label for="">الكمية:</label>
                                      <input min="1" type="number" value="1"

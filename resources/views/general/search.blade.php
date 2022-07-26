@@ -66,7 +66,8 @@
 
                          <div class="collapse" id="cart{{ $product->id }}">
                              <div class="d-flex flex-column justify-content-center align-items-center">
-                                 <h1 class="product-new-price">{{ $finalPrice }}</h1>
+                                 <h1 class="product-new-price">{{ number_format($finalPrice) }}
+                                     {{ $setting->store_currency }}</h1>
                                  <div class="form-group">
                                      <label for="">الكمية:</label>
                                      <input min="1" type="number" value="1"

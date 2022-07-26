@@ -11,6 +11,12 @@ use App\Services\GetService;
 
 CheckService::cartChecker();
 
+// $uid = uniqid('cart_');
+
+// if (!Cookie::has('cart_uid')) {
+//     Cookie::queue('cart_uid', $uid, 99999999, '/');
+// }
+
 $products = GetService::getCartProducts(Cookie::get('cart_uid'));
 
 $navItems = Item::all();
@@ -116,7 +122,7 @@ if (Setting::count() > 0) {
                             <h6 class="text-white product-name" name="product_name">
                                 {{ $product->product_name }}</h6>
                             <h6 class="text-white product-new-price" dir="rtl" name="product_price">
-                                {{ $product->product_price * $product->pivot->product_amount }}
+                                {{ number_format($product->product_price * $product->pivot->product_amount) }}
 
                                 {{ $store->store_currency }}
 
@@ -154,8 +160,12 @@ if (Setting::count() > 0) {
                 </button>
             </div>
         </div>
-
-        <i class="fa-solid fa-cart-shopping" class="btn btn-primary"></i>
+        <div class="container">
+            <div id="products-count" class="text-danger bg-white d-flex justify-content-center align-items-center">
+                0
+            </div>
+            <i class="fa-solid fa-cart-shopping" class="btn btn-primary"></i>
+        </div>
     </div>
     <footer dir="ltr" class="footer bg-dark d-flex flex-column justify-content-center align-items-center">
         <div class="made d-flex justify-content-center align-items-center">
@@ -178,6 +188,8 @@ if (Setting::count() > 0) {
         //  $("input[type=date]").val(new Date().toISOString().slice(0, 10));
 
         // let addToCart = $(".add-to-cart");
+
+        $("#products-count").text($(".mycart .products .product-name").length);
 
         $(document).on("click", ".add-to-cart", function() {
             //  alert("success");
@@ -203,40 +215,46 @@ if (Setting::count() > 0) {
                     let product = $(".mycart #product" + productId + "");
 
                     if (product.length < 1) {
+
+
                         product =
                             '<div class="d-flex flex-column justify-content-center align-items-center">' +
                             '<div id="product' + productId +
-                            '" class="product  product' +
-                            productId + '">' +
-                            '<form class="d-flex flex-column justify-content-center align-items-center" method="POST"' +
-                            ' id="product-delete">' +
+                            '" class="product product' + productId +
+                            '">' +
+                            '<form class="d-flex flex-column justify-content-center align-items-center product-delete" method="POST" id="">' +
                             '@csrf' +
-                            '@method('delete')' +
-                            '<input type="text" class="product-id"  value="' +
-                            productId + '" name="product_id" hidden>' +
+                            '@method('DELETE')' +
+                            '<input type="text" class="product-id" name="product_id" value="' +
+                            productId +
+                            '"hidden>' +
                             '<h6 class="text-white product-name" name="product_name">' +
-                            productName + '</h6>' +
-                            '<h6 class="text-white product-new-price">' + productNewPrice + '</h6>' +
-                            '<div class="form-group" dir="rtl">' +
+                            '    ' + productName + '</h6>' +
+                            '<h6 class="text-white product-new-price" dir="rtl" name="product_price">' +
+                            '' + productNewPrice + '' +
+
+                            '</h6>' +
+                            ' <div class="form-group" dir="rtl">' +
                             ' <label class="text-dark" for="">الكمية</label>' +
-                            '<input min="1" type="number" value="' + productAmount +
-                            '" class="form-control text-center product-amount" name="qty" id="">' +
+                            '<input min="1" type="number" value="' + productAmount + '"' +
+                            'class="form-control text-center product-amount" name="product_amount" id="">' +
                             '</div>' +
                             '<div>' +
                             '<button type="button" class="btn btn-danger inside-cart-decrease">-</button>' +
-                            ' <button type="button" class="btn btn-success inside-cart-increase">+</button>' +
+                            '<button type="button" class="btn btn-success inside-cart-increase">+</button>' +
                             '</div>' +
                             '<button type="submit" class="btn btn-danger delete d-flex justify-content-center align-items-center">' +
                             '<i class="fa-solid fa-trash"></i>' +
                             'ازالة' +
                             '</button>' +
-                            '</form>' +
-                            '</div>' +
+                            ' </form>' +
+                            ' </div>' +
                             '<hr>' +
                             '</div>';
 
-
                         $(".mycart .products").append(product);
+                        $("#products-count").text($(".mycart .products .product-name").length);
+
                     }
 
 
@@ -260,7 +278,8 @@ if (Setting::count() > 0) {
                 productNewPrice = parseFloat(productPrice.text().match(/\d/g).join("")) * productAmount;
 
             $(".product" + productId + " .product-amount").val(productAmount);
-            $(".product" + productId + " .product-new-price").text(productNewPrice);
+            $(".product" + productId + " .product-new-price").text(productNewPrice.toLocaleString() +
+                " {{ $store->store_currency }}");
 
 
 
@@ -312,6 +331,7 @@ if (Setting::count() > 0) {
                     success: function(response) {
 
                         $(".mycart .products > *:not(.buttons)").remove();
+                        $("#products-count").text(0);
 
 
                     },
@@ -337,7 +357,6 @@ if (Setting::count() > 0) {
                     products += " و ";
 
             }
-            console.log(products);
             let url =
                 "https://wa.me/{{ $store->whatsapp_phone }}?text=اريد شراء " + products + "";
 
@@ -365,6 +384,8 @@ if (Setting::count() > 0) {
                 success: function(response) {
 
 
+                    $("#products-count").text($(".mycart .products .product-name").length);
+
                     // console.log(response);
 
 
@@ -391,7 +412,8 @@ if (Setting::count() > 0) {
                 productNewPrice = parseFloat(productPrice.text().match(/\d/g).join("")) * productAmount;
 
             $(".product" + productId + " .product-amount").val(productAmount);
-            $(".product" + productId + " .product-new-price").text(productNewPrice);
+            $(".product" + productId + " .product-new-price").text(productNewPrice.toLocaleString() +
+                " {{ $store->store_currency }}");
 
 
             $.ajax({

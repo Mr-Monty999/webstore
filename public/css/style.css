@@ -112,6 +112,24 @@ a {
     margin-right: 5px;
 }
 
+.mycart #products-count {
+    border-radius: 10%;
+    width: fit-content;
+    height: 20px;
+    padding: 3px !important;
+    font-size: 20px;
+    position: absolute;
+    font-weight: bold;
+    left: 30px;
+    bottom: 50%;
+    margin-left: 5%;
+}
+
+.mycart .container {
+    position: relative;
+    /* width: 100px; */
+    /* height: 100px; */
+}
 
 .mycart .buttons {
     position: absolute;

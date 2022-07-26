@@ -13,13 +13,14 @@ trait CheckService
     {
         $uid = uniqid('cart_');
 
+        // Cookie::
 
         if (!Cookie::has('cart_uid')) {
             Cookie::queue('cart_uid', $uid, 99999999, '/');
 
             // if (!Cart::where("cart_uid", $uid)->exists())
             Cart::create(['cart_uid' => $uid]);
-            return redirect()->route("dashboard.index");
+            // return redirect()->route("dashboard.index");
         } else {
             $uid = Cookie::get('cart_uid');
 
