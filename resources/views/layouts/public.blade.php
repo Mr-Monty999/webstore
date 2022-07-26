@@ -424,25 +424,25 @@ if (Setting::count() > 0) {
             });
         });
         //Load Products By Page Link//
-        $(document).on("click", ".pagination .page-link", function(e) {
+
+        $(document).on("click", "form#search .pagination .page-link", function(e) {
             e.preventDefault();
 
 
             let pageNumber = parseInt($(this).text());
 
             if ($(this).attr("rel") == "prev")
-                pageNumber = parseInt($(".pagination .active").text()) - 1;
+                pageNumber = parseInt($("form#search .pagination .active").text()) - 1;
             else if ($(this).attr("rel") == "next")
-                pageNumber = parseInt($(".pagination .active").text()) + 1;
+                pageNumber = parseInt($("form#search .pagination .active").text()) + 1;
 
-
-
+            let url = "{{ route('search', '') }}/" + pageNumber + "";
             $.ajax({
                 headers: {
                     'X-CSRF-TOKEN': "{{ csrf_token() }}"
                 },
                 method: "get",
-                url: "search/" + pageNumber + "",
+                url: url,
                 data: {
                     "search": $("#search").val()
                 },

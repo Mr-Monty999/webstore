@@ -1,12 +1,11 @@
- {{-- @extends('layouts.public')
- @section('content') --}}
- <div class="products container d-flex flex-column">
-     <h1 class="title section-title align-self-center">المنتجات</h1>
-     <form action="" class="row gap-3 d-flex align-items-center justify-content-center products-container"
+ <div class="main-products container d-flex flex-column">
+     <h1 class="title section-title align-self-center">{{ $item->item_name }}</h1>
+     <form id="load-products" action="" class="row gap-3 d-flex align-items-center justify-content-center"
          method="post">
          @if ($products->count() > 0)
              @foreach ($products as $product)
-                 <div class="card d-flex flex-column justify-content-center align-items-center col-10 col-md-4 col-lg-3">
+                 <div
+                     class="card d-flex flex-column justify-content-center align-items-center col-10 col-md-4 col-lg-3 product{{ $product->id }}">
                      <img src="{{ asset($product->product_photo) }}" class="" width="" alt="...">
                      <div class="card-body d-flex flex-column justify-content-center align-items-center">
                          <h5 class="product_name card-title text-dark">{{ $product->product_name }}</h5>
@@ -28,9 +27,9 @@
                              
                          @endphp
                          @if ($product->product_discount > 0)
-                             <h5 class="product_price text-dark"> خصم %{{ $product->product_discount }}
+                             <h5 class="text-dark"> خصم %{{ $product->product_discount }}
 
-                                 <h5 class="product_price text-dark">
+                                 <h5 class="product_old_price text-dark">
                                      <del>{{ number_format($product->product_price) }} </del>
                                  </h5>
                              </h5>
@@ -45,21 +44,27 @@
 
                          <a href="https://wa.me/{{ $setting->whatsapp_phone }}?text=اريد شراء {{ $product->product_name }}"
                              target="_blank" class="btn btn-success mar-3">شراء الان
-                             <i class="fa-solid fa-cash-register"></i>
                          </a>
                          @if (Auth::guard('admin')->check())
                              <a href="{{ route('products.edit', $product->id) }}" class="btn btn-dark">تعديل
                              </a>
                          @endif
-                         <a hidden href="#collapseExample" class="btn btn-success" data-bs-toggle="collapse"
-                             href="#collapseExample" role="button" aria-expanded="false"
-                             aria-controls="collapseExample">اضف
+                         <input type="text" class="product-id" hidden value="{{ $product->id }}">
+                         <a href="#cart{{ $product->id }}" class="btn btn-success add-to-cart"
+                             data-bs-toggle="collapse" href="#cart{{ $product->id }}" role="button"
+                             aria-expanded="false" aria-controls="cart{{ $product->id }}">اضف
                              الي السلة
                              <i class="fa-solid fa-cart-shopping"></i>
                          </a>
-                         <div class="collapse" id="collapseExample">
+                         {{-- <button type="button"
+                                 class="btn btn-danger delete d-flex justify-content-center align-items-center">
+                                 ازالة من السلة
+                                 <i class="fa-solid fa-trash"></i>
+                             </button> --}}
+
+                         <div class="collapse" id="cart{{ $product->id }}">
                              <div class="d-flex flex-column justify-content-center align-items-center">
-                                 <h1 class="product-new-price">{{ $product->product_price }}</h1>
+                                 <h1 class="product-new-price">{{ $finalPrice }}</h1>
                                  <div class="form-group">
                                      <label for="">الكمية:</label>
                                      <input min="1" type="number" value="1"
@@ -75,7 +80,7 @@
                  </div>
              @endforeach
          @else
-             <div class="alert alert-danger text-center">عفوا لم يتم العثور على المنتج</div>
+             <div class="alert alert-danger text-center">عفوا لايوجد منتجات</div>
          @endif
 
          <div class="d-flex flex-column justify-content-center align-items-center">
@@ -83,8 +88,6 @@
 
          </div>
 
-         {{-- @include('general.sub-products') --}}
      </form>
 
  </div>
- {{-- @endsection --}}

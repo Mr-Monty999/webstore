@@ -62,7 +62,9 @@
                     success: function(response) {
 
                         let table = $(".mytable");
-                        table.load("feedbacks-table/1", function(res, status,
+                        let url = "{{ route('dashboard.feedbacks.table', '') }}/1";
+
+                        table.load(url, function(res, status,
                             request) {
                             if (response.success)
                                 $("form#delete-all-feedbacks").after(
@@ -124,7 +126,9 @@
                     success: function(response) {
                         console.log(response.message);
                         let table = $(".mytable");
-                        table.load("feedbacks-table/" + pageNumber + "", function(res, status,
+                        let url = "{{ route('dashboard.feedbacks.table', '') }}/" + pageNumber + "";
+
+                        table.load(url, function(res, status,
                             request) {
 
                             if (response.success)
@@ -182,7 +186,9 @@
 
 
             let table = $(".mytable");
-            table.load("feedbacks-table/" + pageNumber + "", function(res, status,
+            let url = "{{ route('dashboard.feedbacks.table', '') }}/" + pageNumber + "";
+
+            table.load(url, function(res, status,
                 request) {
 
 

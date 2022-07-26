@@ -94,7 +94,9 @@
 
 
                     let table = $(".mytable");
-                    table.load("admins-table/" + pageNumber + "", function(res, status,
+                    let url = "{{ route('admins.table', '') }}/" + pageNumber + "";
+
+                    table.load(url, function(res, status,
                         request) {
 
 
@@ -168,7 +170,9 @@
 
 
                         let table = $(".mytable");
-                        table.load("admins-table/" + pageNumber + "", function(res, status,
+                        let url = "{{ route('admins.table', '') }}/" + pageNumber + "";
+
+                        table.load(url, function(res, status,
                             request) {
 
                             if (response.success)
@@ -252,7 +256,9 @@
 
 
                         let table = $(".mytable");
-                        table.load("admins-table/1", function(res, status,
+                        let url = "{{ route('admins.table', '1') }}";
+
+                        table.load(url, function(res, status,
                             request) {
 
                             if (response.success)
@@ -309,8 +315,10 @@
             else if ($(this).attr("rel") == "next")
                 pageNumber = parseInt($(".pagination .active").text()) + 1;
 
+
+            let url = "{{ route('admins.table', '') }}/" + pageNumber + "";
             let table = $(".mytable");
-            table.load("admins-table/" + pageNumber + "", function(res, status,
+            table.load(url, function(res, status,
                 request) {
 
 

@@ -187,7 +187,9 @@
                 success: function(response) {
 
                     let table = $(".mytable");
-                    table.load("products-table/" + pageNumber + "", function(res, status,
+                    let url = "{{ route('products.table', '') }}/" + pageNumber + "";
+
+                    table.load(url, function(res, status,
                         request) {
 
 
@@ -258,7 +260,9 @@
 
                         console.log(response.message);
                         let table = $(".mytable");
-                        table.load("products-table/" + pageNumber + "", function(res, status,
+                        let url = "{{ route('products.table', '') }}/" + pageNumber + "";
+
+                        table.load(url, function(res, status,
                             request) {
 
                             if (response.success)
@@ -337,7 +341,9 @@
                     success: function(response) {
 
                         let table = $(".mytable");
-                        table.load("products-table/1", function(res, status, request) {
+                        let url = "{{ route('products.table', '1') }}";
+
+                        table.load(url, function(res, status, request) {
                             if (response.success)
                                 $("form#delete-all-products").after(
                                     '<div class = "alert alert-success text-center col-7 col-md-3 text-white" >' +
@@ -386,7 +392,9 @@
 
 
             let table = $(".mytable");
-            table.load("products-table/" + pageNumber + "", function(response, status,
+            let url = "{{ route('products.table', '') }}/" + pageNumber + "";
+
+            table.load(url, function(response, status,
                 request) {
 
 

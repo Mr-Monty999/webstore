@@ -30,7 +30,7 @@ Route::group(["namespace" => "general"], function () {
     Route::post("/feedback/store", "FeedbackController@store")->name("feedback.store");
     Route::get("/products/{id}", "ProductController@index")->name("products.view");
     Route::get("/search/{pageNumber}", "ProductController@search")->name("search");
-    // Route::get("/products-by-name","ProductController@getProducts")
+    Route::get("/products/{id}/{pageNumber}", "ProductController@loadProductsByItemId")->name("products.load");
 
     // });
 

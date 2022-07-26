@@ -73,7 +73,9 @@
 
 
                     let table = $(".mytable");
-                    table.load("items-table/" + pageNumber + "", function(response, status,
+                    let url = "{{ route('items.table', '') }}/" + pageNumber + "";
+
+                    table.load(url, function(response, status,
                         request) {
 
 
@@ -143,7 +145,9 @@
                     success: function(response) {
 
                         let table = $(".mytable");
-                        table.load("items-table/" + pageNumber + "", function(res, status, request) {
+                        let url = "{{ route('items.table', '') }}/" + pageNumber + "";
+
+                        table.load(url, function(res, status, request) {
                             if (response.success)
                                 $(".mytable").append(
                                     '<div class = "alert alert-success text-center col-7 col-md-3 text-white" >' +
@@ -213,7 +217,9 @@
                     success: function(response) {
 
                         let table = $(".mytable");
-                        table.load("items-table/1", function(res, status, request) {
+                        let url = "{{ route('items.table', '1') }}";
+
+                        table.load(url, function(res, status, request) {
                             if (response.success)
                                 $("form#delete-all-items").after(
                                     '<div class = "alert alert-success text-center col-7 col-md-3 text-white" >' +
@@ -262,7 +268,9 @@
 
 
             let table = $(".mytable");
-            table.load("items-table/" + pageNumber + "", function(response, status,
+            let url = "{{ route('items.table', '') }}/" + pageNumber + "";
+
+            table.load(url, function(response, status,
                 request) {
 
 
