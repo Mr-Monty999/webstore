@@ -2,6 +2,7 @@
 <html lang="ar" dir="rtl">
 
 @php
+
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cookie;
 use App\Models\Setting;
@@ -111,6 +112,8 @@ if (Setting::count() > 0) {
                             @method('DELETE')
                             <input type="text" class="product-id" name="product_id" value="{{ $product->id }}"
                                 hidden>
+                            <input type="text" class="product-price" name="product_price"
+                                value="{{ $product->product_price }}" hidden>
                             <h6 class="text-white product-name" name="product_name">
                                 {{ $product->product_name }}</h6>
                             <h6 class="text-white product-new-price" dir="rtl" name="product_price">
@@ -220,6 +223,8 @@ if (Setting::count() > 0) {
                             '<input type="text" class="product-id" name="product_id" value="' +
                             productId +
                             '"hidden>' +
+                            '<input type="text" class="product-price" name="product_price"' +
+                            'value="{{ $product->product_price }}" hidden>' +
                             '<h6 class="text-white product-name" name="product_name">' +
                             '    ' + productName + '</h6>' +
                             '<h6 class="text-white product-new-price" dir="rtl" name="product_price">' +
@@ -400,8 +405,9 @@ if (Setting::count() > 0) {
 
             let productId = $(this).parent().parent().find(".product-id").val(),
                 productAmount = $(this).val(),
-                productPrice = $(".product" + productId + " .product_price"),
-                productNewPrice = parseFloat(productPrice.text().replace(/\D/g, "")) * productAmount;
+                productPrice = $(".mycart #product" + productId + " .product-price"),
+                productNewPrice = parseFloat(productPrice.val().replace(/\D/g, "")) * productAmount;
+
 
             $(".product" + productId + " .product-amount").val(productAmount);
             $(".product" + productId + " .product-new-price").text(productNewPrice.toLocaleString() +

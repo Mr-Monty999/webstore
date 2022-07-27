@@ -17,6 +17,7 @@ class FeedbackController extends Controller
 
     public function table($pageNumber)
     {
+
         $feedbacks = Feedback::latest()->paginate(5, ['*'], 'page', $pageNumber)->withPath(route('dashboard.feedbacks.index'))->onEachSide(0);
         return view("dashboard.feedbacks.table", ["feedbacks" => $feedbacks]);
     }
