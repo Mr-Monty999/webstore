@@ -63,6 +63,7 @@
             e.preventDefault();
 
 
+            $(".alert").remove();
 
 
 

@@ -30,6 +30,7 @@
         $(document).on("submit", "form#delete-all-feedbacks", function(e) {
             e.preventDefault();
 
+            $(".alert").remove();
 
 
             let deleteFeedback = confirm("هل أنت متأكد من حذف جميع الرسائل؟");
@@ -102,6 +103,8 @@
         ////Delete Feedback And Update Table ////
         $(document).on("submit", "form#feedback-delete", function(e) {
             e.preventDefault();
+
+            $(".alert").remove();
 
 
 

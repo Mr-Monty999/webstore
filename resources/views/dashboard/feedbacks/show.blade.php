@@ -28,6 +28,7 @@
         $("form#feedback-delete").on("submit", function(e) {
             e.preventDefault();
 
+            $(".alert").remove();
 
 
 

@@ -156,6 +156,7 @@
             e.preventDefault();
 
 
+            $(".alert").remove();
 
             let pageNumber = $(".pagination .active").text();
             if (pageNumber == "")
@@ -237,6 +238,7 @@
             e.preventDefault();
 
 
+            $(".alert").remove();
 
             let deleteProduct = confirm("هل أنت متأكد من حذف المنتج ؟");
 
@@ -310,6 +312,8 @@
         //Delete All Products ////
         $(document).on("submit", "form#delete-all-products", function(e) {
             e.preventDefault();
+
+            $(".alert").remove();
 
 
 

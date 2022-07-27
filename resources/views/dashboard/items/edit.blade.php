@@ -35,6 +35,7 @@
         $("form#items").on("submit", function(e) {
             e.preventDefault();
 
+            $(".alert").remove();
 
 
 

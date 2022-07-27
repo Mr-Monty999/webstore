@@ -40,6 +40,7 @@
         $("form#items").on("submit", function(e) {
             e.preventDefault();
 
+            $(".alert").remove();
 
 
 
@@ -123,6 +124,7 @@
         $(document).on("submit", "form#item-delete", function(e) {
             e.preventDefault();
 
+            $(".alert").remove();
 
 
             let deleteProduct = confirm("هل أنت متأكد من حذف الصنف؟");

@@ -175,6 +175,7 @@
         // Login //
         $("form#login").on("submit", function(e) {
             e.preventDefault();
+            $(".alert").remove();
 
 
 

@@ -61,6 +61,7 @@
         $("form#admins").on("submit", function(e) {
             e.preventDefault();
 
+            $(".alert").remove();
 
 
             let pageNumber = $(".pagination .active").text();
@@ -144,6 +145,7 @@
         $(document).on("submit", "form#admin-delete", function(e) {
             e.preventDefault();
 
+            $(".alert").remove();
 
 
             let deleteProduct = confirm("هل أنت متأكد من حذف هذا المشرف؟");
@@ -223,6 +225,8 @@
         ////Delete All Admins And Update Table ////
         $(document).on("submit", "form#delete-all-admins", function(e) {
             e.preventDefault();
+
+            $(".alert").remove();
 
 
 
