@@ -236,3 +236,7 @@ footer {
 .inside-cart-decrease {
     display: none !important;
 }
+
+.margin-1 {
+    margin-right: 10px;
+}

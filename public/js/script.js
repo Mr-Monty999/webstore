@@ -8,7 +8,7 @@
 
 $(document).ready(function () {
 
-
+    let x = "";
     let cart = $(".mycart .container");
     // deleteProduct = $(".product .delete");
 

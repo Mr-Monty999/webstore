@@ -267,7 +267,7 @@ if (Setting::count() > 0) {
             let productId = $(this).parent().parent().parent().parent().find(".product-id").val(),
                 productAmount = $(this).val(),
                 productPrice = $(".product" + productId + " .product_price"),
-                productNewPrice = parseFloat(productPrice.text().match(/\d/g).join("")) * productAmount;
+                productNewPrice = parseFloat(productPrice.text().replace(/\D/g, "")) * productAmount;
 
             $(".product" + productId + " .product-amount").val(productAmount);
             $(".product" + productId + " .product-new-price").text(productNewPrice.toLocaleString() +
@@ -401,7 +401,7 @@ if (Setting::count() > 0) {
             let productId = $(this).parent().parent().find(".product-id").val(),
                 productAmount = $(this).val(),
                 productPrice = $(".product" + productId + " .product_price"),
-                productNewPrice = parseFloat(productPrice.text().match(/\d/g).join("")) * productAmount;
+                productNewPrice = parseFloat(productPrice.text().replace(/\D/g, "")) * productAmount;
 
             $(".product" + productId + " .product-amount").val(productAmount);
             $(".product" + productId + " .product-new-price").text(productNewPrice.toLocaleString() +
@@ -526,6 +526,7 @@ if (Setting::count() > 0) {
             $(".alert").remove();
 
 
+            let main = $("main");
 
 
             $.ajax({
@@ -539,21 +540,24 @@ if (Setting::count() > 0) {
                 },
                 // dataType: "json",
                 beforeSend: function() {
-                    $("main").after(
-                        '<div class="d-flex spinner"><p>جار البحث...</p>' +
+
+                    main.addClass("d-flex justify-content-center");
+                    main.empty();
+
+                    $("main").append(
+                        '<div class="d-flex spinner mar-3"><p>جار البحث...</p>' +
                         '<div class="spinner-border text-primary margin-1" role="status"></div>' +
                         '</div>'
                     );
                 },
                 complete: function() {
                     $(".spinner").remove();
+                    main.removeClass("d-flex justify-content-center");
 
                 },
                 success: function(response) {
 
 
-                    let main = $("main");
-                    main.empty();
                     main.append(response);
 
 
@@ -578,6 +582,7 @@ if (Setting::count() > 0) {
 
             $(".alert").remove();
 
+            let main = $("main");
 
 
 
@@ -592,21 +597,24 @@ if (Setting::count() > 0) {
                 },
                 // dataType: "json",
                 beforeSend: function() {
-                    $("main").after(
-                        '<div class="d-flex spinner"><p>جار البحث...</p>' +
+
+                    main.addClass("d-flex justify-content-center");
+                    main.empty();
+                    $("main").append(
+                        '<div class="d-flex spinner mar-3"><p>جار البحث...</p>' +
                         '<div class="spinner-border text-primary margin-1" role="status"></div>' +
                         '</div>'
                     );
                 },
                 complete: function() {
                     $(".spinner").remove();
+                    main.removeClass("d-flex justify-content-center");
+
 
                 },
                 success: function(response) {
 
 
-                    let main = $("main");
-                    main.empty();
                     main.append(response);
 
 
