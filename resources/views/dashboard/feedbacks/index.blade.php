@@ -30,7 +30,6 @@
         $(document).on("submit", "form#delete-all-feedbacks", function(e) {
             e.preventDefault();
 
-            $(".alert").remove();
 
 
             let deleteFeedback = confirm("هل أنت متأكد من حذف جميع الرسائل؟");
@@ -57,9 +56,10 @@
                     },
                     complete: function() {
                         $(".spinner").remove();
-
                     },
                     success: function(response) {
+
+                        $(".alert").remove();
 
                         let table = $(".mytable");
                         let url = "{{ route('dashboard.feedbacks.table', '') }}/1";
@@ -82,6 +82,7 @@
                     },
                     error: function(response) {
 
+                        $(".alert").remove();
 
                         let errors = response.responseJSON.errors;
                         for (let error in errors) {
@@ -102,7 +103,6 @@
         $(document).on("submit", "form#feedback-delete", function(e) {
             e.preventDefault();
 
-            $(".alert").remove();
 
 
             let deleteFeedback = confirm("هل أنت متأكد من حذف هذه الرسالة؟");
@@ -123,8 +123,10 @@
                     dataType: "json",
                     processData: false,
                     contentType: false,
+                    complete: function() {},
                     success: function(response) {
-                        console.log(response.message);
+
+                        $(".alert").remove();
                         let table = $(".mytable");
                         let url = "{{ route('dashboard.feedbacks.table', '') }}/" + pageNumber + "";
 
@@ -151,6 +153,7 @@
 
                     },
                     error: function(response) {
+                        $(".alert").remove();
 
 
                         let errors = response.responseJSON.errors;

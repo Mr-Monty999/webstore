@@ -40,7 +40,6 @@
         $("form#items").on("submit", function(e) {
             e.preventDefault();
 
-            $(".alert").remove();
 
 
 
@@ -67,10 +66,11 @@
                 },
                 complete: function() {
                     $(".spinner").remove();
-
                 },
                 success: function(response) {
 
+
+                    $(".alert").remove();
 
                     let table = $(".mytable");
                     let url = "{{ route('items.table', '') }}/" + pageNumber + "";
@@ -99,6 +99,7 @@
                 },
                 error: function(response) {
 
+                    $(".alert").remove();
 
                     let errors = response.responseJSON.errors;
 
@@ -122,7 +123,6 @@
         $(document).on("submit", "form#item-delete", function(e) {
             e.preventDefault();
 
-            $(".alert").remove();
 
 
             let deleteProduct = confirm("هل أنت متأكد من حذف الصنف؟");
@@ -142,7 +142,10 @@
                     dataType: "json",
                     processData: false,
                     contentType: false,
+                    complete: function() {},
                     success: function(response) {
+
+                        $(".alert").remove();
 
                         let table = $(".mytable");
                         let url = "{{ route('items.table', '') }}/" + pageNumber + "";
@@ -164,6 +167,7 @@
                     },
                     error: function(response) {
 
+                        $(".alert").remove();
 
                         let errors = response.responseJSON.errors;
                         for (let error in errors) {
@@ -212,9 +216,10 @@
                     },
                     complete: function() {
                         $(".spinner").remove();
-
                     },
                     success: function(response) {
+
+                        $(".alert").remove();
 
                         let table = $(".mytable");
                         let url = "{{ route('items.table', '1') }}";
@@ -235,6 +240,7 @@
                         });
                     },
                     error: function(response) {
+                        $(".alert").remove();
 
 
                         let errors = response.responseJSON.errors;

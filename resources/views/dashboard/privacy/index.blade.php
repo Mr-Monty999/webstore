@@ -45,7 +45,6 @@
         $("form").on("submit", function(e) {
             e.preventDefault();
 
-            $(".alert").remove();
 
 
 
@@ -70,9 +69,9 @@
                 },
                 complete: function() {
                     $(".spinner").remove();
-
                 },
                 success: function(response) {
+                    $(".alert").remove();
 
                     if (response.photo_path != null)
                         $("img").attr("src", response.photo_path);
@@ -94,6 +93,7 @@
                 },
                 error: function(response) {
 
+                    $(".alert").remove();
 
                     let errors = response.responseJSON.errors;
 

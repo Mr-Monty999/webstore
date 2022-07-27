@@ -28,7 +28,6 @@
         $("form#feedback-delete").on("submit", function(e) {
             e.preventDefault();
 
-            $(".alert").remove();
 
 
 
@@ -54,9 +53,9 @@
                     },
                     complete: function() {
                         $(".spinner").remove();
-
                     },
                     success: function(response) {
+                        $(".alert").remove();
 
 
                         if (response.success) {
@@ -78,6 +77,7 @@
                     },
                     error: function(response) {
 
+                        $(".alert").remove();
 
                         let errors = response.responseJSON.errors;
 

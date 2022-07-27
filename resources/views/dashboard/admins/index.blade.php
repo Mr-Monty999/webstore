@@ -61,7 +61,6 @@
         $("form#admins").on("submit", function(e) {
             e.preventDefault();
 
-            $(".alert").remove();
 
 
             let pageNumber = $(".pagination .active").text();
@@ -87,9 +86,10 @@
                 },
                 complete: function() {
                     $(".spinner").remove();
-
                 },
                 success: function(response) {
+
+                    $(".alert").remove();
 
 
 
@@ -119,6 +119,7 @@
 
                 },
                 error: function(response) {
+                    $(".alert").remove();
 
 
                     let errors = response.responseJSON.errors;
@@ -143,7 +144,6 @@
         $(document).on("submit", "form#admin-delete", function(e) {
             e.preventDefault();
 
-            $(".alert").remove();
 
 
             let deleteProduct = confirm("هل أنت متأكد من حذف هذا المشرف؟");
@@ -165,8 +165,9 @@
                     dataType: "json",
                     processData: false,
                     contentType: false,
-
+                    complete: function() {},
                     success: function(response) {
+                        $(".alert").remove();
 
 
                         let table = $(".mytable");
@@ -197,6 +198,7 @@
 
                     },
                     error: function(response) {
+                        $(".alert").remove();
 
 
                         let errors = response.responseJSON.errors;
@@ -222,7 +224,6 @@
         $(document).on("submit", "form#delete-all-admins", function(e) {
             e.preventDefault();
 
-            $(".alert").remove();
 
 
             let deleteProduct = confirm("هل أنت متأكد من حذف جميع المشرفين؟");
@@ -249,10 +250,10 @@
                     },
                     complete: function() {
                         $(".spinner").remove();
-
                     },
                     success: function(response) {
 
+                        $(".alert").remove();
 
 
                         let table = $(".mytable");
@@ -284,6 +285,7 @@
                     },
                     error: function(response) {
 
+                        $(".alert").remove();
 
                         let errors = response.responseJSON.errors;
 

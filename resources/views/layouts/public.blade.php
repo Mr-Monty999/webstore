@@ -523,7 +523,6 @@ if (Setting::count() > 0) {
         $("form#product-search").on("submit", function(e) {
             e.preventDefault();
 
-            $(".alert").remove();
 
 
             let main = $("main");
@@ -552,11 +551,13 @@ if (Setting::count() > 0) {
                 },
                 complete: function() {
                     $(".spinner").remove();
-                    main.removeClass("d-flex justify-content-center");
-
                 },
                 success: function(response) {
+                    $(".alert").remove();
 
+
+                    main.removeClass("d-flex justify-content-center");
+                    main.empty();
 
                     main.append(response);
 
@@ -566,6 +567,10 @@ if (Setting::count() > 0) {
                 },
                 error: function(response) {
 
+                    $(".alert").remove();
+
+                    main.removeClass("d-flex justify-content-center");
+                    main.empty();
 
                     let errors = response.responseJSON.errors;
 
@@ -580,7 +585,6 @@ if (Setting::count() > 0) {
         $("#search").on("keyup change", function(e) {
             e.preventDefault();
 
-            $(".alert").remove();
 
             let main = $("main");
 
@@ -600,6 +604,7 @@ if (Setting::count() > 0) {
 
                     main.addClass("d-flex justify-content-center");
                     main.empty();
+
                     $("main").append(
                         '<div class="d-flex spinner mar-3"><p>جار البحث...</p>' +
                         '<div class="spinner-border text-primary margin-1" role="status"></div>' +
@@ -608,12 +613,13 @@ if (Setting::count() > 0) {
                 },
                 complete: function() {
                     $(".spinner").remove();
-                    main.removeClass("d-flex justify-content-center");
-
-
                 },
                 success: function(response) {
 
+                    $(".alert").remove();
+
+                    main.removeClass("d-flex justify-content-center");
+                    main.empty();
 
                     main.append(response);
 
@@ -623,6 +629,11 @@ if (Setting::count() > 0) {
                 },
                 error: function(response) {
 
+
+                    $(".alert").remove();
+
+                    main.removeClass("d-flex justify-content-center");
+                    main.empty();
 
                     let errors = response.responseJSON.errors;
 
