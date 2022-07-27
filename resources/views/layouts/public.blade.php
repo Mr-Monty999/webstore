@@ -3,6 +3,8 @@
 
 @php
 
+// header('Access-Control-Allow-Origin: *');
+
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cookie;
 use App\Models\Setting;
@@ -190,7 +192,8 @@ if (Setting::count() > 0) {
             //  alert("success");
             let productId = $(this).parent().find(".product-id").val(),
                 productNewPrice = $(this).parent().find(".product-new-price").text(),
-                productName = $(this).parent().find(".product_name").text(),
+                productPrice = $(this).parent().find(".product_price").text()
+            productName = $(this).parent().find(".product_name").text(),
                 productAmount = $(this).parent().find(".product-amount").val();
 
             $.ajax({
@@ -224,7 +227,7 @@ if (Setting::count() > 0) {
                             productId +
                             '"hidden>' +
                             '<input type="text" class="product-price" name="product_price"' +
-                            'value="{{ $product->product_price }}" hidden>' +
+                            'value="' + productPrice + '" hidden>' +
                             '<h6 class="text-white product-name" name="product_name">' +
                             '    ' + productName + '</h6>' +
                             '<h6 class="text-white product-new-price" dir="rtl" name="product_price">' +
@@ -272,6 +275,7 @@ if (Setting::count() > 0) {
             let productId = $(this).parent().parent().parent().parent().find(".product-id").val(),
                 productAmount = $(this).val(),
                 productPrice = $(".product" + productId + " .product_price"),
+                url = "{{ route('carts.update', '') }}/" + productId + "",
                 productNewPrice = parseFloat(productPrice.text().replace(/\D/g, "")) * productAmount;
 
             $(".product" + productId + " .product-amount").val(productAmount);
@@ -285,7 +289,7 @@ if (Setting::count() > 0) {
                     'X-CSRF-TOKEN': "{{ csrf_token() }}"
                 },
                 method: "put",
-                url: "{{ route('carts.update', 0) }}",
+                url: url,
                 data: {
                     "product_id": productId,
                     "product_amount": productAmount,
@@ -405,6 +409,7 @@ if (Setting::count() > 0) {
 
             let productId = $(this).parent().parent().find(".product-id").val(),
                 productAmount = $(this).val(),
+                url = "{{ route('carts.update', '') }}/" + productId + "",
                 productPrice = $(".mycart #product" + productId + " .product-price"),
                 productNewPrice = parseFloat(productPrice.val().replace(/\D/g, "")) * productAmount;
 
@@ -416,10 +421,10 @@ if (Setting::count() > 0) {
 
             $.ajax({
                 headers: {
-                    'X-CSRF-TOKEN': "{{ csrf_token() }}"
+                    'X-CSRF-TOKEN': "{{ csrf_token() }}",
                 },
                 method: "put",
-                url: "{{ route('carts.update', 0) }}",
+                url: url,
                 data: {
                     "product_id": productId,
                     "product_amount": productAmount,
