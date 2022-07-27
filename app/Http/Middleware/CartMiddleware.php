@@ -7,6 +7,7 @@ use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\Queue;
+use Illuminate\Support\Facades\Route;
 
 class CartMiddleware
 {

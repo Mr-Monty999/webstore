@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Jul 26, 2022 at 08:29 PM
+-- Generation Time: Jul 27, 2022 at 04:15 PM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.1.2
 
@@ -191,7 +191,8 @@ ALTER TABLE `admins`
 -- Indexes for table `carts`
 --
 ALTER TABLE `carts`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `carts_cart_uid_index` (`cart_uid`);
 
 --
 -- Indexes for table `cart_product`

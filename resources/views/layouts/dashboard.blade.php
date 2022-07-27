@@ -18,6 +18,7 @@
 @php
 use Illuminate\Support\Facades\Auth;
 use App\Models\Setting;
+use App\Services\CheckService;
 
 $store = null;
 if (Setting::count() < 1) {

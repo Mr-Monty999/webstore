@@ -9,18 +9,13 @@ use Illuminate\Support\Facades\URL;
 
 trait CheckService
 {
-    public static function cartChecker()
+    public static function checkCartAndGetId()
     {
         $uid = uniqid('cart_');
 
-        // Cookie::
-
         if (!Cookie::has('cart_uid')) {
             Cookie::queue('cart_uid', $uid, 99999999, '/');
-
-            // if (!Cart::where("cart_uid", $uid)->exists())
             Cart::create(['cart_uid' => $uid]);
-            // return redirect()->route("dashboard.index");
         } else {
             $uid = Cookie::get('cart_uid');
 
@@ -28,5 +23,7 @@ trait CheckService
                 Cart::create(['cart_uid' => $uid]);
             }
         }
+
+        return $uid;
     }
 }

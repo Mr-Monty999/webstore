@@ -9,15 +9,7 @@ use App\Models\Item;
 use App\Services\CheckService;
 use App\Services\GetService;
 
-CheckService::cartChecker();
-
-// $uid = uniqid('cart_');
-
-// if (!Cookie::has('cart_uid')) {
-//     Cookie::queue('cart_uid', $uid, 99999999, '/');
-// }
-
-$products = GetService::getCartProducts(Cookie::get('cart_uid'));
+$products = GetService::getCartProducts(CheckService::checkCartAndGetId());
 
 $navItems = Item::all();
 

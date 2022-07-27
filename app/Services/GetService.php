@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Models\Cart;
+use Illuminate\Support\Facades\Cookie;
 
 trait GetService
 {
@@ -10,8 +11,6 @@ trait GetService
     public static function getCartProducts($cartId)
     {
 
-        return Cart::with('products')
-            ->where('cart_uid', $cartId)
-            ->first()->products;
+        return Cart::where('cart_uid', $cartId)->first()->products;
     }
 }
