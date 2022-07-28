@@ -275,7 +275,9 @@ if (Setting::count() > 0) {
             let productId = $(this).parent().parent().parent().parent().find(".product-id").val(),
                 productAmount = $(this).val(),
                 productPrice = $(".product" + productId + " .product_price"),
-                url = "{{ route('carts.update', '') }}/" + productId + "",
+                // url = "{{ route('carts.update', '') }}/" + productId + "",
+                url = "{{ route('carts.update.post', '') }}/" + productId + "",
+
                 productNewPrice = parseFloat(productPrice.text().replace(/\D/g, "")) * productAmount;
 
             $(".product" + productId + " .product-amount").val(productAmount);
@@ -288,7 +290,7 @@ if (Setting::count() > 0) {
                 headers: {
                     'X-CSRF-TOKEN': "{{ csrf_token() }}"
                 },
-                method: "put",
+                method: "post",
                 url: url,
                 data: {
                     "product_id": productId,
@@ -325,7 +327,7 @@ if (Setting::count() > 0) {
                     headers: {
                         'X-CSRF-TOKEN': "{{ csrf_token() }}"
                     },
-                    method: "delete",
+                    method: "post",
                     url: "{{ route('carts.destroy.all') }}",
                     data: "",
                     dataType: "json",
@@ -409,7 +411,9 @@ if (Setting::count() > 0) {
 
             let productId = $(this).parent().parent().find(".product-id").val(),
                 productAmount = $(this).val(),
-                url = "{{ route('carts.update', '') }}/" + productId + "",
+                // url = "{{ route('carts.update', '') }}/" + productId + "",
+                url = "{{ route('carts.update.post', '') }}/" + productId + "",
+
                 productPrice = $(".mycart #product" + productId + " .product-price"),
                 productNewPrice = parseFloat(productPrice.val().replace(/\D/g, "")) * productAmount;
 
@@ -423,7 +427,7 @@ if (Setting::count() > 0) {
                 headers: {
                     'X-CSRF-TOKEN': "{{ csrf_token() }}",
                 },
-                method: "put",
+                method: "post",
                 url: url,
                 data: {
                     "product_id": productId,
