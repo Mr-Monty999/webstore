@@ -5,6 +5,7 @@ namespace App\Http\Controllers\general;
 
 use App\Http\Controllers\Controller;
 use App\Models\Setting;
+use App\Services\SettingService;
 use Illuminate\Http\Request;
 
 class ContactController extends Controller
@@ -12,8 +13,7 @@ class ContactController extends Controller
     public function index()
     {
 
-        if (Setting::count() < 1)
-            Setting::create([]);
+        SettingService::createSettingsIfNotExists();
 
         $setting = Setting::first();
 

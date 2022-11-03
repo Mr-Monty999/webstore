@@ -5,6 +5,7 @@ namespace App\Http\Controllers\general;
 use App\Http\Controllers\Controller;
 use App\Models\Cart;
 use App\Models\Product;
+use App\Services\CartService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\URL;
@@ -40,10 +41,7 @@ class CartController extends Controller
      */
     public function store(Request $request)
     {
-        $uid = Cookie::get("cart_uid");
-
-        Cart::where("cart_uid", $uid)->first()->products()->syncWithoutDetaching($request->product_id);
-
+        CartService::store($request);
         $data = [
             "success" => true,
             "message" => "تم الاضافة بنجاح"
@@ -82,13 +80,8 @@ class CartController extends Controller
      */
     public function update(Request $request, $id)
     {
-        Validator::validate($request->all(), [
-            'product_amount' => 'numeric'
-        ]);
+        CartService::update($request, $id);
 
-
-        $uid = Cookie::get("cart_uid");
-        Cart::where("cart_uid", $uid)->first()->products()->syncWithoutDetaching([$request->product_id => ["product_amount" => $request->product_amount]]);
         $data = [
             "success" => true,
             "message" => "تم التعديل بنجاح",
@@ -105,9 +98,7 @@ class CartController extends Controller
      */
     public function destroy(Request $request, $id)
     {
-        $uid = Cookie::get("cart_uid");
-        Cart::where("cart_uid", $uid)->first()->products()->detach($request->product_id);
-
+        CartService::destroy($request, $id);
         $data = [
             "success" => true,
             "message" => "تم الحذف بنجاح",

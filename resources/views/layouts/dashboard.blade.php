@@ -16,16 +16,16 @@
 <html lang="ar" dir="rtl">
 
 @php
-use Illuminate\Support\Facades\Auth;
-use App\Models\Setting;
-use App\Services\CheckService;
-
-$store = null;
-if (Setting::count() < 1) {
-    Setting::create([]);
-}
-$store = Setting::first();
-
+    use Illuminate\Support\Facades\Auth;
+    use App\Models\Setting;
+    use App\Services\CheckService;
+    
+    $store = null;
+    if (Setting::count() < 1) {
+        Setting::create([]);
+    }
+    $store = Setting::first();
+    
 @endphp
 
 <head>
@@ -126,16 +126,15 @@ $store = Setting::first();
                         <span class="nav-link-text me-1">اعدادات الخصوصية</span>
                     </a>
                 </li>
-                @if (Auth::guard('admin')->user()->admin_rank == 'owner')
-                    <li class="nav-item">
-                        <a class="nav-link " href="{{ route('admins.index') }}">
-                            <div class="text-white text-center ms-2 d-flex align-items-center justify-content-center">
-                                <i class="fa-solid fa-user-tie"></i>
-                            </div>
-                            <span class="nav-link-text me-1">اعدادات المشرفين</span>
-                        </a>
-                    </li>
-                @endif
+                <li class="nav-item">
+                    <a class="nav-link " href="{{ route('admins.index') }}">
+                        <div class="text-white text-center ms-2 d-flex align-items-center justify-content-center">
+                            <i class="fa-solid fa-user-tie"></i>
+                        </div>
+                        <span class="nav-link-text me-1">اعدادات المشرفين</span>
+                    </a>
+                </li>
+
 
                 <li class="nav-item">
                     <a class="nav-link " href="{{ route('settings.index') }}">

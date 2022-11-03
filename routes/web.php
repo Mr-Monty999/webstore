@@ -44,41 +44,46 @@ Route::group(["namespace" => "general"], function () {
 });
 
 ///login  Panel Routes
-Route::get("/lbc", "dashboard\DashboardController@login")->name("dashboard.login")->middleware("admin");
+Route::get("/lbc", "dashboard\DashboardController@login")->name("dashboard.login")->middleware("user");
 Route::post("/lbc/login", "dashboard\DashboardController@attemptLogin")->name("dashboard.attempt");
 
 
 /// Dashboard  Routes
-Route::group(["prefix" => "wbc", "middleware" => "admin", "namespace" => "dashboard"], function () {
+Route::group(["prefix" => "wbc", "middleware" => "auth", "namespace" => "dashboard"], function () {
     Route::get("/", "DashboardController@index")->name("dashboard.index");
     Route::get("/logout", "DashboardController@logout")->name("dashboard.logout");
 
 
     ///Feedback Routes
-    Route::get("/feedbacks", "FeedbackController@index")->name("dashboard.feedbacks.index");
-    Route::get("/feedbacks/show/{id}", "FeedbackController@show")->name("dashboard.feedbacks.show");
-    Route::delete("/feedbacks/delete/{id}", "FeedbackController@delete")->name("dashboard.feedbacks.delete");
+    // Route::get("/feedbacks", "FeedbackController@index")->name("dashboard.feedbacks.index");
+    // Route::get("/feedbacks/show/{id}", "FeedbackController@show")->name("dashboard.feedbacks.show");
+    // Route::delete("/feedbacks/delete/{id}", "FeedbackController@delete")->name("dashboard.feedbacks.delete");
+
+    Route::resource("feedbacks", "FeedbackController");
     Route::delete("/feedbacks/all/delete", "FeedbackController@deleteAll")->name("dashboard.feedbacks.delete.all");
     Route::get("/feedbacks-table/{pageNumber}", "FeedbackController@table")->name("dashboard.feedbacks.table");
 
 
     ///Items Routes
-    Route::get("/items", "ItemController@index")->name("items.index");
-    Route::post("/items/store", "ItemController@store")->name("items.store");
-    Route::get("/items/edit/{id}", "ItemController@edit")->name("items.edit");
-    Route::put("/items/update/{id}", "ItemController@update")->name("items.update");
-    Route::delete("/items/delete/{id}", "ItemController@destroy")->name("items.delete");
+    // Route::get("/items", "ItemController@index")->name("items.index");
+    // Route::post("/items/store", "ItemController@store")->name("items.store");
+    // Route::get("/items/edit/{id}", "ItemController@edit")->name("items.edit");
+    // Route::put("/items/update/{id}", "ItemController@update")->name("items.update");
+    // Route::delete("/items/delete/{id}", "ItemController@destroy")->name("items.delete");
+    // Route::get("/items-table/{pageNumber}", "ItemController@table")->name("items.table");
+    // Route::delete("/items/delete-all", "ItemController@destroyAll")->name("items.delete.all");
+    Route::resource("items", "ItemController");
     Route::get("/items-table/{pageNumber}", "ItemController@table")->name("items.table");
     Route::delete("/items/delete-all", "ItemController@destroyAll")->name("items.delete.all");
-    // Route::resource("items", "ItemController");
 
 
     ///Products Routes
-    Route::get("/products", "ProductController@index")->name("products.index");
-    Route::post("/products/store", "ProductController@store")->name("products.store");
-    Route::get("/products/edit/{id}", "ProductController@edit")->name("products.edit");
-    Route::put("/products/update/{id}", "ProductController@update")->name("products.update");
-    Route::delete("/products/delete/{id}", "ProductController@destroy")->name("products.delete");
+    // Route::get("/products", "ProductController@index")->name("products.index");
+    // Route::post("/products/store", "ProductController@store")->name("products.store");
+    // Route::get("/products/edit/{id}", "ProductController@edit")->name("products.edit");
+    // Route::put("/products/update/{id}", "ProductController@update")->name("products.update");
+    // Route::delete("/products/delete/{id}", "ProductController@destroy")->name("products.delete");
+    Route::resource("products", "ProductController");
     Route::get("/products-table/{pageNumber}", "ProductController@table")->name("products.table");
     Route::delete("/products/delete-all", "ProductController@destroyAll")->name("products.delete.all");
 
@@ -89,15 +94,14 @@ Route::group(["prefix" => "wbc", "middleware" => "admin", "namespace" => "dashbo
     Route::put("/privacy/update/", "PrivacyController@update")->name("privacy.update");
 
     ///Supervisors Routes
-    Route::group(["middleware" => "owner"], function () {
-        Route::get("/admins", "SupervisorController@index")->name("admins.index");
-        Route::post("/admins/store", "SupervisorController@store")->name("admins.store");
-        Route::get("/admins/edit/{id}", "SupervisorController@edit")->name("admins.edit");
-        Route::put("/admins/update/{id}", "SupervisorController@update")->name("admins.update");
-        Route::delete("/admins/delete/{id}", "SupervisorController@destroy")->name("admins.delete");
-        Route::delete("/admins/delete-all", "SupervisorController@destroyAll")->name("admins.delete.all");
-        Route::get("/admins-table/{pageNumber}", "SupervisorController@table")->name("admins.table");
-    });
+    // Route::get("/users", "SupervisorController@index")->name("users.index");
+    // Route::post("/users/store", "SupervisorController@store")->name("users.store");
+    // Route::get("/users/edit/{id}", "SupervisorController@edit")->name("users.edit");
+    // Route::put("/users/update/{id}", "SupervisorController@update")->name("users.update");
+    // Route::delete("/users/delete/{id}", "SupervisorController@destroy")->name("users.delete");
+    Route::resource("users", "UserController");
+    Route::delete("/users/delete-all", "SupervisorController@destroyAll")->name("users.delete.all");
+    Route::get("/users-table/{pageNumber}", "SupervisorController@table")->name("users.table");
 
     //Setting Routes
     Route::get("/settings", "SettingController@index")->name("settings.index");

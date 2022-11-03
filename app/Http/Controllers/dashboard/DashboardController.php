@@ -3,9 +3,12 @@
 namespace App\Http\Controllers\dashboard;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\AdminRequest;
-use App\Models\Admin;
+use App\Http\Requests\UserLoginRequest;
+use App\Http\Requests\UserRequest;
+use App\Models\User;
 use App\Models\Vistor;
+use App\Services\DashboardService;
+use App\Services\UserService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -25,42 +28,35 @@ class DashboardController extends Controller
     public function index()
     {
 
-        $todayVistors = number_format(Vistor::where('created_at', 'like', '%' . date('Y-m-d') . '%')->count());
-        $allVistors =  number_format(Vistor::count());
-        $adminName = Auth::guard('admin')->user()->admin_name;
+        $todayVistors = DashboardService::todayVistors();
+        $allVistors = number_format(DashboardService::allVistors());
+        $userName = Auth::user()->name;
 
         return view("dashboard.index", [
             "todayVistors" => $todayVistors,
             "allVistors" => $allVistors,
-            "adminName" => $adminName
+            "userName" => $userName
         ]);
     }
 
     public function login()
     {
 
-        if (Admin::count() < 1) {
-            $admin = Admin::create([
-                "admin_name" => "admin",
-                "password" => Hash::make("admin"),
-                "admin_rank" => "owner",
-                "admin_status" => "online"
-            ]);
-        }
+        UserService::createLoginDataIfNotExists();
         return view("dashboard.login");
     }
 
     public function logout()
     {
-        Auth::guard("admin")->logout();
+        Auth::logout();
 
         return redirect()->route("dashboard.login");
     }
-    public function attemptLogin(AdminRequest $request)
+    public function attemptLogin(UserLoginRequest $request)
     {
-        $request->validated();
-        $data = $request->only("admin_name", "password");
-        if (Auth::guard("admin")->attempt($data, true)) {
+
+        $data = $request->only("name", "password");
+        if (Auth::attempt($data, true)) {
             $data["success"] = true;
             $data["message"] = "تم تسجيل الدخول بنجاح";
             return response()->json($data, 200);

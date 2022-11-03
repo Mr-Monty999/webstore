@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Models\Item;
 use App\Models\Product;
 use App\Models\Setting;
+use App\Services\ItemService;
+use App\Services\SettingService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -14,12 +16,10 @@ class ProductController extends Controller
     public function index($itemId)
     {
 
-        $item = Item::find($itemId);
+        $item = ItemService::show($itemId);
         $products = $item->products()->with("item")->paginate(6)->onEachSide(0);
 
-        if (Setting::count() < 1)
-            Setting::create([]);
-
+        SettingService::createSettingsIfNotExists();
         $setting = Setting::first();
 
         return view("general.products", ["products" => $products, "setting" => $setting, "item" => $item]);
@@ -27,11 +27,11 @@ class ProductController extends Controller
 
     public function loadProductsByItemId($itemId, $pageNumber)
     {
-        $item = Item::find($itemId);
+        $item = ItemService::show($itemId);
         $products = $item->products()->with("item")->paginate(6, ['*'], 'page', $pageNumber)->onEachSide(0)->withPath(route('products.view', $itemId));
 
-        if (Setting::count() < 1)
-            Setting::create([]);
+        SettingService::createSettingsIfNotExists();
+
 
         $setting = Setting::first();
 
@@ -43,8 +43,7 @@ class ProductController extends Controller
 
         $search = $request->search;
         $products  = Product::where("product_name", "like", "%$search%")->with("item")->paginate(6, ['*'], 'page', $pageNumber)->onEachSide(0);
-        if (Setting::count() < 1)
-            Setting::create([]);
+        SettingService::createSettingsIfNotExists();
 
         $setting = Setting::first();
 
