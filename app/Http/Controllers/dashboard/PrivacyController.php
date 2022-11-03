@@ -14,6 +14,12 @@ use Illuminate\Support\Facades\Hash;
 
 class PrivacyController extends Controller
 {
+    public function __construct()
+    {
+
+        $this->middleware("permission:view-items")->only(["index", "show", "table"]);
+        $this->middleware("permission:edit-items")->only(["edit", "update"]);
+    }
     public function index()
     {
 

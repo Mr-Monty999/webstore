@@ -18,6 +18,15 @@ class ItemController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    public function __construct()
+    {
+
+        $this->middleware("permission:view-items")->only(["index", "show", "table"]);
+        $this->middleware("permission:create-items")->only(["create", "store"]);
+        $this->middleware("permission:edit-items")->only(["edit", "update"]);
+        $this->middleware("permission:delete-items")->only("delete", "deleteAll");
+    }
     public function index()
     {
         $items = ItemService::getAllItems();
@@ -55,7 +64,7 @@ class ItemController extends Controller
 
     public function destroy(Request $request, $id)
     {
-        ItemService::destroy($id);
+        ItemService::destroy($request->id);
         $data["success"] = true;
         $data["message"] = "تم الحذف بنجاح";
 

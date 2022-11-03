@@ -29,41 +29,41 @@
                               
                               $i = 0;
                           @endphp
-                          @foreach ($admins as $admin)
-                              @if ($admin->id != Auth::guard('admin')->id())
+                          @foreach ($users as $user)
+                              @if ($user->id != Auth::id())
                                   <tr>
                                       <td>
                                           <p class="text-dark text-center">{{ ++$i }}</p>
                                       </td>
                                       <td>
-                                          <p class="text-dark text-center">{{ $admin->admin_name }}</p>
+                                          <p class="text-dark text-center">{{ $user->name }}</p>
                                       </td>
                                       <td>
-                                          @if ($admin->admin_photo != null)
-                                              <img src="{{ asset($admin->admin_photo) }}" alt="">
+                                          @if ($user->photo != null)
+                                              <img src="{{ asset($user->photo) }}" alt="">
                                           @else
                                               <p class="text-dark text-center">لاتوجد صورة</p>
                                           @endif
                                       </td>
                                       <td>
                                           <p class="text-dark text-center" dir="ltr">
-                                              {{ $admin->created_at->diffForHumans() }}
+                                              {{ $user->created_at->diffForHumans() }}
                                           </p>
                                       </td>
                                       <td>
                                           <p class="text-dark text-center" dir="ltr">
-                                              {{ $admin->updated_at->diffForHumans() }}
+                                              {{ $user->updated_at->diffForHumans() }}
                                           </p>
                                       </td>
 
                                       <td class="align-middle text-center">
-                                          <a href="{{ route('admins.edit', $admin->id) }}" class="btn btn-dark">تعديل
+                                          <a href="{{ route('users.edit', $user->id) }}" class="btn btn-dark">تعديل
                                           </a>
-                                          <form id="admin-delete" method="post">
+                                          <form id="user-delete" method="post">
                                               @csrf
                                               @method('DELETE')
-                                              <input type="text" id="admin-id" hidden name="id"
-                                                  value="{{ $admin->id }}">
+                                              <input type="text" id="user-id" hidden name="id"
+                                                  value="{{ $user->id }}">
                                               <button type="submit" class="btn btn-danger">حذف </button>
                                           </form>
                                       </td>
@@ -79,4 +79,4 @@
           </div>
       </div>
   </div>
-  {!! $admins->links() !!}
+  {!! $users->links() !!}

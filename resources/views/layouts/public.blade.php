@@ -2,24 +2,24 @@
 <html lang="ar" dir="rtl">
 
 @php
-
-// header('Access-Control-Allow-Origin: *');
-
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Cookie;
-use App\Models\Setting;
-use App\Models\Item;
-use App\Services\CheckService;
-use App\Services\GetService;
-
-$products = GetService::getCartProducts(CheckService::checkCartAndGetId());
-
-$navItems = Item::all();
-
-$store = null;
-if (Setting::count() > 0) {
-    $store = Setting::first();
-}
+    
+    // header('Access-Control-Allow-Origin: *');
+    
+    use Illuminate\Support\Facades\Auth;
+    use Illuminate\Support\Facades\Cookie;
+    use App\Models\Setting;
+    use App\Models\Item;
+    use App\Services\CheckService;
+    use App\Services\GetService;
+    
+    $products = GetService::getCartProducts(CheckService::checkCartAndGetId());
+    
+    $navItems = Item::all();
+    
+    $store = null;
+    if (Setting::count() > 0) {
+        $store = Setting::first();
+    }
 @endphp
 
 <head>
@@ -54,7 +54,7 @@ if (Setting::count() > 0) {
                 </button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0 d-flex justify-content-center align-items-center">
-                        @if (Auth::guard('admin')->check())
+                        @if (Auth::check())
                             <li class="nav-item">
                                 <a class="nav-link active btn btn-success" aria-current="page"
                                     href="{{ route('dashboard.index') }}">لوحة

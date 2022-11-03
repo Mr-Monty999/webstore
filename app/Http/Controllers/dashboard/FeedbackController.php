@@ -8,8 +8,18 @@ use App\Services\FeedbackService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
+
+
 class FeedbackController extends Controller
 {
+    public function __construct()
+    {
+
+        $this->middleware("permission:view-feedbacks")->only(["index", "show", "table"]);
+        $this->middleware("permission:delete-feedbacks")->only("delete", "deleteAll");
+    }
+
+
     public function index()
     {
         $feedbacks = FeedbackService::getAllFeedbacks();

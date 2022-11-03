@@ -24,18 +24,18 @@ class UserLoginRequest extends FormRequest
     public function rules()
     {
         return [
-            "admin_name" => "required",
+            "name" => "required",
             // "password" => "required",
-            "admin_photo" => "image|nullable"
+            "photo" => "image|nullable"
         ];
     }
 
     public function messages()
     {
         return [
-            "admin_name.required" => "الرجاء كتابة اسم المشرف !",
+            "name.required" => "الرجاء كتابة اسم المشرف !",
             // "password.required" => "الرجاء كتابة كلمة المرور !",
-            "admin_photo.image" => "الرجاء اختيار صورة فقط !"
+            "photo.image" => "الرجاء اختيار صورة فقط !"
         ];
     }
 }

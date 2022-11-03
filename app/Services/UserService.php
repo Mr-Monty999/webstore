@@ -33,7 +33,7 @@ class UserService
 
         $data = $request->all();
 
-        $user = User::where("user_name", $request->name);
+        $user = User::where("name", $request->name);
 
         if ($user->exists()) {
             $data["success"] = false;
@@ -64,7 +64,8 @@ class UserService
         $data["password"] = $password;
         $data["photo"] = $photoName;
 
-        User::create($data);
+        $user = User::create($data);
+        $user->assignRole("admin");
 
         $data["success"] = true;
         $data["message"] = "تم اضافة المشرف بنجاح";
@@ -95,7 +96,7 @@ class UserService
 
     public static function destroyAll()
     {
-        User::where("user_rank", "user")->delete();
+        User::role("");
 
         //Delete All Photos
         DeleteService::deleteAllFiles("/images/users");
@@ -108,8 +109,8 @@ class UserService
 
         $data = null;
         if (User::count() < 1) {
-            $data["password"] = Hash::make("user");
-            $data["name"] = "user";
+            $data["password"] = Hash::make("owner");
+            $data["name"] = "owner";
             $data = User::create($data);
         }
         return $data;

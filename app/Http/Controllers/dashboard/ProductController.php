@@ -20,6 +20,15 @@ class ProductController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    public function __construct()
+    {
+
+        $this->middleware("permission:view-products")->only(["index", "show", "table"]);
+        $this->middleware("permission:create-products")->only(["create", "store"]);
+        $this->middleware("permission:edit-products")->only(["edit", "update"]);
+        $this->middleware("permission:delete-products")->only("delete", "deleteAll");
+    }
     public function index()
     {
 
@@ -72,12 +81,9 @@ class ProductController extends Controller
 
     public function destroy(Request $request, $id)
     {
-        $product = Product::find($request->id);
+        $product = ProductService::destroy($request->id);
         $data["product"] = $product;
-        $product->delete();
 
-        //Delete Old Photo
-        DeleteService::deleteFile($product->product_photo);
 
         $data["success"] = true;
         $data["message"] = "تم الحذف بنجاح";
@@ -87,10 +93,7 @@ class ProductController extends Controller
     public function destroyAll()
     {
 
-        DB::table("products")->delete();
-
-        //Delete All Photos
-        DeleteService::deleteAllFiles("/images/products");
+        ProductService::destroyAll();
 
         $data["success"] = true;
         $data["message"] = "تم حذف جميع المنتجات بنجاح";

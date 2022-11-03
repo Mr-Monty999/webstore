@@ -13,6 +13,13 @@ use Illuminate\Http\Request;
 class SettingController extends Controller
 {
 
+    public function __construct()
+    {
+
+        $this->middleware("permission:view-settings")->only(["index", "show", "table"]);
+        $this->middleware("permission:edit-settings")->only(["edit", "update"]);
+    }
+
     public function index()
     {
 

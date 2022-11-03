@@ -66,9 +66,9 @@
             <i class="fas fa-times p-3 cursor-pointer text-white opacity-5 position-absolute start-0 top-0 d-none d-xl-none"
                 aria-hidden="true" id="iconSidenav"></i>
             <a class="navbar-brand m-0" target="_blank">
-                @if (Auth::guard('admin')->user()->admin_photo != null)
-                    <img src="{{ asset(Auth::guard('admin')->user()->admin_photo) }}"
-                        class="navbar-brand-img h-100 border-radius-2xl" alt="main_logo">
+                @if (Auth::user()->photo != null)
+                    <img src="{{ asset(Auth::user()->photo) }}" class="navbar-brand-img h-100 border-radius-2xl"
+                        alt="main_logo">
                 @endif
 
                 <span class="me-1 font-weight-bold text-white">لوحة التحكم</span>
@@ -85,65 +85,78 @@
                         <span class="nav-link-text me-1">الصفحة الرئيسية</span>
                     </a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link " href="{{ route('dashboard.index') }}">
-                        <div class="text-white text-center ms-2 d-flex align-items-center justify-content-center">
-                            <i class="fa-solid fa-house-chimney"></i>
-                        </div>
-                        <span class="nav-link-text me-1">لوحة التحكم</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link " href="{{ route('items.index') }}">
-                        <div class="text-white text-center ms-2 d-flex align-items-center justify-content-center">
-                            <i class="fa-solid fa-tags"></i>
-                        </div>
-                        <span class="nav-link-text me-1">ادارة الاصناف</span>
-                    </a>
-                </li>
+                @can('view-dashboard')
+                    <li class="nav-item">
+                        <a class="nav-link " href="{{ route('dashboard.index') }}">
+                            <div class="text-white text-center ms-2 d-flex align-items-center justify-content-center">
+                                <i class="fa-solid fa-house-chimney"></i>
+                            </div>
+                            <span class="nav-link-text me-1">لوحة التحكم</span>
+                        </a>
+                    </li>
+                @endcan
+                @can('view-items')
+                    <li class="nav-item">
+                        <a class="nav-link " href="{{ route('items.index') }}">
+                            <div class="text-white text-center ms-2 d-flex align-items-center justify-content-center">
+                                <i class="fa-solid fa-tags"></i>
+                            </div>
+                            <span class="nav-link-text me-1">ادارة الاصناف</span>
+                        </a>
+                    </li>
+                @endcan
 
-                <li class="nav-item">
-                    <a class="nav-link " href="{{ route('products.index') }}">
-                        <div class="text-white text-center ms-2 d-flex align-items-center justify-content-center">
-                            <i class="fa-solid fa-cart-shopping"></i>
-                        </div>
-                        <span class="nav-link-text me-1">ادارة المنتجات</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link " href="{{ route('dashboard.feedbacks.index') }}">
-                        <div class="text-white text-center ms-2 d-flex align-items-center justify-content-center">
-                            <i class="fa-solid fa-envelope"></i>
-                        </div>
-                        <span class="nav-link-text me-1">رسائل الزوار</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link " href="{{ route('privacy.index') }}">
-                        <div class="text-white text-center ms-2 d-flex align-items-center justify-content-center">
-                            <i class="fa-solid fa-shield"></i>
-                        </div>
-                        <span class="nav-link-text me-1">اعدادات الخصوصية</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link " href="{{ route('admins.index') }}">
-                        <div class="text-white text-center ms-2 d-flex align-items-center justify-content-center">
-                            <i class="fa-solid fa-user-tie"></i>
-                        </div>
-                        <span class="nav-link-text me-1">اعدادات المشرفين</span>
-                    </a>
-                </li>
+                @can('view-products')
+                    <li class="nav-item">
+                        <a class="nav-link " href="{{ route('products.index') }}">
+                            <div class="text-white text-center ms-2 d-flex align-items-center justify-content-center">
+                                <i class="fa-solid fa-cart-shopping"></i>
+                            </div>
+                            <span class="nav-link-text me-1">ادارة المنتجات</span>
+                        </a>
+                    </li>
+                @endcan
+                @can('view-feedbacks')
+                    <li class="nav-item">
+                        <a class="nav-link " href="{{ route('dashboard.feedbacks.index') }}">
+                            <div class="text-white text-center ms-2 d-flex align-items-center justify-content-center">
+                                <i class="fa-solid fa-envelope"></i>
+                            </div>
+                            <span class="nav-link-text me-1">رسائل الزوار</span>
+                        </a>
+                    </li>
+                @endcan
+                @can('view-privacy')
+                    <li class="nav-item">
+                        <a class="nav-link " href="{{ route('privacy.index') }}">
+                            <div class="text-white text-center ms-2 d-flex align-items-center justify-content-center">
+                                <i class="fa-solid fa-shield"></i>
+                            </div>
+                            <span class="nav-link-text me-1">اعدادات الخصوصية</span>
+                        </a>
+                    </li>
+                @endcan
+                @can('view-users')
+                    <li class="nav-item">
+                        <a class="nav-link " href="{{ route('users.index') }}">
+                            <div class="text-white text-center ms-2 d-flex align-items-center justify-content-center">
+                                <i class="fa-solid fa-user-tie"></i>
+                            </div>
+                            <span class="nav-link-text me-1">اعدادات المشرفين</span>
+                        </a>
+                    </li>
+                @endcan
 
-
-                <li class="nav-item">
-                    <a class="nav-link " href="{{ route('settings.index') }}">
-                        <div class="text-white text-center ms-2 d-flex align-items-center justify-content-center">
-                            <i class="fa-solid fa-gears"></i>
-                        </div>
-                        <span class="nav-link-text me-1">اعدادات الموقع</span>
-                    </a>
-                </li>
+                @can('view-dashboard')
+                    <li class="nav-item">
+                        <a class="nav-link " href="{{ route('settings.index') }}">
+                            <div class="text-white text-center ms-2 d-flex align-items-center justify-content-center">
+                                <i class="fa-solid fa-gears"></i>
+                            </div>
+                            <span class="nav-link-text me-1">اعدادات الموقع</span>
+                        </a>
+                    </li>
+                @endcan
                 <li class="nav-item">
                     <a class="nav-link bg-danger" href="{{ route('dashboard.logout') }}">
                         <div class="text-white text-center ms-2 d-flex align-items-center justify-content-center">

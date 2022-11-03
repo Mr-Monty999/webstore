@@ -24,6 +24,12 @@ class DashboardController extends Controller
      * @return \Illuminate\Http\Response
      */
 
+    public function __construct()
+    {
+
+        $this->middleware("permission:view-dashboard")->only("index");
+    }
+
 
     public function index()
     {
@@ -52,7 +58,7 @@ class DashboardController extends Controller
 
         return redirect()->route("dashboard.login");
     }
-    public function attemptLogin(UserLoginRequest $request)
+    public function attemptLogin(Request $request)
     {
 
         $data = $request->only("name", "password");

@@ -3,11 +3,11 @@
 @section('section')
     <div class="d-flex flex-column justify-content-center align-items-center">
         <h1>المشرفين</h1>
-        <form id="admins" enctype="multipart/form-data" method="POST">
+        <form id="users" enctype="multipart/form-data" method="POST">
             @csrf
             <div class="input-group input-group-outline my-3 bg-white">
                 <label class="form-label">اسم المشرف</label>
-                <input type="text" name="admin_name" class="form-control">
+                <input type="text" name="name" class="form-control">
             </div>
             <div class="input-group input-group-outline my-3 bg-white">
                 <label class="form-label">كلمة المرور</label>
@@ -17,7 +17,7 @@
 
             <label class="text-dark">صورة المشرف :</label>
             <div class="input-group input-group-outline  bg-white">
-                <input type="file" name="admin_photo" class="form-control">
+                <input type="file" name="photo" class="form-control">
             </div>
             <button type="submit" class="btn btn-success margin my-3 col-6">اضافة</button>
         </form>
@@ -42,10 +42,10 @@
 
 
         <div class="container-fluid d-flex flex-column justify-content-center align-items-center row my-8 mytable">
-            @include('dashboard.admins.table')
+            @include('dashboard.users.table')
         </div>
 
-        <form action="" id="delete-all-admins" method="post">
+        <form action="" id="delete-all-users" method="post">
             @method('DELETE')
             @csrf
             <button type="submit" class="btn btn-warning">مسح جميع المشرفين</button>
@@ -58,7 +58,7 @@
 @push('ajax')
     <script>
         // Insert Admin And Update Table //
-        $("form#admins").on("submit", function(e) {
+        $("form#users").on("submit", function(e) {
             e.preventDefault();
 
             $(".alert").remove();
@@ -73,13 +73,13 @@
                     'X-CSRF-TOKEN': "{{ csrf_token() }}"
                 },
                 method: "post",
-                url: "{{ route('admins.store') }}",
+                url: "{{ route('users.store') }}",
                 data: new FormData(this),
                 dataType: "json",
                 processData: false,
                 contentType: false,
                 beforeSend: function() {
-                    $("form#admins").after(
+                    $("form#users").after(
                         '<div class="d-flex spinner"><p>جار المعالجة...</p>' +
                         '<div class="spinner-border text-primary margin-1" role="status"></div>' +
                         '</div>'
@@ -95,7 +95,7 @@
 
 
                     let table = $(".mytable");
-                    let url = "{{ route('admins.table', '') }}/" + pageNumber + "";
+                    let url = "{{ route('users.table', '') }}/" + pageNumber + "";
 
                     table.load(url, function(res, status,
                         request) {
@@ -104,14 +104,14 @@
                     });
 
                     if (response.success) {
-                        $("form#admins").after(
+                        $("form#users").after(
                             '<div class = "alert alert-success text-white" >' + response.message +
                             ' </div>'
                         );
-                        $("form#admins input").val("");
+                        $("form#users input").val("");
 
                     } else
-                        $("form#admins").after(
+                        $("form#users").after(
                             '<div class = "alert alert-danger text-white" >' + response.message +
                             ' </div>'
                         );
@@ -128,7 +128,7 @@
                     for (let error in errors) {
 
 
-                        $("form#admins").after(
+                        $("form#users").after(
                             '<div class = "alert alert-danger text-white" >' + errors[error] +
                             ' </div>'
                         );
@@ -142,7 +142,7 @@
 
 
         ////Delete Admin And Update Table ////
-        $(document).on("submit", "form#admin-delete", function(e) {
+        $(document).on("submit", "form#user-delete", function(e) {
             e.preventDefault();
 
             $(".alert").remove();
@@ -162,7 +162,7 @@
                         'X-CSRF-TOKEN': "{{ csrf_token() }}"
                     },
                     method: "post",
-                    url: "{{ route('admins.delete', '0') }}",
+                    url: "{{ route('users.delete', '0') }}",
                     data: new FormData(this),
                     dataType: "json",
                     processData: false,
@@ -173,7 +173,7 @@
 
 
                         let table = $(".mytable");
-                        let url = "{{ route('admins.table', '') }}/" + pageNumber + "";
+                        let url = "{{ route('users.table', '') }}/" + pageNumber + "";
 
                         table.load(url, function(res, status,
                             request) {
@@ -223,7 +223,7 @@
         });
 
         ////Delete All Admins And Update Table ////
-        $(document).on("submit", "form#delete-all-admins", function(e) {
+        $(document).on("submit", "form#delete-all-users", function(e) {
             e.preventDefault();
 
             $(".alert").remove();
@@ -240,13 +240,13 @@
                         'X-CSRF-TOKEN': "{{ csrf_token() }}"
                     },
                     method: "post",
-                    url: "{{ route('admins.delete.all') }}",
+                    url: "{{ route('users.delete.all') }}",
                     data: new FormData(this),
                     dataType: "json",
                     processData: false,
                     contentType: false,
                     beforeSend: function() {
-                        $("form#delete-all-admins").after(
+                        $("form#delete-all-users").after(
                             '<div class="d-flex spinner"><p>جار المعالجة...</p>' +
                             '<div class="spinner-border text-primary margin-1" role="status"></div>' +
                             '</div>'
@@ -261,20 +261,20 @@
 
 
                         let table = $(".mytable");
-                        let url = "{{ route('admins.table', '1') }}";
+                        let url = "{{ route('users.table', '1') }}";
 
                         table.load(url, function(res, status,
                             request) {
 
                             if (response.success)
-                                $("form#delete-all-admins").after(
+                                $("form#delete-all-users").after(
                                     '<div class = "alert alert-success text-center col-7 col-md-3 text-white" >' +
                                     response
                                     .message +
                                     ' </div>'
                                 );
                             else
-                                $("form#delete-all-admins").after(
+                                $("form#delete-all-users").after(
                                     '<div class = "alert alert-danger text-center col-7 col-md-3 text-white" >' +
                                     response
                                     .message +
@@ -296,7 +296,7 @@
                         for (let error in errors) {
 
 
-                            $("form#delete-all-admins").after(
+                            $("form#delete-all-users").after(
                                 '<div class = "alert alert-danger text-center col-7 col-md-3 text-white" >' +
                                 errors[error] +
                                 ' </div>'
@@ -322,7 +322,7 @@
                 pageNumber = parseInt($(".pagination .active").text()) + 1;
 
 
-            let url = "{{ route('admins.table', '') }}/" + pageNumber + "";
+            let url = "{{ route('users.table', '') }}/" + pageNumber + "";
             let table = $(".mytable");
             table.load(url, function(res, status,
                 request) {

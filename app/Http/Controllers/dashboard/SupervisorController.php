@@ -13,6 +13,14 @@ use Illuminate\Support\Facades\Hash;
 
 class SupervisorController extends Controller
 {
+    public function __construct()
+    {
+
+        $this->middleware("permission:view-users")->only(["index", "show", "table"]);
+        $this->middleware("permission:create-users")->only(["create", "store"]);
+        $this->middleware("permission:edit-users")->only(["edit", "update"]);
+        $this->middleware("permission:delete-users")->only("delete", "deleteAll");
+    }
     public function index()
     {
 
@@ -31,10 +39,8 @@ class SupervisorController extends Controller
     public function store(Request $request)
     {
 
-        UserService::store($request);
+        $data = UserService::store($request);
 
-        $data["success"] = true;
-        $data["message"] = "تم اضافة المشرف بنجاح";
 
         return response()->json($data, 200);
     }
@@ -58,7 +64,7 @@ class SupervisorController extends Controller
 
     public function destroy(Request $request, $id)
     {
-        UserService::destroy($id);
+        UserService::destroy($request->id);
 
         $data["success"] = true;
         $data["message"] = "تم الحذف بنجاح";
