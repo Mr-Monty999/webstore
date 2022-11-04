@@ -98,6 +98,13 @@ Route::group(["prefix" => "wbc", "middleware" => "auth", "namespace" => "dashboa
     Route::delete("/users/delete-all", "SupervisorController@destroyAll")->name("users.delete.all");
     Route::get("/users-table/{pageNumber}", "SupervisorController@table")->name("users.table");
 
+
+    ///Roles & Permssions Routes
+    Route::resource("roles", "RoleController");
+    Route::delete("/roles/delete-all", "RoleController@destroyAll")->name("roles.destroy.all");
+    Route::get("/roles-table/{pageNumber}", "RoleController@table")->name("roles.table");
+
+
     //Setting Routes
     Route::get("/settings", "SettingController@index")->name("settings.index");
     Route::put("/settings/update/", "SettingController@update")->name("settings.update");

@@ -136,6 +136,16 @@
                         </a>
                     </li>
                 @endcan
+                @can('view-roles')
+                    <li class="nav-item">
+                        <a class="nav-link " href="{{ route('roles.index') }}">
+                            <div class="text-white text-center ms-2 d-flex align-items-center justify-content-center">
+                                <i class="fa-solid fa-user-tie"></i>
+                            </div>
+                            <span class="nav-link-text me-1">الرتب والصلاحيات</span>
+                        </a>
+                    </li>
+                @endcan
                 @can('view-users')
                     <li class="nav-item">
                         <a class="nav-link " href="{{ route('users.index') }}">
@@ -146,6 +156,7 @@
                         </a>
                     </li>
                 @endcan
+
 
                 @can('view-dashboard')
                     <li class="nav-item">

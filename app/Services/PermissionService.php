@@ -17,8 +17,13 @@ class PermissionService
         $permission =  Permission::create(["name" => $permission]);
         return $permission;
     }
+    public static function getAllPermissions()
+    {
+        $roles = Permission::all();
 
-    public static function permissions()
+        return $roles;
+    }
+    public static function permissionsList()
     {
         return Collection::make([
             "view-dashboard",
@@ -42,10 +47,10 @@ class PermissionService
             "delete-feedbacks",
             "view-privacy",
             "edit-privacy",
-            "view-permissions",
-            "create-permissions",
-            "edit-permissions",
-            "delete-permissions",
+            "view-roles",
+            "create-roles",
+            "edit-roles",
+            "delete-roles",
 
         ]);
     }

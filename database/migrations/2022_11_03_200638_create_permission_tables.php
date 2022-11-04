@@ -138,7 +138,7 @@ class CreatePermissionTables extends Migration
         $user->assignRole("owner");
 
         $role = RoleService::store("admin");
-        $permissions = PermissionService::permissions();
+        $permissions = PermissionService::permissionsList();
 
         foreach ($permissions as  $perm)
             $perm = PermissionService::store($perm);
