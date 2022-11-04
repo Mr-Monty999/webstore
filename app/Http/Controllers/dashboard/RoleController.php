@@ -93,7 +93,8 @@ class RoleController extends Controller
     public function update(UpdateRoleRequest $request, $id)
     {
         $role = RoleService::update($request->all(), $id);
-        return $request->all();
+        $permissions = explode(',', $request->permissions);
+        $role->syncPermissions($permissions);
         return response()->json($role);
     }
 

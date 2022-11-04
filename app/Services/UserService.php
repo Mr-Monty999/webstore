@@ -65,7 +65,8 @@ class UserService
         $data["photo"] = $photoName;
 
         $user = User::create($data);
-        $user->assignRole("admin");
+        $roles = explode(",", $request->roles);
+        $user->syncRoles($roles);
 
         $data["success"] = true;
         $data["message"] = "تم اضافة المشرف بنجاح";
@@ -77,7 +78,7 @@ class UserService
 
     public static function show($id)
     {
-        $user = User::findOrfail($id);
+        $user = User::with("roles", "permissions")->findOrfail($id);
         return $user;
     }
 
@@ -162,6 +163,8 @@ class UserService
         $data["photo"] = $photoName;
 
         $user->update($data);
+        $roles = explode(",", $request->roles);
+        $user->syncRoles($roles);
 
         $data["success"] = true;
         $data["message"] = "تم الحفظ بنجاح";

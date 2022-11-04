@@ -3,9 +3,11 @@
 namespace App\Http\Controllers\dashboard;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreUserRequest;
 use App\Http\Requests\UserRequest;
 use App\Models\User;
 use App\Services\DeleteService;
+use App\Services\RoleService;
 use App\Services\UserService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -25,7 +27,8 @@ class SupervisorController extends Controller
     {
 
         $users = UserService::getAllUsers();
-        return view("dashboard.users.index", ["users" => $users]);
+        $roles = RoleService::getAllRoles();
+        return view("dashboard.users.index", compact("users", "roles"));
     }
     public function table($pageNumber)
     {
@@ -36,7 +39,7 @@ class SupervisorController extends Controller
 
 
 
-    public function store(Request $request)
+    public function store(StoreUserRequest $request)
     {
 
         $data = UserService::store($request);
@@ -50,7 +53,9 @@ class SupervisorController extends Controller
     public function edit($id)
     {
         $user = UserService::show($id);
-        return view("dashboard.users.edit", ["user" => $user]);
+        $roles = RoleService::getAllRoles();
+
+        return view("dashboard.users.edit", compact("user", "roles"));
     }
 
     public function update(Request $request, $id)

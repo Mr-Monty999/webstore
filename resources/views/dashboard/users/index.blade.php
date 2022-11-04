@@ -19,6 +19,19 @@
             <div class="input-group input-group-outline  bg-white">
                 <input type="file" name="photo" class="form-control">
             </div>
+            <div class="my-4">
+                <h4>رتب المستخدم</h4>
+                <div class="form-check form-check-inline col-9">
+                    @foreach ($roles as $role)
+                        @if ($role->name != 'owner')
+                            <input class="form-check-input" type="checkbox" id="role{{ $role->id }}"
+                                value="{{ $role->name }}">
+                            <label class="form-check-label" for="role{{ $role->id }}">{{ $role->name }}</label>
+                        @endif
+                    @endforeach
+
+                </div>
+            </div>
             <button type="submit" class="btn btn-success margin my-3 col-6">اضافة</button>
         </form>
 
@@ -63,6 +76,12 @@
 
             $(".alert").remove();
 
+            let roles = [];
+            $(".form-check-input:checked").each(function(index, element) {
+                roles.push($(element).val());
+            });
+            let formData = new FormData(this);
+            formData.append("roles", roles);
 
             let pageNumber = $(".pagination .active").text();
             if (pageNumber == "")
@@ -74,7 +93,7 @@
                 },
                 method: "post",
                 url: "{{ route('users.store') }}",
-                data: new FormData(this),
+                data: formData,
                 dataType: "json",
                 processData: false,
                 contentType: false,

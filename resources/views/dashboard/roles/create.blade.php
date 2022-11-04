@@ -14,7 +14,7 @@
         <div class="form-check form-check-inline col-7">
             @foreach ($permissions as $permission)
                 <input class="form-check-input" type="checkbox" checked id="permission{{ $permission->id }}"
-                    value="option{{ $permission->id }}">
+                    value="{{ $permission->name }}">
                 <label class="form-check-label" for="permission{{ $permission->id }}">{{ $permission->name }}</label>
             @endforeach
 
@@ -49,7 +49,6 @@
             });
             let formData = new FormData(this);
             formData.append("permissions", permissions);
-
 
 
             $.ajax({

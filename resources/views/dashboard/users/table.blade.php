@@ -19,7 +19,7 @@
                               <th class="text-uppercase text-primary  font-weight-bolder  ps-2">
                                   تاريخ الانشاء</th>
                               <th class="text-uppercase text-primary  font-weight-bolder  ps-2">
-                                  اخر تعديل</th>
+                                  الرتب</th>
                               <th class="text-uppercase text-primary  font-weight-bolder">الاحداث</th>
                           </tr>
                       </thead>
@@ -52,7 +52,9 @@
                                       </td>
                                       <td>
                                           <p class="text-dark text-center" dir="ltr">
-                                              {{ $user->updated_at->diffForHumans() }}
+                                              @foreach ($user->roles as $role)
+                                                  {{ $role->name }},
+                                              @endforeach
                                           </p>
                                       </td>
 

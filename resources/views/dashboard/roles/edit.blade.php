@@ -15,7 +15,7 @@
         <div class="form-check form-check-inline col-7">
             @foreach ($permissions as $permission)
                 <input class="form-check-input" type="checkbox" @if ($role->hasPermissionTo($permission->id)) checked @endif
-                    id="permission{{ $permission->id }}" value="{{ $permission->id }}">
+                    id="permission{{ $permission->id }}" value="{{ $permission->name }}">
                 <label class="form-check-label" for="permission{{ $permission->id }}">{{ $permission->name }}</label>
             @endforeach
         </div>
@@ -71,7 +71,6 @@
                 },
                 success: function(response, success) {
 
-                    console.log(response);
                     $(".alert").remove();
 
 
