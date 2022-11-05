@@ -3,14 +3,16 @@
 @section('section')
     <div class="d-flex flex-column justify-content-center align-items-center">
         <h1>الاصناف</h1>
-        <form id="items" method="POST">
-            @csrf
-            <div class="input-group input-group-outline my-3 bg-white">
-                <label class="form-label">اسم الصنف</label>
-                <input type="text" name="item_name" class="form-control">
-            </div>
-            <button type="submit" class="btn btn-success margin col-6">اضافة</button>
-        </form>
+        @can('create-items')
+            <form id="items" method="POST">
+                @csrf
+                <div class="input-group input-group-outline my-3 bg-white">
+                    <label class="form-label">اسم الصنف</label>
+                    <input type="text" name="item_name" class="form-control">
+                </div>
+                <button type="submit" class="btn btn-success margin col-6">اضافة</button>
+            </form>
+        @endcan
 
         @foreach ($errors->all() as $error)
             <div class="alert alert-danger text-white">{{ $error }}</div>
@@ -27,11 +29,14 @@
             @include('dashboard.items.table')
 
         </div>
-        <form id="delete-all-items" action="" method="POST">
-            @csrf
-            @method('DELETE')
-            <button type="submit" class="btn btn-warning">حذف جميع الاصناف</button>
-        </form>
+        @can('delete-items')
+            <form id="delete-all-items" action="" method="POST">
+                @csrf
+                @method('DELETE')
+                <button type="submit" class="btn btn-warning">حذف جميع الاصناف</button>
+            </form>
+        @endcan
+
     </div>
 @endsection
 @push('ajax')

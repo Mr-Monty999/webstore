@@ -32,14 +32,18 @@
                                    </td>
 
                                    <td class="align-middle text-center">
-                                       <a href="{{ route('items.edit', $item->id) }}" class="btn btn-dark">تعديل
-                                       </a>
-                                       <form id="item-delete" method="post">
-                                           @csrf
-                                           @method('DELETE')
-                                           <input type="text" name="id" hidden value="{{ $item->id }}">
-                                           <button type="submit" class="btn btn-danger">حذف </button>
-                                       </form>
+                                       @can('edit-items')
+                                           <a href="{{ route('items.edit', $item->id) }}" class="btn btn-dark">تعديل
+                                           </a>
+                                       @endcan
+                                       @can('delete-items')
+                                           <form id="item-delete" method="post">
+                                               @csrf
+                                               @method('DELETE')
+                                               <input type="text" name="id" hidden value="{{ $item->id }}">
+                                               <button type="submit" class="btn btn-danger">حذف </button>
+                                           </form>
+                                       @endcan
                                    </td>
                                </tr>
                            @endforeach

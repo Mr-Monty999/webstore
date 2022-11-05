@@ -16,7 +16,8 @@
             @foreach ($permissions as $permission)
                 <input class="form-check-input" type="checkbox" @if ($role->hasPermissionTo($permission->id)) checked @endif
                     id="permission{{ $permission->id }}" value="{{ $permission->name }}">
-                <label class="form-check-label" for="permission{{ $permission->id }}">{{ $permission->name }}</label>
+                <label class="form-check-label"
+                    for="permission{{ $permission->id }}">{{ __("permissions.$permission->name") }}</label>
             @endforeach
         </div>
 

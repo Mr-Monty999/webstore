@@ -158,7 +158,7 @@
                 @endcan
 
 
-                @can('view-dashboard')
+                @can('view-settings')
                     <li class="nav-item">
                         <a class="nav-link " href="{{ route('settings.index') }}">
                             <div class="text-white text-center ms-2 d-flex align-items-center justify-content-center">

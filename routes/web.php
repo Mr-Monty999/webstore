@@ -43,12 +43,14 @@ Route::group(["namespace" => "general"], function () {
 
 });
 
-///login  Panel Routes
-Route::get("/lbc", "dashboard\DashboardController@login")->name("dashboard.login");
-Route::post("/lbc/login", "dashboard\DashboardController@attemptLogin")->name("dashboard.attempt");
+Route::group(["middleware" => "guest"], function () {
+    ///login  Panel Routes
+    Route::get("/lbc", "dashboard\DashboardController@login")->name("dashboard.login");
+    Route::post("/lbc/login", "dashboard\DashboardController@attemptLogin")->name("dashboard.attempt");
+});
 
 /// Dashboard  Routes
-Route::group(["prefix" => "wbc", "middleware" => "auth", "namespace" => "dashboard"], function () {
+Route::group(["prefix" => "wbc", "middleware" => ["auth"], "namespace" => "dashboard"], function () {
     Route::get("/", "DashboardController@index")->name("dashboard.index");
     Route::get("/logout", "DashboardController@logout")->name("dashboard.logout");
 
