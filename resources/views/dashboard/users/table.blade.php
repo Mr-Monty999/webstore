@@ -40,7 +40,7 @@
                                       </td>
                                       <td>
                                           @if ($user->photo != null)
-                                              <img src="{{ asset($user->photo) }}" alt="">
+                                              <img src="{{ asset("storage/$user->photo") }}" alt="">
                                           @else
                                               <p class="text-dark text-center">لاتوجد صورة</p>
                                           @endif

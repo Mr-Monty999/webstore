@@ -29,7 +29,7 @@
                 </select>
             </div>
             <div class="d-flex justify-content-center align-items-center">
-                <img src="{{ asset($product->product_photo) }}" class="photo my-3" alt="">
+                <img src="{{ asset("storage/$product->product_photo") }}" class="photo my-3" alt="">
             </div>
             <label class="text-dark">صورة المنتج :</label>
             <div class="input-group input-group-outline  bg-white">

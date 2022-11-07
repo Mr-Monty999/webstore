@@ -55,7 +55,7 @@
 
                                       <td>
                                           @if ($product->product_photo != null)
-                                              <img src="{{ asset($product->product_photo) }}" alt="">
+                                              <img src="{{ asset("storage/$product->product_photo") }}" alt="">
                                           @else
                                               <p class="text-dark text-center">لاتوجد صورة</p>
                                           @endif

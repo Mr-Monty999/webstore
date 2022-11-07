@@ -53,7 +53,7 @@
     <!-- CSS Files -->
     <link id="pagestyle" href="{{ asset('dashboard/css/material-dashboard.min.css') }}" rel="stylesheet" />
     <link rel="stylesheet" href="{{ asset('dashboard/css/mystyle.css') }}">
-    <link rel="icon" href="{{ asset($store->store_logo) }}">
+    <link rel="icon" href="{{ asset("storage/$store->store_logo") }}">
 
 </head>
 
@@ -67,8 +67,8 @@
                 aria-hidden="true" id="iconSidenav"></i>
             <a class="navbar-brand m-0" target="_blank">
                 @if (Auth::user()->photo != null)
-                    <img src="{{ asset(Auth::user()->photo) }}" class="navbar-brand-img h-100 border-radius-2xl"
-                        alt="main_logo">
+                    <img src="{{ asset('storage/' . Auth::user()->photo) }}"
+                        class="navbar-brand-img h-100 border-radius-2xl" alt="main_logo">
                 @endif
 
                 <span class="me-1 font-weight-bold text-white">لوحة التحكم</span>

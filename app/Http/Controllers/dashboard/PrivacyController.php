@@ -29,7 +29,7 @@ class PrivacyController extends Controller
 
     public function update(Request $request)
     {
-        $data = UserService::update($request, Auth::id());
+        $data = UserService::updatePrivacy($request, Auth::id());
         return response()->json($data);
     }
 }

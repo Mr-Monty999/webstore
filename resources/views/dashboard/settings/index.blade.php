@@ -24,7 +24,7 @@
             </div>
 
             <div class="d-flex justify-content-center align-items-center">
-                <img src="{{ asset($setting->store_logo) }}" class="photo my-3" alt="">
+                <img src="{{ asset("storage/$setting->store_logo") }}" class="photo my-3" alt="">
             </div>
             <label class="text-dark">شعار الموقع :</label>
             <div class="input-group input-group-outline  bg-white">

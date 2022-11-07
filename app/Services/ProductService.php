@@ -4,6 +4,7 @@ namespace App\Services;
 
 use App\Models\Product;
 use DB;
+use Storage;
 
 /**
  * Class ProductService.
@@ -42,11 +43,11 @@ class ProductService
             return $data;
         }
 
-        $path = null;
-        if (file_exists(public_path()))
-            $path = public_path();
-        else
-            $path = base_path();
+        // $path = null;
+        // if (file_exists(public_path()))
+        //     $path = public_path();
+        // else
+        //     $path = base_path();
 
 
         $productDiscount = 0;
@@ -54,15 +55,11 @@ class ProductService
             $productDiscount = trim($request->product_discount);
 
         $photo = null;
-        $photoName = null;
-        if ($request->hasFile("product_photo")) {
-            $photo = $request->file("product_photo");
-            $photoName = time() . "." . $photo->getClientOriginalExtension();
-            $photo->move($path . "/images/products", "$photoName");
-            $photoName = "/images/products/" . $photoName;
-        }
+        if ($request->hasFile("product_photo"))
+            $photo = $request->file("product_photo")->store("products", "public");
 
-        $data["product_photo"] = $photoName;
+
+        $data["product_photo"] = $photo;
         $data["product_discount"] = $productDiscount;
 
         Product::create($data);
@@ -97,40 +94,26 @@ class ProductService
             return $data;
         }
 
-        $path = null;
-        if (file_exists(public_path()))
-            $path = public_path();
-        else
-            $path = base_path();
-
 
         $productDiscount = 0;
         if (trim($request->product_discount) != "")
             $productDiscount = trim($request->product_discount);
 
-        $photo = null;
-        $photoPath = $product->product_photo;
-        $photoName = null;
+        $photo = $oldProduct->first()->product_photo;
         if ($request->hasFile("product_photo")) {
-            $photo = $request->file("product_photo");
-            $photoName = time() . "." . $photo->getClientOriginalExtension();
-
-            // Delete Old Photo
-            DeleteService::deleteFile($product->product_photo);
-
-            $photo->move($path . "/images/products", "$photoName");
-            $photoPath = "/images/products/" . $photoName;
+            Storage::disk("public")->delete($oldProduct->first()->product_photo);
+            $photo = $request->file("product_photo")->store("products", "public");
         }
 
 
-        $data["product_photo"] = $photoPath;
+        $data["product_photo"] = $photo;
         $data["product_discount"] = $productDiscount;
 
         $product->update($data);
 
         $data["success"] = true;
         $data["message"] = "تم تعديل المنتج بنجاح";
-        $data["photo_path"] = asset($photoPath);
+        $data["photo_path"] = asset("storage/$photo");
 
         return $data;
     }
@@ -143,7 +126,7 @@ class ProductService
         $product->delete();
 
         //Delete Old Photo
-        DeleteService::deleteFile($product->product_photo);
+        Storage::disk("public")->delete($product->product_photo);
 
 
         return true;
@@ -154,7 +137,7 @@ class ProductService
         DB::table("products")->delete();
 
         //Delete All Photos
-        DeleteService::deleteAllFiles("/images/products");
+        Storage::disk("public")->deleteDirectory("products");
 
         return true;
     }

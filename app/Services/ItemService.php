@@ -4,6 +4,7 @@ namespace App\Services;
 
 use App\Models\Item;
 use DB;
+use Storage;
 
 /**
  * Class ItemService.
@@ -82,7 +83,9 @@ class ItemService
     {
         $item = Item::findOrFail($id);
         $data["item"] = $item;
+        Storage::disk("public")->delete($item->products->pluck("product_photo")->toArray());
         $item->delete();
+
 
         return $data;
     }
@@ -91,7 +94,7 @@ class ItemService
     {
 
         DB::table("items")->delete();
-
+        Storage::disk("public")->deleteDirectory("products");
         return true;
     }
 }

@@ -6,7 +6,8 @@
              @foreach ($products as $product)
                  <div
                      class="card d-flex flex-column justify-content-center align-items-center col-10 col-md-4 col-lg-3 product{{ $product->id }}">
-                     <img src="{{ asset($product->product_photo) }}" class="" width="" alt="...">
+                     <img src="{{ asset("storage/$product->product_photo") }}" class="" width=""
+                         alt="...">
                      <div class="card-body d-flex flex-column justify-content-center align-items-center">
                          <h5 class="product_name card-title text-dark">{{ $product->product_name }}</h5>
 

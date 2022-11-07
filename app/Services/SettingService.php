@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Models\Setting;
+use Storage;
 
 /**
  * Class SettingService.
@@ -30,33 +31,20 @@ class SettingService
 
         $setting = Setting::first();
 
-        $path = null;
-        if (file_exists(public_path()))
-            $path = public_path();
-        else
-            $path = base_path();
 
 
 
-        $photo = null;
-        $photoName = $setting->store_logo;
+        $photo = $setting->store_logo;
         if ($request->hasFile("store_logo")) {
-            $photo = $request->file("store_logo");
-            $photoName = time() . "." . $photo->getClientOriginalExtension();
-
-            // Delete Old Photo
-            DeleteService::deleteFile($setting->store_logo);
-
-            $photo->move($path . "/images/settings", "$photoName");
-            $photoName = "/images/settings/" . $photoName;
+            Storage::disk("public")->delete($setting->store_logo);
+            $photo = $request->file("store_logo")->store("settings", "public");
         }
-        $data["store_logo"] = $photoName;
-
+        $data["store_logo"] = $photo;
         $setting->update($data);
 
         $data["success"] = true;
         $data["message"] = "تم الحفظ بنجاح";
-        $data["photo_path"] = asset($photoName);
+        $data["photo_path"] = asset("storage/$photo");
 
         return $data;
     }

@@ -37,7 +37,7 @@
     <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/bootstrap.rtl.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
-    <link rel="icon" href="{{ asset($store->store_logo) }}">
+    <link rel="icon" href="{{ asset("storage/$store->store_logo") }}">
 
 </head>
 

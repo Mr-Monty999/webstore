@@ -15,7 +15,7 @@
                 <input type="text" name="password" class="form-control">
             </div>
             <div class="d-flex justify-content-center align-items-center">
-                <img src="{{ asset($user->photo) }}" class="photo my-3" alt="">
+                <img src="{{ asset("storage/$user->photo") }}" class="photo my-3" alt="">
             </div>
             <label class="text-dark">الصورة الشخصية :</label>
             <div class="input-group input-group-outline bg-white">

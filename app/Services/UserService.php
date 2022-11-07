@@ -6,6 +6,7 @@ use App\Models\User;
 use App\Models\Vistor;
 use Auth;
 use Hash;
+use Storage;
 
 /**
  * Class UserService.
@@ -41,28 +42,18 @@ class UserService
             return $data;
         }
 
-        $path = null;
-        if (file_exists(public_path()))
-            $path = public_path();
-        else
-            $path = base_path();
-
 
         $photo = null;
-        $photoName = null;
+        if ($request->hasFile("photo"))
+            $photo = $request->file("photo")->store("users", "public");
 
-        if ($request->hasFile("photo")) {
-            $photo = $request->file("photo");
-            $photoName = time() . "." . $photo->getClientOriginalExtension();
-            $photo->move($path . "/images/users", "$photoName");
-            $photoName = "/images/users/" . $photoName;
-        }
+
         $password = Hash::make("");
         if (trim($request->password) != "")
             $password = Hash::make(trim($request->password));
 
         $data["password"] = $password;
-        $data["photo"] = $photoName;
+        $data["photo"] = $photo;
 
         $user = User::create($data);
         $roles = explode(",", $request->roles);
@@ -90,17 +81,16 @@ class UserService
         $user->delete();
 
         //Delete Old Photo
-        DeleteService::deleteFile($user->user_photo);
+        Storage::disk("public")->delete($user->photo);
 
         return $user;
     }
 
     public static function destroyAll()
     {
-        User::role("");
-
+        User::where("id", "!=", Auth::id())->delete();
         //Delete All Photos
-        DeleteService::deleteAllFiles("/images/users");
+        Storage::disk("public")->deleteDirectory("users");
 
         return true;
     }
@@ -134,33 +124,22 @@ class UserService
         }
 
 
-        $path = null;
-        if (file_exists(public_path()))
-            $path = public_path();
-        else
-            $path = base_path();
 
-
-
-        $photo = null;
-        $photoName = $user->photo;
+        $photo = $oldUser->first()->photo;
         if ($request->hasFile("photo")) {
-            $photo = $request->file("photo");
-            $photoName = time() . "." . $photo->getClientOriginalExtension();
-
-            // Delete Old Photo
-            DeleteService::deleteFile($user->photo);
-
-
-            $photo->move($path . "/images/users", "$photoName");
-            $photoName = "/images/users/" . $photoName;
+            Storage::disk("public")->delete($oldUser->first()->photo);
+            $photo = $request->file("photo")->store("users", "public");
         }
+
+
+
+
         $password = $user->password;
         if (trim($request->password) != "")
             $password = Hash::make(trim($request->password));
 
         $data["password"] = $password;
-        $data["photo"] = $photoName;
+        $data["photo"] = $photo;
 
         $user->update($data);
         $roles = explode(",", $request->roles);
@@ -168,7 +147,48 @@ class UserService
 
         $data["success"] = true;
         $data["message"] = "تم الحفظ بنجاح";
-        $data["photo_path"] = asset($photoName);
+        $data["photo_path"] = asset("storage/$photo");
+
+        return $data;
+    }
+    public static function updatePrivacy($request, $id)
+    {
+
+        $data = $request->all();
+
+        $user = User::find($id);
+
+        $oldUser = User::where("name", $request->name);
+
+        if ($oldUser->exists() && $oldUser->first()->name != $user->name) {
+            $data["success"] = false;
+            $data["message"] = "هذا المشرف موجود بالفعل";
+
+            return $data;
+        }
+
+
+
+        $photo = $oldUser->first()->photo;
+        if ($request->hasFile("photo")) {
+            Storage::disk("public")->delete($oldUser->first()->photo);
+            $photo = $request->file("photo")->store("users", "public");
+        }
+
+
+        $password = $user->password;
+        if (trim($request->password) != "")
+            $password = Hash::make(trim($request->password));
+
+        $data["password"] = $password;
+        $data["photo"] = $photo;
+
+        $user->update($data);
+
+
+        $data["success"] = true;
+        $data["message"] = "تم الحفظ بنجاح";
+        $data["photo_path"] = asset("storage/$photo");
 
         return $data;
     }
