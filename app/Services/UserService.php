@@ -88,9 +88,10 @@ class UserService
 
     public static function destroyAll()
     {
-        User::where("id", "!=", Auth::id())->delete();
+        $users =  User::where("id", "!=", Auth::id());
         //Delete All Photos
-        Storage::disk("public")->deleteDirectory("users");
+        Storage::disk("public")->delete($users->pluck("photo")->toArray());
+        $users->delete();
 
         return true;
     }
