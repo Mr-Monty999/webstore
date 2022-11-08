@@ -50,7 +50,7 @@ Route::group(["middleware" => "guest"], function () {
 });
 
 /// Dashboard  Routes
-Route::group(["prefix" => "wbc", "middleware" => ["auth"], "namespace" => "dashboard"], function () {
+Route::group(["prefix" => "wbc", "middleware" => "auth", "namespace" => "dashboard"], function () {
     Route::get("/", "DashboardController@index")->name("dashboard.index");
     Route::get("/logout", "DashboardController@logout")->name("dashboard.logout");
 
@@ -88,8 +88,8 @@ Route::group(["prefix" => "wbc", "middleware" => ["auth"], "namespace" => "dashb
 
 
     ///Privacy Routes
-    Route::get("/privacy", "PrivacyController@index")->name("privacy.index");
-    Route::put("/privacy/update/", "PrivacyController@update")->name("privacy.update");
+    Route::get("/privacy/{id}", "PrivacyController@index")->name("privacy.index");
+    Route::put("/privacy/{id}", "PrivacyController@update")->name("privacy.update");
 
     ///Supervisors Routes
     Route::get("/users", "SupervisorController@index")->name("users.index");

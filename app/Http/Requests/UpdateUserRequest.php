@@ -2,9 +2,10 @@
 
 namespace App\Http\Requests;
 
+use Auth;
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreUserRequest extends FormRequest
+class UpdateUserRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,8 +25,7 @@ class StoreUserRequest extends FormRequest
     public function rules()
     {
         return [
-            "name" => "required|unique:users,name",
-            "password" => "required",
+            "name" => "required|unique:users,name," . $this->id,
             "photo" => "image|nullable"
         ];
     }
@@ -33,7 +33,6 @@ class StoreUserRequest extends FormRequest
     {
         return [
             "name.required" => "الرجاء كتابة اسم المستخدم !",
-            "password.required" => "الرجاء كتابة كلمة المرور !",
             "photo.image" => "الرجاء اختيار صورة فقط !",
             "name.unique" => "هذا الأسم موجود بالفعل !"
         ];

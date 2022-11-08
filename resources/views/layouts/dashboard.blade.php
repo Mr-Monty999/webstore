@@ -128,7 +128,7 @@
                 @endcan
                 @can('view-privacy')
                     <li class="nav-item">
-                        <a class="nav-link " href="{{ route('privacy.index') }}">
+                        <a class="nav-link " href="{{ route('privacy.index', Auth::id()) }}">
                             <div class="text-white text-center ms-2 d-flex align-items-center justify-content-center">
                                 <i class="fa-solid fa-shield"></i>
                             </div>

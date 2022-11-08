@@ -27,7 +27,7 @@ class ProductController extends Controller
         $this->middleware("permission:view-products")->only(["index", "show", "table"]);
         $this->middleware("permission:create-products")->only(["create", "store"]);
         $this->middleware("permission:edit-products")->only(["edit", "update"]);
-        $this->middleware("permission:delete-products")->only("delete", "deleteAll");
+        $this->middleware("permission:delete-products")->only("destroy", "destroyAll");
     }
     public function index()
     {

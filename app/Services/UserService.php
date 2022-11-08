@@ -20,6 +20,17 @@ class UserService
         $users = User::paginate(5)->onEachSide(0);
         return $users;
     }
+    public static function login($data)
+    {
+
+        if (Auth::attempt($data, true)) {
+            $user = Auth::user();
+            $user["token"] = $user->createToken(uniqid())->plainTextToken;
+            $user->getAllPermissions();
+            return $user;
+        }
+        return false;
+    }
     public static function table($pageNumber)
     {
 
@@ -27,20 +38,16 @@ class UserService
         return $users;
     }
 
-
+    public static function userExists($name)
+    {
+        $userExists =  User::where("name", "=", $name)->exists();
+        return $userExists;
+    }
 
     public static function store($request)
     {
 
         $data = $request->all();
-
-        $user = User::where("name", $request->name);
-
-        if ($user->exists()) {
-            $data["success"] = false;
-            $data["message"] = "هذا المشرف موجود بالفعل !";
-            return $data;
-        }
 
 
         $photo = null;
@@ -58,18 +65,17 @@ class UserService
         $user = User::create($data);
         $roles = explode(",", $request->roles);
         $user->syncRoles($roles);
+        $user->getAllPermissions();
 
-        $data["success"] = true;
-        $data["message"] = "تم اضافة المشرف بنجاح";
 
-        return $data;
+        return $user;
     }
 
 
 
     public static function show($id)
     {
-        $user = User::with("roles", "permissions")->findOrfail($id);
+        $user = User::with("roles.permissions")->findOrfail($id);
         return $user;
     }
 
@@ -117,13 +123,6 @@ class UserService
 
         $oldUser = User::where("name", $request->name);
 
-        if ($oldUser->exists() && $oldUser->first()->name != $user->name) {
-            $data["success"] = false;
-            $data["message"] = "هذا المشرف موجود بالفعل";
-
-            return $data;
-        }
-
 
 
         $photo = $oldUser->first()->photo;
@@ -131,8 +130,6 @@ class UserService
             Storage::disk("public")->delete($oldUser->first()->photo);
             $photo = $request->file("photo")->store("users", "public");
         }
-
-
 
 
         $password = $user->password;
@@ -145,12 +142,12 @@ class UserService
         $user->update($data);
         $roles = explode(",", $request->roles);
         $user->syncRoles($roles);
+        $user->getAllPermissions();
 
-        $data["success"] = true;
-        $data["message"] = "تم الحفظ بنجاح";
-        $data["photo_path"] = asset("storage/$photo");
 
-        return $data;
+        $user["photo_path"] = asset("storage/$photo");
+
+        return $user;
     }
     public static function updatePrivacy($request, $id)
     {
@@ -160,13 +157,6 @@ class UserService
         $user = User::find($id);
 
         $oldUser = User::where("name", $request->name);
-
-        if ($oldUser->exists() && $oldUser->first()->name != $user->name) {
-            $data["success"] = false;
-            $data["message"] = "هذا المشرف موجود بالفعل";
-
-            return $data;
-        }
 
 
 
@@ -185,12 +175,10 @@ class UserService
         $data["photo"] = $photo;
 
         $user->update($data);
+        $user->getAllPermissions();
 
+        $user["photo_path"] = asset("storage/$photo");
 
-        $data["success"] = true;
-        $data["message"] = "تم الحفظ بنجاح";
-        $data["photo_path"] = asset("storage/$photo");
-
-        return $data;
+        return $user;
     }
 }

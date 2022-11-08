@@ -25,7 +25,7 @@ class ItemController extends Controller
         $this->middleware("permission:view-items")->only(["index", "show", "table"]);
         $this->middleware("permission:create-items")->only(["create", "store"]);
         $this->middleware("permission:edit-items")->only(["edit", "update"]);
-        $this->middleware("permission:delete-items")->only("delete", "deleteAll");
+        $this->middleware("permission:delete-items")->only("destroy", "destroyAll");
     }
     public function index()
     {

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\dashboard;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreUserRequest;
+use App\Http\Requests\UpdateUserRequest;
 use App\Http\Requests\UserRequest;
 use App\Models\User;
 use App\Services\DeleteService;
@@ -21,7 +22,7 @@ class SupervisorController extends Controller
         $this->middleware("permission:view-users")->only(["index", "show", "table"]);
         $this->middleware("permission:create-users")->only(["create", "store"]);
         $this->middleware("permission:edit-users")->only(["edit", "update"]);
-        $this->middleware("permission:delete-users")->only("delete", "deleteAll");
+        $this->middleware("permission:delete-users")->only("destroy", "destroyAll");
     }
     public function index()
     {
@@ -43,6 +44,8 @@ class SupervisorController extends Controller
     {
 
         $data = UserService::store($request);
+        $data["success"] = true;
+        $data["message"] = "تم اضافة المشرف بنجاح";
 
 
         return response()->json($data, 200);
@@ -58,9 +61,13 @@ class SupervisorController extends Controller
         return view("dashboard.users.edit", compact("user", "roles"));
     }
 
-    public function update(Request $request, $id)
+    public function update(UpdateUserRequest $request, $id)
     {
         $data = UserService::update($request, $id);
+
+        $data["success"] = true;
+        $data["message"] = "تم الحفظ بنجاح";
+
 
 
         return response()->json($data, 200);

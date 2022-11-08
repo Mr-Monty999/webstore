@@ -16,7 +16,7 @@ class FeedbackController extends Controller
     {
 
         $this->middleware("permission:view-feedbacks")->only(["index", "show", "table"]);
-        $this->middleware("permission:delete-feedbacks")->only("delete", "deleteAll");
+        $this->middleware("permission:delete-feedbacks")->only("destroy", "destroyAll");
     }
 
 
@@ -39,7 +39,7 @@ class FeedbackController extends Controller
         return view("dashboard.feedbacks.show", ["feedback" => $feedback]);
     }
 
-    public function delete(Request $request, $id)
+    public function destroy(Request $request, $id)
     {
         $data =  FeedbackService::delete($request->id);
         $data["success"] = true;
@@ -47,7 +47,7 @@ class FeedbackController extends Controller
         return response()->json($data);
     }
 
-    public function deleteAll()
+    public function destroyAll()
     {
         FeedbackService::deleteAll();
         $data["success"] = true;
