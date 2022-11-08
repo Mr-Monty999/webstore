@@ -95,6 +95,6 @@ class UserController extends Controller
     {
         $data = UserService::destroyAll();
 
-        return response()->json(null, 200);
+        return response()->json($data, 200);
     }
 }

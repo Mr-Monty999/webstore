@@ -63,8 +63,17 @@ class UserService
         $data["photo"] = $photo;
 
         $user = User::create($data);
-        $roles = explode(",", $request->roles);
-        $user->syncRoles($roles);
+
+        if ($request->roles) {
+            if (!is_array($request->roles)) {
+                $roles = explode(",", $request->roles);
+                $user->syncRoles($roles);
+            } else
+                $user->syncRoles($request->roles);
+        }
+        $user["photo_path"] = asset("storage/$photo");
+
+
         $user->getAllPermissions();
 
 
@@ -76,6 +85,8 @@ class UserService
     public static function show($id)
     {
         $user = User::with("roles.permissions")->findOrfail($id);
+        $user["photo_path"] = asset("storage/$user->photo");
+
         return $user;
     }
 
@@ -121,13 +132,13 @@ class UserService
 
         $user = User::find($id);
 
-        $oldUser = User::where("name", $request->name);
 
 
 
-        $photo = $oldUser->first()->photo;
+        $photo = $user->photo;
+
         if ($request->hasFile("photo")) {
-            Storage::disk("public")->delete($oldUser->first()->photo);
+            Storage::disk("public")->delete($user->photo);
             $photo = $request->file("photo")->store("users", "public");
         }
 
@@ -140,8 +151,14 @@ class UserService
         $data["photo"] = $photo;
 
         $user->update($data);
-        $roles = explode(",", $request->roles);
-        $user->syncRoles($roles);
+        if ($request->roles) {
+            if (!is_array($request->roles)) {
+                $roles = explode(",", $request->roles);
+                $user->syncRoles($roles);
+            } else
+                $user->syncRoles($request->roles);
+        }
+
         $user->getAllPermissions();
 
 
@@ -156,13 +173,10 @@ class UserService
 
         $user = User::find($id);
 
-        $oldUser = User::where("name", $request->name);
 
-
-
-        $photo = $oldUser->first()->photo;
+        $photo = $user->photo;
         if ($request->hasFile("photo")) {
-            Storage::disk("public")->delete($oldUser->first()->photo);
+            Storage::disk("public")->delete($user->photo);
             $photo = $request->file("photo")->store("users", "public");
         }
 

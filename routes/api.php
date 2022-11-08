@@ -21,7 +21,7 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::group(["namespace" => "api"], function () {
-    Route::post("/login", "UserController@login");
+    Route::post("/users/login", "UserController@login");
 
     Route::group(["middleware" => "auth:sanctum"], function () {
         Route::apiResource("users", "UserController", ["as" => "api"]);
