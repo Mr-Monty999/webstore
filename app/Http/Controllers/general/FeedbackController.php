@@ -4,6 +4,7 @@ namespace App\Http\Controllers\general;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\FeedbackRequest;
+use App\Http\Requests\StoreFeedbackRequest;
 use App\Models\Feedback;
 use App\Services\FeedbackService;
 use Illuminate\Http\Request;
@@ -27,7 +28,7 @@ class FeedbackController extends Controller
 
 
 
-    public function store(FeedbackRequest $request)
+    public function store(StoreFeedbackRequest $request)
     {
 
 

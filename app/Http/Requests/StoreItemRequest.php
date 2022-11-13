@@ -14,7 +14,9 @@ class StoreItemRequest extends FormRequest
     public function rules()
     {
         return [
-            "item_name" => "required"
+            "item_name" => "required",
+            "item_photo" => "image|nullable"
+
         ];
     }
 
@@ -22,7 +24,9 @@ class StoreItemRequest extends FormRequest
     {
 
         return [
-            "item_name.required" => "الرجاء كتابة اسم الصنف"
+            "item_name.required" => "الرجاء كتابة اسم الصنف",
+            "item_photo.image" => "الرجاء رفع صورة فقط !",
+
         ];
     }
 }

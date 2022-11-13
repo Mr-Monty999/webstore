@@ -45,7 +45,7 @@ class ItemController extends Controller
 
     public function store(StoreItemRequest $request)
     {
-        $data = ItemService::store($request->all());
+        $data = ItemService::store($request);
         $data["success"] = true;
         $data["message"] = "تم الاضافة بنجاح";
         return response()->json($data, 201);
@@ -61,7 +61,7 @@ class ItemController extends Controller
 
     public function update(UpdateItemRequest $request, $id)
     {
-        $data = ItemService::update($request->all(), $id);
+        $data = ItemService::update($request, $id);
         $data["success"] = true;
         $data["message"] = "تم التعديل بنجاح";
         return response()->json($data);

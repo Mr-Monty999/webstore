@@ -13,7 +13,7 @@ class StoreFeedbackRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,20 @@ class StoreFeedbackRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            "name" => "required",
+            "message" => "required",
+            'g-recaptcha-response' => 'required|captcha',
+
+
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            "name.required" => "الرجاء كتابة اسمك !",
+            "message.required" => "الرجاء كتابة الرسالة !",
+            "g-recaptcha-response.required" => "الرجاء اجتياز التحقق الامني !"
         ];
     }
 }

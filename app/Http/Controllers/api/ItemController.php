@@ -3,6 +3,9 @@
 namespace App\Http\Controllers\api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreItemRequest;
+use App\Http\Requests\UpdateItemRequest;
+use App\Services\ItemService;
 use Illuminate\Http\Request;
 
 class ItemController extends Controller
@@ -12,9 +15,19 @@ class ItemController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct()
+    {
+
+        $this->middleware("permission:view-items")->only(["index", "show", "table"]);
+        $this->middleware("permission:create-items")->only(["create", "store"]);
+        $this->middleware("permission:edit-items")->only(["edit", "update"]);
+        $this->middleware("permission:delete-items")->only("destroy", "destroyAll");
+    }
     public function index()
     {
-        //
+
+        $items = ItemService::getAllItems();
+        return response()->json($items);
     }
 
     /**
@@ -23,9 +36,10 @@ class ItemController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreItemRequest $request)
     {
-        //
+        $data = ItemService::store($request);
+        return response()->json($data, 201);
     }
 
     /**
@@ -36,7 +50,8 @@ class ItemController extends Controller
      */
     public function show($id)
     {
-        //
+        $item = ItemService::show($id);
+        return response()->json($item);
     }
 
     /**
@@ -46,9 +61,10 @@ class ItemController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateItemRequest $request, $id)
     {
-        //
+        $data = ItemService::update($request, $id);
+        return response()->json($data);
     }
 
     /**
@@ -59,6 +75,13 @@ class ItemController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $item = ItemService::destroy($id);
+        return response()->json($item);
+    }
+
+    public function destroyAll()
+    {
+        $data = ItemService::destroyAll();
+        return response()->json($data);
     }
 }

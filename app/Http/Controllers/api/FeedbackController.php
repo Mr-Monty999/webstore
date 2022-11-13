@@ -3,6 +3,9 @@
 namespace App\Http\Controllers\api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreApiFeedbackRequest;
+use App\Http\Requests\StoreFeedbackRequest;
+use App\Services\FeedbackService;
 use Illuminate\Http\Request;
 
 class FeedbackController extends Controller
@@ -12,9 +15,19 @@ class FeedbackController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    public function __construct()
+    {
+
+        $this->middleware("permission:view-feedbacks")->only(["index", "show", "table"]);
+        $this->middleware("permission:delete-feedbacks")->only("destroy", "destroyAll");
+        $this->middleware("auth:sanctum")->except("store");
+    }
+
     public function index()
     {
-        //
+        $feedbacks = FeedbackService::getAllFeedbacks();
+        return response()->json($feedbacks);
     }
 
     /**
@@ -23,9 +36,10 @@ class FeedbackController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreApiFeedbackRequest $request)
     {
-        //
+        $feedback =  FeedbackService::store($request);
+        return response()->json($feedback, 201);
     }
 
     /**
@@ -36,7 +50,9 @@ class FeedbackController extends Controller
      */
     public function show($id)
     {
-        //
+        $feedback = FeedbackService::show($id);
+
+        return response()->json($feedback);
     }
 
     /**
@@ -59,6 +75,15 @@ class FeedbackController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $data =  FeedbackService::delete($id);
+        return response()->json($data);
+    }
+
+
+    public function destroyAll()
+    {
+        $data = FeedbackService::deleteAll();
+
+        return response()->json($data);
     }
 }

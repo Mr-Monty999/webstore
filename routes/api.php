@@ -23,9 +23,15 @@ use Illuminate\Support\Facades\Route;
 Route::group(["namespace" => "api"], function () {
     Route::post("users/login", "UserController@login");
 
+    /// Feedback Routes ///
+    Route::delete("feedbacks/delete-all", "FeedbackController@destroyAll");
+    Route::apiResource("feedbacks", "FeedbackController", ["as" => "api"]);
+
     Route::group(
         ["middleware" => "auth:sanctum"],
         function () {
+
+
 
             /// Users Routes ///
             Route::delete("users/delete-all", "UserController@destroyAll");

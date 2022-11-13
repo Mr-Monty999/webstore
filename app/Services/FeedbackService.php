@@ -14,14 +14,14 @@ class FeedbackService
     public static function getAllFeedbacks()
     {
 
-        $feedbacks = Feedback::latest()->paginate(5)->onEachSide(0);
+        $feedbacks = Feedback::latest()->paginate(5);
         return $feedbacks;
     }
 
     public static function table($pageNumber)
     {
 
-        $feedbacks = Feedback::latest()->paginate(5, ['*'], 'page', $pageNumber)->withPath(route('dashboard.feedbacks.index'))->onEachSide(0);
+        $feedbacks = Feedback::latest()->paginate(5, ['*'], 'page', $pageNumber)->withPath(route('dashboard.feedbacks.index'));
         return $feedbacks;
     }
     public static function show($id)

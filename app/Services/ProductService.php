@@ -50,6 +50,10 @@ class ProductService
         $data["product_discount"] = $productDiscount;
         $product = Product::create($data);
 
+        if (isset($photo))
+            $product["photo_path"] = asset("storage/$photo");
+
+
 
         return $product;
     }
