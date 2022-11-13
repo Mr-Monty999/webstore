@@ -56,7 +56,7 @@
                     'X-CSRF-TOKEN': "{{ csrf_token() }}"
                 },
                 method: "post",
-                url: "{{ route('privacy.update', $user->id) }}",
+                url: "{{ route('users.privacy.update', $user->id) }}",
                 data: new FormData(this),
                 dataType: "json",
                 processData: false,

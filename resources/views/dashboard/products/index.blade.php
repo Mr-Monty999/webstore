@@ -121,7 +121,7 @@
                                                 <td class="align-middle text-center">
                                                     <a href="{{ route('products.edit', $product->id) }}"
                                                         class="btn btn-dark">تعديل </a>
-                                                    <form action="{{ route('products.delete', $product->id) }}"
+                                                    <form action="{{ route('products.destroy', $product->id) }}"
                                                         method="post">
                                                         @csrf
                                                         @method('DELETE')
@@ -253,7 +253,7 @@
                         'X-CSRF-TOKEN': "{{ csrf_token() }}"
                     },
                     method: "post",
-                    url: "{{ route('products.delete', '0') }}",
+                    url: "{{ route('products.destroy', '0') }}",
                     data: new FormData(this),
                     dataType: "json",
                     processData: false,
@@ -327,7 +327,7 @@
                         'X-CSRF-TOKEN': "{{ csrf_token() }}"
                     },
                     method: "post",
-                    url: "{{ route('products.delete.all') }}",
+                    url: "{{ route('products.destroy.all') }}",
                     data: new FormData(this),
                     dataType: "json",
                     processData: false,

@@ -30,22 +30,11 @@ class ItemService
     public static function store($data)
     {
 
-        $exists = Item::where("item_name", $data["item_name"])->exists();
+
+        $item =  Item::create($data);
 
 
-        if (!$exists) {
-            Item::create($data);
-            $data["success"] = true;
-            $data["message"] = "تم الاضافة بنجاح";
-
-            return $data;
-        }
-
-        $data["success"] = false;
-        $data["message"] = "هذا المنتج موجود بالفعل !";
-
-
-        return $data;
+        return $item;
     }
 
 
@@ -59,22 +48,10 @@ class ItemService
     public static function update($data, $id)
     {
 
-        $item = Item::find($id);
-        $oldItem = Item::where("item_name", $data["item_name"]);
-
-
-
-        if ($oldItem->exists() && $item->item_name != $oldItem->first()->item_name) {
-            $data["success"] = false;
-            $data["message"] = "هذا الصنف موجود فعلا !";
-
-            return $data;
-        }
+        $item = Item::findOrFail($id);
 
         $item->update($data);
 
-        $data["success"] = true;
-        $data["message"] = "تم التعديل بنجاح";
 
         return $data;
     }

@@ -16,13 +16,13 @@ class ProductService
     {
 
 
-        $products = Product::with("item")->paginate(5)->onEachSide(0);
+        $products = Product::with("item")->paginate(5);
         return $products;
     }
 
     public static function table($pageNumber)
     {
-        $products = Product::with("item")->paginate(5, ['*'], 'page', $pageNumber)->withPath(route("products.index"))->onEachSide(0);
+        $products = Product::with("item")->paginate(5, ['*'], 'page', $pageNumber)->withPath(route("products.index"));
         return $products;
     }
 
@@ -35,20 +35,6 @@ class ProductService
 
         $data = $request->all();
 
-        $product = Product::where("product_name", $request->product_name);
-
-        if ($product->exists()) {
-            $data["success"] = false;
-            $data["message"] = "هذا المنتج موجود بالفعل !";
-            return $data;
-        }
-
-        // $path = null;
-        // if (file_exists(public_path()))
-        //     $path = public_path();
-        // else
-        //     $path = base_path();
-
 
         $productDiscount = 0;
         if (trim($request->product_discount) != "")
@@ -59,13 +45,13 @@ class ProductService
             $photo = $request->file("product_photo")->store("products", "public");
 
 
+
         $data["product_photo"] = $photo;
         $data["product_discount"] = $productDiscount;
+        $product = Product::create($data);
 
-        Product::create($data);
-        $data["success"] = true;
-        $data["message"] = "تم الاضافة بنجاح";
-        return $data;
+
+        return $product;
     }
 
 
@@ -73,7 +59,7 @@ class ProductService
     public static function show($id)
     {
 
-        $product = Product::findOrFail($id);
+        $product = Product::with("item")->findOrFail($id);
         return $product;
     }
 
@@ -84,24 +70,17 @@ class ProductService
 
         $data = $request->all();
 
-        $product = Product::find($id);
-        $oldProduct = Product::where("product_name", $request->product_name);
+        $product = Product::with("item")->findOrFail($id);
 
-        if ($oldProduct->exists() && $oldProduct->first()->product_name != $product->product_name) {
-            $data["success"] = false;
-            $data["message"] = "هذا المنتج موجود بالفعل";
-
-            return $data;
-        }
 
 
         $productDiscount = 0;
         if (trim($request->product_discount) != "")
             $productDiscount = trim($request->product_discount);
 
-        $photo = $oldProduct->first()->product_photo;
+        $photo = $product->product_photo;
         if ($request->hasFile("product_photo")) {
-            Storage::disk("public")->delete($oldProduct->first()->product_photo);
+            Storage::disk("public")->delete($product->product_photo);
             $photo = $request->file("product_photo")->store("products", "public");
         }
 
@@ -110,18 +89,17 @@ class ProductService
         $data["product_discount"] = $productDiscount;
 
         $product->update($data);
+        $product["photo_path"] = asset("storage/$photo");
 
-        $data["success"] = true;
-        $data["message"] = "تم تعديل المنتج بنجاح";
-        $data["photo_path"] = asset("storage/$photo");
 
-        return $data;
+
+        return $product;
     }
 
 
     public static function destroy($id)
     {
-        $product = Product::find($id);
+        $product = Product::with("item")->findOrFail($id);
         $data["product"] = $product;
         $product->delete();
 

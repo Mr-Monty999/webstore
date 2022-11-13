@@ -144,7 +144,7 @@
                         'X-CSRF-TOKEN': "{{ csrf_token() }}"
                     },
                     method: "post",
-                    url: "{{ route('items.delete', '0') }}",
+                    url: "{{ route('items.destroy', '0') }}",
                     data: new FormData(this),
                     dataType: "json",
                     processData: false,
@@ -209,7 +209,7 @@
                         'X-CSRF-TOKEN': "{{ csrf_token() }}"
                     },
                     method: "post",
-                    url: "{{ route('items.delete.all') }}",
+                    url: "{{ route('items.destroy.all') }}",
                     data: new FormData(this),
                     dataType: "json",
                     processData: false,

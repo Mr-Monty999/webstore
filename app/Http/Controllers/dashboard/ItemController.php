@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Models\Item;
 use Illuminate\Http\Request;
 use App\Http\Requests\ItemRequest;
+use App\Http\Requests\StoreItemRequest;
+use App\Http\Requests\UpdateItemRequest;
 use App\Services\ItemService;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
@@ -41,10 +43,12 @@ class ItemController extends Controller
 
 
 
-    public function store(ItemRequest $request)
+    public function store(StoreItemRequest $request)
     {
         $data = ItemService::store($request->all());
-        return response()->json($data, 200);
+        $data["success"] = true;
+        $data["message"] = "تم الاضافة بنجاح";
+        return response()->json($data, 201);
     }
 
 
@@ -55,11 +59,12 @@ class ItemController extends Controller
     }
 
 
-    public function update(ItemRequest $request, $id)
+    public function update(UpdateItemRequest $request, $id)
     {
         $data = ItemService::update($request->all(), $id);
-
-        return response()->json($data, 200);
+        $data["success"] = true;
+        $data["message"] = "تم التعديل بنجاح";
+        return response()->json($data);
     }
 
     public function destroy(Request $request, $id)

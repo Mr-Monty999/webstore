@@ -40,7 +40,7 @@
                         'X-CSRF-TOKEN': "{{ csrf_token() }}"
                     },
                     method: "post",
-                    url: "{{ route('dashboard.feedbacks.delete', 0) }}",
+                    url: "{{ route('dashboard.feedbacks.destroy', 0) }}",
                     data: new FormData(this),
                     dataType: "json",
                     processData: false,

@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class UpdateRoleRequest extends FormRequest
+class UpdateItemRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,15 +24,7 @@ class UpdateRoleRequest extends FormRequest
     public function rules()
     {
         return [
-            "name" => "required|unique:roles,name," . $this->route("role"),
-        ];
-    }
-    public function messages()
-    {
-        return [
-            "name.required" => "الرجاء كتابة إسم الرتبة !",
-            "name.unique" => "هذه الرتبة موجود بالفعل !"
-
+            //
         ];
     }
 }

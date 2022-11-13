@@ -273,8 +273,7 @@
             let productId = $(this).parent().parent().parent().parent().find(".product-id").val(),
                 productAmount = $(this).val(),
                 productPrice = $(".product" + productId + " .product_price"),
-                // url = "{{ route('carts.update', '') }}/" + productId + "",
-                url = "{{ route('carts.update.post', '') }}/" + productId + "",
+                url = "{{ route('carts.update', '') }}/" + productId + "",
 
                 productNewPrice = parseFloat(productPrice.text().replace(/\D/g, "")) * productAmount;
 
@@ -293,6 +292,7 @@
                 data: {
                     "product_id": productId,
                     "product_amount": productAmount,
+                    "_method": "put",
                 },
                 dataType: "json",
                 //  processData: false,
@@ -409,8 +409,7 @@
 
             let productId = $(this).parent().parent().find(".product-id").val(),
                 productAmount = $(this).val(),
-                // url = "{{ route('carts.update', '') }}/" + productId + "",
-                url = "{{ route('carts.update.post', '') }}/" + productId + "",
+                url = "{{ route('carts.update', '') }}/" + productId + "",
 
                 productPrice = $(".mycart #product" + productId + " .product-price"),
                 productNewPrice = parseFloat(productPrice.val().replace(/\D/g, "")) * productAmount;
@@ -430,6 +429,8 @@
                 data: {
                     "product_id": productId,
                     "product_amount": productAmount,
+                    "_method": "put",
+
                 },
                 dataType: "json",
                 //  processData: false,

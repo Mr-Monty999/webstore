@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Models\Feedback;
+use DB;
 
 /**
  * Class FeedbackService.
@@ -56,6 +57,7 @@ class FeedbackService
     public static function deleteAll()
     {
         Feedback::truncate();
+        // DB::table("feedbacks")->delete();
         return true;
     }
 }

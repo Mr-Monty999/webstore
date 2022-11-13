@@ -76,6 +76,12 @@ class UserController extends Controller
         $data = UserService::update($request, $id);
         return response()->json($data, 200);
     }
+    public function updatePrivacy(UpdateUserRequest $request, $id)
+    {
+        $data = UserService::updatePrivacy($request, $id);
+        return response()->json($data, 200);
+    }
+
 
     /**
      * Remove the specified resource from storage.

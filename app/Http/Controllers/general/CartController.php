@@ -107,7 +107,7 @@ class CartController extends Controller
 
         return response()->json($data, 200);
     }
-    public function destroyAll(Request $request)
+    public function destroyAll()
     {
         $uid = Cookie::get("cart_uid");
         Cart::where("cart_uid", $uid)->first()->products()->detach();

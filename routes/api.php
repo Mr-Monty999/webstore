@@ -29,17 +29,22 @@ Route::group(["namespace" => "api"], function () {
 
             /// Users Routes ///
             Route::delete("users/delete-all", "UserController@destroyAll");
+            Route::put("users/{user}/privacy", "UserController@updatePrivacy");
             Route::apiResource("users", "UserController", ["as" => "api"]);
 
 
             /// Items Routes ///
+            Route::delete("items/delete-all", "ItemController@destroyAll");
             Route::apiResource("items", "ItemController", ["as" => "api"]);
 
+
             //// Products Routes ///
+            Route::delete("products/delete-all", "ProductController@destroyAll");
             Route::apiResource("products", "ProductController", ["as" => "api"]);
 
-            /// Roles Routes ///
+            /// Roles & Permissions Routes ///
             Route::delete("roles/delete-all", "RoleController@destroyAll");
+            Route::get("permissions", "PermissionController@index");
             Route::apiResource("roles", "RoleController", ["as" => "api"]);
 
 

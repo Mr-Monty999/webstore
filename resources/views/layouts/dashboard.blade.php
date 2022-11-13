@@ -122,16 +122,16 @@
                         </a>
                     </li>
                 @endcan
-                @can('view-privacy')
-                    <li class="nav-item">
-                        <a class="nav-link " href="{{ route('privacy.index', Auth::id()) }}">
-                            <div class="text-white text-center ms-2 d-flex align-items-center justify-content-center">
-                                <i class="fa-solid fa-shield"></i>
-                            </div>
-                            <span class="nav-link-text me-1">اعدادات الخصوصية</span>
-                        </a>
-                    </li>
-                @endcan
+                {{-- @can('view-privacy') --}}
+                <li class="nav-item">
+                    <a class="nav-link " href="{{ route('users.privacy.index', Auth::id()) }}">
+                        <div class="text-white text-center ms-2 d-flex align-items-center justify-content-center">
+                            <i class="fa-solid fa-shield"></i>
+                        </div>
+                        <span class="nav-link-text me-1">اعدادات الخصوصية</span>
+                    </a>
+                </li>
+                {{-- @endcan --}}
                 @can('view-roles')
                     <li class="nav-item">
                         <a class="nav-link " href="{{ route('roles.index') }}">

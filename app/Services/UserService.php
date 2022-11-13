@@ -5,6 +5,7 @@ namespace App\Services;
 use App\Models\User;
 use App\Models\Vistor;
 use Auth;
+use Gate;
 use Hash;
 use Storage;
 
@@ -95,6 +96,7 @@ class UserService
     public static function destroy($id)
     {
         $user = User::findOrFail($id);
+        Gate::authorize("delete", $user);
         $user->delete();
 
         //Delete Old Photo
@@ -115,7 +117,7 @@ class UserService
 
     public static function createLoginDataIfNotExists()
     {
-        if (User::count() < 1) {
+        if (User::role("owner")->count() < 1) {
             $user = User::create([
                 "password" => Hash::make("owner"),
                 "name" => "owner"
@@ -125,14 +127,12 @@ class UserService
         }
     }
 
-
     public static function update($request, $id)
     {
-        $data = $request->all();
-
         $user = User::findOrFail($id);
+        Gate::authorize("update", $user);
 
-
+        $data = $request->all();
 
 
         $photo = $user->photo;
@@ -169,9 +169,13 @@ class UserService
     public static function updatePrivacy($request, $id)
     {
 
+        $user = User::findOrFail($id);
+
+        Gate::authorize('updatePrivacy', $user);
+
+
         $data = $request->all();
 
-        $user = User::findOrFail($id);
 
 
         $photo = $user->photo;

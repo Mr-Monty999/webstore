@@ -146,12 +146,7 @@ class CreatePermissionTables extends Migration
             PermissionService::store($perm, "web");
             // PermissionService::store($perm, "sanctum");
         }
-        $role->syncPermissions($permissions->except([
-            "view-users",
-            "create-users",
-            "edit-users",
-            "delete-users",
-        ]));
+        $role->syncPermissions($permissions);
     }
 
     /**

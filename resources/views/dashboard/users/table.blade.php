@@ -30,7 +30,7 @@
                               $i = 0;
                           @endphp
                           @foreach ($users as $user)
-                              @if ($user->id != Auth::id())
+                              @if (!$user->hasRole('owner'))
                                   <tr>
                                       <td>
                                           <p class="text-dark text-center">{{ ++$i }}</p>
