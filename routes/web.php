@@ -108,6 +108,7 @@ Route::group(["prefix" => "wbc", "middleware" => "auth", "namespace" => "dashboa
 
 
     //Setting Routes
-    Route::get("/settings", "SettingController@index")->name("settings.index");
-    Route::put("/settings/update/", "SettingController@update")->name("settings.update");
+    // Route::get("/settings", "SettingController@index")->name("settings.index");
+    // Route::post("/settings/store", "SettingController@store")->name("settings.store");
+    Route::resource("settings", "SettingController");
 });

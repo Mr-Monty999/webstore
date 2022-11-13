@@ -21,13 +21,32 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::group(["namespace" => "api"], function () {
-    Route::post("/users/login", "UserController@login");
+    Route::post("users/login", "UserController@login");
 
-    Route::group(["middleware" => "auth:sanctum"], function () {
-        Route::apiResource("users", "UserController", ["as" => "api"]);
-        Route::apiResource("items", "ItemController", ["as" => "api"]);
-        Route::apiResource("products", "ProductController", ["as" => "api"]);
-        Route::apiResource("roles", "RoleController", ["as" => "api"]);
-        Route::apiResource("settings", "SettingController", ["as" => "api"]);
-    });
+    Route::group(
+        ["middleware" => "auth:sanctum"],
+        function () {
+
+            /// Users Routes ///
+            Route::delete("users/delete-all", "UserController@destroyAll");
+            Route::apiResource("users", "UserController", ["as" => "api"]);
+
+
+            /// Items Routes ///
+            Route::apiResource("items", "ItemController", ["as" => "api"]);
+
+            //// Products Routes ///
+            Route::apiResource("products", "ProductController", ["as" => "api"]);
+
+            /// Roles Routes ///
+            Route::delete("roles/delete-all", "RoleController@destroyAll");
+            Route::apiResource("roles", "RoleController", ["as" => "api"]);
+
+
+            /// Settings Routes ///
+            Route::delete("settings/delete-all", "SettingController@destroyAll");
+            Route::get("settings/last", "SettingController@showLastSetting");
+            Route::apiResource("settings", "SettingController", ["as" => "api"]);
+        }
+    );
 });

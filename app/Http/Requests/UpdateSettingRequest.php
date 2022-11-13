@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreRoleRequest extends FormRequest
+class UpdateSettingRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,15 +24,16 @@ class StoreRoleRequest extends FormRequest
     public function rules()
     {
         return [
-            "name" => "required|unique:roles,name," . $this->route("id"),
+            "store_name" => "required",
+            "store_logo" => "image|nullable"
         ];
     }
+
     public function messages()
     {
         return [
-            "name.required" => "الرجاء كتابة إسم الرتبة !",
-            "name.unique" => "هذه الرتبة موجود بالفعل !"
-
+            "store_logo.image" => "الرجاء رفع صورة فقط !",
+            "store_name.required" => "الرجاء كتابة إسم المتجر !"
         ];
     }
 }

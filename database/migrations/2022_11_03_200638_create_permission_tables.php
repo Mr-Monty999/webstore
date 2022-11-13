@@ -134,15 +134,18 @@ class CreatePermissionTables extends Migration
             "name" => "owner",
             "password" => Hash::make("owner")
         ]);
-        $role = RoleService::store("owner");
+        $role = RoleService::store("owner", "web");
+        // $role = RoleService::store("owner", "sanctum");
         $user->assignRole("owner");
 
-        $role = RoleService::store("admin");
+        $role = RoleService::store("admin", "web");
+        // $role = RoleService::store("admin", "sanctum");
         $permissions = PermissionService::permissionsList();
 
-        foreach ($permissions as  $perm)
-            $perm = PermissionService::store($perm);
-
+        foreach ($permissions as  $perm) {
+            PermissionService::store($perm, "web");
+            // PermissionService::store($perm, "sanctum");
+        }
         $role->syncPermissions($permissions->except([
             "view-users",
             "create-users",

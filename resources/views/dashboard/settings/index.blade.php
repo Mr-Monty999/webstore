@@ -5,7 +5,6 @@
         <h1>اعدادت الموقع</h1>
         <form id="settings" action="" enctype="multipart/form-data" method="POST">
             @csrf
-            @method('PUT')
             <div class="input-group input-group-outline my-3 bg-white is-filled focus is-focused">
                 <label class="form-label">اسم المتجر</label>
                 <input type="text" name="store_name" value="{{ $setting->store_name }}" class="form-control">
@@ -75,7 +74,7 @@
                     'X-CSRF-TOKEN': "{{ csrf_token() }}"
                 },
                 method: "post",
-                url: "{{ route('settings.update') }}",
+                url: "{{ route('settings.store') }}",
                 data: new FormData(this),
                 dataType: "json",
                 processData: false,

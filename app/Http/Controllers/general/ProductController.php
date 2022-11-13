@@ -19,8 +19,7 @@ class ProductController extends Controller
         $item = ItemService::show($itemId);
         $products = $item->products()->with("item")->paginate(6)->onEachSide(0);
 
-        SettingService::createSettingsIfNotExists();
-        $setting = Setting::first();
+        $setting = Setting::latest()->firstOrNew();
 
         return view("general.products", ["products" => $products, "setting" => $setting, "item" => $item]);
     }
@@ -30,10 +29,9 @@ class ProductController extends Controller
         $item = ItemService::show($itemId);
         $products = $item->products()->with("item")->paginate(6, ['*'], 'page', $pageNumber)->onEachSide(0)->withPath(route('products.view', $itemId));
 
-        SettingService::createSettingsIfNotExists();
 
 
-        $setting = Setting::first();
+        $setting = Setting::latest()->firstOrNew();
 
         return view("general.sub-products", ["products" => $products, "setting" => $setting, "item" => $item]);
     }
@@ -43,9 +41,8 @@ class ProductController extends Controller
 
         $search = $request->search;
         $products  = Product::where("product_name", "like", "%$search%")->with("item")->paginate(6, ['*'], 'page', $pageNumber)->onEachSide(0);
-        SettingService::createSettingsIfNotExists();
 
-        $setting = Setting::first();
+        $setting = Setting::latest()->firstOrNew();
 
         return view("general.search", ["products" => $products, "setting" => $setting, "searched" => $search]);
     }

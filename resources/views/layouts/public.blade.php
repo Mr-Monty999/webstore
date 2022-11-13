@@ -16,10 +16,8 @@
     
     $navItems = Item::all();
     
-    $store = null;
-    if (Setting::count() > 0) {
-        $store = Setting::first();
-    }
+    $store = Setting::latest()->firstOrNew();
+    
 @endphp
 
 <head>

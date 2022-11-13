@@ -20,11 +20,7 @@
     use App\Models\Setting;
     use App\Services\CheckService;
     
-    $store = null;
-    if (Setting::count() < 1) {
-        Setting::create([]);
-    }
-    $store = Setting::first();
+    $store = Setting::latest()->firstOrNew();
     
 @endphp
 

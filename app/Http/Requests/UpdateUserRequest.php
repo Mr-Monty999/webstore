@@ -25,7 +25,7 @@ class UpdateUserRequest extends FormRequest
     public function rules()
     {
         return [
-            "name" => "required|unique:users,name," . $this->id,
+            "name" => "required|unique:users,name," . $this->route("id"),
             "photo" => "image|nullable"
         ];
     }

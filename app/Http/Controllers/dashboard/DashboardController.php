@@ -70,6 +70,6 @@ class DashboardController extends Controller
 
         $data["success"] = false;
         $data["message"] = "الرجاء التحقق من البيانات !";
-        return response()->json($data, 200);
+        return response()->json($data, 400);
     }
 }

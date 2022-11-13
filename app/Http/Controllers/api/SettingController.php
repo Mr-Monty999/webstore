@@ -3,6 +3,11 @@
 namespace App\Http\Controllers\api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreSettingRequest;
+use App\Http\Requests\UpdateSettingRequest;
+use App\Models\Feedback;
+use App\Models\Setting;
+use App\Services\SettingService;
 use Illuminate\Http\Request;
 
 class SettingController extends Controller
@@ -12,9 +17,20 @@ class SettingController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct()
+    {
+
+
+        $this->middleware("permission:view-settings")->only(["index", "show", "table"]);
+        $this->middleware("permission:create-settings")->only(["create", "store"]);
+        $this->middleware("permission:edit-settings")->only(["edit", "update"]);
+        $this->middleware("permission:delete-settings")->only(["destroy", "destroyAll"]);
+    }
     public function index()
     {
-        //
+
+        $settings = SettingService::getAllSettings();
+        return response()->json($settings);
     }
 
     /**
@@ -23,9 +39,12 @@ class SettingController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreSettingRequest $request)
     {
-        //
+
+        $data = SettingService::store($request);
+
+        return response()->json($data, 201);
     }
 
     /**
@@ -36,7 +55,13 @@ class SettingController extends Controller
      */
     public function show($id)
     {
-        //
+        $setting = SettingService::show($id);
+        return response()->json($setting);
+    }
+    public function showLastSetting()
+    {
+        $setting = SettingService::getLastSetting();
+        return response()->json($setting);
     }
 
     /**
@@ -46,9 +71,10 @@ class SettingController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateSettingRequest $request, $id)
     {
-        //
+        $setting = SettingService::update($request, $id);
+        return response()->json($setting);
     }
 
     /**
@@ -59,6 +85,13 @@ class SettingController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $setting = SettingService::destroy($id);
+        return response()->json($setting);
+    }
+    public static function destroyAll()
+    {
+
+        $settings = SettingService::destroyAll();
+        return response()->json($settings);
     }
 }

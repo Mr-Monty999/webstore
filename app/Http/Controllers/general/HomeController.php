@@ -17,9 +17,7 @@ class HomeController extends Controller
 
 
 
-        SettingService::createSettingsIfNotExists();
-
-        $setting = Setting::first();
+        $setting = Setting::latest()->firstOrNew();
         return view("general.home", ["setting" => $setting]);
     }
 }

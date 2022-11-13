@@ -40,7 +40,7 @@ class UserService
 
     public static function userExists($name)
     {
-        $userExists =  User::where("name", "=", $name)->exists();
+        $userExists = User::where("name", "=", $name)->exists();
         return $userExists;
     }
 
@@ -71,7 +71,8 @@ class UserService
             } else
                 $user->syncRoles($request->roles);
         }
-        $user["photo_path"] = asset("storage/$photo");
+        if (isset($photo))
+            $user["photo_path"] = asset("storage/$photo");
 
 
         $user->getAllPermissions();
@@ -94,7 +95,6 @@ class UserService
     public static function destroy($id)
     {
         $user = User::findOrFail($id);
-        $data["user"] = $user;
         $user->delete();
 
         //Delete Old Photo
@@ -105,7 +105,7 @@ class UserService
 
     public static function destroyAll()
     {
-        $users =  User::where("id", "!=", Auth::id());
+        $users = User::where("id", "!=", Auth::id());
         //Delete All Photos
         Storage::disk("public")->delete($users->pluck("photo")->toArray());
         $users->delete();
@@ -115,14 +115,14 @@ class UserService
 
     public static function createLoginDataIfNotExists()
     {
-
-        $data = null;
         if (User::count() < 1) {
-            $data["password"] = Hash::make("owner");
-            $data["name"] = "owner";
-            $data = User::create($data);
+            $user = User::create([
+                "password" => Hash::make("owner"),
+                "name" => "owner"
+            ]);
+            $user->assignRole("owner");
+            return $user;
         }
-        return $data;
     }
 
 
@@ -130,7 +130,7 @@ class UserService
     {
         $data = $request->all();
 
-        $user = User::find($id);
+        $user = User::findOrFail($id);
 
 
 
@@ -161,8 +161,8 @@ class UserService
 
         $user->getAllPermissions();
 
-
-        $user["photo_path"] = asset("storage/$photo");
+        if (isset($photo))
+            $user["photo_path"] = asset("storage/$photo");
 
         return $user;
     }
@@ -171,7 +171,7 @@ class UserService
 
         $data = $request->all();
 
-        $user = User::find($id);
+        $user = User::findOrFail($id);
 
 
         $photo = $user->photo;

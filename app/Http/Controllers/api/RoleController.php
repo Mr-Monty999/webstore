@@ -3,6 +3,9 @@
 namespace App\Http\Controllers\api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreRoleRequest;
+use App\Http\Requests\UpdateRoleRequest;
+use App\Services\RoleService;
 use Illuminate\Http\Request;
 
 class RoleController extends Controller
@@ -14,7 +17,9 @@ class RoleController extends Controller
      */
     public function index()
     {
-        //
+
+        $roles = RoleService::getAllRoles();
+        return response()->json($roles);
     }
 
     /**
@@ -23,9 +28,14 @@ class RoleController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreRoleRequest $request)
     {
-        //
+        $role = RoleService::store($request->name);
+        if (isset($request->permissions)) {
+            $permissions = $request->permissions;
+            $role->syncPermissions($permissions);
+        }
+        return response()->json($role, 201);
     }
 
     /**
@@ -36,7 +46,9 @@ class RoleController extends Controller
      */
     public function show($id)
     {
-        //
+
+        $role = RoleService::show($id);
+        return response()->json($role);
     }
 
     /**
@@ -46,9 +58,15 @@ class RoleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateRoleRequest $request, $id)
     {
-        //
+
+        $role = RoleService::update($request->all(), $id);
+        if (isset($request->permissions)) {
+            $permissions = $request->permissions;
+            $role->syncPermissions($permissions);
+        }
+        return response()->json($role, 201);
     }
 
     /**
@@ -59,6 +77,13 @@ class RoleController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $role = RoleService::delete($id);
+        return response()->json($role);
+    }
+
+    public function destroyAll()
+    {
+        $role = RoleService::destroyAll();
+        return response()->json($role);
     }
 }

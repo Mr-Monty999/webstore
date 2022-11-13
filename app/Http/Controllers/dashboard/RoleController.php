@@ -9,6 +9,7 @@ use App\Models\Item;
 use App\Services\PermissionService;
 use App\Services\RoleService;
 use Illuminate\Http\Request;
+use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
 
 class RoleController extends Controller
@@ -52,10 +53,6 @@ class RoleController extends Controller
      */
     public function store(StoreRoleRequest $request)
     {
-        $exists = RoleService::exists($request->name);
-        if ($exists)
-            return response()->json(null, 409);
-
 
         $role = RoleService::store($request->name);
         $permissions = explode(',', $request->permissions);

@@ -13,26 +13,21 @@ class RoleService
 
     public static function getAllRoles()
     {
-        $roles = Role::latest()->paginate(5)->onEachSide(0);
+        $roles = Role::latest()->paginate(5);
 
         return $roles;
     }
-    public static function store($permission)
+    public static function store($roleName, $guardName = null)
     {
 
-        $role =   Role::create(["name" => $permission]);
+        $role =   Role::create(["name" => $roleName, "guard_name" => $guardName]);
         return $role;
     }
     public static function update($data, $id)
     {
-        $role = Role::findOrFail($id);
+        $role = Role::with("permissions")->findOrFail($id);
         $role->update($data);
         return $role;
-    }
-    public static function exists($name)
-    {
-        $exists = Role::where("name", $name)->exists();
-        return $exists;
     }
     public static function table($pageNumber)
     {
@@ -52,12 +47,6 @@ class RoleService
         $role = Role::findOrFail($id);
         $role->delete();
         return $role;
-    }
-    public static function getRolePermissions($id)
-    {
-
-        $permissions =   Role::findOrFail($id)->permissions;
-        return $permissions;
     }
 
     public static function destroyAll()

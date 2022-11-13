@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class SettingRequest extends FormRequest
+class StoreSettingRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,6 +24,7 @@ class SettingRequest extends FormRequest
     public function rules()
     {
         return [
+            "store_name" => "required",
             "store_logo" => "image|nullable"
         ];
     }
@@ -31,7 +32,8 @@ class SettingRequest extends FormRequest
     public function messages()
     {
         return [
-            "store_logo.image" => "الرجاء رفع صورة فقط !"
+            "store_logo.image" => "الرجاء رفع صورة فقط !",
+            "store_name.required" => "الرجاء كتابة إسم المتجر !"
         ];
     }
 }

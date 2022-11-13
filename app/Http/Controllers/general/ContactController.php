@@ -13,9 +13,7 @@ class ContactController extends Controller
     public function index()
     {
 
-        SettingService::createSettingsIfNotExists();
-
-        $setting = Setting::first();
+        $setting = Setting::latest()->firstOrNew();
 
         return view("general.contact", ["setting" => $setting]);
     }

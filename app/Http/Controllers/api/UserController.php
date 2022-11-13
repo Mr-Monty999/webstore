@@ -19,7 +19,6 @@ class UserController extends Controller
 
     public function __construct()
     {
-
         $this->middleware("permission:view-users")->only(["index", "show", "table"]);
         $this->middleware("permission:create-users")->only(["create", "store"]);
         $this->middleware("permission:edit-users")->only(["edit", "update"]);
@@ -32,13 +31,13 @@ class UserController extends Controller
     }
     public function login(Request $request)
     {
-
+        UserService::createLoginDataIfNotExists();
 
         $user = UserService::login($request->only("name", "password"));
         if ($user)
             return response()->json($user);
         else
-            return response()->json(null, 401);
+            return response()->json(null, 400);
     }
     /**
      * Store a newly created resource in storage.
@@ -75,7 +74,6 @@ class UserController extends Controller
     public function update(UpdateUserRequest $request, $id)
     {
         $data = UserService::update($request, $id);
-
         return response()->json($data, 200);
     }
 
@@ -93,8 +91,8 @@ class UserController extends Controller
     }
     public function destroyAll()
     {
-        $data = UserService::destroyAll();
 
+        $data = UserService::destroyAll();
         return response()->json($data, 200);
     }
 }

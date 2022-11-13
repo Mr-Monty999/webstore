@@ -12,9 +12,9 @@ use Spatie\Permission\Models\Role;
 class PermissionService
 {
 
-    public static function store($permission)
+    public static function store($permission, $guard = null)
     {
-        $permission =  Permission::create(["name" => $permission]);
+        $permission =  Permission::create(["name" => $permission, "guard_name" => $guard]);
         return $permission;
     }
     public static function getAllPermissions()
