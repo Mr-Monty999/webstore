@@ -23,6 +23,13 @@ use Illuminate\Support\Facades\Route;
 Route::group(["namespace" => "api"], function () {
     Route::post("users/login", "UserController@login");
 
+
+    /// Cart Routes ///
+    Route::post("carts/intial", "CartController@intialCart");
+    Route::delete("carts/{cart}/products", "CartController@destroyAll");
+    Route::apiResource("carts.products", "CartController", ["as" => "api"]);
+
+
     /// Feedback Routes ///
     Route::delete("feedbacks/delete-all", "FeedbackController@destroyAll");
     Route::apiResource("feedbacks", "FeedbackController", ["as" => "api"]);
@@ -30,8 +37,6 @@ Route::group(["namespace" => "api"], function () {
     Route::group(
         ["middleware" => "auth:sanctum"],
         function () {
-
-
 
             /// Users Routes ///
             Route::delete("users/delete-all", "UserController@destroyAll");

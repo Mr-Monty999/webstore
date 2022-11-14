@@ -23,7 +23,7 @@ class Kernel extends HttpKernel
         \Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull::class,
         \App\Http\Middleware\vistors::class,
         \Fruitcake\Cors\HandleCors::class,
-        // \App\Http\Middleware\CartMiddleware::class
+        \App\Http\Middleware\CartMiddleware::class
     ];
 
     /**

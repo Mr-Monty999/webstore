@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\general;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreProductCartRequest;
+use App\Http\Requests\UpdateProductCartRequest;
 use App\Models\Cart;
 use App\Models\Product;
 use App\Services\CartService;
@@ -20,17 +22,9 @@ class CartController extends Controller
      */
     public function index()
     {
-        //
-    }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+        $products = CartService::showCartProducts(Cookie::get("cart_uid"));
+        return response()->json($products);
     }
 
     /**
@@ -39,14 +33,18 @@ class CartController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function intialCart(Request $request)
     {
-        CartService::store($request);
-        $data = [
-            "success" => true,
-            "message" => "تم الاضافة بنجاح"
-        ];
-        return response()->json($data, 200);
+
+        $cart = CartService::intialCart();
+        return response()->json($cart, 201);
+    }
+    public function store(StoreProductCartRequest $request)
+    {
+
+        $cart =  CartService::storeProduct($request->product_id, Cookie::get("cart_uid"));
+
+        return response()->json($cart, 201);
     }
 
     /**
@@ -55,20 +53,11 @@ class CartController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($cartUid)
     {
-        //
-    }
+        // $cart =  CartService::show($cartUid, $productId);
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
+        // return response()->json($cart);
     }
 
     /**
@@ -78,16 +67,11 @@ class CartController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateProductCartRequest $request, $productId)
     {
-        CartService::update($request, $id);
+        $cart =  CartService::update(Cookie::get("cart_uid"), $productId, $request->all());
 
-        $data = [
-            "success" => true,
-            "message" => "تم التعديل بنجاح",
-            "data" => $request->all()
-        ];
-        return response()->json($data, 200);
+        return response()->json($cart);
     }
 
     /**
@@ -96,27 +80,16 @@ class CartController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Request $request, $id)
+    public function destroy(Request $request, $productId)
     {
-        CartService::destroy($request, $id);
-        $data = [
-            "success" => true,
-            "message" => "تم الحذف بنجاح",
-            "product" => $request->all()
-        ];
+        $cart =  CartService::destroy(Cookie::get("cart_uid"), $request->product_id);
 
-        return response()->json($data, 200);
+        return response()->json($cart);
     }
     public function destroyAll()
     {
-        $uid = Cookie::get("cart_uid");
-        Cart::where("cart_uid", $uid)->first()->products()->detach();
+        $cart =  CartService::destroyAll(Cookie::get("cart_uid"));
 
-        $data = [
-            "success" => true,
-            "message" => "تم الحذف بنجاح",
-        ];
-
-        return response()->json($data, 200);
+        return response()->json($cart);
     }
 }

@@ -15,28 +15,56 @@ class CartService
 
 
 
-    public static function store($data)
+    public static function storeProduct($productId, $cartUid)
     {
-        $uid = Cookie::get("cart_uid");
 
-        Cart::where("cart_uid", $uid)->first()->products()->syncWithoutDetaching($data["product_id"]);
+        $cart = Cart::where("cart_uid", $cartUid)->firstOrFail()->products()->syncWithoutDetaching($productId);
 
+
+        return $cart;
+    }
+    public static function intialCart()
+    {
+
+        $uid = uniqid("cart_");
+
+        $cart = Cart::firstOrCreate(["cart_uid" => $uid]);
+
+
+        return $cart;
+    }
+    public static function intialCookieCart()
+    {
+        $uid = uniqid("cart_");
+
+        if (!Cookie::has("cart_uid")) {
+            Cookie::queue("cart_uid", $uid, 99999999, "/");
+
+
+            Cart::create(["cart_uid" => $uid]);
+        } else {
+            $uid = Cookie::get("cart_uid");
+            Cart::firstOrCreate(["cart_uid" => $uid]);
+        }
 
         return $uid;
     }
-
-
-    public static function update($request, $id)
+    public static function showCartProducts($cartUid)
     {
-        Validator::validate($request->all(), [
-            'product_amount' => 'numeric'
-        ]);
+        $products = Cart::where("cart_uid", $cartUid)->firstOrFail()->products()->get();
+        return $products;
+    }
+    public static function show($cartUid, $productId)
+    {
+        $product = Cart::where("cart_uid", $cartUid)->firstOrFail()->products()->wherePivot("product_id", $productId)->firstOrFail();
+        return $product;
+    }
+    public static function update($cartUid, $productId, $data)
+    {
 
+        $data =  Cart::where("cart_uid", $cartUid)->firstOrFail()->products()->syncWithoutDetaching([$productId => ["product_amount" => $data["product_amount"]]]);
 
-        $uid = Cookie::get("cart_uid");
-        Cart::where("cart_uid", $uid)->first()->products()->syncWithoutDetaching([$request->product_id => ["product_amount" => $request->product_amount]]);
-
-        return $uid;
+        return $data;
     }
 
     /**
@@ -45,21 +73,17 @@ class CartService
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public static function destroy($data, $id)
+    public static function destroy($uid, $productId)
     {
-        $uid = Cookie::get("cart_uid");
-        Cart::where("cart_uid", $uid)->first()->products()->detach($data["product_id"]);
+        $data = Cart::where("cart_uid", $uid)->firstOrFail()->products()->detach($productId);
 
 
-        return $uid;
+        return $data;
     }
-    public static function destroyAll(Request $request)
+    public static function destroyAll($uid)
     {
+        $data = Cart::where("cart_uid", $uid)->firstOrFail()->products()->detach();
 
-        $uid = Cookie::get("cart_uid");
-        Cart::where("cart_uid", $uid)->first()->products()->detach();
-
-
-        return  true;
+        return  $data;
     }
 }

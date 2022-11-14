@@ -35,9 +35,8 @@ Route::group(["namespace" => "general"], function () {
     // });
 
     ///Cart Routes
-    Route::resource("carts", "CartController");
-    // Route::post("carts/update-cart-post/{id}", "CartController@update")->name("carts.update.post");
     Route::post("carts/delete-all-products", "CartController@destroyAll")->name("carts.destroy.all");
+    Route::apiResource("carts", "CartController");
 });
 
 Route::group(["middleware" => "guest"], function () {
@@ -54,11 +53,9 @@ Route::group(["prefix" => "wbc", "middleware" => "auth", "namespace" => "dashboa
 
 
     ///Feedback Routes
-    Route::get("feedbacks", "FeedbackController@index")->name("dashboard.feedbacks.index");
-    Route::get("feedbacks/show/{id}", "FeedbackController@show")->name("dashboard.feedbacks.show");
     Route::delete("feedbacks/delete-all", "FeedbackController@destroyAll")->name("dashboard.feedbacks.destroy.all");
-    Route::delete("feedbacks/delete/{id}", "FeedbackController@destroy")->name("dashboard.feedbacks.destroy");
     Route::get("feedbacks-table/{pageNumber}", "FeedbackController@table")->name("dashboard.feedbacks.table");
+    Route::resource("feedbacks", "FeedbackController", ["as" => "dashboard"]);
 
 
     ///Items Routes
