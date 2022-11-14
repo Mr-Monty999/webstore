@@ -15,7 +15,9 @@ class ItemService
     public static function getAllItems()
     {
 
-        $items = Item::paginate(5);
+        $items = Item::with(["products" => function ($q) {
+            $q->paginate(5);
+        }])->paginate(5);
         return $items;
     }
 
@@ -50,7 +52,9 @@ class ItemService
 
     public static function show($id)
     {
-        $item = Item::findOrFail($id);
+        $item = Item::with(["products" => function ($q) {
+            $q->paginate(5);
+        }])->findOrFail($id);
         return $item;
     }
 

@@ -6,10 +6,15 @@ use App\Http\Controllers\Controller;
 use App\Services\PermissionService;
 use Illuminate\Http\Request;
 
+
+/**
+ * @group permissions
+ * @authenticated
+ */
 class PermissionController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Display all the system permissions.
      *
      * @return \Illuminate\Http\Response
      */

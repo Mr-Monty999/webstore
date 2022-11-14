@@ -53,11 +53,11 @@ class CartController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($cartUid)
+    public function show($cartId, $productId)
     {
-        // $cart =  CartService::show($cartUid, $productId);
+        $cart =  CartService::show($cartId, $productId);
 
-        // return response()->json($cart);
+        return response()->json($cart);
     }
 
     /**

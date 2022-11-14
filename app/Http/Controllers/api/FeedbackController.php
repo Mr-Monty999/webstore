@@ -8,14 +8,13 @@ use App\Http\Requests\StoreFeedbackRequest;
 use App\Services\FeedbackService;
 use Illuminate\Http\Request;
 
+/**
+ * @group feedbacks
+ * @authenticated
+ */
+
 class FeedbackController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-
     public function __construct()
     {
 
@@ -24,6 +23,13 @@ class FeedbackController extends Controller
         $this->middleware("auth:sanctum")->except("store");
     }
 
+
+    /**
+     * Display All Feedbacks (paginated)
+     *
+     * @return \Illuminate\Http\Response
+     */
+
     public function index()
     {
         $feedbacks = FeedbackService::getAllFeedbacks();
@@ -31,10 +37,9 @@ class FeedbackController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Store a newly created feedback in database.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @unauthenticated
      */
     public function store(StoreApiFeedbackRequest $request)
     {
@@ -43,7 +48,7 @@ class FeedbackController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Display the specified feedback.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
@@ -56,8 +61,8 @@ class FeedbackController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
-     *
+     * Update the specified feedback in database.
+     * Not working for now!
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
@@ -68,7 +73,7 @@ class FeedbackController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Remove the specified feedback from database.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
@@ -79,6 +84,12 @@ class FeedbackController extends Controller
         return response()->json($data);
     }
 
+    /**
+     * Remove the all feedbacks from database.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
 
     public function destroyAll()
     {

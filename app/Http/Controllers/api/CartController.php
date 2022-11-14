@@ -10,24 +10,28 @@ use App\Services\CartService;
 use Cookie;
 use Illuminate\Http\Request;
 
+/**
+ * @group carts
+ * @unauthenticated
+ */
 class CartController extends Controller
 {
     /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
+     * Get Cart Products
+     * @urlParam cart_id string required The ID of the cart.
+     * @return
      */
-    public function index($cartUid)
+
+    public function index($cartId)
     {
-        $products = CartService::showCartProducts($cartUid);
+        $products = CartService::showCartProducts($cartId);
         return response()->json($products);
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Inital New Cart
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
      */
     public function intialCart(Request $request)
     {
@@ -35,56 +39,63 @@ class CartController extends Controller
         $cart = CartService::intialCart();
         return response()->json($cart, 201);
     }
-    public function store(StoreProductCartRequest $request, $cartUid)
-    {
 
-        $cart =  CartService::storeProduct($request->product_id, $cartUid);
+    /**
+     * Store Products in Cart
+     *@urlParam cart string required The ID of the cart.
+     * @param  \Illuminate\Http\Request  $request
+     */
+    public function store(StoreProductCartRequest $request, $cartId)
+    {
+        $cart =  CartService::storeProduct($request->product_id, $cartId);
 
         return response()->json($cart, 201);
     }
 
     /**
-     * Display the specified resource.
-     *
+     * Show specified Product in Cart
+     *@urlParam cart_id string required The ID of the cart.
      * @param  int  $id
-     * @return \Illuminate\Http\Response
      */
-    public function show($cartUid, $productId)
+    public function show($cartId, $productId)
     {
-        $cart =  CartService::show($cartUid, $productId);
+        $cart =  CartService::show($cartId, $productId);
 
         return response()->json($cart);
     }
 
     /**
-     * Update the specified resource in storage.
-     *
+     * Update specified product in the cart
+     *@urlParam cart_id string required The ID of the cart.
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
-     * @return \Illuminate\Http\Response
      */
-    public function update(UpdateProductCartRequest $request, $cartUid, $productId)
+    public function update(UpdateProductCartRequest $request, $cartId, $productId)
     {
-        $cart =  CartService::update($cartUid, $productId, $request->all());
+        $cart =  CartService::update($cartId, $productId, $request->all());
 
         return response()->json($cart);
     }
 
     /**
-     * Remove the specified resource from storage.
-     *
+     * Remove the specified product from cart
+     *@urlParam cart_id string required The ID of the cart.
      * @param  int  $id
-     * @return \Illuminate\Http\Response
      */
-    public function destroy($cartUid, $productId)
+    public function destroy($cartId, $productId)
     {
-        $cart =  CartService::destroy($cartUid, $productId);
+        $cart =  CartService::destroy($cartId, $productId);
 
         return response()->json($cart);
     }
-    public function destroyAll($cartUid)
+    /**
+     * Remove All Products From Cart
+     *@urlParam cart string required The ID of the cart.
+     * @param  int  $id
+     */
+    public function destroyAll($cartId)
     {
-        $cart =  CartService::destroyAll($cartUid);
+        $cart =  CartService::destroyAll($cartId);
 
         return response()->json($cart);
     }

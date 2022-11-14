@@ -11,6 +11,6 @@ trait GetService
     public static function getCartProducts($cartId)
     {
 
-        return Cart::where('cart_uid', $cartId)->first()->products;
+        return Cart::findOrFail($cartId)->products;
     }
 }

@@ -8,13 +8,13 @@ use App\Http\Requests\UpdateProductRequest;
 use App\Services\ProductService;
 use Illuminate\Http\Request;
 
+/**
+ * @group products
+ * @authenticated
+ */
 class ProductController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function __construct()
     {
 
@@ -23,6 +23,11 @@ class ProductController extends Controller
         $this->middleware("permission:edit-products")->only(["edit", "update"]);
         $this->middleware("permission:delete-products")->only("destroy", "destroyAll");
     }
+    /**
+     * Display all the products (paginated) with their item .
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function index()
     {
 
@@ -31,7 +36,7 @@ class ProductController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Store a newly created product in database.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
@@ -44,7 +49,7 @@ class ProductController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Display the specified product with it item.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
@@ -56,7 +61,7 @@ class ProductController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Update the specified product in database.
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
@@ -69,7 +74,7 @@ class ProductController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Remove the specified product from database.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
@@ -79,6 +84,13 @@ class ProductController extends Controller
         $product = ProductService::destroy($id);
         return response()->json($product);
     }
+
+    /**
+     * Remove all the products from database.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
     public function destroyAll()
     {
         $product = ProductService::destroyAll();

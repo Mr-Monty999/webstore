@@ -8,13 +8,14 @@ use App\Http\Requests\UpdateItemRequest;
 use App\Services\ItemService;
 use Illuminate\Http\Request;
 
+/**
+ * @group items
+ * @authenticated
+ */
 class ItemController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
+
     public function __construct()
     {
 
@@ -23,6 +24,11 @@ class ItemController extends Controller
         $this->middleware("permission:edit-items")->only(["edit", "update"]);
         $this->middleware("permission:delete-items")->only("destroy", "destroyAll");
     }
+    /**
+     * Display all items (paginated) with their products (paginated).
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function index()
     {
 
@@ -31,7 +37,7 @@ class ItemController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Store a newly created item in database.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
@@ -43,7 +49,7 @@ class ItemController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Display the specified item with it products (paginated).
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
@@ -55,7 +61,7 @@ class ItemController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Update the specified item in database.
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
@@ -68,7 +74,7 @@ class ItemController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Remove the specified item from database.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
@@ -78,7 +84,12 @@ class ItemController extends Controller
         $item = ItemService::destroy($id);
         return response()->json($item);
     }
-
+    /**
+     * Remove the all items from database.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
     public function destroyAll()
     {
         $data = ItemService::destroyAll();

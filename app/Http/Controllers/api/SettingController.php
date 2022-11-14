@@ -10,13 +10,13 @@ use App\Models\Setting;
 use App\Services\SettingService;
 use Illuminate\Http\Request;
 
+/**
+ * @group settings
+ * @authenticated
+ */
 class SettingController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function __construct()
     {
 
@@ -26,6 +26,12 @@ class SettingController extends Controller
         $this->middleware("permission:edit-settings")->only(["edit", "update"]);
         $this->middleware("permission:delete-settings")->only(["destroy", "destroyAll"]);
     }
+
+    /**
+     * Display all settings of the site.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function index()
     {
 
@@ -34,7 +40,7 @@ class SettingController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Store a newly created setting in database.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
@@ -48,7 +54,7 @@ class SettingController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Display the specified setting.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
@@ -58,6 +64,12 @@ class SettingController extends Controller
         $setting = SettingService::show($id);
         return response()->json($setting);
     }
+    /**
+     * Display the last created setting.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
     public function showLastSetting()
     {
         $setting = SettingService::getLastSetting();
@@ -65,7 +77,7 @@ class SettingController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Update the specified setting in database.
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
@@ -78,7 +90,7 @@ class SettingController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Remove the specified setting from database.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
@@ -88,6 +100,12 @@ class SettingController extends Controller
         $setting = SettingService::destroy($id);
         return response()->json($setting);
     }
+    /**
+     * Remove all the settings from database.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
     public static function destroyAll()
     {
 

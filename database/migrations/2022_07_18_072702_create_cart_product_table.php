@@ -14,7 +14,7 @@ class CreateCartProductTable extends Migration
     public function up()
     {
         Schema::create('cart_product', function (Blueprint $table) {
-            $table->bigInteger("cart_id")->unsigned();
+            $table->string("cart_id", 100);
             $table->bigInteger("product_id")->unsigned();
             $table->double("product_amount")->default(1);
             $table->primary(["cart_id", "product_id"]);

@@ -25,7 +25,13 @@ class UpdateSettingRequest extends FormRequest
     {
         return [
             "store_name" => "required",
-            "store_logo" => "image|nullable"
+            "store_logo" => "image|nullable",
+            "store_currency" => "nullable",
+            "home_title" => "nullable",
+            "whatsapp_phone" => "nullable",
+            "contact_phone1" => "nullable",
+            "contact_phone2" => "nullable",
+            "contact_address" => "nullable",
         ];
     }
 

@@ -18,7 +18,12 @@ class UserService
     public static function getAllUsers()
     {
 
-        $users = User::paginate(5)->onEachSide(0);
+        $users = User::with([
+            "roles" => function ($q) {
+                $q->paginate(10);
+            },
+            "roles.permissions"
+        ])->paginate(5)->onEachSide(0);
         return $users;
     }
     public static function login($data)
@@ -86,7 +91,12 @@ class UserService
 
     public static function show($id)
     {
-        $user = User::with("roles.permissions")->findOrfail($id);
+        $user = User::with([
+            "roles" => function ($q) {
+                $q->paginate(10);
+            },
+            "roles.permissions"
+        ])->findOrfail($id);
         $user["photo_path"] = asset("storage/$user->photo");
 
         return $user;

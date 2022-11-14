@@ -28,7 +28,7 @@ class StoreProductRequest extends FormRequest
             "product_price" => "required|numeric",
             "product_photo" => "image|nullable",
             "product_discount" => "numeric|nullable",
-            "item_id" => "required"
+            "item_id" => "required|numeric"
         ];
     }
 

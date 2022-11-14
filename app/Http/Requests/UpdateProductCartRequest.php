@@ -24,7 +24,7 @@ class UpdateProductCartRequest extends FormRequest
     public function rules()
     {
         return [
-            'product_amount' => 'numeric'
+            'product_amount' => 'numeric|nullable'
 
         ];
     }

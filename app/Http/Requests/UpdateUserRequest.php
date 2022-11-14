@@ -26,7 +26,8 @@ class UpdateUserRequest extends FormRequest
     {
         return [
             "name" => "required|unique:users,name," . $this->route("user"),
-            "photo" => "image|nullable"
+            "photo" => "image|nullable",
+            "password" => "nullable"
         ];
     }
     public function messages()

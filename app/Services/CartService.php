@@ -15,10 +15,9 @@ class CartService
 
 
 
-    public static function storeProduct($productId, $cartUid)
+    public static function storeProduct($productId, $cartId)
     {
-
-        $cart = Cart::where("cart_uid", $cartUid)->firstOrFail()->products()->syncWithoutDetaching($productId);
+        $cart = Cart::findOrFail($cartId)->products()->syncWithoutDetaching($productId);
 
 
         return $cart;
@@ -26,43 +25,45 @@ class CartService
     public static function intialCart()
     {
 
-        $uid = uniqid("cart_");
+        $cartId = uniqid("cart_");
 
-        $cart = Cart::firstOrCreate(["cart_uid" => $uid]);
+        $cart = Cart::firstOrCreate(["id" => $cartId]);
 
 
-        return $cart;
+        return $cartId;
     }
     public static function intialCookieCart()
     {
-        $uid = uniqid("cart_");
+        $cartId = uniqid("cart_");
 
-        if (!Cookie::has("cart_uid")) {
-            Cookie::queue("cart_uid", $uid, 99999999, "/");
+        if (!Cookie::has("cart_id")) {
+            Cookie::queue("cart_id", $cartId, 99999999, "/");
 
 
-            Cart::create(["cart_uid" => $uid]);
+            Cart::create(["id" => $cartId]);
         } else {
-            $uid = Cookie::get("cart_uid");
-            Cart::firstOrCreate(["cart_uid" => $uid]);
+            $cartId = Cookie::get("cart_id");
+            Cart::firstOrCreate(["id" => $cartId]);
         }
 
-        return $uid;
+        return $cartId;
     }
-    public static function showCartProducts($cartUid)
+    public static function showCartProducts($cartId)
     {
-        $products = Cart::where("cart_uid", $cartUid)->firstOrFail()->products()->get();
+        $products = Cart::findOrFail($cartId)->products()->get();
         return $products;
     }
-    public static function show($cartUid, $productId)
+    public static function show($cartId, $productId)
     {
-        $product = Cart::where("cart_uid", $cartUid)->firstOrFail()->products()->wherePivot("product_id", $productId)->firstOrFail();
+        $product = Cart::findOrFail($cartId)->products()->wherePivot("product_id", $productId)->firstOrFail();
         return $product;
     }
-    public static function update($cartUid, $productId, $data)
+    public static function update($cartId, $productId, $data)
     {
+        if (!isset($data["product_amount"]))
+            $data["product_amount"] = 1;
 
-        $data =  Cart::where("cart_uid", $cartUid)->firstOrFail()->products()->syncWithoutDetaching([$productId => ["product_amount" => $data["product_amount"]]]);
+        $data =  Cart::findOrFail($cartId)->products()->syncWithoutDetaching([$productId => ["product_amount" => $data["product_amount"]]]);
 
         return $data;
     }
@@ -70,19 +71,19 @@ class CartService
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  int  $cartId
      * @return \Illuminate\Http\Response
      */
-    public static function destroy($uid, $productId)
+    public static function destroy($cartId, $productId)
     {
-        $data = Cart::where("cart_uid", $uid)->firstOrFail()->products()->detach($productId);
+        $data = Cart::findOrFail($cartId)->products()->detach($productId);
 
 
         return $data;
     }
-    public static function destroyAll($uid)
+    public static function destroyAll($cartId)
     {
-        $data = Cart::where("cart_uid", $uid)->firstOrFail()->products()->detach();
+        $data = Cart::findOrFail($cartId)->products()->detach();
 
         return  $data;
     }

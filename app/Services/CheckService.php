@@ -15,13 +15,11 @@ trait CheckService
 
         if (!Cookie::has('cart_uid')) {
             Cookie::queue('cart_uid', $uid, 99999999, '/');
-            Cart::create(['cart_uid' => $uid]);
+            Cart::create(['id' => $uid]);
         } else {
             $uid = Cookie::get('cart_uid');
 
-            if (!Cart::where('cart_uid', $uid)->exists()) {
-                Cart::create(['cart_uid' => $uid]);
-            }
+            Cart::firstOrCreate(['id' => $uid]);
         }
 
         return $uid;

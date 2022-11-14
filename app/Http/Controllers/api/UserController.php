@@ -5,17 +5,19 @@ namespace App\Http\Controllers\api;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreUserRequest;
 use App\Http\Requests\UpdateUserRequest;
+use App\Http\Requests\UserLoginRequest;
 use App\Models\User;
 use App\Services\UserService;
 use Illuminate\Http\Request;
 
+
+/**
+ * @group users
+ * @authenticated
+ */
 class UserController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
 
     public function __construct()
     {
@@ -24,12 +26,21 @@ class UserController extends Controller
         $this->middleware("permission:edit-users")->only(["edit", "update"]);
         $this->middleware("permission:delete-users")->only("destroy", "destroyAll");
     }
+    /**
+     * Display all users (paginated) with their roles (paginated) and permissions.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function index()
     {
         $users = UserService::getAllUsers();
         return response()->json($users);
     }
-    public function login(Request $request)
+    /**
+     *authenticated user and get the token
+     * @unauthenticated
+     */
+    public function login(UserLoginRequest $request)
     {
         UserService::createLoginDataIfNotExists();
 
@@ -40,7 +51,7 @@ class UserController extends Controller
             return response()->json(null, 400);
     }
     /**
-     * Store a newly created resource in storage.
+     * Store a newly created user in database.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
@@ -53,7 +64,7 @@ class UserController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Display the specified user with it roles (paginated) and permissions.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
@@ -65,7 +76,7 @@ class UserController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Update the specified user in database.
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
@@ -76,6 +87,14 @@ class UserController extends Controller
         $data = UserService::update($request, $id);
         return response()->json($data, 200);
     }
+
+    /**
+     * Update the specified user privacy.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
     public function updatePrivacy(UpdateUserRequest $request, $id)
     {
         $data = UserService::updatePrivacy($request, $id);
@@ -84,7 +103,7 @@ class UserController extends Controller
 
 
     /**
-     * Remove the specified resource from storage.
+     * Remove the specified user from database.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
@@ -95,6 +114,13 @@ class UserController extends Controller
 
         return response()->json($data, 200);
     }
+
+    /**
+     * Remove all the users from database except the user with (owner role).
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
     public function destroyAll()
     {
 

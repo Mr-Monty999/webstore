@@ -1,0 +1,287 @@
+name: settings
+description: ''
+endpoints:
+  -
+    httpMethods:
+      - DELETE
+    uri: api/settings/delete-all
+    metadata:
+      title: 'Remove all the settings from database.'
+      description: ''
+      authenticated: true
+      custom: []
+    headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    queryParameters: []
+    bodyParameters: []
+    responses: []
+    responseFields: []
+  -
+    httpMethods:
+      - GET
+    uri: api/settings/last
+    metadata:
+      title: 'Display the last created setting.'
+      description: ''
+      authenticated: true
+      custom: []
+    headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    queryParameters: []
+    bodyParameters: []
+    responses:
+      -
+        status: 401
+        content: '{"message":"Unauthenticated."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          access-control-allow-origin: '*'
+        description: null
+    responseFields: []
+  -
+    httpMethods:
+      - GET
+    uri: api/settings
+    metadata:
+      title: 'Display all settings of the site.'
+      description: ''
+      authenticated: true
+      custom: []
+    headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    queryParameters: []
+    bodyParameters: []
+    responses:
+      -
+        status: 401
+        content: '{"message":"Unauthenticated."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          access-control-allow-origin: '*'
+        description: null
+    responseFields: []
+  -
+    httpMethods:
+      - POST
+    uri: api/settings
+    metadata:
+      title: 'Store a newly created setting in database.'
+      description: ''
+      authenticated: true
+      custom: []
+    headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Content-Type: multipart/form-data
+      Accept: application/json
+    urlParameters: []
+    queryParameters: []
+    bodyParameters:
+      store_name:
+        name: store_name
+        description: ''
+        required: true
+        example: enim
+        type: string
+        custom: []
+      store_logo:
+        name: store_logo
+        description: 'Must be an image.'
+        required: false
+        example: null
+        type: file
+        custom: []
+      store_currency:
+        name: store_currency
+        description: ''
+        required: false
+        example: null
+        type: string
+        custom: []
+      home_title:
+        name: home_title
+        description: ''
+        required: false
+        example: null
+        type: string
+        custom: []
+      whatsapp_phone:
+        name: whatsapp_phone
+        description: ''
+        required: false
+        example: null
+        type: string
+        custom: []
+      contact_phone1:
+        name: contact_phone1
+        description: ''
+        required: false
+        example: null
+        type: string
+        custom: []
+      contact_phone2:
+        name: contact_phone2
+        description: ''
+        required: false
+        example: null
+        type: string
+        custom: []
+      contact_address:
+        name: contact_address
+        description: ''
+        required: false
+        example: null
+        type: string
+        custom: []
+    responses: []
+    responseFields: []
+  -
+    httpMethods:
+      - GET
+    uri: 'api/settings/{id}'
+    metadata:
+      title: 'Display the specified setting.'
+      description: ''
+      authenticated: true
+      custom: []
+    headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'The ID of the setting.'
+        required: true
+        example: 14
+        type: integer
+        custom: []
+    queryParameters: []
+    bodyParameters: []
+    responses:
+      -
+        status: 401
+        content: '{"message":"Unauthenticated."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          access-control-allow-origin: '*'
+        description: null
+    responseFields: []
+  -
+    httpMethods:
+      - PUT
+      - PATCH
+    uri: 'api/settings/{id}'
+    metadata:
+      title: 'Update the specified setting in database.'
+      description: ''
+      authenticated: true
+      custom: []
+    headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Content-Type: multipart/form-data
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'The ID of the setting.'
+        required: true
+        example: 3
+        type: integer
+        custom: []
+    queryParameters: []
+    bodyParameters:
+      store_name:
+        name: store_name
+        description: ''
+        required: true
+        example: est
+        type: string
+        custom: []
+      store_logo:
+        name: store_logo
+        description: 'Must be an image.'
+        required: false
+        example: null
+        type: file
+        custom: []
+      store_currency:
+        name: store_currency
+        description: ''
+        required: false
+        example: null
+        type: string
+        custom: []
+      home_title:
+        name: home_title
+        description: ''
+        required: false
+        example: null
+        type: string
+        custom: []
+      whatsapp_phone:
+        name: whatsapp_phone
+        description: ''
+        required: false
+        example: null
+        type: string
+        custom: []
+      contact_phone1:
+        name: contact_phone1
+        description: ''
+        required: false
+        example: null
+        type: string
+        custom: []
+      contact_phone2:
+        name: contact_phone2
+        description: ''
+        required: false
+        example: null
+        type: string
+        custom: []
+      contact_address:
+        name: contact_address
+        description: ''
+        required: false
+        example: null
+        type: string
+        custom: []
+    responses: []
+    responseFields: []
+  -
+    httpMethods:
+      - DELETE
+    uri: 'api/settings/{id}'
+    metadata:
+      title: 'Remove the specified setting from database.'
+      description: ''
+      authenticated: true
+      custom: []
+    headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'The ID of the setting.'
+        required: true
+        example: 3
+        type: integer
+        custom: []
+    queryParameters: []
+    bodyParameters: []
+    responses: []
+    responseFields: []
