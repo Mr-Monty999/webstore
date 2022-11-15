@@ -17,10 +17,10 @@ class CartService
 
     public static function storeProduct($productId, $cartId)
     {
-        $cart = Cart::findOrFail($cartId)->products()->syncWithoutDetaching($productId);
+        Cart::findOrFail($cartId)->products()->syncWithoutDetaching($productId);
 
-
-        return $cart;
+        $data =   self::show($cartId, $productId);
+        return $data;
     }
     public static function intialCart()
     {
@@ -30,7 +30,7 @@ class CartService
         $cart = Cart::firstOrCreate(["id" => $cartId]);
 
 
-        return $cartId;
+        return $cart;
     }
     public static function intialCookieCart()
     {
@@ -63,7 +63,9 @@ class CartService
         if (!isset($data["product_amount"]))
             $data["product_amount"] = 1;
 
-        $data =  Cart::findOrFail($cartId)->products()->syncWithoutDetaching([$productId => ["product_amount" => $data["product_amount"]]]);
+        Cart::findOrFail($cartId)->products()->syncWithoutDetaching([$productId => ["product_amount" => $data["product_amount"]]]);
+
+        $data =   self::show($cartId, $productId);
 
         return $data;
     }
@@ -76,9 +78,8 @@ class CartService
      */
     public static function destroy($cartId, $productId)
     {
-        $data = Cart::findOrFail($cartId)->products()->detach($productId);
-
-
+        $data =   self::show($cartId, $productId);
+        Cart::findOrFail($cartId)->products()->detach($productId);
         return $data;
     }
     public static function destroyAll($cartId)

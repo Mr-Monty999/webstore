@@ -25,7 +25,72 @@ class ProductController extends Controller
     }
     /**
      * Display all the products (paginated) with their item .
-     *
+     *@response 200 {
+    "current_page": 1,
+    "data": [
+        {
+            "id": 1,
+            "product_name": "دجاج",
+            "product_price": 300,
+            "product_discount": 10,
+            "product_photo": null,
+            "item_id": 1,
+            "created_at": "2022-11-14T18:56:02.000000Z",
+            "updated_at": "2022-11-14T18:56:02.000000Z",
+            "item": {
+                "id": 1,
+                "item_name": "d",
+                "item_photo": null,
+                "created_at": "2022-11-14T18:55:53.000000Z",
+                "updated_at": "2022-11-14T18:55:53.000000Z"
+            }
+        },
+        {
+            "id": 2,
+            "product_name": "شاورما",
+            "product_price": 300,
+            "product_discount": 10,
+            "product_photo": null,
+            "item_id": 1,
+            "created_at": "2022-11-14T18:56:07.000000Z",
+            "updated_at": "2022-11-14T18:56:07.000000Z",
+            "item": {
+                "id": 1,
+                "item_name": "d",
+                "item_photo": null,
+                "created_at": "2022-11-14T18:55:53.000000Z",
+                "updated_at": "2022-11-14T18:55:53.000000Z"
+            }
+        }
+    ],
+    "first_page_url": "http://localhost:8000/api/products?page=1",
+    "from": 1,
+    "last_page": 1,
+    "last_page_url": "http://localhost:8000/api/products?page=1",
+    "links": [
+        {
+            "url": null,
+            "label": "&laquo; Previous",
+            "active": false
+        },
+        {
+            "url": "http://localhost:8000/api/products?page=1",
+            "label": "1",
+            "active": true
+        },
+        {
+            "url": null,
+            "label": "Next &raquo;",
+            "active": false
+        }
+    ],
+    "next_page_url": null,
+    "path": "http://localhost:8000/api/products",
+    "per_page": 5,
+    "prev_page_url": null,
+    "to": 2,
+    "total": 2
+}
      * @return \Illuminate\Http\Response
      */
     public function index()
@@ -37,7 +102,17 @@ class ProductController extends Controller
 
     /**
      * Store a newly created product in database.
-     *
+     *@response 201 {
+    "product_name": "سمك",
+    "product_price": "2399",
+    "item_id": "1",
+    "product_photo": "products/w4wDcFUGwu6ra7Z03fcgBMd4C7gIh8ixJ1RZMnE0.jpg",
+    "product_discount": 0,
+    "updated_at": "2022-11-15T10:55:09.000000Z",
+    "created_at": "2022-11-15T10:55:09.000000Z",
+    "id": 4,
+    "live_photo_path": "http://localhost:8000/storage/products/w4wDcFUGwu6ra7Z03fcgBMd4C7gIh8ixJ1RZMnE0.jpg"
+}
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
@@ -50,10 +125,28 @@ class ProductController extends Controller
 
     /**
      * Display the specified product with it item.
-     *
+     *@response{
+    "id": 4,
+    "product_name": "سمك",
+    "product_price": 2399,
+    "product_discount": 0,
+    "product_photo": "products/w4wDcFUGwu6ra7Z03fcgBMd4C7gIh8ixJ1RZMnE0.jpg",
+    "item_id": 1,
+    "created_at": "2022-11-15T10:55:09.000000Z",
+    "updated_at": "2022-11-15T10:55:09.000000Z",
+    "live_photo_path": "http://localhost:8000/storage/products/w4wDcFUGwu6ra7Z03fcgBMd4C7gIh8ixJ1RZMnE0.jpg",
+    "item": {
+        "id": 1,
+        "item_name": "d",
+        "item_photo": null,
+        "created_at": "2022-11-14T18:55:53.000000Z",
+        "updated_at": "2022-11-14T18:55:53.000000Z"
+    }
+}
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+
     public function show($id)
     {
         $product = ProductService::show($id);
@@ -62,7 +155,24 @@ class ProductController extends Controller
 
     /**
      * Update the specified product in database.
-     *
+     *@response {
+    "id": 4,
+    "product_name": "سمك",
+    "product_price": 2399,
+    "product_discount": 0,
+    "product_photo": "products/w4wDcFUGwu6ra7Z03fcgBMd4C7gIh8ixJ1RZMnE0.jpg",
+    "item_id": 1,
+    "created_at": "2022-11-15T10:55:09.000000Z",
+    "updated_at": "2022-11-15T10:55:09.000000Z",
+    "live_photo_path": "http://localhost:8000/storage/products/w4wDcFUGwu6ra7Z03fcgBMd4C7gIh8ixJ1RZMnE0.jpg",
+    "item": {
+        "id": 1,
+        "item_name": "d",
+        "item_photo": null,
+        "created_at": "2022-11-14T18:55:53.000000Z",
+        "updated_at": "2022-11-14T18:55:53.000000Z"
+    }
+}
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
@@ -75,7 +185,24 @@ class ProductController extends Controller
 
     /**
      * Remove the specified product from database.
-     *
+     *@response {
+    "id": 4,
+    "product_name": "سمك",
+    "product_price": 2399,
+    "product_discount": 0,
+    "product_photo": "products/w4wDcFUGwu6ra7Z03fcgBMd4C7gIh8ixJ1RZMnE0.jpg",
+    "item_id": 1,
+    "created_at": "2022-11-15T10:55:09.000000Z",
+    "updated_at": "2022-11-15T10:55:09.000000Z",
+    "live_photo_path": "http://localhost:8000/storage/products/w4wDcFUGwu6ra7Z03fcgBMd4C7gIh8ixJ1RZMnE0.jpg",
+    "item": {
+        "id": 1,
+        "item_name": "d",
+        "item_photo": null,
+        "created_at": "2022-11-14T18:55:53.000000Z",
+        "updated_at": "2022-11-14T18:55:53.000000Z"
+    }
+}
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
@@ -87,7 +214,7 @@ class ProductController extends Controller
 
     /**
      * Remove all the products from database.
-     *
+     *@response 200
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */

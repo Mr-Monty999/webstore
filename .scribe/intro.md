@@ -1,6 +1,13 @@
 # Introduction
 
-this my web store api
+
+    Images paths examples:
+    users images = localhost/storage/users/img.jpg
+    items images = localhost/storage/items/img.jpg
+    products images = localhost/storage/products/img.jpg
+    settigs images = localhost/storage/settigs/img.jpg
+
+    
 
 This documentation aims to provide all the information you need to work with our API.
 

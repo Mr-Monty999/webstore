@@ -26,7 +26,46 @@ class FeedbackController extends Controller
 
     /**
      * Display All Feedbacks (paginated)
-     *
+     *@response {
+    "current_page": 1,
+    "data": [
+        {
+            "id": 1,
+            "name": "monty@gmail.com",
+            "message": "السلام عليكم",
+            "ip": "127.0.0.1",
+            "created_at": "2022-11-15T09:32:51.000000Z",
+            "updated_at": "2022-11-15T09:32:51.000000Z"
+        }
+    ],
+    "first_page_url": "http://localhost:8000/api/feedbacks?page=1",
+    "from": 1,
+    "last_page": 1,
+    "last_page_url": "http://localhost:8000/api/feedbacks?page=1",
+    "links": [
+        {
+            "url": null,
+            "label": "&laquo; Previous",
+            "active": false
+        },
+        {
+            "url": "http://localhost:8000/api/feedbacks?page=1",
+            "label": "1",
+            "active": true
+        },
+        {
+            "url": null,
+            "label": "Next &raquo;",
+            "active": false
+        }
+    ],
+    "next_page_url": null,
+    "path": "http://localhost:8000/api/feedbacks",
+    "per_page": 5,
+    "prev_page_url": null,
+    "to": 1,
+    "total": 1
+}
      * @return \Illuminate\Http\Response
      */
 
@@ -37,7 +76,7 @@ class FeedbackController extends Controller
     }
 
     /**
-     * Store a newly created feedback in database.
+     * Store a newly created feedback in database (For guests).
      *
      * @unauthenticated
      */
@@ -49,7 +88,14 @@ class FeedbackController extends Controller
 
     /**
      * Display the specified feedback.
-     *
+     *@response {
+    "id": 1,
+    "name": "monty@gmail.com",
+    "message": "السلام عليكم",
+    "ip": "127.0.0.1",
+    "created_at": "2022-11-15T09:32:51.000000Z",
+    "updated_at": "2022-11-15T09:32:51.000000Z"
+}
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
@@ -74,7 +120,16 @@ class FeedbackController extends Controller
 
     /**
      * Remove the specified feedback from database.
-     *
+     * @response 200
+     * {
+    "id": 1,
+    "name": "monty@gmail.com",
+    "message": "السلام عليكم",
+    "ip": "127.0.0.1",
+    "created_at": "2022-11-15T09:32:51.000000Z",
+    "updated_at": "2022-11-15T09:32:51.000000Z"
+}
+
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
@@ -86,7 +141,7 @@ class FeedbackController extends Controller
 
     /**
      * Remove the all feedbacks from database.
-     *
+     * @response 200
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */

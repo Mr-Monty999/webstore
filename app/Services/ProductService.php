@@ -51,7 +51,7 @@ class ProductService
         $product = Product::create($data);
 
         if (isset($photo))
-            $product["photo_path"] = asset("storage/$photo");
+            $product["live_photo_path"] = asset("storage/$photo");
 
 
 
@@ -64,6 +64,8 @@ class ProductService
     {
 
         $product = Product::with("item")->findOrFail($id);
+        if (isset($product->product_photo))
+            $product["live_photo_path"] = asset("storage/$product->product_photo");
         return $product;
     }
 
@@ -93,7 +95,7 @@ class ProductService
         $data["product_discount"] = $productDiscount;
 
         $product->update($data);
-        $product["photo_path"] = asset("storage/$photo");
+        $product["live_photo_path"] = asset("storage/$photo");
 
 
 
@@ -104,14 +106,16 @@ class ProductService
     public static function destroy($id)
     {
         $product = Product::with("item")->findOrFail($id);
-        $data["product"] = $product;
+        if (isset($product->product_photo))
+            $product["live_photo_path"] = asset("storage/$product->product_photo");
         $product->delete();
+
 
         //Delete Old Photo
         Storage::disk("public")->delete($product->product_photo);
 
 
-        return true;
+        return $product;
     }
     public static function destroyAll()
     {

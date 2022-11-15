@@ -26,7 +26,7 @@ class SettingService
         $setting = Setting::create($data);
 
         if (isset($data["store_logo"]))
-            $setting["photo_path"] = asset("storage/" . $data["store_logo"]);
+            $setting["live_photo_path"] = asset("storage/" . $data["store_logo"]);
 
         return $setting;
     }
@@ -48,7 +48,7 @@ class SettingService
         $setting->update($data);
 
         if (isset($data["store_logo"]))
-            $setting["photo_path"] = asset("storage/" . $data["store_logo"]);
+            $setting["live_photo_path"] = asset("storage/" . $data["store_logo"]);
 
         return $setting;
     }

@@ -42,7 +42,7 @@ class ItemService
         $item =  Item::create($data);
 
         if (isset($data["item_photo"]))
-            $item["photo_path"] = asset("storage/" . $data["item_photo"]);
+            $item["live_photo_path"] = asset("storage/" . $data["item_photo"]);
 
 
 
@@ -55,6 +55,9 @@ class ItemService
         $item = Item::with(["products" => function ($q) {
             $q->paginate(5);
         }])->findOrFail($id);
+
+        if (isset($item->item_photo))
+            $item["live_photo_path"] = asset("storage/" . $item->item_photo);
         return $item;
     }
 
@@ -72,7 +75,7 @@ class ItemService
             $data["item_photo"] = $photo;
         }
         $item->update($data);
-        $item["photo_path"] = asset("storage/" . $data["item_photo"]);
+        $item["live_photo_path"] = asset("storage/" . $data["item_photo"]);
 
 
 
@@ -82,13 +85,14 @@ class ItemService
     public static function destroy($id)
     {
         $item = Item::findOrFail($id);
-        $data["item"] = $item;
+        if (isset($item->item_photo))
+            $item["live_photo_path"] = asset("storage/" . $item->item_photo);
         Storage::disk("public")->delete($item->products->pluck("product_photo")->toArray());
         Storage::disk("public")->delete($item->item_photo);
         $item->delete();
 
 
-        return $data;
+        return $item;
     }
 
     public static function destroyAll()

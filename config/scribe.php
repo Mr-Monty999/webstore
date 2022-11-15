@@ -9,12 +9,19 @@ return [
     /*
      * The HTML <title> for the generated documentation. If this is empty, Scribe will infer it from config('app.name').
      */
-    'title' => "Web Store Api",
+    'title' => "Api Documention",
 
     /*
      * A short description of your API. Will be included in the docs webpage, Postman collection and OpenAPI spec.
      */
-    'description' => 'this my web store api',
+    'description' => '
+    Images paths examples:
+    users images = localhost/storage/users/img.jpg
+    items images = localhost/storage/items/img.jpg
+    products images = localhost/storage/products/img.jpg
+    settigs images = localhost/storage/settigs/img.jpg
+
+    ',
 
     /*
      * The base URL displayed in the docs. If this is empty, Scribe will use the value of config('app.url').

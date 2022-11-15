@@ -78,7 +78,7 @@ class UserService
                 $user->syncRoles($request->roles);
         }
         if (isset($photo))
-            $user["photo_path"] = asset("storage/$photo");
+            $user["live_photo_path"] = asset("storage/$photo");
 
 
         $user->getAllPermissions();
@@ -97,7 +97,7 @@ class UserService
             },
             "roles.permissions"
         ])->findOrfail($id);
-        $user["photo_path"] = asset("storage/$user->photo");
+        $user["live_photo_path"] = asset("storage/$user->photo");
 
         return $user;
     }
@@ -106,6 +106,8 @@ class UserService
     public static function destroy($id)
     {
         $user = User::findOrFail($id);
+        if (isset($user->photo))
+            $user["live_photo_path"] = asset("storage/$user->photo");
         Gate::authorize("delete", $user);
         $user->delete();
 
@@ -172,7 +174,7 @@ class UserService
         $user->getAllPermissions();
 
         if (isset($photo))
-            $user["photo_path"] = asset("storage/$photo");
+            $user["live_photo_path"] = asset("storage/$photo");
 
         return $user;
     }
@@ -205,7 +207,7 @@ class UserService
         $user->update($data);
         $user->getAllPermissions();
 
-        $user["photo_path"] = asset("storage/$photo");
+        $user["live_photo_path"] = asset("storage/$photo");
 
         return $user;
     }

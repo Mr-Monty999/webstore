@@ -21,20 +21,35 @@ endpoints:
         name: id
         description: 'The ID of the product.'
         required: true
-        example: 1
+        example: 6
         type: integer
         custom: []
     queryParameters: []
     bodyParameters: []
     responses:
       -
-        status: 401
-        content: '{"message":"Unauthenticated."}'
-        headers:
-          cache-control: 'no-cache, private'
-          content-type: application/json
-          access-control-allow-origin: '*'
-        description: null
+        status: 200
+        content: |-
+          {
+          "id": 4,
+          "product_name": "سمك",
+          "product_price": 2399,
+          "product_discount": 0,
+          "product_photo": "products/w4wDcFUGwu6ra7Z03fcgBMd4C7gIh8ixJ1RZMnE0.jpg",
+          "item_id": 1,
+          "created_at": "2022-11-15T10:55:09.000000Z",
+          "updated_at": "2022-11-15T10:55:09.000000Z",
+          "live_photo_path": "http://localhost:8000/storage/products/w4wDcFUGwu6ra7Z03fcgBMd4C7gIh8ixJ1RZMnE0.jpg",
+          "item": {
+          "id": 1,
+          "item_name": "d",
+          "item_photo": null,
+          "created_at": "2022-11-14T18:55:53.000000Z",
+          "updated_at": "2022-11-14T18:55:53.000000Z"
+          }
+          }
+        headers: []
+        description: '200'
     responseFields: []
   -
     httpMethods:
@@ -55,7 +70,7 @@ endpoints:
         name: id
         description: 'The ID of the product.'
         required: true
-        example: 1
+        example: 2
         type: integer
         custom: []
     queryParameters: []
@@ -64,14 +79,14 @@ endpoints:
         name: product_name
         description: ''
         required: true
-        example: alias
+        example: harum
         type: string
         custom: []
       product_price:
         name: product_price
         description: ''
         required: true
-        example: 174942.7676
+        example: 7244.885
         type: number
         custom: []
       product_photo:
@@ -85,17 +100,40 @@ endpoints:
         name: product_discount
         description: ''
         required: false
-        example: 2393.22
+        example: 447.0
         type: number
         custom: []
       item_id:
         name: item_id
         description: ''
         required: true
-        example: 1940349.7127
+        example: 26135.61967
         type: number
         custom: []
-    responses: []
+    responses:
+      -
+        status: 200
+        content: |-
+          {
+          "id": 4,
+          "product_name": "سمك",
+          "product_price": 2399,
+          "product_discount": 0,
+          "product_photo": "products/w4wDcFUGwu6ra7Z03fcgBMd4C7gIh8ixJ1RZMnE0.jpg",
+          "item_id": 1,
+          "created_at": "2022-11-15T10:55:09.000000Z",
+          "updated_at": "2022-11-15T10:55:09.000000Z",
+          "live_photo_path": "http://localhost:8000/storage/products/w4wDcFUGwu6ra7Z03fcgBMd4C7gIh8ixJ1RZMnE0.jpg",
+          "item": {
+          "id": 1,
+          "item_name": "d",
+          "item_photo": null,
+          "created_at": "2022-11-14T18:55:53.000000Z",
+          "updated_at": "2022-11-14T18:55:53.000000Z"
+          }
+          }
+        headers: []
+        description: '200'
     responseFields: []
   -
     httpMethods:
@@ -115,12 +153,35 @@ endpoints:
         name: id
         description: 'The ID of the product.'
         required: true
-        example: 1
+        example: 15
         type: integer
         custom: []
     queryParameters: []
     bodyParameters: []
-    responses: []
+    responses:
+      -
+        status: 200
+        content: |-
+          {
+          "id": 4,
+          "product_name": "سمك",
+          "product_price": 2399,
+          "product_discount": 0,
+          "product_photo": "products/w4wDcFUGwu6ra7Z03fcgBMd4C7gIh8ixJ1RZMnE0.jpg",
+          "item_id": 1,
+          "created_at": "2022-11-15T10:55:09.000000Z",
+          "updated_at": "2022-11-15T10:55:09.000000Z",
+          "live_photo_path": "http://localhost:8000/storage/products/w4wDcFUGwu6ra7Z03fcgBMd4C7gIh8ixJ1RZMnE0.jpg",
+          "item": {
+          "id": 1,
+          "item_name": "d",
+          "item_photo": null,
+          "created_at": "2022-11-14T18:55:53.000000Z",
+          "updated_at": "2022-11-14T18:55:53.000000Z"
+          }
+          }
+        headers: []
+        description: '200'
     responseFields: []
   -
     httpMethods:
@@ -140,13 +201,76 @@ endpoints:
     bodyParameters: []
     responses:
       -
-        status: 401
-        content: '{"message":"Unauthenticated."}'
-        headers:
-          cache-control: 'no-cache, private'
-          content-type: application/json
-          access-control-allow-origin: '*'
-        description: null
+        status: 200
+        content: |-
+          {
+          "current_page": 1,
+          "data": [
+          {
+          "id": 1,
+          "product_name": "دجاج",
+          "product_price": 300,
+          "product_discount": 10,
+          "product_photo": null,
+          "item_id": 1,
+          "created_at": "2022-11-14T18:56:02.000000Z",
+          "updated_at": "2022-11-14T18:56:02.000000Z",
+          "item": {
+          "id": 1,
+          "item_name": "d",
+          "item_photo": null,
+          "created_at": "2022-11-14T18:55:53.000000Z",
+          "updated_at": "2022-11-14T18:55:53.000000Z"
+          }
+          },
+          {
+          "id": 2,
+          "product_name": "شاورما",
+          "product_price": 300,
+          "product_discount": 10,
+          "product_photo": null,
+          "item_id": 1,
+          "created_at": "2022-11-14T18:56:07.000000Z",
+          "updated_at": "2022-11-14T18:56:07.000000Z",
+          "item": {
+          "id": 1,
+          "item_name": "d",
+          "item_photo": null,
+          "created_at": "2022-11-14T18:55:53.000000Z",
+          "updated_at": "2022-11-14T18:55:53.000000Z"
+          }
+          }
+          ],
+          "first_page_url": "http://localhost:8000/api/products?page=1",
+          "from": 1,
+          "last_page": 1,
+          "last_page_url": "http://localhost:8000/api/products?page=1",
+          "links": [
+          {
+          "url": null,
+          "label": "&laquo; Previous",
+          "active": false
+          },
+          {
+          "url": "http://localhost:8000/api/products?page=1",
+          "label": "1",
+          "active": true
+          },
+          {
+          "url": null,
+          "label": "Next &raquo;",
+          "active": false
+          }
+          ],
+          "next_page_url": null,
+          "path": "http://localhost:8000/api/products",
+          "per_page": 5,
+          "prev_page_url": null,
+          "to": 2,
+          "total": 2
+          }
+        headers: []
+        description: '200'
     responseFields: []
   -
     httpMethods:
@@ -168,14 +292,14 @@ endpoints:
         name: product_name
         description: ''
         required: true
-        example: enim
+        example: omnis
         type: string
         custom: []
       product_price:
         name: product_price
         description: ''
         required: true
-        example: 223.78276
+        example: 12865440.4
         type: number
         custom: []
       product_photo:
@@ -189,17 +313,33 @@ endpoints:
         name: product_discount
         description: ''
         required: false
-        example: 5573.1
+        example: 24544.6393
         type: number
         custom: []
       item_id:
         name: item_id
         description: ''
         required: true
-        example: 13.4932777
+        example: 6465321.0
         type: number
         custom: []
-    responses: []
+    responses:
+      -
+        status: 201
+        content: |-
+          {
+          "product_name": "سمك",
+          "product_price": "2399",
+          "item_id": "1",
+          "product_photo": "products/w4wDcFUGwu6ra7Z03fcgBMd4C7gIh8ixJ1RZMnE0.jpg",
+          "product_discount": 0,
+          "updated_at": "2022-11-15T10:55:09.000000Z",
+          "created_at": "2022-11-15T10:55:09.000000Z",
+          "id": 4,
+          "live_photo_path": "http://localhost:8000/storage/products/w4wDcFUGwu6ra7Z03fcgBMd4C7gIh8ixJ1RZMnE0.jpg"
+          }
+        headers: []
+        description: '201'
     responseFields: []
   -
     httpMethods:
@@ -217,5 +357,10 @@ endpoints:
     urlParameters: []
     queryParameters: []
     bodyParameters: []
-    responses: []
+    responses:
+      -
+        status: 200
+        content: '{}'
+        headers: []
+        description: '200'
     responseFields: []

@@ -21,12 +21,25 @@ endpoints:
         name: id
         description: 'The ID of the item.'
         required: true
-        example: 1
+        example: 4
         type: integer
         custom: []
     queryParameters: []
     bodyParameters: []
-    responses: []
+    responses:
+      -
+        status: 200
+        content: |-
+          {
+          "id": 4,
+          "item_name": "إلكترونيات",
+          "item_photo": "items/98RZDAC2vIBNC3zK5844F3I9vqMiKBQKUgLWBiOE.jpg",
+          "created_at": "2022-11-15T11:17:04.000000Z",
+          "updated_at": "2022-11-15T11:17:27.000000Z",
+          "live_photo_path": "http://localhost:8000/storage/items/98RZDAC2vIBNC3zK5844F3I9vqMiKBQKUgLWBiOE.jpg",
+          }
+        headers: []
+        description: '200'
     responseFields: []
   -
     httpMethods:
@@ -44,7 +57,12 @@ endpoints:
     urlParameters: []
     queryParameters: []
     bodyParameters: []
-    responses: []
+    responses:
+      -
+        status: 200
+        content: '{}'
+        headers: []
+        description: '200'
     responseFields: []
   -
     httpMethods:
@@ -64,13 +82,71 @@ endpoints:
     bodyParameters: []
     responses:
       -
-        status: 401
-        content: '{"message":"Unauthenticated."}'
-        headers:
-          cache-control: 'no-cache, private'
-          content-type: application/json
-          access-control-allow-origin: '*'
-        description: null
+        status: 200
+        content: |-
+          {
+          "current_page": 1,
+          "data": [
+          {
+          "id": 1,
+          "item_name": "d",
+          "item_photo": null,
+          "created_at": "2022-11-14T18:55:53.000000Z",
+          "updated_at": "2022-11-14T18:55:53.000000Z",
+          "products": [
+          {
+          "id": 1,
+          "product_name": "دجاج",
+          "product_price": 300,
+          "product_discount": 10,
+          "product_photo": null,
+          "item_id": 1,
+          "created_at": "2022-11-14T18:56:02.000000Z",
+          "updated_at": "2022-11-14T18:56:02.000000Z"
+          },
+          {
+          "id": 2,
+          "product_name": "شاورما",
+          "product_price": 300,
+          "product_discount": 10,
+          "product_photo": null,
+          "item_id": 1,
+          "created_at": "2022-11-14T18:56:07.000000Z",
+          "updated_at": "2022-11-14T18:56:07.000000Z"
+          }
+          ]
+          }
+          ],
+          "first_page_url": "http://localhost:8000/api/items?page=1",
+          "from": 1,
+          "last_page": 1,
+          "last_page_url": "http://localhost:8000/api/items?page=1",
+          "links": [
+          {
+          "url": null,
+          "label": "&laquo; Previous",
+          "active": false
+          },
+          {
+          "url": "http://localhost:8000/api/items?page=1",
+          "label": "1",
+          "active": true
+          },
+          {
+          "url": null,
+          "label": "Next &raquo;",
+          "active": false
+          }
+          ],
+          "next_page_url": null,
+          "path": "http://localhost:8000/api/items",
+          "per_page": 5,
+          "prev_page_url": null,
+          "to": 1,
+          "total": 1
+          }
+        headers: []
+        description: '200'
     responseFields: []
   -
     httpMethods:
@@ -92,7 +168,7 @@ endpoints:
         name: item_name
         description: ''
         required: true
-        example: et
+        example: nemo
         type: string
         custom: []
       item_photo:
@@ -102,7 +178,20 @@ endpoints:
         example: null
         type: file
         custom: []
-    responses: []
+    responses:
+      -
+        status: 201
+        content: |-
+          {
+          "id": 4,
+          "item_name": "إلكترونيات",
+          "item_photo": "items/98RZDAC2vIBNC3zK5844F3I9vqMiKBQKUgLWBiOE.jpg",
+          "created_at": "2022-11-15T11:17:04.000000Z",
+          "updated_at": "2022-11-15T11:17:27.000000Z",
+          "live_photo_path": "http://localhost:8000/storage/items/98RZDAC2vIBNC3zK5844F3I9vqMiKBQKUgLWBiOE.jpg",
+          }
+        headers: []
+        description: '201'
     responseFields: []
   -
     httpMethods:
@@ -122,20 +211,47 @@ endpoints:
         name: id
         description: 'The ID of the item.'
         required: true
-        example: 1
+        example: 4
         type: integer
         custom: []
     queryParameters: []
     bodyParameters: []
     responses:
       -
-        status: 401
-        content: '{"message":"Unauthenticated."}'
-        headers:
-          cache-control: 'no-cache, private'
-          content-type: application/json
-          access-control-allow-origin: '*'
-        description: null
+        status: 200
+        content: |-
+          {
+          "id": 1,
+          "item_name": "d",
+          "item_photo": "items/98RZDAC2vIBNC3zK5844F3I9vqMiKBQKUgLWBiOE.jpg",
+          "created_at": "2022-11-14T18:55:53.000000Z",
+          "updated_at": "2022-11-14T18:55:53.000000Z",
+          "live_photo_path": "http://localhost:8000/storage/items/98RZDAC2vIBNC3zK5844F3I9vqMiKBQKUgLWBiOE.jpg",
+          "products": [
+          {
+          "id": 1,
+          "product_name": "دجاج",
+          "product_price": 300,
+          "product_discount": 10,
+          "product_photo": null,
+          "item_id": 1,
+          "created_at": "2022-11-14T18:56:02.000000Z",
+          "updated_at": "2022-11-14T18:56:02.000000Z"
+          },
+          {
+          "id": 2,
+          "product_name": "شاورما",
+          "product_price": 300,
+          "product_discount": 10,
+          "product_photo": null,
+          "item_id": 1,
+          "created_at": "2022-11-14T18:56:07.000000Z",
+          "updated_at": "2022-11-14T18:56:07.000000Z"
+          }
+          ]
+          }
+        headers: []
+        description: '200'
     responseFields: []
   -
     httpMethods:
@@ -156,7 +272,7 @@ endpoints:
         name: id
         description: 'The ID of the item.'
         required: true
-        example: 1
+        example: 4
         type: integer
         custom: []
     queryParameters: []
@@ -165,7 +281,7 @@ endpoints:
         name: item_name
         description: ''
         required: true
-        example: voluptatum
+        example: sed
         type: string
         custom: []
       item_photo:
@@ -175,5 +291,18 @@ endpoints:
         example: null
         type: file
         custom: []
-    responses: []
+    responses:
+      -
+        status: 200
+        content: |-
+          {
+          "id": 4,
+          "item_name": "إلكترونيات",
+          "item_photo": "items/98RZDAC2vIBNC3zK5844F3I9vqMiKBQKUgLWBiOE.jpg",
+          "created_at": "2022-11-15T11:17:04.000000Z",
+          "updated_at": "2022-11-15T11:17:27.000000Z",
+          "live_photo_path": "http://localhost:8000/storage/items/98RZDAC2vIBNC3zK5844F3I9vqMiKBQKUgLWBiOE.jpg",
+          }
+        headers: []
+        description: '200'
     responseFields: []

@@ -19,6 +19,23 @@ class CartController extends Controller
     /**
      * Get Cart Products
      * @urlParam cart_id string required The ID of the cart.
+     * @response 200 [
+     *  {
+     *"id": 1,
+     *"product_name": "دجاج",
+     *"product_price": 300,
+     *"product_discount": 10,
+     *"product_photo": null,
+     *"item_id": 1,
+     *"created_at": "2022-11-14T18:56:02.000000Z",
+     *"updated_at": "2022-11-14T18:56:02.000000Z",
+     *  "pivot": {
+     *      "cart_id": "cart_63735a019396e",
+     *      "product_id": 1,
+     *      "product_amount": 1
+     *   }
+     *}
+     *]
      * @return
      */
 
@@ -30,7 +47,11 @@ class CartController extends Controller
 
     /**
      * Inital New Cart
-     *
+     *@response 201{
+     *"id": "cart_6373591c94f01",
+     *"updated_at": "2022-11-15T09:17:16.000000Z",
+     *"created_at": "2022-11-15T09:17:16.000000Z"
+     *}
      * @param  \Illuminate\Http\Request  $request
      */
     public function intialCart(Request $request)
@@ -43,6 +64,21 @@ class CartController extends Controller
     /**
      * Store Products in Cart
      *@urlParam cart string required The ID of the cart.
+     *@response 201 {
+    "id": 1,
+    "product_name": "دجاج",
+    "product_price": 300,
+    "product_discount": 10,
+    "product_photo": null,
+    "item_id": 1,
+    "created_at": "2022-11-14T18:56:02.000000Z",
+    "updated_at": "2022-11-14T18:56:02.000000Z",
+    "pivot": {
+        "cart_id": "cart_63728e5ab48c9",
+        "product_id": 1,
+        "product_amount": 1
+    }
+}
      * @param  \Illuminate\Http\Request  $request
      */
     public function store(StoreProductCartRequest $request, $cartId)
@@ -55,6 +91,22 @@ class CartController extends Controller
     /**
      * Show specified Product in Cart
      *@urlParam cart_id string required The ID of the cart.
+     * @response {
+    "id": 1,
+    "product_name": "دجاج",
+    "product_price": 300,
+    "product_discount": 10,
+    "product_photo": null,
+    "item_id": 1,
+    "created_at": "2022-11-14T18:56:02.000000Z",
+    "updated_at": "2022-11-14T18:56:02.000000Z",
+    "pivot": {
+        "cart_id": "cart_63735a019396e",
+        "product_id": 1,
+        "product_amount": 1
+    }
+}
+
      * @param  int  $id
      */
     public function show($cartId, $productId)
@@ -67,6 +119,21 @@ class CartController extends Controller
     /**
      * Update specified product in the cart
      *@urlParam cart_id string required The ID of the cart.
+     @response {
+    "id": 1,
+    "product_name": "دجاج",
+    "product_price": 300,
+    "product_discount": 10,
+    "product_photo": null,
+    "item_id": 1,
+    "created_at": "2022-11-14T18:56:02.000000Z",
+    "updated_at": "2022-11-14T18:56:02.000000Z",
+    "pivot": {
+        "cart_id": "cart_63728e5ab48c9",
+        "product_id": 1,
+        "product_amount": 309
+    }
+}
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
      */
@@ -80,6 +147,21 @@ class CartController extends Controller
     /**
      * Remove the specified product from cart
      *@urlParam cart_id string required The ID of the cart.
+     * @response {
+    "id": 1,
+    "product_name": "دجاج",
+    "product_price": 300,
+    "product_discount": 10,
+    "product_photo": null,
+    "item_id": 1,
+    "created_at": "2022-11-14T18:56:02.000000Z",
+    "updated_at": "2022-11-14T18:56:02.000000Z",
+    "pivot": {
+        "cart_id": "cart_63728e5ab48c9",
+        "product_id": 1,
+        "product_amount": 1
+    }
+}
      * @param  int  $id
      */
     public function destroy($cartId, $productId)
@@ -91,6 +173,7 @@ class CartController extends Controller
     /**
      * Remove All Products From Cart
      *@urlParam cart string required The ID of the cart.
+     *@response 200 1
      * @param  int  $id
      */
     public function destroyAll($cartId)

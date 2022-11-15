@@ -58,7 +58,7 @@ class DashboardController extends Controller
 
         return redirect()->route("dashboard.login");
     }
-    public function attemptLogin(Request $request)
+    public function attemptLogin(UserLoginRequest $request)
     {
 
         $data = $request->only("name", "password");

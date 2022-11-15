@@ -9,9 +9,9 @@
         }
     ],
     "info": {
-        "name": "Web Store Api",
-        "_postman_id": "112e5364-d058-4c6c-8909-b3fd136e5a5f",
-        "description": "this my web store api",
+        "name": "Api Documention",
+        "_postman_id": "9d8eec82-8dc6-4719-a9c1-06033611b1d2",
+        "description": "\n    Images paths examples:\n    users images = localhost\/storage\/users\/img.jpg\n    items images = localhost\/storage\/items\/img.jpg\n    products images = localhost\/storage\/products\/img.jpg\n    settigs images = localhost\/storage\/settigs\/img.jpg\n\n    ",
         "schema": "https:\/\/schema.getpostman.com\/json\/collection\/v2.1.0\/collection.json"
     },
     "item": [
@@ -133,7 +133,7 @@
                                 {
                                     "id": "cart_id",
                                     "key": "cart_id",
-                                    "value": "fuga",
+                                    "value": "assumenda",
                                     "description": "The ID of the cart."
                                 }
                             ]
@@ -157,30 +157,9 @@
                     },
                     "response": [
                         {
-                            "header": [
-                                {
-                                    "key": "cache-control",
-                                    "value": "no-cache, private"
-                                },
-                                {
-                                    "key": "content-type",
-                                    "value": "application\/json"
-                                },
-                                {
-                                    "key": "x-ratelimit-limit",
-                                    "value": "60"
-                                },
-                                {
-                                    "key": "x-ratelimit-remaining",
-                                    "value": "57"
-                                },
-                                {
-                                    "key": "access-control-allow-origin",
-                                    "value": "*"
-                                }
-                            ],
-                            "code": 404,
-                            "body": "{\n    \"message\": \"No query results for model [App\\\\Models\\\\Cart] 1\",\n    \"exception\": \"Symfony\\\\Component\\\\HttpKernel\\\\Exception\\\\NotFoundHttpException\",\n    \"file\": \"\/var\/www\/html\/store\/vendor\/laravel\/framework\/src\/Illuminate\/Foundation\/Exceptions\/Handler.php\",\n    \"line\": 385,\n    \"trace\": [\n        {\n            \"file\": \"\/var\/www\/html\/store\/vendor\/laravel\/framework\/src\/Illuminate\/Foundation\/Exceptions\/Handler.php\",\n            \"line\": 332,\n            \"function\": \"prepareException\",\n            \"class\": \"Illuminate\\\\Foundation\\\\Exceptions\\\\Handler\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"\/var\/www\/html\/store\/vendor\/nunomaduro\/collision\/src\/Adapters\/Laravel\/ExceptionHandler.php\",\n            \"line\": 54,\n            \"function\": \"render\",\n            \"class\": \"Illuminate\\\\Foundation\\\\Exceptions\\\\Handler\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"\/var\/www\/html\/store\/vendor\/laravel\/framework\/src\/Illuminate\/Routing\/Pipeline.php\",\n            \"line\": 51,\n            \"function\": \"render\",\n            \"class\": \"NunoMaduro\\\\Collision\\\\Adapters\\\\Laravel\\\\ExceptionHandler\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"\/var\/www\/html\/store\/vendor\/laravel\/framework\/src\/Illuminate\/Pipeline\/Pipeline.php\",\n            \"line\": 130,\n            \"function\": \"handleException\",\n            \"class\": \"Illuminate\\\\Routing\\\\Pipeline\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"\/var\/www\/html\/store\/vendor\/laravel\/framework\/src\/Illuminate\/Routing\/Middleware\/SubstituteBindings.php\",\n            \"line\": 50,\n            \"function\": \"Illuminate\\\\Pipeline\\\\{closure}\",\n            \"class\": \"Illuminate\\\\Pipeline\\\\Pipeline\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"\/var\/www\/html\/store\/vendor\/laravel\/framework\/src\/Illuminate\/Pipeline\/Pipeline.php\",\n            \"line\": 167,\n            \"function\": \"handle\",\n            \"class\": \"Illuminate\\\\Routing\\\\Middleware\\\\SubstituteBindings\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"\/var\/www\/html\/store\/vendor\/laravel\/framework\/src\/Illuminate\/Routing\/Middleware\/ThrottleRequests.php\",\n            \"line\": 127,\n            \"function\": \"Illuminate\\\\Pipeline\\\\{closure}\",\n            \"class\": \"Illuminate\\\\Pipeline\\\\Pipeline\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"\/var\/www\/html\/store\/vendor\/laravel\/framework\/src\/Illuminate\/Routing\/Middleware\/ThrottleRequests.php\",\n            \"line\": 103,\n            \"function\": \"handleRequest\",\n            \"class\": \"Illuminate\\\\Routing\\\\Middleware\\\\ThrottleRequests\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"\/var\/www\/html\/store\/vendor\/laravel\/framework\/src\/Illuminate\/Routing\/Middleware\/ThrottleRequests.php\",\n            \"line\": 55,\n            \"function\": \"handleRequestUsingNamedLimiter\",\n            \"class\": \"Illuminate\\\\Routing\\\\Middleware\\\\ThrottleRequests\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"\/var\/www\/html\/store\/vendor\/laravel\/framework\/src\/Illuminate\/Pipeline\/Pipeline.php\",\n            \"line\": 167,\n            \"function\": \"handle\",\n            \"class\": \"Illuminate\\\\Routing\\\\Middleware\\\\ThrottleRequests\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"\/var\/www\/html\/store\/vendor\/laravel\/sanctum\/src\/Http\/Middleware\/EnsureFrontendRequestsAreStateful.php\",\n            \"line\": 33,\n            \"function\": \"Illuminate\\\\Pipeline\\\\{closure}\",\n            \"class\": \"Illuminate\\\\Pipeline\\\\Pipeline\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"\/var\/www\/html\/store\/vendor\/laravel\/framework\/src\/Illuminate\/Pipeline\/Pipeline.php\",\n            \"line\": 128,\n            \"function\": \"Laravel\\\\Sanctum\\\\Http\\\\Middleware\\\\{closure}\",\n            \"class\": \"Laravel\\\\Sanctum\\\\Http\\\\Middleware\\\\EnsureFrontendRequestsAreStateful\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"\/var\/www\/html\/store\/vendor\/laravel\/framework\/src\/Illuminate\/Pipeline\/Pipeline.php\",\n            \"line\": 103,\n            \"function\": \"Illuminate\\\\Pipeline\\\\{closure}\",\n            \"class\": \"Illuminate\\\\Pipeline\\\\Pipeline\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"\/var\/www\/html\/store\/vendor\/laravel\/sanctum\/src\/Http\/Middleware\/EnsureFrontendRequestsAreStateful.php\",\n            \"line\": 34,\n            \"function\": \"then\",\n            \"class\": \"Illuminate\\\\Pipeline\\\\Pipeline\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"\/var\/www\/html\/store\/vendor\/laravel\/framework\/src\/Illuminate\/Pipeline\/Pipeline.php\",\n            \"line\": 167,\n            \"function\": \"handle\",\n            \"class\": \"Laravel\\\\Sanctum\\\\Http\\\\Middleware\\\\EnsureFrontendRequestsAreStateful\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"\/var\/www\/html\/store\/vendor\/laravel\/framework\/src\/Illuminate\/Pipeline\/Pipeline.php\",\n            \"line\": 103,\n            \"function\": \"Illuminate\\\\Pipeline\\\\{closure}\",\n            \"class\": \"Illuminate\\\\Pipeline\\\\Pipeline\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"\/var\/www\/html\/store\/vendor\/laravel\/framework\/src\/Illuminate\/Routing\/Router.php\",\n            \"line\": 723,\n            \"function\": \"then\",\n            \"class\": \"Illuminate\\\\Pipeline\\\\Pipeline\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"\/var\/www\/html\/store\/vendor\/laravel\/framework\/src\/Illuminate\/Routing\/Router.php\",\n            \"line\": 698,\n            \"function\": \"runRouteWithinStack\",\n            \"class\": \"Illuminate\\\\Routing\\\\Router\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"\/var\/www\/html\/store\/vendor\/laravel\/framework\/src\/Illuminate\/Routing\/Router.php\",\n            \"line\": 662,\n            \"function\": \"runRoute\",\n            \"class\": \"Illuminate\\\\Routing\\\\Router\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"\/var\/www\/html\/store\/vendor\/laravel\/framework\/src\/Illuminate\/Routing\/Router.php\",\n            \"line\": 651,\n            \"function\": \"dispatchToRoute\",\n            \"class\": \"Illuminate\\\\Routing\\\\Router\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"\/var\/www\/html\/store\/vendor\/laravel\/framework\/src\/Illuminate\/Foundation\/Http\/Kernel.php\",\n            \"line\": 167,\n            \"function\": \"dispatch\",\n            \"class\": \"Illuminate\\\\Routing\\\\Router\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"\/var\/www\/html\/store\/vendor\/laravel\/framework\/src\/Illuminate\/Pipeline\/Pipeline.php\",\n            \"line\": 128,\n            \"function\": \"Illuminate\\\\Foundation\\\\Http\\\\{closure}\",\n            \"class\": \"Illuminate\\\\Foundation\\\\Http\\\\Kernel\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"\/var\/www\/html\/store\/vendor\/barryvdh\/laravel-debugbar\/src\/Middleware\/InjectDebugbar.php\",\n            \"line\": 59,\n            \"function\": \"Illuminate\\\\Pipeline\\\\{closure}\",\n            \"class\": \"Illuminate\\\\Pipeline\\\\Pipeline\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"\/var\/www\/html\/store\/vendor\/laravel\/framework\/src\/Illuminate\/Pipeline\/Pipeline.php\",\n            \"line\": 167,\n            \"function\": \"handle\",\n            \"class\": \"Barryvdh\\\\Debugbar\\\\Middleware\\\\InjectDebugbar\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"\/var\/www\/html\/store\/vendor\/fruitcake\/laravel-cors\/src\/HandleCors.php\",\n            \"line\": 52,\n            \"function\": \"Illuminate\\\\Pipeline\\\\{closure}\",\n            \"class\": \"Illuminate\\\\Pipeline\\\\Pipeline\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"\/var\/www\/html\/store\/vendor\/laravel\/framework\/src\/Illuminate\/Pipeline\/Pipeline.php\",\n            \"line\": 167,\n            \"function\": \"handle\",\n            \"class\": \"Fruitcake\\\\Cors\\\\HandleCors\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"\/var\/www\/html\/store\/app\/Http\/Middleware\/vistors.php\",\n            \"line\": 36,\n            \"function\": \"Illuminate\\\\Pipeline\\\\{closure}\",\n            \"class\": \"Illuminate\\\\Pipeline\\\\Pipeline\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"\/var\/www\/html\/store\/vendor\/laravel\/framework\/src\/Illuminate\/Pipeline\/Pipeline.php\",\n            \"line\": 167,\n            \"function\": \"handle\",\n            \"class\": \"App\\\\Http\\\\Middleware\\\\vistors\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"\/var\/www\/html\/store\/vendor\/laravel\/framework\/src\/Illuminate\/Foundation\/Http\/Middleware\/TransformsRequest.php\",\n            \"line\": 21,\n            \"function\": \"Illuminate\\\\Pipeline\\\\{closure}\",\n            \"class\": \"Illuminate\\\\Pipeline\\\\Pipeline\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"\/var\/www\/html\/store\/vendor\/laravel\/framework\/src\/Illuminate\/Foundation\/Http\/Middleware\/ConvertEmptyStringsToNull.php\",\n            \"line\": 31,\n            \"function\": \"handle\",\n            \"class\": \"Illuminate\\\\Foundation\\\\Http\\\\Middleware\\\\TransformsRequest\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"\/var\/www\/html\/store\/vendor\/laravel\/framework\/src\/Illuminate\/Pipeline\/Pipeline.php\",\n            \"line\": 167,\n            \"function\": \"handle\",\n            \"class\": \"Illuminate\\\\Foundation\\\\Http\\\\Middleware\\\\ConvertEmptyStringsToNull\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"\/var\/www\/html\/store\/vendor\/laravel\/framework\/src\/Illuminate\/Foundation\/Http\/Middleware\/TransformsRequest.php\",\n            \"line\": 21,\n            \"function\": \"Illuminate\\\\Pipeline\\\\{closure}\",\n            \"class\": \"Illuminate\\\\Pipeline\\\\Pipeline\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"\/var\/www\/html\/store\/vendor\/laravel\/framework\/src\/Illuminate\/Foundation\/Http\/Middleware\/TrimStrings.php\",\n            \"line\": 40,\n            \"function\": \"handle\",\n            \"class\": \"Illuminate\\\\Foundation\\\\Http\\\\Middleware\\\\TransformsRequest\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"\/var\/www\/html\/store\/vendor\/laravel\/framework\/src\/Illuminate\/Pipeline\/Pipeline.php\",\n            \"line\": 167,\n            \"function\": \"handle\",\n            \"class\": \"Illuminate\\\\Foundation\\\\Http\\\\Middleware\\\\TrimStrings\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"\/var\/www\/html\/store\/vendor\/laravel\/framework\/src\/Illuminate\/Foundation\/Http\/Middleware\/ValidatePostSize.php\",\n            \"line\": 27,\n            \"function\": \"Illuminate\\\\Pipeline\\\\{closure}\",\n            \"class\": \"Illuminate\\\\Pipeline\\\\Pipeline\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"\/var\/www\/html\/store\/vendor\/laravel\/framework\/src\/Illuminate\/Pipeline\/Pipeline.php\",\n            \"line\": 167,\n            \"function\": \"handle\",\n            \"class\": \"Illuminate\\\\Foundation\\\\Http\\\\Middleware\\\\ValidatePostSize\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"\/var\/www\/html\/store\/vendor\/laravel\/framework\/src\/Illuminate\/Foundation\/Http\/Middleware\/PreventRequestsDuringMaintenance.php\",\n            \"line\": 86,\n            \"function\": \"Illuminate\\\\Pipeline\\\\{closure}\",\n            \"class\": \"Illuminate\\\\Pipeline\\\\Pipeline\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"\/var\/www\/html\/store\/vendor\/laravel\/framework\/src\/Illuminate\/Pipeline\/Pipeline.php\",\n            \"line\": 167,\n            \"function\": \"handle\",\n            \"class\": \"Illuminate\\\\Foundation\\\\Http\\\\Middleware\\\\PreventRequestsDuringMaintenance\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"\/var\/www\/html\/store\/vendor\/fruitcake\/laravel-cors\/src\/HandleCors.php\",\n            \"line\": 52,\n            \"function\": \"Illuminate\\\\Pipeline\\\\{closure}\",\n            \"class\": \"Illuminate\\\\Pipeline\\\\Pipeline\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"\/var\/www\/html\/store\/vendor\/laravel\/framework\/src\/Illuminate\/Pipeline\/Pipeline.php\",\n            \"line\": 167,\n            \"function\": \"handle\",\n            \"class\": \"Fruitcake\\\\Cors\\\\HandleCors\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"\/var\/www\/html\/store\/vendor\/laravel\/framework\/src\/Illuminate\/Http\/Middleware\/TrustProxies.php\",\n            \"line\": 39,\n            \"function\": \"Illuminate\\\\Pipeline\\\\{closure}\",\n            \"class\": \"Illuminate\\\\Pipeline\\\\Pipeline\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"\/var\/www\/html\/store\/vendor\/laravel\/framework\/src\/Illuminate\/Pipeline\/Pipeline.php\",\n            \"line\": 167,\n            \"function\": \"handle\",\n            \"class\": \"Illuminate\\\\Http\\\\Middleware\\\\TrustProxies\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"\/var\/www\/html\/store\/vendor\/laravel\/framework\/src\/Illuminate\/Pipeline\/Pipeline.php\",\n            \"line\": 103,\n            \"function\": \"Illuminate\\\\Pipeline\\\\{closure}\",\n            \"class\": \"Illuminate\\\\Pipeline\\\\Pipeline\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"\/var\/www\/html\/store\/vendor\/laravel\/framework\/src\/Illuminate\/Foundation\/Http\/Kernel.php\",\n            \"line\": 142,\n            \"function\": \"then\",\n            \"class\": \"Illuminate\\\\Pipeline\\\\Pipeline\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"\/var\/www\/html\/store\/vendor\/laravel\/framework\/src\/Illuminate\/Foundation\/Http\/Kernel.php\",\n            \"line\": 111,\n            \"function\": \"sendRequestThroughRouter\",\n            \"class\": \"Illuminate\\\\Foundation\\\\Http\\\\Kernel\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"\/var\/www\/html\/store\/vendor\/knuckleswtf\/scribe\/src\/Extracting\/Strategies\/Responses\/ResponseCalls.php\",\n            \"line\": 299,\n            \"function\": \"handle\",\n            \"class\": \"Illuminate\\\\Foundation\\\\Http\\\\Kernel\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"\/var\/www\/html\/store\/vendor\/knuckleswtf\/scribe\/src\/Extracting\/Strategies\/Responses\/ResponseCalls.php\",\n            \"line\": 287,\n            \"function\": \"callLaravelOrLumenRoute\",\n            \"class\": \"Knuckles\\\\Scribe\\\\Extracting\\\\Strategies\\\\Responses\\\\ResponseCalls\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"\/var\/www\/html\/store\/vendor\/knuckleswtf\/scribe\/src\/Extracting\/Strategies\/Responses\/ResponseCalls.php\",\n            \"line\": 89,\n            \"function\": \"makeApiCall\",\n            \"class\": \"Knuckles\\\\Scribe\\\\Extracting\\\\Strategies\\\\Responses\\\\ResponseCalls\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"\/var\/www\/html\/store\/vendor\/knuckleswtf\/scribe\/src\/Extracting\/Strategies\/Responses\/ResponseCalls.php\",\n            \"line\": 45,\n            \"function\": \"makeResponseCall\",\n            \"class\": \"Knuckles\\\\Scribe\\\\Extracting\\\\Strategies\\\\Responses\\\\ResponseCalls\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"\/var\/www\/html\/store\/vendor\/knuckleswtf\/scribe\/src\/Extracting\/Strategies\/Responses\/ResponseCalls.php\",\n            \"line\": 35,\n            \"function\": \"makeResponseCallIfConditionsPass\",\n            \"class\": \"Knuckles\\\\Scribe\\\\Extracting\\\\Strategies\\\\Responses\\\\ResponseCalls\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"\/var\/www\/html\/store\/vendor\/knuckleswtf\/scribe\/src\/Extracting\/Extractor.php\",\n            \"line\": 222,\n            \"function\": \"__invoke\",\n            \"class\": \"Knuckles\\\\Scribe\\\\Extracting\\\\Strategies\\\\Responses\\\\ResponseCalls\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"\/var\/www\/html\/store\/vendor\/knuckleswtf\/scribe\/src\/Extracting\/Extractor.php\",\n            \"line\": 179,\n            \"function\": \"iterateThroughStrategies\",\n            \"class\": \"Knuckles\\\\Scribe\\\\Extracting\\\\Extractor\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"\/var\/www\/html\/store\/vendor\/knuckleswtf\/scribe\/src\/Extracting\/Extractor.php\",\n            \"line\": 116,\n            \"function\": \"fetchResponses\",\n            \"class\": \"Knuckles\\\\Scribe\\\\Extracting\\\\Extractor\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"\/var\/www\/html\/store\/vendor\/knuckleswtf\/scribe\/src\/GroupedEndpoints\/GroupedEndpointsFromApp.php\",\n            \"line\": 123,\n            \"function\": \"processRoute\",\n            \"class\": \"Knuckles\\\\Scribe\\\\Extracting\\\\Extractor\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"\/var\/www\/html\/store\/vendor\/knuckleswtf\/scribe\/src\/GroupedEndpoints\/GroupedEndpointsFromApp.php\",\n            \"line\": 80,\n            \"function\": \"extractEndpointsInfoFromLaravelApp\",\n            \"class\": \"Knuckles\\\\Scribe\\\\GroupedEndpoints\\\\GroupedEndpointsFromApp\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"\/var\/www\/html\/store\/vendor\/knuckleswtf\/scribe\/src\/GroupedEndpoints\/GroupedEndpointsFromApp.php\",\n            \"line\": 56,\n            \"function\": \"extractEndpointsInfoAndWriteToDisk\",\n            \"class\": \"Knuckles\\\\Scribe\\\\GroupedEndpoints\\\\GroupedEndpointsFromApp\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"\/var\/www\/html\/store\/vendor\/knuckleswtf\/scribe\/src\/Commands\/GenerateDocumentation.php\",\n            \"line\": 55,\n            \"function\": \"get\",\n            \"class\": \"Knuckles\\\\Scribe\\\\GroupedEndpoints\\\\GroupedEndpointsFromApp\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"\/var\/www\/html\/store\/vendor\/laravel\/framework\/src\/Illuminate\/Container\/BoundMethod.php\",\n            \"line\": 36,\n            \"function\": \"handle\",\n            \"class\": \"Knuckles\\\\Scribe\\\\Commands\\\\GenerateDocumentation\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"\/var\/www\/html\/store\/vendor\/laravel\/framework\/src\/Illuminate\/Container\/Util.php\",\n            \"line\": 40,\n            \"function\": \"Illuminate\\\\Container\\\\{closure}\",\n            \"class\": \"Illuminate\\\\Container\\\\BoundMethod\",\n            \"type\": \"::\"\n        },\n        {\n            \"file\": \"\/var\/www\/html\/store\/vendor\/laravel\/framework\/src\/Illuminate\/Container\/BoundMethod.php\",\n            \"line\": 93,\n            \"function\": \"unwrapIfClosure\",\n            \"class\": \"Illuminate\\\\Container\\\\Util\",\n            \"type\": \"::\"\n        },\n        {\n            \"file\": \"\/var\/www\/html\/store\/vendor\/laravel\/framework\/src\/Illuminate\/Container\/BoundMethod.php\",\n            \"line\": 37,\n            \"function\": \"callBoundMethod\",\n            \"class\": \"Illuminate\\\\Container\\\\BoundMethod\",\n            \"type\": \"::\"\n        },\n        {\n            \"file\": \"\/var\/www\/html\/store\/vendor\/laravel\/framework\/src\/Illuminate\/Container\/Container.php\",\n            \"line\": 653,\n            \"function\": \"call\",\n            \"class\": \"Illuminate\\\\Container\\\\BoundMethod\",\n            \"type\": \"::\"\n        },\n        {\n            \"file\": \"\/var\/www\/html\/store\/vendor\/laravel\/framework\/src\/Illuminate\/Console\/Command.php\",\n            \"line\": 136,\n            \"function\": \"call\",\n            \"class\": \"Illuminate\\\\Container\\\\Container\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"\/var\/www\/html\/store\/vendor\/symfony\/console\/Command\/Command.php\",\n            \"line\": 298,\n            \"function\": \"execute\",\n            \"class\": \"Illuminate\\\\Console\\\\Command\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"\/var\/www\/html\/store\/vendor\/laravel\/framework\/src\/Illuminate\/Console\/Command.php\",\n            \"line\": 121,\n            \"function\": \"run\",\n            \"class\": \"Symfony\\\\Component\\\\Console\\\\Command\\\\Command\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"\/var\/www\/html\/store\/vendor\/symfony\/console\/Application.php\",\n            \"line\": 1040,\n            \"function\": \"run\",\n            \"class\": \"Illuminate\\\\Console\\\\Command\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"\/var\/www\/html\/store\/vendor\/symfony\/console\/Application.php\",\n            \"line\": 301,\n            \"function\": \"doRunCommand\",\n            \"class\": \"Symfony\\\\Component\\\\Console\\\\Application\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"\/var\/www\/html\/store\/vendor\/symfony\/console\/Application.php\",\n            \"line\": 171,\n            \"function\": \"doRun\",\n            \"class\": \"Symfony\\\\Component\\\\Console\\\\Application\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"\/var\/www\/html\/store\/vendor\/laravel\/framework\/src\/Illuminate\/Console\/Application.php\",\n            \"line\": 94,\n            \"function\": \"run\",\n            \"class\": \"Symfony\\\\Component\\\\Console\\\\Application\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"\/var\/www\/html\/store\/vendor\/laravel\/framework\/src\/Illuminate\/Foundation\/Console\/Kernel.php\",\n            \"line\": 129,\n            \"function\": \"run\",\n            \"class\": \"Illuminate\\\\Console\\\\Application\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"\/var\/www\/html\/store\/artisan\",\n            \"line\": 37,\n            \"function\": \"handle\",\n            \"class\": \"Illuminate\\\\Foundation\\\\Console\\\\Kernel\",\n            \"type\": \"->\"\n        }\n    ]\n}",
+                            "header": [],
+                            "code": 200,
+                            "body": "[\n {\n\"id\": 1,\n\"product_name\": \"\u062f\u062c\u0627\u062c\",\n\"product_price\": 300,\n\"product_discount\": 10,\n\"product_photo\": null,\n\"item_id\": 1,\n\"created_at\": \"2022-11-14T18:56:02.000000Z\",\n\"updated_at\": \"2022-11-14T18:56:02.000000Z\",\n \"pivot\": {\n     \"cart_id\": \"cart_63735a019396e\",\n     \"product_id\": 1,\n     \"product_amount\": 1\n  }\n}\n]",
                             "name": ""
                         }
                     ]
@@ -211,7 +190,14 @@
                             "type": "noauth"
                         }
                     },
-                    "response": []
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 201,
+                            "body": "{\n\"id\": \"cart_6373591c94f01\",\n\"updated_at\": \"2022-11-15T09:17:16.000000Z\",\n\"created_at\": \"2022-11-15T09:17:16.000000Z\"\n}",
+                            "name": ""
+                        }
+                    ]
                 },
                 {
                     "name": "Remove All Products From Cart",
@@ -225,7 +211,7 @@
                                 {
                                     "id": "cart",
                                     "key": "cart",
-                                    "value": "ut",
+                                    "value": "voluptas",
                                     "description": "The ID of the cart."
                                 }
                             ]
@@ -247,7 +233,14 @@
                             "type": "noauth"
                         }
                     },
-                    "response": []
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "1",
+                            "name": ""
+                        }
+                    ]
                 },
                 {
                     "name": "Store Products in Cart",
@@ -261,7 +254,7 @@
                                 {
                                     "id": "cart",
                                     "key": "cart",
-                                    "value": "placeat",
+                                    "value": "omnis",
                                     "description": "The ID of the cart."
                                 }
                             ]
@@ -279,14 +272,21 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"product_id\":\"dolore\"}"
+                            "raw": "{\"product_id\":15}"
                         },
                         "description": "",
                         "auth": {
                             "type": "noauth"
                         }
                     },
-                    "response": []
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 201,
+                            "body": "{\n\"id\": 1,\n\"product_name\": \"\u062f\u062c\u0627\u062c\",\n\"product_price\": 300,\n\"product_discount\": 10,\n\"product_photo\": null,\n\"item_id\": 1,\n\"created_at\": \"2022-11-14T18:56:02.000000Z\",\n\"updated_at\": \"2022-11-14T18:56:02.000000Z\",\n\"pivot\": {\n\"cart_id\": \"cart_63728e5ab48c9\",\n\"product_id\": 1,\n\"product_amount\": 1\n}\n}",
+                            "name": ""
+                        }
+                    ]
                 },
                 {
                     "name": "Show specified Product in Cart",
@@ -300,13 +300,13 @@
                                 {
                                     "id": "cart_id",
                                     "key": "cart_id",
-                                    "value": "dolorem",
+                                    "value": "et",
                                     "description": "The ID of the cart."
                                 },
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "1",
+                                    "value": "15",
                                     "description": "The ID of the product."
                                 }
                             ]
@@ -330,30 +330,9 @@
                     },
                     "response": [
                         {
-                            "header": [
-                                {
-                                    "key": "cache-control",
-                                    "value": "no-cache, private"
-                                },
-                                {
-                                    "key": "content-type",
-                                    "value": "application\/json"
-                                },
-                                {
-                                    "key": "x-ratelimit-limit",
-                                    "value": "60"
-                                },
-                                {
-                                    "key": "x-ratelimit-remaining",
-                                    "value": "56"
-                                },
-                                {
-                                    "key": "access-control-allow-origin",
-                                    "value": "*"
-                                }
-                            ],
-                            "code": 404,
-                            "body": "{\n    \"message\": \"No query results for model [App\\\\Models\\\\Cart] 1\",\n    \"exception\": \"Symfony\\\\Component\\\\HttpKernel\\\\Exception\\\\NotFoundHttpException\",\n    \"file\": \"\/var\/www\/html\/store\/vendor\/laravel\/framework\/src\/Illuminate\/Foundation\/Exceptions\/Handler.php\",\n    \"line\": 385,\n    \"trace\": [\n        {\n            \"file\": \"\/var\/www\/html\/store\/vendor\/laravel\/framework\/src\/Illuminate\/Foundation\/Exceptions\/Handler.php\",\n            \"line\": 332,\n            \"function\": \"prepareException\",\n            \"class\": \"Illuminate\\\\Foundation\\\\Exceptions\\\\Handler\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"\/var\/www\/html\/store\/vendor\/nunomaduro\/collision\/src\/Adapters\/Laravel\/ExceptionHandler.php\",\n            \"line\": 54,\n            \"function\": \"render\",\n            \"class\": \"Illuminate\\\\Foundation\\\\Exceptions\\\\Handler\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"\/var\/www\/html\/store\/vendor\/laravel\/framework\/src\/Illuminate\/Routing\/Pipeline.php\",\n            \"line\": 51,\n            \"function\": \"render\",\n            \"class\": \"NunoMaduro\\\\Collision\\\\Adapters\\\\Laravel\\\\ExceptionHandler\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"\/var\/www\/html\/store\/vendor\/laravel\/framework\/src\/Illuminate\/Pipeline\/Pipeline.php\",\n            \"line\": 130,\n            \"function\": \"handleException\",\n            \"class\": \"Illuminate\\\\Routing\\\\Pipeline\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"\/var\/www\/html\/store\/vendor\/laravel\/framework\/src\/Illuminate\/Routing\/Middleware\/SubstituteBindings.php\",\n            \"line\": 50,\n            \"function\": \"Illuminate\\\\Pipeline\\\\{closure}\",\n            \"class\": \"Illuminate\\\\Pipeline\\\\Pipeline\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"\/var\/www\/html\/store\/vendor\/laravel\/framework\/src\/Illuminate\/Pipeline\/Pipeline.php\",\n            \"line\": 167,\n            \"function\": \"handle\",\n            \"class\": \"Illuminate\\\\Routing\\\\Middleware\\\\SubstituteBindings\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"\/var\/www\/html\/store\/vendor\/laravel\/framework\/src\/Illuminate\/Routing\/Middleware\/ThrottleRequests.php\",\n            \"line\": 127,\n            \"function\": \"Illuminate\\\\Pipeline\\\\{closure}\",\n            \"class\": \"Illuminate\\\\Pipeline\\\\Pipeline\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"\/var\/www\/html\/store\/vendor\/laravel\/framework\/src\/Illuminate\/Routing\/Middleware\/ThrottleRequests.php\",\n            \"line\": 103,\n            \"function\": \"handleRequest\",\n            \"class\": \"Illuminate\\\\Routing\\\\Middleware\\\\ThrottleRequests\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"\/var\/www\/html\/store\/vendor\/laravel\/framework\/src\/Illuminate\/Routing\/Middleware\/ThrottleRequests.php\",\n            \"line\": 55,\n            \"function\": \"handleRequestUsingNamedLimiter\",\n            \"class\": \"Illuminate\\\\Routing\\\\Middleware\\\\ThrottleRequests\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"\/var\/www\/html\/store\/vendor\/laravel\/framework\/src\/Illuminate\/Pipeline\/Pipeline.php\",\n            \"line\": 167,\n            \"function\": \"handle\",\n            \"class\": \"Illuminate\\\\Routing\\\\Middleware\\\\ThrottleRequests\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"\/var\/www\/html\/store\/vendor\/laravel\/sanctum\/src\/Http\/Middleware\/EnsureFrontendRequestsAreStateful.php\",\n            \"line\": 33,\n            \"function\": \"Illuminate\\\\Pipeline\\\\{closure}\",\n            \"class\": \"Illuminate\\\\Pipeline\\\\Pipeline\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"\/var\/www\/html\/store\/vendor\/laravel\/framework\/src\/Illuminate\/Pipeline\/Pipeline.php\",\n            \"line\": 128,\n            \"function\": \"Laravel\\\\Sanctum\\\\Http\\\\Middleware\\\\{closure}\",\n            \"class\": \"Laravel\\\\Sanctum\\\\Http\\\\Middleware\\\\EnsureFrontendRequestsAreStateful\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"\/var\/www\/html\/store\/vendor\/laravel\/framework\/src\/Illuminate\/Pipeline\/Pipeline.php\",\n            \"line\": 103,\n            \"function\": \"Illuminate\\\\Pipeline\\\\{closure}\",\n            \"class\": \"Illuminate\\\\Pipeline\\\\Pipeline\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"\/var\/www\/html\/store\/vendor\/laravel\/sanctum\/src\/Http\/Middleware\/EnsureFrontendRequestsAreStateful.php\",\n            \"line\": 34,\n            \"function\": \"then\",\n            \"class\": \"Illuminate\\\\Pipeline\\\\Pipeline\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"\/var\/www\/html\/store\/vendor\/laravel\/framework\/src\/Illuminate\/Pipeline\/Pipeline.php\",\n            \"line\": 167,\n            \"function\": \"handle\",\n            \"class\": \"Laravel\\\\Sanctum\\\\Http\\\\Middleware\\\\EnsureFrontendRequestsAreStateful\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"\/var\/www\/html\/store\/vendor\/laravel\/framework\/src\/Illuminate\/Pipeline\/Pipeline.php\",\n            \"line\": 103,\n            \"function\": \"Illuminate\\\\Pipeline\\\\{closure}\",\n            \"class\": \"Illuminate\\\\Pipeline\\\\Pipeline\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"\/var\/www\/html\/store\/vendor\/laravel\/framework\/src\/Illuminate\/Routing\/Router.php\",\n            \"line\": 723,\n            \"function\": \"then\",\n            \"class\": \"Illuminate\\\\Pipeline\\\\Pipeline\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"\/var\/www\/html\/store\/vendor\/laravel\/framework\/src\/Illuminate\/Routing\/Router.php\",\n            \"line\": 698,\n            \"function\": \"runRouteWithinStack\",\n            \"class\": \"Illuminate\\\\Routing\\\\Router\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"\/var\/www\/html\/store\/vendor\/laravel\/framework\/src\/Illuminate\/Routing\/Router.php\",\n            \"line\": 662,\n            \"function\": \"runRoute\",\n            \"class\": \"Illuminate\\\\Routing\\\\Router\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"\/var\/www\/html\/store\/vendor\/laravel\/framework\/src\/Illuminate\/Routing\/Router.php\",\n            \"line\": 651,\n            \"function\": \"dispatchToRoute\",\n            \"class\": \"Illuminate\\\\Routing\\\\Router\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"\/var\/www\/html\/store\/vendor\/laravel\/framework\/src\/Illuminate\/Foundation\/Http\/Kernel.php\",\n            \"line\": 167,\n            \"function\": \"dispatch\",\n            \"class\": \"Illuminate\\\\Routing\\\\Router\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"\/var\/www\/html\/store\/vendor\/laravel\/framework\/src\/Illuminate\/Pipeline\/Pipeline.php\",\n            \"line\": 128,\n            \"function\": \"Illuminate\\\\Foundation\\\\Http\\\\{closure}\",\n            \"class\": \"Illuminate\\\\Foundation\\\\Http\\\\Kernel\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"\/var\/www\/html\/store\/vendor\/barryvdh\/laravel-debugbar\/src\/Middleware\/InjectDebugbar.php\",\n            \"line\": 59,\n            \"function\": \"Illuminate\\\\Pipeline\\\\{closure}\",\n            \"class\": \"Illuminate\\\\Pipeline\\\\Pipeline\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"\/var\/www\/html\/store\/vendor\/laravel\/framework\/src\/Illuminate\/Pipeline\/Pipeline.php\",\n            \"line\": 167,\n            \"function\": \"handle\",\n            \"class\": \"Barryvdh\\\\Debugbar\\\\Middleware\\\\InjectDebugbar\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"\/var\/www\/html\/store\/vendor\/fruitcake\/laravel-cors\/src\/HandleCors.php\",\n            \"line\": 52,\n            \"function\": \"Illuminate\\\\Pipeline\\\\{closure}\",\n            \"class\": \"Illuminate\\\\Pipeline\\\\Pipeline\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"\/var\/www\/html\/store\/vendor\/laravel\/framework\/src\/Illuminate\/Pipeline\/Pipeline.php\",\n            \"line\": 167,\n            \"function\": \"handle\",\n            \"class\": \"Fruitcake\\\\Cors\\\\HandleCors\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"\/var\/www\/html\/store\/app\/Http\/Middleware\/vistors.php\",\n            \"line\": 36,\n            \"function\": \"Illuminate\\\\Pipeline\\\\{closure}\",\n            \"class\": \"Illuminate\\\\Pipeline\\\\Pipeline\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"\/var\/www\/html\/store\/vendor\/laravel\/framework\/src\/Illuminate\/Pipeline\/Pipeline.php\",\n            \"line\": 167,\n            \"function\": \"handle\",\n            \"class\": \"App\\\\Http\\\\Middleware\\\\vistors\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"\/var\/www\/html\/store\/vendor\/laravel\/framework\/src\/Illuminate\/Foundation\/Http\/Middleware\/TransformsRequest.php\",\n            \"line\": 21,\n            \"function\": \"Illuminate\\\\Pipeline\\\\{closure}\",\n            \"class\": \"Illuminate\\\\Pipeline\\\\Pipeline\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"\/var\/www\/html\/store\/vendor\/laravel\/framework\/src\/Illuminate\/Foundation\/Http\/Middleware\/ConvertEmptyStringsToNull.php\",\n            \"line\": 31,\n            \"function\": \"handle\",\n            \"class\": \"Illuminate\\\\Foundation\\\\Http\\\\Middleware\\\\TransformsRequest\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"\/var\/www\/html\/store\/vendor\/laravel\/framework\/src\/Illuminate\/Pipeline\/Pipeline.php\",\n            \"line\": 167,\n            \"function\": \"handle\",\n            \"class\": \"Illuminate\\\\Foundation\\\\Http\\\\Middleware\\\\ConvertEmptyStringsToNull\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"\/var\/www\/html\/store\/vendor\/laravel\/framework\/src\/Illuminate\/Foundation\/Http\/Middleware\/TransformsRequest.php\",\n            \"line\": 21,\n            \"function\": \"Illuminate\\\\Pipeline\\\\{closure}\",\n            \"class\": \"Illuminate\\\\Pipeline\\\\Pipeline\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"\/var\/www\/html\/store\/vendor\/laravel\/framework\/src\/Illuminate\/Foundation\/Http\/Middleware\/TrimStrings.php\",\n            \"line\": 40,\n            \"function\": \"handle\",\n            \"class\": \"Illuminate\\\\Foundation\\\\Http\\\\Middleware\\\\TransformsRequest\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"\/var\/www\/html\/store\/vendor\/laravel\/framework\/src\/Illuminate\/Pipeline\/Pipeline.php\",\n            \"line\": 167,\n            \"function\": \"handle\",\n            \"class\": \"Illuminate\\\\Foundation\\\\Http\\\\Middleware\\\\TrimStrings\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"\/var\/www\/html\/store\/vendor\/laravel\/framework\/src\/Illuminate\/Foundation\/Http\/Middleware\/ValidatePostSize.php\",\n            \"line\": 27,\n            \"function\": \"Illuminate\\\\Pipeline\\\\{closure}\",\n            \"class\": \"Illuminate\\\\Pipeline\\\\Pipeline\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"\/var\/www\/html\/store\/vendor\/laravel\/framework\/src\/Illuminate\/Pipeline\/Pipeline.php\",\n            \"line\": 167,\n            \"function\": \"handle\",\n            \"class\": \"Illuminate\\\\Foundation\\\\Http\\\\Middleware\\\\ValidatePostSize\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"\/var\/www\/html\/store\/vendor\/laravel\/framework\/src\/Illuminate\/Foundation\/Http\/Middleware\/PreventRequestsDuringMaintenance.php\",\n            \"line\": 86,\n            \"function\": \"Illuminate\\\\Pipeline\\\\{closure}\",\n            \"class\": \"Illuminate\\\\Pipeline\\\\Pipeline\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"\/var\/www\/html\/store\/vendor\/laravel\/framework\/src\/Illuminate\/Pipeline\/Pipeline.php\",\n            \"line\": 167,\n            \"function\": \"handle\",\n            \"class\": \"Illuminate\\\\Foundation\\\\Http\\\\Middleware\\\\PreventRequestsDuringMaintenance\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"\/var\/www\/html\/store\/vendor\/fruitcake\/laravel-cors\/src\/HandleCors.php\",\n            \"line\": 52,\n            \"function\": \"Illuminate\\\\Pipeline\\\\{closure}\",\n            \"class\": \"Illuminate\\\\Pipeline\\\\Pipeline\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"\/var\/www\/html\/store\/vendor\/laravel\/framework\/src\/Illuminate\/Pipeline\/Pipeline.php\",\n            \"line\": 167,\n            \"function\": \"handle\",\n            \"class\": \"Fruitcake\\\\Cors\\\\HandleCors\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"\/var\/www\/html\/store\/vendor\/laravel\/framework\/src\/Illuminate\/Http\/Middleware\/TrustProxies.php\",\n            \"line\": 39,\n            \"function\": \"Illuminate\\\\Pipeline\\\\{closure}\",\n            \"class\": \"Illuminate\\\\Pipeline\\\\Pipeline\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"\/var\/www\/html\/store\/vendor\/laravel\/framework\/src\/Illuminate\/Pipeline\/Pipeline.php\",\n            \"line\": 167,\n            \"function\": \"handle\",\n            \"class\": \"Illuminate\\\\Http\\\\Middleware\\\\TrustProxies\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"\/var\/www\/html\/store\/vendor\/laravel\/framework\/src\/Illuminate\/Pipeline\/Pipeline.php\",\n            \"line\": 103,\n            \"function\": \"Illuminate\\\\Pipeline\\\\{closure}\",\n            \"class\": \"Illuminate\\\\Pipeline\\\\Pipeline\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"\/var\/www\/html\/store\/vendor\/laravel\/framework\/src\/Illuminate\/Foundation\/Http\/Kernel.php\",\n            \"line\": 142,\n            \"function\": \"then\",\n            \"class\": \"Illuminate\\\\Pipeline\\\\Pipeline\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"\/var\/www\/html\/store\/vendor\/laravel\/framework\/src\/Illuminate\/Foundation\/Http\/Kernel.php\",\n            \"line\": 111,\n            \"function\": \"sendRequestThroughRouter\",\n            \"class\": \"Illuminate\\\\Foundation\\\\Http\\\\Kernel\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"\/var\/www\/html\/store\/vendor\/knuckleswtf\/scribe\/src\/Extracting\/Strategies\/Responses\/ResponseCalls.php\",\n            \"line\": 299,\n            \"function\": \"handle\",\n            \"class\": \"Illuminate\\\\Foundation\\\\Http\\\\Kernel\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"\/var\/www\/html\/store\/vendor\/knuckleswtf\/scribe\/src\/Extracting\/Strategies\/Responses\/ResponseCalls.php\",\n            \"line\": 287,\n            \"function\": \"callLaravelOrLumenRoute\",\n            \"class\": \"Knuckles\\\\Scribe\\\\Extracting\\\\Strategies\\\\Responses\\\\ResponseCalls\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"\/var\/www\/html\/store\/vendor\/knuckleswtf\/scribe\/src\/Extracting\/Strategies\/Responses\/ResponseCalls.php\",\n            \"line\": 89,\n            \"function\": \"makeApiCall\",\n            \"class\": \"Knuckles\\\\Scribe\\\\Extracting\\\\Strategies\\\\Responses\\\\ResponseCalls\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"\/var\/www\/html\/store\/vendor\/knuckleswtf\/scribe\/src\/Extracting\/Strategies\/Responses\/ResponseCalls.php\",\n            \"line\": 45,\n            \"function\": \"makeResponseCall\",\n            \"class\": \"Knuckles\\\\Scribe\\\\Extracting\\\\Strategies\\\\Responses\\\\ResponseCalls\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"\/var\/www\/html\/store\/vendor\/knuckleswtf\/scribe\/src\/Extracting\/Strategies\/Responses\/ResponseCalls.php\",\n            \"line\": 35,\n            \"function\": \"makeResponseCallIfConditionsPass\",\n            \"class\": \"Knuckles\\\\Scribe\\\\Extracting\\\\Strategies\\\\Responses\\\\ResponseCalls\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"\/var\/www\/html\/store\/vendor\/knuckleswtf\/scribe\/src\/Extracting\/Extractor.php\",\n            \"line\": 222,\n            \"function\": \"__invoke\",\n            \"class\": \"Knuckles\\\\Scribe\\\\Extracting\\\\Strategies\\\\Responses\\\\ResponseCalls\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"\/var\/www\/html\/store\/vendor\/knuckleswtf\/scribe\/src\/Extracting\/Extractor.php\",\n            \"line\": 179,\n            \"function\": \"iterateThroughStrategies\",\n            \"class\": \"Knuckles\\\\Scribe\\\\Extracting\\\\Extractor\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"\/var\/www\/html\/store\/vendor\/knuckleswtf\/scribe\/src\/Extracting\/Extractor.php\",\n            \"line\": 116,\n            \"function\": \"fetchResponses\",\n            \"class\": \"Knuckles\\\\Scribe\\\\Extracting\\\\Extractor\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"\/var\/www\/html\/store\/vendor\/knuckleswtf\/scribe\/src\/GroupedEndpoints\/GroupedEndpointsFromApp.php\",\n            \"line\": 123,\n            \"function\": \"processRoute\",\n            \"class\": \"Knuckles\\\\Scribe\\\\Extracting\\\\Extractor\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"\/var\/www\/html\/store\/vendor\/knuckleswtf\/scribe\/src\/GroupedEndpoints\/GroupedEndpointsFromApp.php\",\n            \"line\": 80,\n            \"function\": \"extractEndpointsInfoFromLaravelApp\",\n            \"class\": \"Knuckles\\\\Scribe\\\\GroupedEndpoints\\\\GroupedEndpointsFromApp\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"\/var\/www\/html\/store\/vendor\/knuckleswtf\/scribe\/src\/GroupedEndpoints\/GroupedEndpointsFromApp.php\",\n            \"line\": 56,\n            \"function\": \"extractEndpointsInfoAndWriteToDisk\",\n            \"class\": \"Knuckles\\\\Scribe\\\\GroupedEndpoints\\\\GroupedEndpointsFromApp\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"\/var\/www\/html\/store\/vendor\/knuckleswtf\/scribe\/src\/Commands\/GenerateDocumentation.php\",\n            \"line\": 55,\n            \"function\": \"get\",\n            \"class\": \"Knuckles\\\\Scribe\\\\GroupedEndpoints\\\\GroupedEndpointsFromApp\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"\/var\/www\/html\/store\/vendor\/laravel\/framework\/src\/Illuminate\/Container\/BoundMethod.php\",\n            \"line\": 36,\n            \"function\": \"handle\",\n            \"class\": \"Knuckles\\\\Scribe\\\\Commands\\\\GenerateDocumentation\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"\/var\/www\/html\/store\/vendor\/laravel\/framework\/src\/Illuminate\/Container\/Util.php\",\n            \"line\": 40,\n            \"function\": \"Illuminate\\\\Container\\\\{closure}\",\n            \"class\": \"Illuminate\\\\Container\\\\BoundMethod\",\n            \"type\": \"::\"\n        },\n        {\n            \"file\": \"\/var\/www\/html\/store\/vendor\/laravel\/framework\/src\/Illuminate\/Container\/BoundMethod.php\",\n            \"line\": 93,\n            \"function\": \"unwrapIfClosure\",\n            \"class\": \"Illuminate\\\\Container\\\\Util\",\n            \"type\": \"::\"\n        },\n        {\n            \"file\": \"\/var\/www\/html\/store\/vendor\/laravel\/framework\/src\/Illuminate\/Container\/BoundMethod.php\",\n            \"line\": 37,\n            \"function\": \"callBoundMethod\",\n            \"class\": \"Illuminate\\\\Container\\\\BoundMethod\",\n            \"type\": \"::\"\n        },\n        {\n            \"file\": \"\/var\/www\/html\/store\/vendor\/laravel\/framework\/src\/Illuminate\/Container\/Container.php\",\n            \"line\": 653,\n            \"function\": \"call\",\n            \"class\": \"Illuminate\\\\Container\\\\BoundMethod\",\n            \"type\": \"::\"\n        },\n        {\n            \"file\": \"\/var\/www\/html\/store\/vendor\/laravel\/framework\/src\/Illuminate\/Console\/Command.php\",\n            \"line\": 136,\n            \"function\": \"call\",\n            \"class\": \"Illuminate\\\\Container\\\\Container\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"\/var\/www\/html\/store\/vendor\/symfony\/console\/Command\/Command.php\",\n            \"line\": 298,\n            \"function\": \"execute\",\n            \"class\": \"Illuminate\\\\Console\\\\Command\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"\/var\/www\/html\/store\/vendor\/laravel\/framework\/src\/Illuminate\/Console\/Command.php\",\n            \"line\": 121,\n            \"function\": \"run\",\n            \"class\": \"Symfony\\\\Component\\\\Console\\\\Command\\\\Command\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"\/var\/www\/html\/store\/vendor\/symfony\/console\/Application.php\",\n            \"line\": 1040,\n            \"function\": \"run\",\n            \"class\": \"Illuminate\\\\Console\\\\Command\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"\/var\/www\/html\/store\/vendor\/symfony\/console\/Application.php\",\n            \"line\": 301,\n            \"function\": \"doRunCommand\",\n            \"class\": \"Symfony\\\\Component\\\\Console\\\\Application\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"\/var\/www\/html\/store\/vendor\/symfony\/console\/Application.php\",\n            \"line\": 171,\n            \"function\": \"doRun\",\n            \"class\": \"Symfony\\\\Component\\\\Console\\\\Application\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"\/var\/www\/html\/store\/vendor\/laravel\/framework\/src\/Illuminate\/Console\/Application.php\",\n            \"line\": 94,\n            \"function\": \"run\",\n            \"class\": \"Symfony\\\\Component\\\\Console\\\\Application\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"\/var\/www\/html\/store\/vendor\/laravel\/framework\/src\/Illuminate\/Foundation\/Console\/Kernel.php\",\n            \"line\": 129,\n            \"function\": \"run\",\n            \"class\": \"Illuminate\\\\Console\\\\Application\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"\/var\/www\/html\/store\/artisan\",\n            \"line\": 37,\n            \"function\": \"handle\",\n            \"class\": \"Illuminate\\\\Foundation\\\\Console\\\\Kernel\",\n            \"type\": \"->\"\n        }\n    ]\n}",
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n\"id\": 1,\n\"product_name\": \"\u062f\u062c\u0627\u062c\",\n\"product_price\": 300,\n\"product_discount\": 10,\n\"product_photo\": null,\n\"item_id\": 1,\n\"created_at\": \"2022-11-14T18:56:02.000000Z\",\n\"updated_at\": \"2022-11-14T18:56:02.000000Z\",\n\"pivot\": {\n\"cart_id\": \"cart_63735a019396e\",\n\"product_id\": 1,\n\"product_amount\": 1\n}\n}",
                             "name": ""
                         }
                     ]
@@ -370,13 +349,13 @@
                                 {
                                     "id": "cart_id",
                                     "key": "cart_id",
-                                    "value": "est",
+                                    "value": "nobis",
                                     "description": "The ID of the cart."
                                 },
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "1",
+                                    "value": "15",
                                     "description": "The ID of the product."
                                 }
                             ]
@@ -394,14 +373,21 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"product_amount\":5.05906}"
+                            "raw": "{\"product_amount\":197679.9098}"
                         },
                         "description": "",
                         "auth": {
                             "type": "noauth"
                         }
                     },
-                    "response": []
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n\"id\": 1,\n\"product_name\": \"\u062f\u062c\u0627\u062c\",\n\"product_price\": 300,\n\"product_discount\": 10,\n\"product_photo\": null,\n\"item_id\": 1,\n\"created_at\": \"2022-11-14T18:56:02.000000Z\",\n\"updated_at\": \"2022-11-14T18:56:02.000000Z\",\n\"pivot\": {\n\"cart_id\": \"cart_63728e5ab48c9\",\n\"product_id\": 1,\n\"product_amount\": 309\n}\n}",
+                            "name": ""
+                        }
+                    ]
                 },
                 {
                     "name": "Remove the specified product from cart",
@@ -415,13 +401,13 @@
                                 {
                                     "id": "cart_id",
                                     "key": "cart_id",
-                                    "value": "aut",
+                                    "value": "recusandae",
                                     "description": "The ID of the cart."
                                 },
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "1",
+                                    "value": "7",
                                     "description": "The ID of the product."
                                 }
                             ]
@@ -443,7 +429,14 @@
                             "type": "noauth"
                         }
                     },
-                    "response": []
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n\"id\": 1,\n\"product_name\": \"\u062f\u062c\u0627\u062c\",\n\"product_price\": 300,\n\"product_discount\": 10,\n\"product_photo\": null,\n\"item_id\": 1,\n\"created_at\": \"2022-11-14T18:56:02.000000Z\",\n\"updated_at\": \"2022-11-14T18:56:02.000000Z\",\n\"pivot\": {\n\"cart_id\": \"cart_63728e5ab48c9\",\n\"product_id\": 1,\n\"product_amount\": 1\n}\n}",
+                            "name": ""
+                        }
+                    ]
                 }
             ]
         },
@@ -474,7 +467,14 @@
                         "body": null,
                         "description": ""
                     },
-                    "response": []
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{}",
+                            "name": ""
+                        }
+                    ]
                 },
                 {
                     "name": "Display All Feedbacks (paginated)",
@@ -501,28 +501,15 @@
                     },
                     "response": [
                         {
-                            "header": [
-                                {
-                                    "key": "cache-control",
-                                    "value": "no-cache, private"
-                                },
-                                {
-                                    "key": "content-type",
-                                    "value": "application\/json"
-                                },
-                                {
-                                    "key": "access-control-allow-origin",
-                                    "value": "*"
-                                }
-                            ],
-                            "code": 401,
-                            "body": "{\"message\":\"Unauthenticated.\"}",
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n\"current_page\": 1,\n\"data\": [\n{\n\"id\": 1,\n\"name\": \"monty@gmail.com\",\n\"message\": \"\u0627\u0644\u0633\u0644\u0627\u0645 \u0639\u0644\u064a\u0643\u0645\",\n\"ip\": \"127.0.0.1\",\n\"created_at\": \"2022-11-15T09:32:51.000000Z\",\n\"updated_at\": \"2022-11-15T09:32:51.000000Z\"\n}\n],\n\"first_page_url\": \"http:\/\/localhost:8000\/api\/feedbacks?page=1\",\n\"from\": 1,\n\"last_page\": 1,\n\"last_page_url\": \"http:\/\/localhost:8000\/api\/feedbacks?page=1\",\n\"links\": [\n{\n\"url\": null,\n\"label\": \"&laquo; Previous\",\n\"active\": false\n},\n{\n\"url\": \"http:\/\/localhost:8000\/api\/feedbacks?page=1\",\n\"label\": \"1\",\n\"active\": true\n},\n{\n\"url\": null,\n\"label\": \"Next &raquo;\",\n\"active\": false\n}\n],\n\"next_page_url\": null,\n\"path\": \"http:\/\/localhost:8000\/api\/feedbacks\",\n\"per_page\": 5,\n\"prev_page_url\": null,\n\"to\": 1,\n\"total\": 1\n}",
                             "name": ""
                         }
                     ]
                 },
                 {
-                    "name": "Store a newly created feedback in database.",
+                    "name": "Store a newly created feedback in database (For guests).",
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
@@ -543,7 +530,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"name\":\"recusandae\",\"message\":\"omnis\"}"
+                            "raw": "{\"name\":\"magnam\",\"message\":\"dolore\"}"
                         },
                         "description": "",
                         "auth": {
@@ -564,7 +551,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "5",
+                                    "value": "1",
                                     "description": "The ID of the feedback."
                                 }
                             ]
@@ -585,22 +572,9 @@
                     },
                     "response": [
                         {
-                            "header": [
-                                {
-                                    "key": "cache-control",
-                                    "value": "no-cache, private"
-                                },
-                                {
-                                    "key": "content-type",
-                                    "value": "application\/json"
-                                },
-                                {
-                                    "key": "access-control-allow-origin",
-                                    "value": "*"
-                                }
-                            ],
-                            "code": 401,
-                            "body": "{\"message\":\"Unauthenticated.\"}",
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n\"id\": 1,\n\"name\": \"monty@gmail.com\",\n\"message\": \"\u0627\u0644\u0633\u0644\u0627\u0645 \u0639\u0644\u064a\u0643\u0645\",\n\"ip\": \"127.0.0.1\",\n\"created_at\": \"2022-11-15T09:32:51.000000Z\",\n\"updated_at\": \"2022-11-15T09:32:51.000000Z\"\n}",
                             "name": ""
                         }
                     ]
@@ -650,7 +624,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "8",
+                                    "value": "1",
                                     "description": "The ID of the feedback."
                                 }
                             ]
@@ -669,7 +643,14 @@
                         "body": null,
                         "description": ""
                     },
-                    "response": []
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n\"id\": 1,\n\"name\": \"monty@gmail.com\",\n\"message\": \"\u0627\u0644\u0633\u0644\u0627\u0645 \u0639\u0644\u064a\u0643\u0645\",\n\"ip\": \"127.0.0.1\",\n\"created_at\": \"2022-11-15T09:32:51.000000Z\",\n\"updated_at\": \"2022-11-15T09:32:51.000000Z\"\n}",
+                            "name": ""
+                        }
+                    ]
                 }
             ]
         },
@@ -689,7 +670,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "1",
+                                    "value": "4",
                                     "description": "The ID of the item."
                                 }
                             ]
@@ -708,7 +689,14 @@
                         "body": null,
                         "description": ""
                     },
-                    "response": []
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n\"id\": 4,\n\"item_name\": \"\u0625\u0644\u0643\u062a\u0631\u0648\u0646\u064a\u0627\u062a\",\n\"item_photo\": \"items\/98RZDAC2vIBNC3zK5844F3I9vqMiKBQKUgLWBiOE.jpg\",\n\"created_at\": \"2022-11-15T11:17:04.000000Z\",\n\"updated_at\": \"2022-11-15T11:17:27.000000Z\",\n\"live_photo_path\": \"http:\/\/localhost:8000\/storage\/items\/98RZDAC2vIBNC3zK5844F3I9vqMiKBQKUgLWBiOE.jpg\",\n}",
+                            "name": ""
+                        }
+                    ]
                 },
                 {
                     "name": "Remove the all items from database.",
@@ -733,7 +721,14 @@
                         "body": null,
                         "description": ""
                     },
-                    "response": []
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{}",
+                            "name": ""
+                        }
+                    ]
                 },
                 {
                     "name": "Display all items (paginated) with their products (paginated).",
@@ -760,22 +755,9 @@
                     },
                     "response": [
                         {
-                            "header": [
-                                {
-                                    "key": "cache-control",
-                                    "value": "no-cache, private"
-                                },
-                                {
-                                    "key": "content-type",
-                                    "value": "application\/json"
-                                },
-                                {
-                                    "key": "access-control-allow-origin",
-                                    "value": "*"
-                                }
-                            ],
-                            "code": 401,
-                            "body": "{\"message\":\"Unauthenticated.\"}",
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n\"current_page\": 1,\n\"data\": [\n{\n\"id\": 1,\n\"item_name\": \"d\",\n\"item_photo\": null,\n\"created_at\": \"2022-11-14T18:55:53.000000Z\",\n\"updated_at\": \"2022-11-14T18:55:53.000000Z\",\n\"products\": [\n{\n\"id\": 1,\n\"product_name\": \"\u062f\u062c\u0627\u062c\",\n\"product_price\": 300,\n\"product_discount\": 10,\n\"product_photo\": null,\n\"item_id\": 1,\n\"created_at\": \"2022-11-14T18:56:02.000000Z\",\n\"updated_at\": \"2022-11-14T18:56:02.000000Z\"\n},\n{\n\"id\": 2,\n\"product_name\": \"\u0634\u0627\u0648\u0631\u0645\u0627\",\n\"product_price\": 300,\n\"product_discount\": 10,\n\"product_photo\": null,\n\"item_id\": 1,\n\"created_at\": \"2022-11-14T18:56:07.000000Z\",\n\"updated_at\": \"2022-11-14T18:56:07.000000Z\"\n}\n]\n}\n],\n\"first_page_url\": \"http:\/\/localhost:8000\/api\/items?page=1\",\n\"from\": 1,\n\"last_page\": 1,\n\"last_page_url\": \"http:\/\/localhost:8000\/api\/items?page=1\",\n\"links\": [\n{\n\"url\": null,\n\"label\": \"&laquo; Previous\",\n\"active\": false\n},\n{\n\"url\": \"http:\/\/localhost:8000\/api\/items?page=1\",\n\"label\": \"1\",\n\"active\": true\n},\n{\n\"url\": null,\n\"label\": \"Next &raquo;\",\n\"active\": false\n}\n],\n\"next_page_url\": null,\n\"path\": \"http:\/\/localhost:8000\/api\/items\",\n\"per_page\": 5,\n\"prev_page_url\": null,\n\"to\": 1,\n\"total\": 1\n}",
                             "name": ""
                         }
                     ]
@@ -805,7 +787,7 @@
                             "formdata": [
                                 {
                                     "key": "item_name",
-                                    "value": "et",
+                                    "value": "nemo",
                                     "type": "text",
                                     "description": ""
                                 },
@@ -818,7 +800,14 @@
                         },
                         "description": ""
                     },
-                    "response": []
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 201,
+                            "body": "{\n\"id\": 4,\n\"item_name\": \"\u0625\u0644\u0643\u062a\u0631\u0648\u0646\u064a\u0627\u062a\",\n\"item_photo\": \"items\/98RZDAC2vIBNC3zK5844F3I9vqMiKBQKUgLWBiOE.jpg\",\n\"created_at\": \"2022-11-15T11:17:04.000000Z\",\n\"updated_at\": \"2022-11-15T11:17:27.000000Z\",\n\"live_photo_path\": \"http:\/\/localhost:8000\/storage\/items\/98RZDAC2vIBNC3zK5844F3I9vqMiKBQKUgLWBiOE.jpg\",\n}",
+                            "name": ""
+                        }
+                    ]
                 },
                 {
                     "name": "Display the specified item with it products (paginated).",
@@ -832,7 +821,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "1",
+                                    "value": "4",
                                     "description": "The ID of the item."
                                 }
                             ]
@@ -853,22 +842,9 @@
                     },
                     "response": [
                         {
-                            "header": [
-                                {
-                                    "key": "cache-control",
-                                    "value": "no-cache, private"
-                                },
-                                {
-                                    "key": "content-type",
-                                    "value": "application\/json"
-                                },
-                                {
-                                    "key": "access-control-allow-origin",
-                                    "value": "*"
-                                }
-                            ],
-                            "code": 401,
-                            "body": "{\"message\":\"Unauthenticated.\"}",
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n\"id\": 1,\n\"item_name\": \"d\",\n\"item_photo\": \"items\/98RZDAC2vIBNC3zK5844F3I9vqMiKBQKUgLWBiOE.jpg\",\n\"created_at\": \"2022-11-14T18:55:53.000000Z\",\n\"updated_at\": \"2022-11-14T18:55:53.000000Z\",\n\"live_photo_path\": \"http:\/\/localhost:8000\/storage\/items\/98RZDAC2vIBNC3zK5844F3I9vqMiKBQKUgLWBiOE.jpg\",\n\"products\": [\n{\n\"id\": 1,\n\"product_name\": \"\u062f\u062c\u0627\u062c\",\n\"product_price\": 300,\n\"product_discount\": 10,\n\"product_photo\": null,\n\"item_id\": 1,\n\"created_at\": \"2022-11-14T18:56:02.000000Z\",\n\"updated_at\": \"2022-11-14T18:56:02.000000Z\"\n},\n{\n\"id\": 2,\n\"product_name\": \"\u0634\u0627\u0648\u0631\u0645\u0627\",\n\"product_price\": 300,\n\"product_discount\": 10,\n\"product_photo\": null,\n\"item_id\": 1,\n\"created_at\": \"2022-11-14T18:56:07.000000Z\",\n\"updated_at\": \"2022-11-14T18:56:07.000000Z\"\n}\n]\n}",
                             "name": ""
                         }
                     ]
@@ -885,7 +861,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "1",
+                                    "value": "4",
                                     "description": "The ID of the item."
                                 }
                             ]
@@ -906,7 +882,7 @@
                             "formdata": [
                                 {
                                     "key": "item_name",
-                                    "value": "voluptatum",
+                                    "value": "sed",
                                     "type": "text",
                                     "description": ""
                                 },
@@ -924,7 +900,14 @@
                         },
                         "description": ""
                     },
-                    "response": []
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n\"id\": 4,\n\"item_name\": \"\u0625\u0644\u0643\u062a\u0631\u0648\u0646\u064a\u0627\u062a\",\n\"item_photo\": \"items\/98RZDAC2vIBNC3zK5844F3I9vqMiKBQKUgLWBiOE.jpg\",\n\"created_at\": \"2022-11-15T11:17:04.000000Z\",\n\"updated_at\": \"2022-11-15T11:17:27.000000Z\",\n\"live_photo_path\": \"http:\/\/localhost:8000\/storage\/items\/98RZDAC2vIBNC3zK5844F3I9vqMiKBQKUgLWBiOE.jpg\",\n}",
+                            "name": ""
+                        }
+                    ]
                 }
             ]
         },
@@ -957,22 +940,9 @@
                     },
                     "response": [
                         {
-                            "header": [
-                                {
-                                    "key": "cache-control",
-                                    "value": "no-cache, private"
-                                },
-                                {
-                                    "key": "content-type",
-                                    "value": "application\/json"
-                                },
-                                {
-                                    "key": "access-control-allow-origin",
-                                    "value": "*"
-                                }
-                            ],
-                            "code": 401,
-                            "body": "{\"message\":\"Unauthenticated.\"}",
+                            "header": [],
+                            "code": 200,
+                            "body": "[\n{\n\"id\": 1,\n\"name\": \"view-dashboard\",\n\"guard_name\": \"web\",\n\"created_at\": \"2022-11-14T18:51:07.000000Z\",\n\"updated_at\": \"2022-11-14T18:51:07.000000Z\"\n},\n{\n\"id\": 2,\n\"name\": \"view-users\",\n\"guard_name\": \"web\",\n\"created_at\": \"2022-11-14T18:51:07.000000Z\",\n\"updated_at\": \"2022-11-14T18:51:07.000000Z\"\n},\n{\n\"id\": 3,\n\"name\": \"create-users\",\n\"guard_name\": \"web\",\n\"created_at\": \"2022-11-14T18:51:08.000000Z\",\n\"updated_at\": \"2022-11-14T18:51:08.000000Z\"\n},\n{\n\"id\": 4,\n\"name\": \"edit-users\",\n\"guard_name\": \"web\",\n\"created_at\": \"2022-11-14T18:51:08.000000Z\",\n\"updated_at\": \"2022-11-14T18:51:08.000000Z\"\n},\n{\n\"id\": 5,\n\"name\": \"delete-users\",\n\"guard_name\": \"web\",\n\"created_at\": \"2022-11-14T18:51:08.000000Z\",\n\"updated_at\": \"2022-11-14T18:51:08.000000Z\"\n},\n{\n\"id\": 6,\n\"name\": \"view-items\",\n\"guard_name\": \"web\",\n\"created_at\": \"2022-11-14T18:51:09.000000Z\",\n\"updated_at\": \"2022-11-14T18:51:09.000000Z\"\n},\n{\n\"id\": 7,\n\"name\": \"create-items\",\n\"guard_name\": \"web\",\n\"created_at\": \"2022-11-14T18:51:09.000000Z\",\n\"updated_at\": \"2022-11-14T18:51:09.000000Z\"\n},\n{\n\"id\": 8,\n\"name\": \"edit-items\",\n\"guard_name\": \"web\",\n\"created_at\": \"2022-11-14T18:51:09.000000Z\",\n\"updated_at\": \"2022-11-14T18:51:09.000000Z\"\n},\n{\n\"id\": 9,\n\"name\": \"delete-items\",\n\"guard_name\": \"web\",\n\"created_at\": \"2022-11-14T18:51:09.000000Z\",\n\"updated_at\": \"2022-11-14T18:51:09.000000Z\"\n},\n{\n\"id\": 10,\n\"name\": \"view-products\",\n\"guard_name\": \"web\",\n\"created_at\": \"2022-11-14T18:51:10.000000Z\",\n\"updated_at\": \"2022-11-14T18:51:10.000000Z\"\n},\n{\n\"id\": 11,\n\"name\": \"create-products\",\n\"guard_name\": \"web\",\n\"created_at\": \"2022-11-14T18:51:10.000000Z\",\n\"updated_at\": \"2022-11-14T18:51:10.000000Z\"\n},\n{\n\"id\": 12,\n\"name\": \"edit-products\",\n\"guard_name\": \"web\",\n\"created_at\": \"2022-11-14T18:51:10.000000Z\",\n\"updated_at\": \"2022-11-14T18:51:10.000000Z\"\n},\n{\n\"id\": 13,\n\"name\": \"delete-products\",\n\"guard_name\": \"web\",\n\"created_at\": \"2022-11-14T18:51:10.000000Z\",\n\"updated_at\": \"2022-11-14T18:51:10.000000Z\"\n},\n{\n\"id\": 14,\n\"name\": \"view-settings\",\n\"guard_name\": \"web\",\n\"created_at\": \"2022-11-14T18:51:11.000000Z\",\n\"updated_at\": \"2022-11-14T18:51:11.000000Z\"\n},\n{\n\"id\": 15,\n\"name\": \"create-settings\",\n\"guard_name\": \"web\",\n\"created_at\": \"2022-11-14T18:51:11.000000Z\",\n\"updated_at\": \"2022-11-14T18:51:11.000000Z\"\n},\n{\n\"id\": 16,\n\"name\": \"edit-settings\",\n\"guard_name\": \"web\",\n\"created_at\": \"2022-11-14T18:51:11.000000Z\",\n\"updated_at\": \"2022-11-14T18:51:11.000000Z\"\n},\n{\n\"id\": 17,\n\"name\": \"delete-settings\",\n\"guard_name\": \"web\",\n\"created_at\": \"2022-11-14T18:51:12.000000Z\",\n\"updated_at\": \"2022-11-14T18:51:12.000000Z\"\n},\n{\n\"id\": 18,\n\"name\": \"view-feedbacks\",\n\"guard_name\": \"web\",\n\"created_at\": \"2022-11-14T18:51:12.000000Z\",\n\"updated_at\": \"2022-11-14T18:51:12.000000Z\"\n},\n{\n\"id\": 19,\n\"name\": \"delete-feedbacks\",\n\"guard_name\": \"web\",\n\"created_at\": \"2022-11-14T18:51:12.000000Z\",\n\"updated_at\": \"2022-11-14T18:51:12.000000Z\"\n},\n{\n\"id\": 20,\n\"name\": \"view-roles\",\n\"guard_name\": \"web\",\n\"created_at\": \"2022-11-14T18:51:13.000000Z\",\n\"updated_at\": \"2022-11-14T18:51:13.000000Z\"\n},\n{\n\"id\": 21,\n\"name\": \"create-roles\",\n\"guard_name\": \"web\",\n\"created_at\": \"2022-11-14T18:51:13.000000Z\",\n\"updated_at\": \"2022-11-14T18:51:13.000000Z\"\n},\n{\n\"id\": 22,\n\"name\": \"edit-roles\",\n\"guard_name\": \"web\",\n\"created_at\": \"2022-11-14T18:51:13.000000Z\",\n\"updated_at\": \"2022-11-14T18:51:13.000000Z\"\n},\n{\n\"id\": 23,\n\"name\": \"delete-roles\",\n\"guard_name\": \"web\",\n\"created_at\": \"2022-11-14T18:51:14.000000Z\",\n\"updated_at\": \"2022-11-14T18:51:14.000000Z\"\n}\n]",
                             "name": ""
                         }
                     ]
@@ -995,7 +965,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "1",
+                                    "value": "6",
                                     "description": "The ID of the product."
                                 }
                             ]
@@ -1016,22 +986,9 @@
                     },
                     "response": [
                         {
-                            "header": [
-                                {
-                                    "key": "cache-control",
-                                    "value": "no-cache, private"
-                                },
-                                {
-                                    "key": "content-type",
-                                    "value": "application\/json"
-                                },
-                                {
-                                    "key": "access-control-allow-origin",
-                                    "value": "*"
-                                }
-                            ],
-                            "code": 401,
-                            "body": "{\"message\":\"Unauthenticated.\"}",
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n\"id\": 4,\n\"product_name\": \"\u0633\u0645\u0643\",\n\"product_price\": 2399,\n\"product_discount\": 0,\n\"product_photo\": \"products\/w4wDcFUGwu6ra7Z03fcgBMd4C7gIh8ixJ1RZMnE0.jpg\",\n\"item_id\": 1,\n\"created_at\": \"2022-11-15T10:55:09.000000Z\",\n\"updated_at\": \"2022-11-15T10:55:09.000000Z\",\n\"live_photo_path\": \"http:\/\/localhost:8000\/storage\/products\/w4wDcFUGwu6ra7Z03fcgBMd4C7gIh8ixJ1RZMnE0.jpg\",\n\"item\": {\n\"id\": 1,\n\"item_name\": \"d\",\n\"item_photo\": null,\n\"created_at\": \"2022-11-14T18:55:53.000000Z\",\n\"updated_at\": \"2022-11-14T18:55:53.000000Z\"\n}\n}",
                             "name": ""
                         }
                     ]
@@ -1048,7 +1005,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "1",
+                                    "value": "2",
                                     "description": "The ID of the product."
                                 }
                             ]
@@ -1069,25 +1026,25 @@
                             "formdata": [
                                 {
                                     "key": "product_name",
-                                    "value": "alias",
+                                    "value": "harum",
                                     "type": "text",
                                     "description": ""
                                 },
                                 {
                                     "key": "product_price",
-                                    "value": 174942.7676,
+                                    "value": 7244.885,
                                     "type": "text",
                                     "description": ""
                                 },
                                 {
                                     "key": "product_discount",
-                                    "value": 2393.22,
+                                    "value": 447,
                                     "type": "text",
                                     "description": ""
                                 },
                                 {
                                     "key": "item_id",
-                                    "value": 1940349.7127,
+                                    "value": 26135.61967,
                                     "type": "text",
                                     "description": ""
                                 },
@@ -1105,7 +1062,14 @@
                         },
                         "description": ""
                     },
-                    "response": []
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n\"id\": 4,\n\"product_name\": \"\u0633\u0645\u0643\",\n\"product_price\": 2399,\n\"product_discount\": 0,\n\"product_photo\": \"products\/w4wDcFUGwu6ra7Z03fcgBMd4C7gIh8ixJ1RZMnE0.jpg\",\n\"item_id\": 1,\n\"created_at\": \"2022-11-15T10:55:09.000000Z\",\n\"updated_at\": \"2022-11-15T10:55:09.000000Z\",\n\"live_photo_path\": \"http:\/\/localhost:8000\/storage\/products\/w4wDcFUGwu6ra7Z03fcgBMd4C7gIh8ixJ1RZMnE0.jpg\",\n\"item\": {\n\"id\": 1,\n\"item_name\": \"d\",\n\"item_photo\": null,\n\"created_at\": \"2022-11-14T18:55:53.000000Z\",\n\"updated_at\": \"2022-11-14T18:55:53.000000Z\"\n}\n}",
+                            "name": ""
+                        }
+                    ]
                 },
                 {
                     "name": "Remove the specified product from database.",
@@ -1119,7 +1083,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "1",
+                                    "value": "15",
                                     "description": "The ID of the product."
                                 }
                             ]
@@ -1138,7 +1102,14 @@
                         "body": null,
                         "description": ""
                     },
-                    "response": []
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n\"id\": 4,\n\"product_name\": \"\u0633\u0645\u0643\",\n\"product_price\": 2399,\n\"product_discount\": 0,\n\"product_photo\": \"products\/w4wDcFUGwu6ra7Z03fcgBMd4C7gIh8ixJ1RZMnE0.jpg\",\n\"item_id\": 1,\n\"created_at\": \"2022-11-15T10:55:09.000000Z\",\n\"updated_at\": \"2022-11-15T10:55:09.000000Z\",\n\"live_photo_path\": \"http:\/\/localhost:8000\/storage\/products\/w4wDcFUGwu6ra7Z03fcgBMd4C7gIh8ixJ1RZMnE0.jpg\",\n\"item\": {\n\"id\": 1,\n\"item_name\": \"d\",\n\"item_photo\": null,\n\"created_at\": \"2022-11-14T18:55:53.000000Z\",\n\"updated_at\": \"2022-11-14T18:55:53.000000Z\"\n}\n}",
+                            "name": ""
+                        }
+                    ]
                 },
                 {
                     "name": "Display all the products (paginated) with their item .",
@@ -1165,22 +1136,9 @@
                     },
                     "response": [
                         {
-                            "header": [
-                                {
-                                    "key": "cache-control",
-                                    "value": "no-cache, private"
-                                },
-                                {
-                                    "key": "content-type",
-                                    "value": "application\/json"
-                                },
-                                {
-                                    "key": "access-control-allow-origin",
-                                    "value": "*"
-                                }
-                            ],
-                            "code": 401,
-                            "body": "{\"message\":\"Unauthenticated.\"}",
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n\"current_page\": 1,\n\"data\": [\n{\n\"id\": 1,\n\"product_name\": \"\u062f\u062c\u0627\u062c\",\n\"product_price\": 300,\n\"product_discount\": 10,\n\"product_photo\": null,\n\"item_id\": 1,\n\"created_at\": \"2022-11-14T18:56:02.000000Z\",\n\"updated_at\": \"2022-11-14T18:56:02.000000Z\",\n\"item\": {\n\"id\": 1,\n\"item_name\": \"d\",\n\"item_photo\": null,\n\"created_at\": \"2022-11-14T18:55:53.000000Z\",\n\"updated_at\": \"2022-11-14T18:55:53.000000Z\"\n}\n},\n{\n\"id\": 2,\n\"product_name\": \"\u0634\u0627\u0648\u0631\u0645\u0627\",\n\"product_price\": 300,\n\"product_discount\": 10,\n\"product_photo\": null,\n\"item_id\": 1,\n\"created_at\": \"2022-11-14T18:56:07.000000Z\",\n\"updated_at\": \"2022-11-14T18:56:07.000000Z\",\n\"item\": {\n\"id\": 1,\n\"item_name\": \"d\",\n\"item_photo\": null,\n\"created_at\": \"2022-11-14T18:55:53.000000Z\",\n\"updated_at\": \"2022-11-14T18:55:53.000000Z\"\n}\n}\n],\n\"first_page_url\": \"http:\/\/localhost:8000\/api\/products?page=1\",\n\"from\": 1,\n\"last_page\": 1,\n\"last_page_url\": \"http:\/\/localhost:8000\/api\/products?page=1\",\n\"links\": [\n{\n\"url\": null,\n\"label\": \"&laquo; Previous\",\n\"active\": false\n},\n{\n\"url\": \"http:\/\/localhost:8000\/api\/products?page=1\",\n\"label\": \"1\",\n\"active\": true\n},\n{\n\"url\": null,\n\"label\": \"Next &raquo;\",\n\"active\": false\n}\n],\n\"next_page_url\": null,\n\"path\": \"http:\/\/localhost:8000\/api\/products\",\n\"per_page\": 5,\n\"prev_page_url\": null,\n\"to\": 2,\n\"total\": 2\n}",
                             "name": ""
                         }
                     ]
@@ -1210,25 +1168,25 @@
                             "formdata": [
                                 {
                                     "key": "product_name",
-                                    "value": "enim",
+                                    "value": "omnis",
                                     "type": "text",
                                     "description": ""
                                 },
                                 {
                                     "key": "product_price",
-                                    "value": 223.78276,
+                                    "value": 12865440.4,
                                     "type": "text",
                                     "description": ""
                                 },
                                 {
                                     "key": "product_discount",
-                                    "value": 5573.1,
+                                    "value": 24544.6393,
                                     "type": "text",
                                     "description": ""
                                 },
                                 {
                                     "key": "item_id",
-                                    "value": 13.4932777,
+                                    "value": 6465321,
                                     "type": "text",
                                     "description": ""
                                 },
@@ -1241,7 +1199,14 @@
                         },
                         "description": ""
                     },
-                    "response": []
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 201,
+                            "body": "{\n\"product_name\": \"\u0633\u0645\u0643\",\n\"product_price\": \"2399\",\n\"item_id\": \"1\",\n\"product_photo\": \"products\/w4wDcFUGwu6ra7Z03fcgBMd4C7gIh8ixJ1RZMnE0.jpg\",\n\"product_discount\": 0,\n\"updated_at\": \"2022-11-15T10:55:09.000000Z\",\n\"created_at\": \"2022-11-15T10:55:09.000000Z\",\n\"id\": 4,\n\"live_photo_path\": \"http:\/\/localhost:8000\/storage\/products\/w4wDcFUGwu6ra7Z03fcgBMd4C7gIh8ixJ1RZMnE0.jpg\"\n}",
+                            "name": ""
+                        }
+                    ]
                 },
                 {
                     "name": "Remove all the products from database.",
@@ -1266,7 +1231,14 @@
                         "body": null,
                         "description": ""
                     },
-                    "response": []
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{}",
+                            "name": ""
+                        }
+                    ]
                 }
             ]
         },
@@ -1286,7 +1258,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "rerum",
+                                    "value": "veniam",
                                     "description": "The ID of the role."
                                 }
                             ]
@@ -1307,22 +1279,9 @@
                     },
                     "response": [
                         {
-                            "header": [
-                                {
-                                    "key": "cache-control",
-                                    "value": "no-cache, private"
-                                },
-                                {
-                                    "key": "content-type",
-                                    "value": "application\/json"
-                                },
-                                {
-                                    "key": "access-control-allow-origin",
-                                    "value": "*"
-                                }
-                            ],
-                            "code": 401,
-                            "body": "{\"message\":\"Unauthenticated.\"}",
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n\"id\": 2,\n\"name\": \"admin\",\n\"guard_name\": \"web\",\n\"created_at\": \"2022-11-14T18:51:07.000000Z\",\n\"updated_at\": \"2022-11-14T18:51:07.000000Z\",\n\"permissions\": [\n{\n\"id\": 1,\n\"name\": \"view-dashboard\",\n\"guard_name\": \"web\",\n\"created_at\": \"2022-11-14T18:51:07.000000Z\",\n\"updated_at\": \"2022-11-14T18:51:07.000000Z\",\n\"pivot\": {\n\"role_id\": 2,\n\"permission_id\": 1\n}\n},\n{\n\"id\": 2,\n\"name\": \"view-users\",\n\"guard_name\": \"web\",\n\"created_at\": \"2022-11-14T18:51:07.000000Z\",\n\"updated_at\": \"2022-11-14T18:51:07.000000Z\",\n\"pivot\": {\n\"role_id\": 2,\n\"permission_id\": 2\n}\n},\n{\n\"id\": 3,\n\"name\": \"create-users\",\n\"guard_name\": \"web\",\n\"created_at\": \"2022-11-14T18:51:08.000000Z\",\n\"updated_at\": \"2022-11-14T18:51:08.000000Z\",\n\"pivot\": {\n\"role_id\": 2,\n\"permission_id\": 3\n}\n},\n{\n\"id\": 4,\n\"name\": \"edit-users\",\n\"guard_name\": \"web\",\n\"created_at\": \"2022-11-14T18:51:08.000000Z\",\n\"updated_at\": \"2022-11-14T18:51:08.000000Z\",\n\"pivot\": {\n\"role_id\": 2,\n\"permission_id\": 4\n}\n},\n{\n\"id\": 5,\n\"name\": \"delete-users\",\n\"guard_name\": \"web\",\n\"created_at\": \"2022-11-14T18:51:08.000000Z\",\n\"updated_at\": \"2022-11-14T18:51:08.000000Z\",\n\"pivot\": {\n\"role_id\": 2,\n\"permission_id\": 5\n}\n},\n{\n\"id\": 6,\n\"name\": \"view-items\",\n\"guard_name\": \"web\",\n\"created_at\": \"2022-11-14T18:51:09.000000Z\",\n\"updated_at\": \"2022-11-14T18:51:09.000000Z\",\n\"pivot\": {\n\"role_id\": 2,\n\"permission_id\": 6\n}\n},\n{\n\"id\": 7,\n\"name\": \"create-items\",\n\"guard_name\": \"web\",\n\"created_at\": \"2022-11-14T18:51:09.000000Z\",\n\"updated_at\": \"2022-11-14T18:51:09.000000Z\",\n\"pivot\": {\n\"role_id\": 2,\n\"permission_id\": 7\n}\n},\n{\n\"id\": 8,\n\"name\": \"edit-items\",\n\"guard_name\": \"web\",\n\"created_at\": \"2022-11-14T18:51:09.000000Z\",\n\"updated_at\": \"2022-11-14T18:51:09.000000Z\",\n\"pivot\": {\n\"role_id\": 2,\n\"permission_id\": 8\n}\n},\n{\n\"id\": 9,\n\"name\": \"delete-items\",\n\"guard_name\": \"web\",\n\"created_at\": \"2022-11-14T18:51:09.000000Z\",\n\"updated_at\": \"2022-11-14T18:51:09.000000Z\",\n\"pivot\": {\n\"role_id\": 2,\n\"permission_id\": 9\n}\n},\n{\n\"id\": 10,\n\"name\": \"view-products\",\n\"guard_name\": \"web\",\n\"created_at\": \"2022-11-14T18:51:10.000000Z\",\n\"updated_at\": \"2022-11-14T18:51:10.000000Z\",\n\"pivot\": {\n\"role_id\": 2,\n\"permission_id\": 10\n}\n},\n{\n\"id\": 11,\n\"name\": \"create-products\",\n\"guard_name\": \"web\",\n\"created_at\": \"2022-11-14T18:51:10.000000Z\",\n\"updated_at\": \"2022-11-14T18:51:10.000000Z\",\n\"pivot\": {\n\"role_id\": 2,\n\"permission_id\": 11\n}\n},\n{\n\"id\": 12,\n\"name\": \"edit-products\",\n\"guard_name\": \"web\",\n\"created_at\": \"2022-11-14T18:51:10.000000Z\",\n\"updated_at\": \"2022-11-14T18:51:10.000000Z\",\n\"pivot\": {\n\"role_id\": 2,\n\"permission_id\": 12\n}\n},\n{\n\"id\": 13,\n\"name\": \"delete-products\",\n\"guard_name\": \"web\",\n\"created_at\": \"2022-11-14T18:51:10.000000Z\",\n\"updated_at\": \"2022-11-14T18:51:10.000000Z\",\n\"pivot\": {\n\"role_id\": 2,\n\"permission_id\": 13\n}\n},\n{\n\"id\": 14,\n\"name\": \"view-settings\",\n\"guard_name\": \"web\",\n\"created_at\": \"2022-11-14T18:51:11.000000Z\",\n\"updated_at\": \"2022-11-14T18:51:11.000000Z\",\n\"pivot\": {\n\"role_id\": 2,\n\"permission_id\": 14\n}\n},\n{\n\"id\": 15,\n\"name\": \"create-settings\",\n\"guard_name\": \"web\",\n\"created_at\": \"2022-11-14T18:51:11.000000Z\",\n\"updated_at\": \"2022-11-14T18:51:11.000000Z\",\n\"pivot\": {\n\"role_id\": 2,\n\"permission_id\": 15\n}\n},\n{\n\"id\": 16,\n\"name\": \"edit-settings\",\n\"guard_name\": \"web\",\n\"created_at\": \"2022-11-14T18:51:11.000000Z\",\n\"updated_at\": \"2022-11-14T18:51:11.000000Z\",\n\"pivot\": {\n\"role_id\": 2,\n\"permission_id\": 16\n}\n},\n{\n\"id\": 17,\n\"name\": \"delete-settings\",\n\"guard_name\": \"web\",\n\"created_at\": \"2022-11-14T18:51:12.000000Z\",\n\"updated_at\": \"2022-11-14T18:51:12.000000Z\",\n\"pivot\": {\n\"role_id\": 2,\n\"permission_id\": 17\n}\n},\n{\n\"id\": 18,\n\"name\": \"view-feedbacks\",\n\"guard_name\": \"web\",\n\"created_at\": \"2022-11-14T18:51:12.000000Z\",\n\"updated_at\": \"2022-11-14T18:51:12.000000Z\",\n\"pivot\": {\n\"role_id\": 2,\n\"permission_id\": 18\n}\n},\n{\n\"id\": 19,\n\"name\": \"delete-feedbacks\",\n\"guard_name\": \"web\",\n\"created_at\": \"2022-11-14T18:51:12.000000Z\",\n\"updated_at\": \"2022-11-14T18:51:12.000000Z\",\n\"pivot\": {\n\"role_id\": 2,\n\"permission_id\": 19\n}\n},\n{\n\"id\": 20,\n\"name\": \"view-roles\",\n\"guard_name\": \"web\",\n\"created_at\": \"2022-11-14T18:51:13.000000Z\",\n\"updated_at\": \"2022-11-14T18:51:13.000000Z\",\n\"pivot\": {\n\"role_id\": 2,\n\"permission_id\": 20\n}\n},\n{\n\"id\": 21,\n\"name\": \"create-roles\",\n\"guard_name\": \"web\",\n\"created_at\": \"2022-11-14T18:51:13.000000Z\",\n\"updated_at\": \"2022-11-14T18:51:13.000000Z\",\n\"pivot\": {\n\"role_id\": 2,\n\"permission_id\": 21\n}\n},\n{\n\"id\": 22,\n\"name\": \"edit-roles\",\n\"guard_name\": \"web\",\n\"created_at\": \"2022-11-14T18:51:13.000000Z\",\n\"updated_at\": \"2022-11-14T18:51:13.000000Z\",\n\"pivot\": {\n\"role_id\": 2,\n\"permission_id\": 22\n}\n},\n{\n\"id\": 23,\n\"name\": \"delete-roles\",\n\"guard_name\": \"web\",\n\"created_at\": \"2022-11-14T18:51:14.000000Z\",\n\"updated_at\": \"2022-11-14T18:51:14.000000Z\",\n\"pivot\": {\n\"role_id\": 2,\n\"permission_id\": 23\n}\n}\n]\n}",
                             "name": ""
                         }
                     ]
@@ -1350,7 +1309,14 @@
                         "body": null,
                         "description": ""
                     },
-                    "response": []
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{}",
+                            "name": ""
+                        }
+                    ]
                 },
                 {
                     "name": "Display all the roles (paginated) with their permissions.",
@@ -1377,22 +1343,9 @@
                     },
                     "response": [
                         {
-                            "header": [
-                                {
-                                    "key": "cache-control",
-                                    "value": "no-cache, private"
-                                },
-                                {
-                                    "key": "content-type",
-                                    "value": "application\/json"
-                                },
-                                {
-                                    "key": "access-control-allow-origin",
-                                    "value": "*"
-                                }
-                            ],
-                            "code": 401,
-                            "body": "{\"message\":\"Unauthenticated.\"}",
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n\"current_page\": 1,\n\"data\": [\n{\n\"id\": 1,\n\"name\": \"owner\",\n\"guard_name\": \"web\",\n\"created_at\": \"2022-11-14T18:51:06.000000Z\",\n\"updated_at\": \"2022-11-14T18:51:06.000000Z\",\n\"permissions\": []\n},\n{\n\"id\": 2,\n\"name\": \"admin\",\n\"guard_name\": \"web\",\n\"created_at\": \"2022-11-14T18:51:07.000000Z\",\n\"updated_at\": \"2022-11-14T18:51:07.000000Z\",\n\"permissions\": [\n{\n\"id\": 1,\n\"name\": \"view-dashboard\",\n\"guard_name\": \"web\",\n\"created_at\": \"2022-11-14T18:51:07.000000Z\",\n\"updated_at\": \"2022-11-14T18:51:07.000000Z\",\n\"pivot\": {\n\"role_id\": 2,\n\"permission_id\": 1\n}\n},\n{\n\"id\": 2,\n\"name\": \"view-users\",\n\"guard_name\": \"web\",\n\"created_at\": \"2022-11-14T18:51:07.000000Z\",\n\"updated_at\": \"2022-11-14T18:51:07.000000Z\",\n\"pivot\": {\n\"role_id\": 2,\n\"permission_id\": 2\n}\n},\n{\n\"id\": 3,\n\"name\": \"create-users\",\n\"guard_name\": \"web\",\n\"created_at\": \"2022-11-14T18:51:08.000000Z\",\n\"updated_at\": \"2022-11-14T18:51:08.000000Z\",\n\"pivot\": {\n\"role_id\": 2,\n\"permission_id\": 3\n}\n},\n{\n\"id\": 4,\n\"name\": \"edit-users\",\n\"guard_name\": \"web\",\n\"created_at\": \"2022-11-14T18:51:08.000000Z\",\n\"updated_at\": \"2022-11-14T18:51:08.000000Z\",\n\"pivot\": {\n\"role_id\": 2,\n\"permission_id\": 4\n}\n},\n{\n\"id\": 5,\n\"name\": \"delete-users\",\n\"guard_name\": \"web\",\n\"created_at\": \"2022-11-14T18:51:08.000000Z\",\n\"updated_at\": \"2022-11-14T18:51:08.000000Z\",\n\"pivot\": {\n\"role_id\": 2,\n\"permission_id\": 5\n}\n},\n{\n\"id\": 6,\n\"name\": \"view-items\",\n\"guard_name\": \"web\",\n\"created_at\": \"2022-11-14T18:51:09.000000Z\",\n\"updated_at\": \"2022-11-14T18:51:09.000000Z\",\n\"pivot\": {\n\"role_id\": 2,\n\"permission_id\": 6\n}\n},\n{\n\"id\": 7,\n\"name\": \"create-items\",\n\"guard_name\": \"web\",\n\"created_at\": \"2022-11-14T18:51:09.000000Z\",\n\"updated_at\": \"2022-11-14T18:51:09.000000Z\",\n\"pivot\": {\n\"role_id\": 2,\n\"permission_id\": 7\n}\n},\n{\n\"id\": 8,\n\"name\": \"edit-items\",\n\"guard_name\": \"web\",\n\"created_at\": \"2022-11-14T18:51:09.000000Z\",\n\"updated_at\": \"2022-11-14T18:51:09.000000Z\",\n\"pivot\": {\n\"role_id\": 2,\n\"permission_id\": 8\n}\n},\n{\n\"id\": 9,\n\"name\": \"delete-items\",\n\"guard_name\": \"web\",\n\"created_at\": \"2022-11-14T18:51:09.000000Z\",\n\"updated_at\": \"2022-11-14T18:51:09.000000Z\",\n\"pivot\": {\n\"role_id\": 2,\n\"permission_id\": 9\n}\n},\n{\n\"id\": 10,\n\"name\": \"view-products\",\n\"guard_name\": \"web\",\n\"created_at\": \"2022-11-14T18:51:10.000000Z\",\n\"updated_at\": \"2022-11-14T18:51:10.000000Z\",\n\"pivot\": {\n\"role_id\": 2,\n\"permission_id\": 10\n}\n},\n{\n\"id\": 11,\n\"name\": \"create-products\",\n\"guard_name\": \"web\",\n\"created_at\": \"2022-11-14T18:51:10.000000Z\",\n\"updated_at\": \"2022-11-14T18:51:10.000000Z\",\n\"pivot\": {\n\"role_id\": 2,\n\"permission_id\": 11\n}\n},\n{\n\"id\": 12,\n\"name\": \"edit-products\",\n\"guard_name\": \"web\",\n\"created_at\": \"2022-11-14T18:51:10.000000Z\",\n\"updated_at\": \"2022-11-14T18:51:10.000000Z\",\n\"pivot\": {\n\"role_id\": 2,\n\"permission_id\": 12\n}\n},\n{\n\"id\": 13,\n\"name\": \"delete-products\",\n\"guard_name\": \"web\",\n\"created_at\": \"2022-11-14T18:51:10.000000Z\",\n\"updated_at\": \"2022-11-14T18:51:10.000000Z\",\n\"pivot\": {\n\"role_id\": 2,\n\"permission_id\": 13\n}\n},\n{\n\"id\": 14,\n\"name\": \"view-settings\",\n\"guard_name\": \"web\",\n\"created_at\": \"2022-11-14T18:51:11.000000Z\",\n\"updated_at\": \"2022-11-14T18:51:11.000000Z\",\n\"pivot\": {\n\"role_id\": 2,\n\"permission_id\": 14\n}\n},\n{\n\"id\": 15,\n\"name\": \"create-settings\",\n\"guard_name\": \"web\",\n\"created_at\": \"2022-11-14T18:51:11.000000Z\",\n\"updated_at\": \"2022-11-14T18:51:11.000000Z\",\n\"pivot\": {\n\"role_id\": 2,\n\"permission_id\": 15\n}\n},\n{\n\"id\": 16,\n\"name\": \"edit-settings\",\n\"guard_name\": \"web\",\n\"created_at\": \"2022-11-14T18:51:11.000000Z\",\n\"updated_at\": \"2022-11-14T18:51:11.000000Z\",\n\"pivot\": {\n\"role_id\": 2,\n\"permission_id\": 16\n}\n},\n{\n\"id\": 17,\n\"name\": \"delete-settings\",\n\"guard_name\": \"web\",\n\"created_at\": \"2022-11-14T18:51:12.000000Z\",\n\"updated_at\": \"2022-11-14T18:51:12.000000Z\",\n\"pivot\": {\n\"role_id\": 2,\n\"permission_id\": 17\n}\n},\n{\n\"id\": 18,\n\"name\": \"view-feedbacks\",\n\"guard_name\": \"web\",\n\"created_at\": \"2022-11-14T18:51:12.000000Z\",\n\"updated_at\": \"2022-11-14T18:51:12.000000Z\",\n\"pivot\": {\n\"role_id\": 2,\n\"permission_id\": 18\n}\n},\n{\n\"id\": 19,\n\"name\": \"delete-feedbacks\",\n\"guard_name\": \"web\",\n\"created_at\": \"2022-11-14T18:51:12.000000Z\",\n\"updated_at\": \"2022-11-14T18:51:12.000000Z\",\n\"pivot\": {\n\"role_id\": 2,\n\"permission_id\": 19\n}\n},\n{\n\"id\": 20,\n\"name\": \"view-roles\",\n\"guard_name\": \"web\",\n\"created_at\": \"2022-11-14T18:51:13.000000Z\",\n\"updated_at\": \"2022-11-14T18:51:13.000000Z\",\n\"pivot\": {\n\"role_id\": 2,\n\"permission_id\": 20\n}\n},\n{\n\"id\": 21,\n\"name\": \"create-roles\",\n\"guard_name\": \"web\",\n\"created_at\": \"2022-11-14T18:51:13.000000Z\",\n\"updated_at\": \"2022-11-14T18:51:13.000000Z\",\n\"pivot\": {\n\"role_id\": 2,\n\"permission_id\": 21\n}\n},\n{\n\"id\": 22,\n\"name\": \"edit-roles\",\n\"guard_name\": \"web\",\n\"created_at\": \"2022-11-14T18:51:13.000000Z\",\n\"updated_at\": \"2022-11-14T18:51:13.000000Z\",\n\"pivot\": {\n\"role_id\": 2,\n\"permission_id\": 22\n}\n},\n{\n\"id\": 23,\n\"name\": \"delete-roles\",\n\"guard_name\": \"web\",\n\"created_at\": \"2022-11-14T18:51:14.000000Z\",\n\"updated_at\": \"2022-11-14T18:51:14.000000Z\",\n\"pivot\": {\n\"role_id\": 2,\n\"permission_id\": 23\n}\n}\n]\n},\n{\n\"id\": 3,\n\"name\": \"g\",\n\"guard_name\": \"web\",\n\"created_at\": \"2022-11-14T20:43:16.000000Z\",\n\"updated_at\": \"2022-11-14T20:43:16.000000Z\",\n\"permissions\": [\n{\n\"id\": 1,\n\"name\": \"view-dashboard\",\n\"guard_name\": \"web\",\n\"created_at\": \"2022-11-14T18:51:07.000000Z\",\n\"updated_at\": \"2022-11-14T18:51:07.000000Z\",\n\"pivot\": {\n\"role_id\": 3,\n\"permission_id\": 1\n}\n},\n{\n\"id\": 2,\n\"name\": \"view-users\",\n\"guard_name\": \"web\",\n\"created_at\": \"2022-11-14T18:51:07.000000Z\",\n\"updated_at\": \"2022-11-14T18:51:07.000000Z\",\n\"pivot\": {\n\"role_id\": 3,\n\"permission_id\": 2\n}\n},\n{\n\"id\": 3,\n\"name\": \"create-users\",\n\"guard_name\": \"web\",\n\"created_at\": \"2022-11-14T18:51:08.000000Z\",\n\"updated_at\": \"2022-11-14T18:51:08.000000Z\",\n\"pivot\": {\n\"role_id\": 3,\n\"permission_id\": 3\n}\n},\n{\n\"id\": 4,\n\"name\": \"edit-users\",\n\"guard_name\": \"web\",\n\"created_at\": \"2022-11-14T18:51:08.000000Z\",\n\"updated_at\": \"2022-11-14T18:51:08.000000Z\",\n\"pivot\": {\n\"role_id\": 3,\n\"permission_id\": 4\n}\n},\n{\n\"id\": 5,\n\"name\": \"delete-users\",\n\"guard_name\": \"web\",\n\"created_at\": \"2022-11-14T18:51:08.000000Z\",\n\"updated_at\": \"2022-11-14T18:51:08.000000Z\",\n\"pivot\": {\n\"role_id\": 3,\n\"permission_id\": 5\n}\n},\n{\n\"id\": 6,\n\"name\": \"view-items\",\n\"guard_name\": \"web\",\n\"created_at\": \"2022-11-14T18:51:09.000000Z\",\n\"updated_at\": \"2022-11-14T18:51:09.000000Z\",\n\"pivot\": {\n\"role_id\": 3,\n\"permission_id\": 6\n}\n},\n{\n\"id\": 7,\n\"name\": \"create-items\",\n\"guard_name\": \"web\",\n\"created_at\": \"2022-11-14T18:51:09.000000Z\",\n\"updated_at\": \"2022-11-14T18:51:09.000000Z\",\n\"pivot\": {\n\"role_id\": 3,\n\"permission_id\": 7\n}\n},\n{\n\"id\": 8,\n\"name\": \"edit-items\",\n\"guard_name\": \"web\",\n\"created_at\": \"2022-11-14T18:51:09.000000Z\",\n\"updated_at\": \"2022-11-14T18:51:09.000000Z\",\n\"pivot\": {\n\"role_id\": 3,\n\"permission_id\": 8\n}\n},\n{\n\"id\": 9,\n\"name\": \"delete-items\",\n\"guard_name\": \"web\",\n\"created_at\": \"2022-11-14T18:51:09.000000Z\",\n\"updated_at\": \"2022-11-14T18:51:09.000000Z\",\n\"pivot\": {\n\"role_id\": 3,\n\"permission_id\": 9\n}\n},\n{\n\"id\": 10,\n\"name\": \"view-products\",\n\"guard_name\": \"web\",\n\"created_at\": \"2022-11-14T18:51:10.000000Z\",\n\"updated_at\": \"2022-11-14T18:51:10.000000Z\",\n\"pivot\": {\n\"role_id\": 3,\n\"permission_id\": 10\n}\n},\n{\n\"id\": 11,\n\"name\": \"create-products\",\n\"guard_name\": \"web\",\n\"created_at\": \"2022-11-14T18:51:10.000000Z\",\n\"updated_at\": \"2022-11-14T18:51:10.000000Z\",\n\"pivot\": {\n\"role_id\": 3,\n\"permission_id\": 11\n}\n},\n{\n\"id\": 12,\n\"name\": \"edit-products\",\n\"guard_name\": \"web\",\n\"created_at\": \"2022-11-14T18:51:10.000000Z\",\n\"updated_at\": \"2022-11-14T18:51:10.000000Z\",\n\"pivot\": {\n\"role_id\": 3,\n\"permission_id\": 12\n}\n},\n{\n\"id\": 13,\n\"name\": \"delete-products\",\n\"guard_name\": \"web\",\n\"created_at\": \"2022-11-14T18:51:10.000000Z\",\n\"updated_at\": \"2022-11-14T18:51:10.000000Z\",\n\"pivot\": {\n\"role_id\": 3,\n\"permission_id\": 13\n}\n},\n{\n\"id\": 14,\n\"name\": \"view-settings\",\n\"guard_name\": \"web\",\n\"created_at\": \"2022-11-14T18:51:11.000000Z\",\n\"updated_at\": \"2022-11-14T18:51:11.000000Z\",\n\"pivot\": {\n\"role_id\": 3,\n\"permission_id\": 14\n}\n},\n{\n\"id\": 15,\n\"name\": \"create-settings\",\n\"guard_name\": \"web\",\n\"created_at\": \"2022-11-14T18:51:11.000000Z\",\n\"updated_at\": \"2022-11-14T18:51:11.000000Z\",\n\"pivot\": {\n\"role_id\": 3,\n\"permission_id\": 15\n}\n},\n{\n\"id\": 16,\n\"name\": \"edit-settings\",\n\"guard_name\": \"web\",\n\"created_at\": \"2022-11-14T18:51:11.000000Z\",\n\"updated_at\": \"2022-11-14T18:51:11.000000Z\",\n\"pivot\": {\n\"role_id\": 3,\n\"permission_id\": 16\n}\n},\n{\n\"id\": 17,\n\"name\": \"delete-settings\",\n\"guard_name\": \"web\",\n\"created_at\": \"2022-11-14T18:51:12.000000Z\",\n\"updated_at\": \"2022-11-14T18:51:12.000000Z\",\n\"pivot\": {\n\"role_id\": 3,\n\"permission_id\": 17\n}\n},\n{\n\"id\": 18,\n\"name\": \"view-feedbacks\",\n\"guard_name\": \"web\",\n\"created_at\": \"2022-11-14T18:51:12.000000Z\",\n\"updated_at\": \"2022-11-14T18:51:12.000000Z\",\n\"pivot\": {\n\"role_id\": 3,\n\"permission_id\": 18\n}\n},\n{\n\"id\": 19,\n\"name\": \"delete-feedbacks\",\n\"guard_name\": \"web\",\n\"created_at\": \"2022-11-14T18:51:12.000000Z\",\n\"updated_at\": \"2022-11-14T18:51:12.000000Z\",\n\"pivot\": {\n\"role_id\": 3,\n\"permission_id\": 19\n}\n},\n{\n\"id\": 20,\n\"name\": \"view-roles\",\n\"guard_name\": \"web\",\n\"created_at\": \"2022-11-14T18:51:13.000000Z\",\n\"updated_at\": \"2022-11-14T18:51:13.000000Z\",\n\"pivot\": {\n\"role_id\": 3,\n\"permission_id\": 20\n}\n},\n{\n\"id\": 21,\n\"name\": \"create-roles\",\n\"guard_name\": \"web\",\n\"created_at\": \"2022-11-14T18:51:13.000000Z\",\n\"updated_at\": \"2022-11-14T18:51:13.000000Z\",\n\"pivot\": {\n\"role_id\": 3,\n\"permission_id\": 21\n}\n},\n{\n\"id\": 22,\n\"name\": \"edit-roles\",\n\"guard_name\": \"web\",\n\"created_at\": \"2022-11-14T18:51:13.000000Z\",\n\"updated_at\": \"2022-11-14T18:51:13.000000Z\",\n\"pivot\": {\n\"role_id\": 3,\n\"permission_id\": 22\n}\n},\n{\n\"id\": 23,\n\"name\": \"delete-roles\",\n\"guard_name\": \"web\",\n\"created_at\": \"2022-11-14T18:51:14.000000Z\",\n\"updated_at\": \"2022-11-14T18:51:14.000000Z\",\n\"pivot\": {\n\"role_id\": 3,\n\"permission_id\": 23\n}\n}\n]\n}\n],\n\"first_page_url\": \"http:\/\/localhost:8000\/api\/roles?page=1\",\n\"from\": 1,\n\"last_page\": 1,\n\"last_page_url\": \"http:\/\/localhost:8000\/api\/roles?page=1\",\n\"links\": [\n{\n\"url\": null,\n\"label\": \"&laquo; Previous\",\n\"active\": false\n},\n{\n\"url\": \"http:\/\/localhost:8000\/api\/roles?page=1\",\n\"label\": \"1\",\n\"active\": true\n},\n{\n\"url\": null,\n\"label\": \"Next &raquo;\",\n\"active\": false\n}\n],\n\"next_page_url\": null,\n\"path\": \"http:\/\/localhost:8000\/api\/roles\",\n\"per_page\": 5,\n\"prev_page_url\": null,\n\"to\": 3,\n\"total\": 3\n}",
                             "name": ""
                         }
                     ]
@@ -1419,11 +1372,18 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"name\":\"distinctio\",\"permissions\":[3]}"
+                            "raw": "{\"name\":\"quos\",\"permissions\":[3]}"
                         },
                         "description": ""
                     },
-                    "response": []
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 201,
+                            "body": "{\n\"id\": 2,\n\"name\": \"admin\",\n\"guard_name\": \"web\",\n\"created_at\": \"2022-11-14T18:51:07.000000Z\",\n\"updated_at\": \"2022-11-14T18:51:07.000000Z\",\n\n}",
+                            "name": ""
+                        }
+                    ]
                 },
                 {
                     "name": "Update the specified role in database.",
@@ -1437,7 +1397,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "necessitatibus",
+                                    "value": "sequi",
                                     "description": "The ID of the role."
                                 }
                             ]
@@ -1455,11 +1415,18 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"name\":\"in\",\"permissions\":[12]}"
+                            "raw": "{\"name\":\"totam\",\"permissions\":[5]}"
                         },
                         "description": ""
                     },
-                    "response": []
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n\"id\": 2,\n\"name\": \"admin\",\n\"guard_name\": \"web\",\n\"created_at\": \"2022-11-14T18:51:07.000000Z\",\n\"updated_at\": \"2022-11-14T18:51:07.000000Z\",\n\"permissions\": [\n{\n\"id\": 1,\n\"name\": \"view-dashboard\",\n\"guard_name\": \"web\",\n\"created_at\": \"2022-11-14T18:51:07.000000Z\",\n\"updated_at\": \"2022-11-14T18:51:07.000000Z\",\n\"pivot\": {\n\"role_id\": 2,\n\"permission_id\": 1\n}\n},\n{\n\"id\": 2,\n\"name\": \"view-users\",\n\"guard_name\": \"web\",\n\"created_at\": \"2022-11-14T18:51:07.000000Z\",\n\"updated_at\": \"2022-11-14T18:51:07.000000Z\",\n\"pivot\": {\n\"role_id\": 2,\n\"permission_id\": 2\n}\n},\n{\n\"id\": 3,\n\"name\": \"create-users\",\n\"guard_name\": \"web\",\n\"created_at\": \"2022-11-14T18:51:08.000000Z\",\n\"updated_at\": \"2022-11-14T18:51:08.000000Z\",\n\"pivot\": {\n\"role_id\": 2,\n\"permission_id\": 3\n}\n},\n{\n\"id\": 4,\n\"name\": \"edit-users\",\n\"guard_name\": \"web\",\n\"created_at\": \"2022-11-14T18:51:08.000000Z\",\n\"updated_at\": \"2022-11-14T18:51:08.000000Z\",\n\"pivot\": {\n\"role_id\": 2,\n\"permission_id\": 4\n}\n},\n{\n\"id\": 5,\n\"name\": \"delete-users\",\n\"guard_name\": \"web\",\n\"created_at\": \"2022-11-14T18:51:08.000000Z\",\n\"updated_at\": \"2022-11-14T18:51:08.000000Z\",\n\"pivot\": {\n\"role_id\": 2,\n\"permission_id\": 5\n}\n},\n{\n\"id\": 6,\n\"name\": \"view-items\",\n\"guard_name\": \"web\",\n\"created_at\": \"2022-11-14T18:51:09.000000Z\",\n\"updated_at\": \"2022-11-14T18:51:09.000000Z\",\n\"pivot\": {\n\"role_id\": 2,\n\"permission_id\": 6\n}\n},\n{\n\"id\": 7,\n\"name\": \"create-items\",\n\"guard_name\": \"web\",\n\"created_at\": \"2022-11-14T18:51:09.000000Z\",\n\"updated_at\": \"2022-11-14T18:51:09.000000Z\",\n\"pivot\": {\n\"role_id\": 2,\n\"permission_id\": 7\n}\n},\n{\n\"id\": 8,\n\"name\": \"edit-items\",\n\"guard_name\": \"web\",\n\"created_at\": \"2022-11-14T18:51:09.000000Z\",\n\"updated_at\": \"2022-11-14T18:51:09.000000Z\",\n\"pivot\": {\n\"role_id\": 2,\n\"permission_id\": 8\n}\n},\n{\n\"id\": 9,\n\"name\": \"delete-items\",\n\"guard_name\": \"web\",\n\"created_at\": \"2022-11-14T18:51:09.000000Z\",\n\"updated_at\": \"2022-11-14T18:51:09.000000Z\",\n\"pivot\": {\n\"role_id\": 2,\n\"permission_id\": 9\n}\n},\n{\n\"id\": 10,\n\"name\": \"view-products\",\n\"guard_name\": \"web\",\n\"created_at\": \"2022-11-14T18:51:10.000000Z\",\n\"updated_at\": \"2022-11-14T18:51:10.000000Z\",\n\"pivot\": {\n\"role_id\": 2,\n\"permission_id\": 10\n}\n},\n{\n\"id\": 11,\n\"name\": \"create-products\",\n\"guard_name\": \"web\",\n\"created_at\": \"2022-11-14T18:51:10.000000Z\",\n\"updated_at\": \"2022-11-14T18:51:10.000000Z\",\n\"pivot\": {\n\"role_id\": 2,\n\"permission_id\": 11\n}\n},\n{\n\"id\": 12,\n\"name\": \"edit-products\",\n\"guard_name\": \"web\",\n\"created_at\": \"2022-11-14T18:51:10.000000Z\",\n\"updated_at\": \"2022-11-14T18:51:10.000000Z\",\n\"pivot\": {\n\"role_id\": 2,\n\"permission_id\": 12\n}\n},\n{\n\"id\": 13,\n\"name\": \"delete-products\",\n\"guard_name\": \"web\",\n\"created_at\": \"2022-11-14T18:51:10.000000Z\",\n\"updated_at\": \"2022-11-14T18:51:10.000000Z\",\n\"pivot\": {\n\"role_id\": 2,\n\"permission_id\": 13\n}\n},\n{\n\"id\": 14,\n\"name\": \"view-settings\",\n\"guard_name\": \"web\",\n\"created_at\": \"2022-11-14T18:51:11.000000Z\",\n\"updated_at\": \"2022-11-14T18:51:11.000000Z\",\n\"pivot\": {\n\"role_id\": 2,\n\"permission_id\": 14\n}\n},\n{\n\"id\": 15,\n\"name\": \"create-settings\",\n\"guard_name\": \"web\",\n\"created_at\": \"2022-11-14T18:51:11.000000Z\",\n\"updated_at\": \"2022-11-14T18:51:11.000000Z\",\n\"pivot\": {\n\"role_id\": 2,\n\"permission_id\": 15\n}\n},\n{\n\"id\": 16,\n\"name\": \"edit-settings\",\n\"guard_name\": \"web\",\n\"created_at\": \"2022-11-14T18:51:11.000000Z\",\n\"updated_at\": \"2022-11-14T18:51:11.000000Z\",\n\"pivot\": {\n\"role_id\": 2,\n\"permission_id\": 16\n}\n},\n{\n\"id\": 17,\n\"name\": \"delete-settings\",\n\"guard_name\": \"web\",\n\"created_at\": \"2022-11-14T18:51:12.000000Z\",\n\"updated_at\": \"2022-11-14T18:51:12.000000Z\",\n\"pivot\": {\n\"role_id\": 2,\n\"permission_id\": 17\n}\n},\n{\n\"id\": 18,\n\"name\": \"view-feedbacks\",\n\"guard_name\": \"web\",\n\"created_at\": \"2022-11-14T18:51:12.000000Z\",\n\"updated_at\": \"2022-11-14T18:51:12.000000Z\",\n\"pivot\": {\n\"role_id\": 2,\n\"permission_id\": 18\n}\n},\n{\n\"id\": 19,\n\"name\": \"delete-feedbacks\",\n\"guard_name\": \"web\",\n\"created_at\": \"2022-11-14T18:51:12.000000Z\",\n\"updated_at\": \"2022-11-14T18:51:12.000000Z\",\n\"pivot\": {\n\"role_id\": 2,\n\"permission_id\": 19\n}\n},\n{\n\"id\": 20,\n\"name\": \"view-roles\",\n\"guard_name\": \"web\",\n\"created_at\": \"2022-11-14T18:51:13.000000Z\",\n\"updated_at\": \"2022-11-14T18:51:13.000000Z\",\n\"pivot\": {\n\"role_id\": 2,\n\"permission_id\": 20\n}\n},\n{\n\"id\": 21,\n\"name\": \"create-roles\",\n\"guard_name\": \"web\",\n\"created_at\": \"2022-11-14T18:51:13.000000Z\",\n\"updated_at\": \"2022-11-14T18:51:13.000000Z\",\n\"pivot\": {\n\"role_id\": 2,\n\"permission_id\": 21\n}\n},\n{\n\"id\": 22,\n\"name\": \"edit-roles\",\n\"guard_name\": \"web\",\n\"created_at\": \"2022-11-14T18:51:13.000000Z\",\n\"updated_at\": \"2022-11-14T18:51:13.000000Z\",\n\"pivot\": {\n\"role_id\": 2,\n\"permission_id\": 22\n}\n},\n{\n\"id\": 23,\n\"name\": \"delete-roles\",\n\"guard_name\": \"web\",\n\"created_at\": \"2022-11-14T18:51:14.000000Z\",\n\"updated_at\": \"2022-11-14T18:51:14.000000Z\",\n\"pivot\": {\n\"role_id\": 2,\n\"permission_id\": 23\n}\n}\n]\n}",
+                            "name": ""
+                        }
+                    ]
                 },
                 {
                     "name": "Remove the specified role from database.",
@@ -1473,7 +1440,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "magnam",
+                                    "value": "itaque",
                                     "description": "The ID of the role."
                                 }
                             ]
@@ -1492,7 +1459,14 @@
                         "body": null,
                         "description": ""
                     },
-                    "response": []
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n\"id\": 2,\n\"name\": \"admin\",\n\"guard_name\": \"web\",\n\"created_at\": \"2022-11-14T18:51:07.000000Z\",\n\"updated_at\": \"2022-11-14T18:51:07.000000Z\",\n\"permissions\": [\n{\n\"id\": 1,\n\"name\": \"view-dashboard\",\n\"guard_name\": \"web\",\n\"created_at\": \"2022-11-14T18:51:07.000000Z\",\n\"updated_at\": \"2022-11-14T18:51:07.000000Z\",\n\"pivot\": {\n\"role_id\": 2,\n\"permission_id\": 1\n}\n},\n{\n\"id\": 2,\n\"name\": \"view-users\",\n\"guard_name\": \"web\",\n\"created_at\": \"2022-11-14T18:51:07.000000Z\",\n\"updated_at\": \"2022-11-14T18:51:07.000000Z\",\n\"pivot\": {\n\"role_id\": 2,\n\"permission_id\": 2\n}\n},\n{\n\"id\": 3,\n\"name\": \"create-users\",\n\"guard_name\": \"web\",\n\"created_at\": \"2022-11-14T18:51:08.000000Z\",\n\"updated_at\": \"2022-11-14T18:51:08.000000Z\",\n\"pivot\": {\n\"role_id\": 2,\n\"permission_id\": 3\n}\n},\n{\n\"id\": 4,\n\"name\": \"edit-users\",\n\"guard_name\": \"web\",\n\"created_at\": \"2022-11-14T18:51:08.000000Z\",\n\"updated_at\": \"2022-11-14T18:51:08.000000Z\",\n\"pivot\": {\n\"role_id\": 2,\n\"permission_id\": 4\n}\n},\n{\n\"id\": 5,\n\"name\": \"delete-users\",\n\"guard_name\": \"web\",\n\"created_at\": \"2022-11-14T18:51:08.000000Z\",\n\"updated_at\": \"2022-11-14T18:51:08.000000Z\",\n\"pivot\": {\n\"role_id\": 2,\n\"permission_id\": 5\n}\n},\n{\n\"id\": 6,\n\"name\": \"view-items\",\n\"guard_name\": \"web\",\n\"created_at\": \"2022-11-14T18:51:09.000000Z\",\n\"updated_at\": \"2022-11-14T18:51:09.000000Z\",\n\"pivot\": {\n\"role_id\": 2,\n\"permission_id\": 6\n}\n},\n{\n\"id\": 7,\n\"name\": \"create-items\",\n\"guard_name\": \"web\",\n\"created_at\": \"2022-11-14T18:51:09.000000Z\",\n\"updated_at\": \"2022-11-14T18:51:09.000000Z\",\n\"pivot\": {\n\"role_id\": 2,\n\"permission_id\": 7\n}\n},\n{\n\"id\": 8,\n\"name\": \"edit-items\",\n\"guard_name\": \"web\",\n\"created_at\": \"2022-11-14T18:51:09.000000Z\",\n\"updated_at\": \"2022-11-14T18:51:09.000000Z\",\n\"pivot\": {\n\"role_id\": 2,\n\"permission_id\": 8\n}\n},\n{\n\"id\": 9,\n\"name\": \"delete-items\",\n\"guard_name\": \"web\",\n\"created_at\": \"2022-11-14T18:51:09.000000Z\",\n\"updated_at\": \"2022-11-14T18:51:09.000000Z\",\n\"pivot\": {\n\"role_id\": 2,\n\"permission_id\": 9\n}\n},\n{\n\"id\": 10,\n\"name\": \"view-products\",\n\"guard_name\": \"web\",\n\"created_at\": \"2022-11-14T18:51:10.000000Z\",\n\"updated_at\": \"2022-11-14T18:51:10.000000Z\",\n\"pivot\": {\n\"role_id\": 2,\n\"permission_id\": 10\n}\n},\n{\n\"id\": 11,\n\"name\": \"create-products\",\n\"guard_name\": \"web\",\n\"created_at\": \"2022-11-14T18:51:10.000000Z\",\n\"updated_at\": \"2022-11-14T18:51:10.000000Z\",\n\"pivot\": {\n\"role_id\": 2,\n\"permission_id\": 11\n}\n},\n{\n\"id\": 12,\n\"name\": \"edit-products\",\n\"guard_name\": \"web\",\n\"created_at\": \"2022-11-14T18:51:10.000000Z\",\n\"updated_at\": \"2022-11-14T18:51:10.000000Z\",\n\"pivot\": {\n\"role_id\": 2,\n\"permission_id\": 12\n}\n},\n{\n\"id\": 13,\n\"name\": \"delete-products\",\n\"guard_name\": \"web\",\n\"created_at\": \"2022-11-14T18:51:10.000000Z\",\n\"updated_at\": \"2022-11-14T18:51:10.000000Z\",\n\"pivot\": {\n\"role_id\": 2,\n\"permission_id\": 13\n}\n},\n{\n\"id\": 14,\n\"name\": \"view-settings\",\n\"guard_name\": \"web\",\n\"created_at\": \"2022-11-14T18:51:11.000000Z\",\n\"updated_at\": \"2022-11-14T18:51:11.000000Z\",\n\"pivot\": {\n\"role_id\": 2,\n\"permission_id\": 14\n}\n},\n{\n\"id\": 15,\n\"name\": \"create-settings\",\n\"guard_name\": \"web\",\n\"created_at\": \"2022-11-14T18:51:11.000000Z\",\n\"updated_at\": \"2022-11-14T18:51:11.000000Z\",\n\"pivot\": {\n\"role_id\": 2,\n\"permission_id\": 15\n}\n},\n{\n\"id\": 16,\n\"name\": \"edit-settings\",\n\"guard_name\": \"web\",\n\"created_at\": \"2022-11-14T18:51:11.000000Z\",\n\"updated_at\": \"2022-11-14T18:51:11.000000Z\",\n\"pivot\": {\n\"role_id\": 2,\n\"permission_id\": 16\n}\n},\n{\n\"id\": 17,\n\"name\": \"delete-settings\",\n\"guard_name\": \"web\",\n\"created_at\": \"2022-11-14T18:51:12.000000Z\",\n\"updated_at\": \"2022-11-14T18:51:12.000000Z\",\n\"pivot\": {\n\"role_id\": 2,\n\"permission_id\": 17\n}\n},\n{\n\"id\": 18,\n\"name\": \"view-feedbacks\",\n\"guard_name\": \"web\",\n\"created_at\": \"2022-11-14T18:51:12.000000Z\",\n\"updated_at\": \"2022-11-14T18:51:12.000000Z\",\n\"pivot\": {\n\"role_id\": 2,\n\"permission_id\": 18\n}\n},\n{\n\"id\": 19,\n\"name\": \"delete-feedbacks\",\n\"guard_name\": \"web\",\n\"created_at\": \"2022-11-14T18:51:12.000000Z\",\n\"updated_at\": \"2022-11-14T18:51:12.000000Z\",\n\"pivot\": {\n\"role_id\": 2,\n\"permission_id\": 19\n}\n},\n{\n\"id\": 20,\n\"name\": \"view-roles\",\n\"guard_name\": \"web\",\n\"created_at\": \"2022-11-14T18:51:13.000000Z\",\n\"updated_at\": \"2022-11-14T18:51:13.000000Z\",\n\"pivot\": {\n\"role_id\": 2,\n\"permission_id\": 20\n}\n},\n{\n\"id\": 21,\n\"name\": \"create-roles\",\n\"guard_name\": \"web\",\n\"created_at\": \"2022-11-14T18:51:13.000000Z\",\n\"updated_at\": \"2022-11-14T18:51:13.000000Z\",\n\"pivot\": {\n\"role_id\": 2,\n\"permission_id\": 21\n}\n},\n{\n\"id\": 22,\n\"name\": \"edit-roles\",\n\"guard_name\": \"web\",\n\"created_at\": \"2022-11-14T18:51:13.000000Z\",\n\"updated_at\": \"2022-11-14T18:51:13.000000Z\",\n\"pivot\": {\n\"role_id\": 2,\n\"permission_id\": 22\n}\n},\n{\n\"id\": 23,\n\"name\": \"delete-roles\",\n\"guard_name\": \"web\",\n\"created_at\": \"2022-11-14T18:51:14.000000Z\",\n\"updated_at\": \"2022-11-14T18:51:14.000000Z\",\n\"pivot\": {\n\"role_id\": 2,\n\"permission_id\": 23\n}\n}\n]\n}",
+                            "name": ""
+                        }
+                    ]
                 }
             ]
         },
@@ -1523,7 +1497,14 @@
                         "body": null,
                         "description": ""
                     },
-                    "response": []
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{}",
+                            "name": ""
+                        }
+                    ]
                 },
                 {
                     "name": "Display the last created setting.",
@@ -1550,22 +1531,9 @@
                     },
                     "response": [
                         {
-                            "header": [
-                                {
-                                    "key": "cache-control",
-                                    "value": "no-cache, private"
-                                },
-                                {
-                                    "key": "content-type",
-                                    "value": "application\/json"
-                                },
-                                {
-                                    "key": "access-control-allow-origin",
-                                    "value": "*"
-                                }
-                            ],
-                            "code": 401,
-                            "body": "{\"message\":\"Unauthenticated.\"}",
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n\"id\": 2,\n\"store_name\": \"ahmed\",\n\"store_logo\": \"settings\/PL0BDCObJlCEHvLcGKFnAUMQmf6BzaA7AKvn74iz.jpg\",\n\"store_currency\": null,\n\"home_title\": null,\n\"whatsapp_phone\": null,\n\"contact_phone1\": null,\n\"contact_phone2\": null,\n\"contact_address\": null,\n\"created_at\": \"2022-11-15T11:35:30.000000Z\",\n\"updated_at\": \"2022-11-15T11:35:30.000000Z\"\n}",
                             "name": ""
                         }
                     ]
@@ -1595,22 +1563,9 @@
                     },
                     "response": [
                         {
-                            "header": [
-                                {
-                                    "key": "cache-control",
-                                    "value": "no-cache, private"
-                                },
-                                {
-                                    "key": "content-type",
-                                    "value": "application\/json"
-                                },
-                                {
-                                    "key": "access-control-allow-origin",
-                                    "value": "*"
-                                }
-                            ],
-                            "code": 401,
-                            "body": "{\"message\":\"Unauthenticated.\"}",
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n\"current_page\": 1,\n\"data\": [\n{\n\"id\": 1,\n\"store_name\": \"monty\",\n\"store_logo\": null,\n\"store_currency\": null,\n\"home_title\": null,\n\"whatsapp_phone\": null,\n\"contact_phone1\": null,\n\"contact_phone2\": null,\n\"contact_address\": null,\n\"created_at\": \"2022-11-15T11:34:29.000000Z\",\n\"updated_at\": \"2022-11-15T11:34:29.000000Z\"\n},\n{\n\"id\": 2,\n\"store_name\": \"ahmed\",\n\"store_logo\": \"settings\/PL0BDCObJlCEHvLcGKFnAUMQmf6BzaA7AKvn74iz.jpg\",\n\"store_currency\": null,\n\"home_title\": null,\n\"whatsapp_phone\": null,\n\"contact_phone1\": null,\n\"contact_phone2\": null,\n\"contact_address\": null,\n\"created_at\": \"2022-11-15T11:35:30.000000Z\",\n\"updated_at\": \"2022-11-15T11:35:30.000000Z\"\n}\n],\n\"first_page_url\": \"http:\/\/localhost:8000\/api\/settings?page=1\",\n\"from\": 1,\n\"last_page\": 1,\n\"last_page_url\": \"http:\/\/localhost:8000\/api\/settings?page=1\",\n\"links\": [\n{\n\"url\": null,\n\"label\": \"&laquo; Previous\",\n\"active\": false\n},\n{\n\"url\": \"http:\/\/localhost:8000\/api\/settings?page=1\",\n\"label\": \"1\",\n\"active\": true\n},\n{\n\"url\": null,\n\"label\": \"Next &raquo;\",\n\"active\": false\n}\n],\n\"next_page_url\": null,\n\"path\": \"http:\/\/localhost:8000\/api\/settings\",\n\"per_page\": 5,\n\"prev_page_url\": null,\n\"to\": 2,\n\"total\": 2\n}",
                             "name": ""
                         }
                     ]
@@ -1640,7 +1595,7 @@
                             "formdata": [
                                 {
                                     "key": "store_name",
-                                    "value": "enim",
+                                    "value": "a",
                                     "type": "text",
                                     "description": ""
                                 },
@@ -1653,7 +1608,14 @@
                         },
                         "description": ""
                     },
-                    "response": []
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 201,
+                            "body": "{\n\"id\": 2,\n\"store_name\": \"ahmed\",\n\"store_logo\": \"settings\/PL0BDCObJlCEHvLcGKFnAUMQmf6BzaA7AKvn74iz.jpg\",\n\"store_currency\": null,\n\"home_title\": null,\n\"whatsapp_phone\": null,\n\"contact_phone1\": null,\n\"contact_phone2\": null,\n\"contact_address\": null,\n\"created_at\": \"2022-11-15T11:35:30.000000Z\",\n\"updated_at\": \"2022-11-15T11:35:30.000000Z\"\n}",
+                            "name": ""
+                        }
+                    ]
                 },
                 {
                     "name": "Display the specified setting.",
@@ -1667,7 +1629,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "14",
+                                    "value": "1",
                                     "description": "The ID of the setting."
                                 }
                             ]
@@ -1688,22 +1650,9 @@
                     },
                     "response": [
                         {
-                            "header": [
-                                {
-                                    "key": "cache-control",
-                                    "value": "no-cache, private"
-                                },
-                                {
-                                    "key": "content-type",
-                                    "value": "application\/json"
-                                },
-                                {
-                                    "key": "access-control-allow-origin",
-                                    "value": "*"
-                                }
-                            ],
-                            "code": 401,
-                            "body": "{\"message\":\"Unauthenticated.\"}",
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n\"id\": 2,\n\"store_name\": \"ahmed\",\n\"store_logo\": \"settings\/PL0BDCObJlCEHvLcGKFnAUMQmf6BzaA7AKvn74iz.jpg\",\n\"store_currency\": null,\n\"home_title\": null,\n\"whatsapp_phone\": null,\n\"contact_phone1\": null,\n\"contact_phone2\": null,\n\"contact_address\": null,\n\"created_at\": \"2022-11-15T11:35:30.000000Z\",\n\"updated_at\": \"2022-11-15T11:35:30.000000Z\"\n}",
                             "name": ""
                         }
                     ]
@@ -1720,7 +1669,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "3",
+                                    "value": "1",
                                     "description": "The ID of the setting."
                                 }
                             ]
@@ -1741,7 +1690,7 @@
                             "formdata": [
                                 {
                                     "key": "store_name",
-                                    "value": "est",
+                                    "value": "possimus",
                                     "type": "text",
                                     "description": ""
                                 },
@@ -1759,7 +1708,14 @@
                         },
                         "description": ""
                     },
-                    "response": []
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n\"id\": 2,\n\"store_name\": \"ahmed\",\n\"store_logo\": \"settings\/PL0BDCObJlCEHvLcGKFnAUMQmf6BzaA7AKvn74iz.jpg\",\n\"store_currency\": null,\n\"home_title\": null,\n\"whatsapp_phone\": null,\n\"contact_phone1\": null,\n\"contact_phone2\": null,\n\"contact_address\": null,\n\"created_at\": \"2022-11-15T11:35:30.000000Z\",\n\"updated_at\": \"2022-11-15T11:35:30.000000Z\"\n}",
+                            "name": ""
+                        }
+                    ]
                 },
                 {
                     "name": "Remove the specified setting from database.",
@@ -1773,7 +1729,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "3",
+                                    "value": "1",
                                     "description": "The ID of the setting."
                                 }
                             ]
@@ -1792,7 +1748,14 @@
                         "body": null,
                         "description": ""
                     },
-                    "response": []
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n\"id\": 2,\n\"store_name\": \"ahmed\",\n\"store_logo\": \"settings\/PL0BDCObJlCEHvLcGKFnAUMQmf6BzaA7AKvn74iz.jpg\",\n\"store_currency\": null,\n\"home_title\": null,\n\"whatsapp_phone\": null,\n\"contact_phone1\": null,\n\"contact_phone2\": null,\n\"contact_address\": null,\n\"created_at\": \"2022-11-15T11:35:30.000000Z\",\n\"updated_at\": \"2022-11-15T11:35:30.000000Z\"\n}",
+                            "name": ""
+                        }
+                    ]
                 }
             ]
         },
@@ -1829,49 +1792,11 @@
                             "type": "noauth"
                         }
                     },
-                    "response": []
-                },
-                {
-                    "name": "Display all users (paginated) with their roles (paginated) and permissions.",
-                    "request": {
-                        "url": {
-                            "host": "{{baseUrl}}",
-                            "path": "api\/users",
-                            "query": [],
-                            "raw": "{{baseUrl}}\/api\/users"
-                        },
-                        "method": "GET",
-                        "header": [
-                            {
-                                "key": "Content-Type",
-                                "value": "application\/json"
-                            },
-                            {
-                                "key": "Accept",
-                                "value": "application\/json"
-                            }
-                        ],
-                        "body": null,
-                        "description": ""
-                    },
                     "response": [
                         {
-                            "header": [
-                                {
-                                    "key": "cache-control",
-                                    "value": "no-cache, private"
-                                },
-                                {
-                                    "key": "content-type",
-                                    "value": "application\/json"
-                                },
-                                {
-                                    "key": "access-control-allow-origin",
-                                    "value": "*"
-                                }
-                            ],
-                            "code": 401,
-                            "body": "{\"message\":\"Unauthenticated.\"}",
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n\"id\": 1,\n\"name\": \"owner\",\n\"photo\": null,\n\"email_verified_at\": null,\n\"created_at\": \"2022-11-14T18:51:05.000000Z\",\n\"updated_at\": \"2022-11-14T18:51:05.000000Z\",\n\"token\": \"3|x8a2zohvUSl6HcHoqqzMjouVY9XP138LvelPofcM\",\n\"permissions\": [],\n\"roles\": [\n{\n\"id\": 1,\n\"name\": \"owner\",\n\"guard_name\": \"web\",\n\"created_at\": \"2022-11-14T18:51:06.000000Z\",\n\"updated_at\": \"2022-11-14T18:51:06.000000Z\",\n\"pivot\": {\n\"model_id\": 1,\n\"role_id\": 1,\n\"model_type\": \"App\\\\Models\\\\User\"\n},\n\"permissions\": []\n}\n]\n}",
                             "name": ""
                         }
                     ]
@@ -1899,7 +1824,14 @@
                         "body": null,
                         "description": ""
                     },
-                    "response": []
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{}",
+                            "name": ""
+                        }
+                    ]
                 },
                 {
                     "name": "Update the specified user privacy.",
@@ -1913,8 +1845,8 @@
                                 {
                                     "id": "user",
                                     "key": "user",
-                                    "value": "1",
-                                    "description": "The user."
+                                    "value": "2",
+                                    "description": "The id of the user"
                                 }
                             ]
                         },
@@ -1934,7 +1866,7 @@
                             "formdata": [
                                 {
                                     "key": "name",
-                                    "value": "aut",
+                                    "value": "ab",
                                     "type": "text",
                                     "description": ""
                                 },
@@ -1952,7 +1884,46 @@
                         },
                         "description": ""
                     },
-                    "response": []
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n\"id\": 1,\n\"name\": \"owner\",\n\"photo\": null,\n\"email_verified_at\": null,\n\"created_at\": \"2022-11-14T18:51:05.000000Z\",\n\"updated_at\": \"2022-11-14T18:51:05.000000Z\",\n\"live_photo_path\": \"http:\/\/localhost:8000\/storage\",\n\"roles\": [\n{\n\"id\": 1,\n\"name\": \"owner\",\n\"guard_name\": \"web\",\n\"created_at\": \"2022-11-14T18:51:06.000000Z\",\n\"updated_at\": \"2022-11-14T18:51:06.000000Z\",\n\"pivot\": {\n\"model_id\": 1,\n\"role_id\": 1,\n\"model_type\": \"App\\\\Models\\\\User\"\n},\n\"permissions\": []\n}\n]\n}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Display all users (paginated) with their roles (paginated) and permissions.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/users",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/users"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n\"current_page\": 1,\n\"data\": [\n{\n\"id\": 3,\n\"name\": \"f\",\n\"photo\": \"users\/nCOQdMlXQVHwk9eVdvy1M0FHVTTiCvlL6SpcNm7l.jpg\",\n\"email_verified_at\": null,\n\"created_at\": \"2022-11-15T12:01:24.000000Z\",\n\"updated_at\": \"2022-11-15T12:01:24.000000Z\",\n\"roles\": []\n},\n{\n\"id\": 4,\n\"name\": \"owner\",\n\"photo\": null,\n\"email_verified_at\": null,\n\"created_at\": \"2022-11-15T12:07:34.000000Z\",\n\"updated_at\": \"2022-11-15T12:07:34.000000Z\",\n\"roles\": [\n{\n\"id\": 1,\n\"name\": \"owner\",\n\"guard_name\": \"web\",\n\"created_at\": \"2022-11-14T18:51:06.000000Z\",\n\"updated_at\": \"2022-11-14T18:51:06.000000Z\",\n\"pivot\": {\n\"model_id\": 4,\n\"role_id\": 1,\n\"model_type\": \"App\\\\Models\\\\User\"\n},\n\"permissions\": []\n}\n]\n}\n],\n\"first_page_url\": \"http:\/\/localhost:8000\/api\/users?page=1\",\n\"from\": 1,\n\"last_page\": 1,\n\"last_page_url\": \"http:\/\/localhost:8000\/api\/users?page=1\",\n\"links\": [\n{\n\"url\": null,\n\"label\": \"&laquo; Previous\",\n\"active\": false\n},\n{\n\"url\": \"http:\/\/localhost:8000\/api\/users?page=1\",\n\"label\": \"1\",\n\"active\": true\n},\n{\n\"url\": null,\n\"label\": \"Next &raquo;\",\n\"active\": false\n}\n],\n\"next_page_url\": null,\n\"path\": \"http:\/\/localhost:8000\/api\/users\",\n\"per_page\": 5,\n\"prev_page_url\": null,\n\"to\": 2,\n\"total\": 2\n}",
+                            "name": ""
+                        }
+                    ]
                 },
                 {
                     "name": "Store a newly created user in database.",
@@ -1979,13 +1950,13 @@
                             "formdata": [
                                 {
                                     "key": "name",
-                                    "value": "omnis",
+                                    "value": "eum",
                                     "type": "text",
                                     "description": ""
                                 },
                                 {
                                     "key": "password",
-                                    "value": "possimus",
+                                    "value": "omnis",
                                     "type": "text",
                                     "description": ""
                                 },
@@ -1998,7 +1969,14 @@
                         },
                         "description": ""
                     },
-                    "response": []
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 201,
+                            "body": "{\n\"name\": \"f\",\n\"photo\": \"users\/nCOQdMlXQVHwk9eVdvy1M0FHVTTiCvlL6SpcNm7l.jpg\",\n\"updated_at\": \"2022-11-15T12:01:24.000000Z\",\n\"created_at\": \"2022-11-15T12:01:24.000000Z\",\n\"id\": 3,\n\"live_photo_path\": \"http:\/\/localhost:8000\/storage\/users\/nCOQdMlXQVHwk9eVdvy1M0FHVTTiCvlL6SpcNm7l.jpg\",\n\"permissions\": [],\n\"roles\": []\n}",
+                            "name": ""
+                        }
+                    ]
                 },
                 {
                     "name": "Display the specified user with it roles (paginated) and permissions.",
@@ -2012,7 +1990,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "1",
+                                    "value": "3",
                                     "description": "The ID of the user."
                                 }
                             ]
@@ -2033,22 +2011,9 @@
                     },
                     "response": [
                         {
-                            "header": [
-                                {
-                                    "key": "cache-control",
-                                    "value": "no-cache, private"
-                                },
-                                {
-                                    "key": "content-type",
-                                    "value": "application\/json"
-                                },
-                                {
-                                    "key": "access-control-allow-origin",
-                                    "value": "*"
-                                }
-                            ],
-                            "code": 401,
-                            "body": "{\"message\":\"Unauthenticated.\"}",
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n\"id\": 4,\n\"name\": \"owner\",\n\"photo\": null,\n\"email_verified_at\": null,\n\"created_at\": \"2022-11-15T12:07:34.000000Z\",\n\"updated_at\": \"2022-11-15T12:07:34.000000Z\",\n\"live_photo_path\": \"http:\/\/localhost:8000\/storage\",\n\"roles\": [\n{\n\"id\": 1,\n\"name\": \"owner\",\n\"guard_name\": \"web\",\n\"created_at\": \"2022-11-14T18:51:06.000000Z\",\n\"updated_at\": \"2022-11-14T18:51:06.000000Z\",\n\"pivot\": {\n\"model_id\": 4,\n\"role_id\": 1,\n\"model_type\": \"App\\\\Models\\\\User\"\n},\n\"permissions\": []\n}\n]\n}",
                             "name": ""
                         }
                     ]
@@ -2065,7 +2030,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "1",
+                                    "value": "3",
                                     "description": "The ID of the user."
                                 }
                             ]
@@ -2086,7 +2051,7 @@
                             "formdata": [
                                 {
                                     "key": "name",
-                                    "value": "aperiam",
+                                    "value": "sed",
                                     "type": "text",
                                     "description": ""
                                 },
@@ -2104,7 +2069,14 @@
                         },
                         "description": ""
                     },
-                    "response": []
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n\"id\": 1,\n\"name\": \"owner\",\n\"photo\": null,\n\"email_verified_at\": null,\n\"created_at\": \"2022-11-14T18:51:05.000000Z\",\n\"updated_at\": \"2022-11-14T18:51:05.000000Z\",\n\"live_photo_path\": \"http:\/\/localhost:8000\/storage\",\n\"roles\": [\n{\n\"id\": 1,\n\"name\": \"owner\",\n\"guard_name\": \"web\",\n\"created_at\": \"2022-11-14T18:51:06.000000Z\",\n\"updated_at\": \"2022-11-14T18:51:06.000000Z\",\n\"pivot\": {\n\"model_id\": 1,\n\"role_id\": 1,\n\"model_type\": \"App\\\\Models\\\\User\"\n},\n\"permissions\": []\n}\n]\n}",
+                            "name": ""
+                        }
+                    ]
                 },
                 {
                     "name": "Remove the specified user from database.",
@@ -2118,7 +2090,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "1",
+                                    "value": "3",
                                     "description": "The ID of the user."
                                 }
                             ]
@@ -2137,7 +2109,14 @@
                         "body": null,
                         "description": ""
                     },
-                    "response": []
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n\"id\": 1,\n\"name\": \"owner\",\n\"photo\": \"users\/XsT2cz0DW3fcyk1koDBNsD0rjHxLgmmks5hy2tG4.jpg\",\n\"email_verified_at\": null,\n\"created_at\": \"2022-11-14T18:51:05.000000Z\",\n\"updated_at\": \"2022-11-15T12:05:31.000000Z\",\n\"live_photo_path\": \"http:\/\/localhost:8000\/storage\/users\/XsT2cz0DW3fcyk1koDBNsD0rjHxLgmmks5hy2tG4.jpg\"\n}",
+                            "name": ""
+                        }
+                    ]
                 }
             ]
         }
