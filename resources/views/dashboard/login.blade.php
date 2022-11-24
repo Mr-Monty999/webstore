@@ -228,6 +228,11 @@
                 error: function(response) {
                     $(".alert").remove();
 
+                    if (response.status == 400)
+                        $("form#login").after(
+                            '<div class = "alert alert-danger text-white text-center" > الرجاء التحقق من البيانات !' +
+                            ' </div>'
+                        );
 
                     let errors = response.responseJSON.errors;
 

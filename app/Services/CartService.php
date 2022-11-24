@@ -70,12 +70,7 @@ class CartService
         return $data;
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $cartId
-     * @return \Illuminate\Http\Response
-     */
+
     public static function destroy($cartId, $productId)
     {
         $data =   self::show($cartId, $productId);
@@ -86,6 +81,6 @@ class CartService
     {
         $data = Cart::findOrFail($cartId)->products()->detach();
 
-        return  $data;
+        return  true;
     }
 }
