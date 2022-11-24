@@ -46,6 +46,7 @@ class ProductService
 
 
 
+
         $data["product_photo"] = $photo;
         $data["product_discount"] = $productDiscount;
         $product = Product::create($data);

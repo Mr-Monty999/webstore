@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Nov 24, 2022 at 09:49 PM
+-- Generation Time: Nov 25, 2022 at 12:26 AM
 -- Server version: 8.0.30-0ubuntu0.20.04.2
 -- PHP Version: 7.4.3
 
@@ -105,6 +105,24 @@ CREATE TABLE `migrations` (
   `batch` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Dumping data for table `migrations`
+--
+
+INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
+(1, '2014_10_12_000000_create_users_table', 1),
+(2, '2014_10_12_100000_create_password_resets_table', 1),
+(3, '2019_08_19_000000_create_failed_jobs_table', 1),
+(4, '2019_12_14_000001_create_personal_access_tokens_table', 1),
+(5, '2022_06_16_163538_create_items_table', 1),
+(6, '2022_06_16_163557_create_products_table', 1),
+(7, '2022_06_16_163621_create_settings_table', 1),
+(8, '2022_06_16_163634_create_vistors_table', 1),
+(9, '2022_06_16_164120_create_feedbacks_table', 1),
+(10, '2022_06_30_081437_create_carts_table', 1),
+(11, '2022_07_18_072702_create_cart_product_table', 1),
+(12, '2022_11_03_200638_create_permission_tables', 1);
+
 -- --------------------------------------------------------
 
 --
@@ -128,6 +146,13 @@ CREATE TABLE `model_has_roles` (
   `model_type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `model_id` bigint UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `model_has_roles`
+--
+
+INSERT INTO `model_has_roles` (`role_id`, `model_type`, `model_id`) VALUES
+(1, 'App\\Models\\User', 1);
 
 -- --------------------------------------------------------
 
@@ -154,6 +179,35 @@ CREATE TABLE `permissions` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `permissions`
+--
+
+INSERT INTO `permissions` (`id`, `name`, `guard_name`, `created_at`, `updated_at`) VALUES
+(1, 'view-dashboard', 'web', '2022-11-24 20:25:23', '2022-11-24 20:25:23'),
+(2, 'view-users', 'web', '2022-11-24 20:25:24', '2022-11-24 20:25:24'),
+(3, 'create-users', 'web', '2022-11-24 20:25:24', '2022-11-24 20:25:24'),
+(4, 'edit-users', 'web', '2022-11-24 20:25:24', '2022-11-24 20:25:24'),
+(5, 'delete-users', 'web', '2022-11-24 20:25:24', '2022-11-24 20:25:24'),
+(6, 'view-items', 'web', '2022-11-24 20:25:24', '2022-11-24 20:25:24'),
+(7, 'create-items', 'web', '2022-11-24 20:25:25', '2022-11-24 20:25:25'),
+(8, 'edit-items', 'web', '2022-11-24 20:25:25', '2022-11-24 20:25:25'),
+(9, 'delete-items', 'web', '2022-11-24 20:25:25', '2022-11-24 20:25:25'),
+(10, 'view-products', 'web', '2022-11-24 20:25:25', '2022-11-24 20:25:25'),
+(11, 'create-products', 'web', '2022-11-24 20:25:25', '2022-11-24 20:25:25'),
+(12, 'edit-products', 'web', '2022-11-24 20:25:26', '2022-11-24 20:25:26'),
+(13, 'delete-products', 'web', '2022-11-24 20:25:26', '2022-11-24 20:25:26'),
+(14, 'view-settings', 'web', '2022-11-24 20:25:26', '2022-11-24 20:25:26'),
+(15, 'create-settings', 'web', '2022-11-24 20:25:26', '2022-11-24 20:25:26'),
+(16, 'edit-settings', 'web', '2022-11-24 20:25:26', '2022-11-24 20:25:26'),
+(17, 'delete-settings', 'web', '2022-11-24 20:25:27', '2022-11-24 20:25:27'),
+(18, 'view-feedbacks', 'web', '2022-11-24 20:25:27', '2022-11-24 20:25:27'),
+(19, 'delete-feedbacks', 'web', '2022-11-24 20:25:27', '2022-11-24 20:25:27'),
+(20, 'view-roles', 'web', '2022-11-24 20:25:27', '2022-11-24 20:25:27'),
+(21, 'create-roles', 'web', '2022-11-24 20:25:27', '2022-11-24 20:25:27'),
+(22, 'edit-roles', 'web', '2022-11-24 20:25:28', '2022-11-24 20:25:28'),
+(23, 'delete-roles', 'web', '2022-11-24 20:25:28', '2022-11-24 20:25:28');
 
 -- --------------------------------------------------------
 
@@ -204,6 +258,14 @@ CREATE TABLE `roles` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Dumping data for table `roles`
+--
+
+INSERT INTO `roles` (`id`, `name`, `guard_name`, `created_at`, `updated_at`) VALUES
+(1, 'owner', 'web', '2022-11-24 20:25:23', '2022-11-24 20:25:23'),
+(2, 'admin', 'web', '2022-11-24 20:25:23', '2022-11-24 20:25:23');
+
 -- --------------------------------------------------------
 
 --
@@ -214,6 +276,35 @@ CREATE TABLE `role_has_permissions` (
   `permission_id` bigint UNSIGNED NOT NULL,
   `role_id` bigint UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `role_has_permissions`
+--
+
+INSERT INTO `role_has_permissions` (`permission_id`, `role_id`) VALUES
+(1, 2),
+(2, 2),
+(3, 2),
+(4, 2),
+(5, 2),
+(6, 2),
+(7, 2),
+(8, 2),
+(9, 2),
+(10, 2),
+(11, 2),
+(12, 2),
+(13, 2),
+(14, 2),
+(15, 2),
+(16, 2),
+(17, 2),
+(18, 2),
+(19, 2),
+(20, 2),
+(21, 2),
+(22, 2),
+(23, 2);
 
 -- --------------------------------------------------------
 
@@ -251,6 +342,13 @@ CREATE TABLE `users` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`id`, `name`, `password`, `photo`, `email_verified_at`, `remember_token`, `created_at`, `updated_at`) VALUES
+(1, 'owner', '$2y$10$ZZiThhXQLPSEsBON2lBO2e/WX/KbD4sNSEWiFDWnQOlm49JAP/TMW', NULL, NULL, NULL, '2022-11-24 20:25:23', '2022-11-24 20:25:23');
 
 -- --------------------------------------------------------
 
@@ -413,13 +511,13 @@ ALTER TABLE `items`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `permissions`
 --
 ALTER TABLE `permissions`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT for table `personal_access_tokens`
@@ -437,7 +535,7 @@ ALTER TABLE `products`
 -- AUTO_INCREMENT for table `roles`
 --
 ALTER TABLE `roles`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `settings`
@@ -449,7 +547,7 @@ ALTER TABLE `settings`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `vistors`
