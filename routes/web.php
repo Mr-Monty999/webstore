@@ -17,6 +17,11 @@ use Illuminate\Support\Facades\Route;
 */
 
 
+Route::get("storage-link", function () {
+    return Artisan::call("storage:link");
+});
+
+
 
 
 /// General Pages Routes
@@ -24,7 +29,6 @@ Route::group(["middleware" => "cart"], function () {
     Route::group(["namespace" => "general"], function () {
 
         Route::get("/", "HomeController@index")->name("home");
-
         // Route::group(["middleware" => "cart"], function () {
         Route::get("contact", "ContactController@index")->name("contact");
         Route::get("feedback", "FeedbackController@index")->name("feedback");
