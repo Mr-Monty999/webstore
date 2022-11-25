@@ -56,7 +56,7 @@ class CartTest extends TestCase
     }
     public  function testUpdateProductInCart()
     {
-        $product = CartService::update($this->cart->id, $this->product->id, ["product_amount" => 10]);
+        $product = CartService::update($this->cart->id, $this->product->id, ["product_amount" => 5]);
         $this->assertNotEmpty($product);
     }
 
