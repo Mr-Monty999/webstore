@@ -28,7 +28,7 @@ class FileService
     }
     public static function deleteFile($filePublicPath)
     {
-        if (file_exists(self::getStoragePath($filePublicPath)))
+        if (file_exists(self::getStoragePath($filePublicPath) && is_file(self::getStoragePath($filePublicPath))))
             unlink(self::getStoragePath($filePublicPath));
 
         return true;
