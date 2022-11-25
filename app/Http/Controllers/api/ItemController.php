@@ -111,6 +111,7 @@ class ItemController extends Controller
      */
     public function store(StoreItemRequest $request)
     {
+
         $data = ItemService::store($request);
         return response()->json($data, 201);
     }

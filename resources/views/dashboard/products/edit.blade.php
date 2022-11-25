@@ -91,8 +91,8 @@
                 success: function(response) {
                     $(".alert").remove();
 
-                    if (response.photo_path != null)
-                        $("form img").attr("src", response.photo_path);
+                    if (response.live_photo_path != null)
+                        $("form img").attr("src", response.live_photo_path);
 
                     if (response.success)
                         $("form").after(

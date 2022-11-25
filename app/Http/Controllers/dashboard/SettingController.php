@@ -32,7 +32,7 @@ class SettingController extends Controller
     public static function destroyAll()
     {
         $settings = SettingService::destroyAll();
-        return response()->json($settings, 200);
+        return response()->json($settings);
     }
 
 

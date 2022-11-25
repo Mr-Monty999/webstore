@@ -19,8 +19,11 @@ class SettingService
 
         $data = $request->all();
 
+        $prevSetting = Setting::latest()->firstOrNew();
+        $data["store_logo"] = $prevSetting->store_logo;
         if ($request->hasFile("store_logo")) {
-            $photo = $request->file("store_logo")->store("settings", "public");
+            // $photo = $request->file("store_logo")->store("settings", "public");
+            $photo =  FileService::uploadFile($request->file("store_logo"), "settings");
             $data["store_logo"] = $photo;
         }
         $setting = Setting::create($data);
@@ -41,8 +44,11 @@ class SettingService
 
         $data = $request->all();
 
+        $data["store_logo"] = $setting->store_logo;
         if ($request->hasFile("store_logo")) {
-            $photo = $request->file("store_logo")->store("settings", "public");
+            // $photo = $request->file("store_logo")->store("settings", "public");
+            FileService::deleteFile($setting->store_logo);
+            $photo =  FileService::uploadFile($request->file("store_logo"), "settings");
             $data["store_logo"] = $photo;
         }
         $setting->update($data);
@@ -65,7 +71,8 @@ class SettingService
     public static function destroy($id)
     {
         $setting = Setting::findOrFail($id);
-        Storage::disk("public")->delete($setting->store_logo);
+        // Storage::disk("public")->delete($setting->store_logo);
+        FileService::deleteFile($setting->store_logo);
         $setting->delete();
 
         return $setting;
@@ -73,7 +80,8 @@ class SettingService
     public static function destroyAll()
     {
         $settings = Setting::whereNotNull("id");
-        Storage::disk("public")->delete($settings->pluck("store_logo")->toArray());
+        // Storage::disk("public")->delete($settings->pluck("store_logo")->toArray());
+        FileService::cleanDirectory("settings");
         $settings->delete();
         return true;
     }

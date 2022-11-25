@@ -94,6 +94,7 @@ Route::group(["middleware" => "cart"], function () {
 
 
         //Setting Routes
+        Route::delete("settings/delete-all", "SettingController@destroyAll")->name("settings.destroy.all");
         Route::resource("settings", "SettingController");
     });
 });

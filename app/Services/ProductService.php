@@ -41,10 +41,10 @@ class ProductService
             $productDiscount = trim($request->product_discount);
 
         $photo = null;
-        if ($request->hasFile("product_photo"))
-            $photo = $request->file("product_photo")->store("products", "public");
-
-
+        if ($request->hasFile("product_photo")) {
+            // $photo = $request->file("product_photo")->store("products", "public");
+            $photo =  FileService::uploadFile($request->file("product_photo"), "products");
+        }
 
 
         $data["product_photo"] = $photo;
@@ -87,8 +87,10 @@ class ProductService
 
         $photo = $product->product_photo;
         if ($request->hasFile("product_photo")) {
-            Storage::disk("public")->delete($product->product_photo);
-            $photo = $request->file("product_photo")->store("products", "public");
+            // Storage::disk("public")->delete($product->product_photo);
+            // $photo = $request->file("product_photo")->store("products", "public");
+            FileService::deleteFile($product->product_photo);
+            $photo =  FileService::uploadFile($request->file("product_photo"), "products");
         }
 
 
@@ -113,8 +115,8 @@ class ProductService
 
 
         //Delete Old Photo
-        Storage::disk("public")->delete($product->product_photo);
-
+        // Storage::disk("public")->delete($product->product_photo);
+        FileService::deleteFile($product->product_photo);
 
         return $product;
     }
@@ -124,7 +126,8 @@ class ProductService
         DB::table("products")->delete();
 
         //Delete All Photos
-        Storage::disk("public")->deleteDirectory("products");
+        // Storage::disk("public")->deleteDirectory("products");
+        FileService::cleanDirectory("products");
 
         return true;
     }

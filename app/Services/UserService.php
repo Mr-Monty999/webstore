@@ -57,8 +57,10 @@ class UserService
 
 
         $photo = null;
-        if ($request->hasFile("photo"))
-            $photo = $request->file("photo")->store("users", "public");
+        if ($request->hasFile("photo")) {
+            // $photo = $request->file("photo")->store("users", "public");
+            $photo =  FileService::uploadFile($request->file("photo"), "users");
+        }
 
 
         $password = Hash::make("");
@@ -112,7 +114,8 @@ class UserService
         $user->delete();
 
         //Delete Old Photo
-        Storage::disk("public")->delete($user->photo);
+        // Storage::disk("public")->delete($user->photo);
+        FileService::deleteFile($user->photo);
 
         return $user;
     }
@@ -121,7 +124,8 @@ class UserService
     {
         $users = User::where("id", "!=", Auth::id());
         //Delete All Photos
-        Storage::disk("public")->delete($users->pluck("photo")->toArray());
+        // Storage::disk("public")->delete($users->pluck("photo")->toArray());
+        FileService::deleteFiles($users->pluck("photo")->toArray());
         $users->delete();
 
         return true;
@@ -150,8 +154,10 @@ class UserService
         $photo = $user->photo;
 
         if ($request->hasFile("photo")) {
-            Storage::disk("public")->delete($user->photo);
-            $photo = $request->file("photo")->store("users", "public");
+            // Storage::disk("public")->delete($user->photo);
+            // $photo = $request->file("photo")->store("users", "public");
+            FileService::deleteFile($user->photo);
+            $photo =  FileService::uploadFile($request->file("photo"), "users");
         }
 
 
@@ -192,8 +198,10 @@ class UserService
 
         $photo = $user->photo;
         if ($request->hasFile("photo")) {
-            Storage::disk("public")->delete($user->photo);
-            $photo = $request->file("photo")->store("users", "public");
+            // Storage::disk("public")->delete($user->photo);
+            // $photo = $request->file("photo")->store("users", "public");
+            FileService::deleteFile($user->photo);
+            $photo =  FileService::uploadFile($request->file("photo"), "users");
         }
 
 

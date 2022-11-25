@@ -36,7 +36,8 @@ class ItemService
         $data = $request->all();
 
         if ($request->hasFile("item_photo")) {
-            $photo = $request->file("item_photo")->store("items", "public");
+            // $photo = $request->file("item_photo")->store("items", "public");
+            $photo =  FileService::uploadFile($request->file("item_photo"), "items");
             $data["item_photo"] = $photo;
         }
         $item =  Item::create($data);
@@ -70,8 +71,10 @@ class ItemService
 
         $data["item_photo"] = $item->item_photo;
         if ($request->hasFile("item_photo")) {
-            Storage::disk("public")->delete($item->item_photo);
-            $photo = $request->file("item_photo")->store("items", "public");
+            // Storage::disk("public")->delete($item->item_photo);
+            // $photo = $request->file("item_photo")->store("items", "public");
+            FileService::deleteFile($item->item_photo);
+            $photo =  FileService::uploadFile($request->file("item_photo"), "items");
             $data["item_photo"] = $photo;
         }
         $item->update($data);
@@ -87,8 +90,10 @@ class ItemService
         $item = Item::findOrFail($id);
         if (isset($item->item_photo))
             $item["live_photo_path"] = asset("storage/" . $item->item_photo);
-        Storage::disk("public")->delete($item->products->pluck("product_photo")->toArray());
-        Storage::disk("public")->delete($item->item_photo);
+        // Storage::disk("public")->delete($item->products->pluck("product_photo")->toArray());
+        // Storage::disk("public")->delete($item->item_photo);
+        FileService::deleteFiles($item->products->pluck("product_photo")->toArray());
+        FileService::deleteFile($item->item_photo);
         $item->delete();
 
 
@@ -99,8 +104,10 @@ class ItemService
     {
 
         DB::table("items")->delete();
-        Storage::disk("public")->deleteDirectory("products");
-        Storage::disk("public")->deleteDirectory("items");
+        // Storage::disk("public")->deleteDirectory("products");
+        // Storage::disk("public")->deleteDirectory("items");
+        FileService::cleanDirectory("products");
+        FileService::cleanDirectory("items");
         return true;
     }
 }

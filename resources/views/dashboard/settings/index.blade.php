@@ -56,6 +56,14 @@
             <div class="alert alert-danger text-white">{{ Session::get('error') }}</div>
         @endif
 
+        @can('delete-settings')
+            <form id="delete-all-settings" action="" method="POST">
+                @csrf
+                @method('DELETE')
+                <button type="submit" class="btn btn-warning">حذف جميع الإعدادات</button>
+            </form>
+        @endcan
+
 
 
     </div>
@@ -92,8 +100,8 @@
                 success: function(response) {
                     $(".alert").remove();
 
-                    if (response.photo_path != null)
-                        $("form img").attr("src", response.photo_path);
+                    if (response.live_photo_path != null)
+                        $("form img").attr("src", response.live_photo_path);
 
                     if (response.success)
                         $("form").after(
@@ -128,6 +136,74 @@
                 }
 
             });
+        });
+
+        //Delete All Settings ////
+        $(document).on("submit", "form#delete-all-settings", function(e) {
+            e.preventDefault();
+
+            $(".alert").remove();
+
+
+
+            let deleteProduct = confirm("هل أنت متأكد من حذف جميع الإعدادات؟");
+
+            let settingId = $(this).find("#item-id");
+
+            if (deleteProduct) {
+                $.ajax({
+                    headers: {
+                        'X-CSRF-TOKEN': "{{ csrf_token() }}"
+                    },
+                    method: "post",
+                    url: "{{ route('settings.destroy.all') }}",
+                    data: new FormData(this),
+                    dataType: "json",
+                    processData: false,
+                    contentType: false,
+                    beforeSend: function() {
+                        $("form#delete-all-settings").after(
+                            '<div class="d-flex spinner"><p>جار المعالجة...</p>' +
+                            '<div class="spinner-border text-primary margin-1" role="status"></div>' +
+                            '</div>'
+                        );
+                    },
+                    complete: function() {
+                        $(".spinner").remove();
+                    },
+                    success: function(response, textStatus, xhr) {
+                        $(".alert").remove();
+
+
+                        if (xhr.status == 200)
+                            $("form#delete-all-settings").after(
+                                '<div class = "alert alert-success text-center col-7 col-md-3 text-white" >تم حذف جميع الإعدادت بنجاح' +
+                                ' </div>'
+                            );
+                        else $("form#delete-all-settings").after(
+                            '<div class = "alert alert-success text-center col-7 col-md-3 text-white" > حدث خطأ !' +
+                            ' </div>'
+                        );
+
+                    },
+                    error: function(response) {
+
+                        $(".alert").remove();
+
+                        let errors = response.responseJSON.errors;
+                        for (let error in errors) {
+                            $("form#delete-all-settings").after(
+                                '<div class = "alert alert-danger text-center col-7 col-md-3 text-white" >' +
+                                errors[error] +
+                                ' </div>'
+                            );
+                        }
+
+
+                    }
+
+                });
+            }
         });
     </script>
 @endpush
