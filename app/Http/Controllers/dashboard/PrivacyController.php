@@ -17,8 +17,8 @@ class PrivacyController extends Controller
     public function __construct()
     {
 
-        $this->middleware("permission:view-privacy")->only(["index", "show", "table"]);
-        $this->middleware("permission:edit-privacy")->only(["edit", "update"]);
+        // $this->middleware("permission:view-privacy")->only(["index", "show", "table"]);
+        // $this->middleware("permission:edit-privacy")->only(["edit", "update"]);
     }
     public function index($id)
     {
