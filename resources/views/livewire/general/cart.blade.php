@@ -22,9 +22,10 @@
                                 {{ $store->store_currency }}
 
                             </h6>
+                            <br>
                             <div class="form-group" dir="rtl">
-                                <label class="text-dark" for="">الكمية</label>
-                                <input wire:change="changeAmount({{ $product->id }},$event.target.value)"
+                                <label class="text-white" for="">الكمية :</label>
+                                <input wire:ignore wire:change="changeAmount({{ $product->id }},$event.target.value)"
                                     min="1" type="number" value="{{ $product->pivot->product_amount }}"
                                     class="form-control text-center product-amount" name="product_amount"
                                     id="">
