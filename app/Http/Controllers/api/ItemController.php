@@ -31,27 +31,27 @@ class ItemController extends Controller
     "data": [
         {
             "id": 1,
-            "item_name": "d",
-            "item_photo": null,
+            "name": "d",
+            "photo": null,
             "created_at": "2022-11-14T18:55:53.000000Z",
             "updated_at": "2022-11-14T18:55:53.000000Z",
             "products": [
                 {
                     "id": 1,
-                    "product_name": "دجاج",
-                    "product_price": 300,
-                    "product_discount": 10,
-                    "product_photo": null,
+                    "name": "دجاج",
+                    "price": 300,
+                    "discount": 10,
+                    "photo": null,
                     "item_id": 1,
                     "created_at": "2022-11-14T18:56:02.000000Z",
                     "updated_at": "2022-11-14T18:56:02.000000Z"
                 },
                 {
                     "id": 2,
-                    "product_name": "شاورما",
-                    "product_price": 300,
-                    "product_discount": 10,
-                    "product_photo": null,
+                    "name": "شاورما",
+                    "price": 300,
+                    "discount": 10,
+                    "photo": null,
                     "item_id": 1,
                     "created_at": "2022-11-14T18:56:07.000000Z",
                     "updated_at": "2022-11-14T18:56:07.000000Z"
@@ -100,8 +100,8 @@ class ItemController extends Controller
      * Store a newly created item in database.
      *@response 201 {
     "id": 4,
-    "item_name": "إلكترونيات",
-    "item_photo": "items/98RZDAC2vIBNC3zK5844F3I9vqMiKBQKUgLWBiOE.jpg",
+    "name": "إلكترونيات",
+    "photo": "items/98RZDAC2vIBNC3zK5844F3I9vqMiKBQKUgLWBiOE.jpg",
     "created_at": "2022-11-15T11:17:04.000000Z",
     "updated_at": "2022-11-15T11:17:27.000000Z",
     "live_photo_path": "http://localhost:8000/storage/items/98RZDAC2vIBNC3zK5844F3I9vqMiKBQKUgLWBiOE.jpg",
@@ -120,28 +120,28 @@ class ItemController extends Controller
      * Display the specified item with it products (paginated).
      *@response {
     "id": 1,
-    "item_name": "d",
-    "item_photo": "items/98RZDAC2vIBNC3zK5844F3I9vqMiKBQKUgLWBiOE.jpg",
+    "name": "d",
+    "photo": "items/98RZDAC2vIBNC3zK5844F3I9vqMiKBQKUgLWBiOE.jpg",
     "created_at": "2022-11-14T18:55:53.000000Z",
     "updated_at": "2022-11-14T18:55:53.000000Z",
     "live_photo_path": "http://localhost:8000/storage/items/98RZDAC2vIBNC3zK5844F3I9vqMiKBQKUgLWBiOE.jpg",
     "products": [
         {
             "id": 1,
-            "product_name": "دجاج",
-            "product_price": 300,
-            "product_discount": 10,
-            "product_photo": null,
+            "name": "دجاج",
+            "price": 300,
+            "discount": 10,
+            "photo": null,
             "item_id": 1,
             "created_at": "2022-11-14T18:56:02.000000Z",
             "updated_at": "2022-11-14T18:56:02.000000Z"
         },
         {
             "id": 2,
-            "product_name": "شاورما",
-            "product_price": 300,
-            "product_discount": 10,
-            "product_photo": null,
+            "name": "شاورما",
+            "price": 300,
+            "discount": 10,
+            "photo": null,
             "item_id": 1,
             "created_at": "2022-11-14T18:56:07.000000Z",
             "updated_at": "2022-11-14T18:56:07.000000Z"
@@ -161,8 +161,8 @@ class ItemController extends Controller
      * Update the specified item in database.
      * @response  {
     "id": 4,
-    "item_name": "إلكترونيات",
-    "item_photo": "items/98RZDAC2vIBNC3zK5844F3I9vqMiKBQKUgLWBiOE.jpg",
+    "name": "إلكترونيات",
+    "photo": "items/98RZDAC2vIBNC3zK5844F3I9vqMiKBQKUgLWBiOE.jpg",
     "created_at": "2022-11-15T11:17:04.000000Z",
     "updated_at": "2022-11-15T11:17:27.000000Z",
     "live_photo_path": "http://localhost:8000/storage/items/98RZDAC2vIBNC3zK5844F3I9vqMiKBQKUgLWBiOE.jpg",
@@ -181,8 +181,8 @@ class ItemController extends Controller
      * Remove the specified item from database.
      *@response  {
     "id": 4,
-    "item_name": "إلكترونيات",
-    "item_photo": "items/98RZDAC2vIBNC3zK5844F3I9vqMiKBQKUgLWBiOE.jpg",
+    "name": "إلكترونيات",
+    "photo": "items/98RZDAC2vIBNC3zK5844F3I9vqMiKBQKUgLWBiOE.jpg",
     "created_at": "2022-11-15T11:17:04.000000Z",
     "updated_at": "2022-11-15T11:17:27.000000Z",
     "live_photo_path": "http://localhost:8000/storage/items/98RZDAC2vIBNC3zK5844F3I9vqMiKBQKUgLWBiOE.jpg",

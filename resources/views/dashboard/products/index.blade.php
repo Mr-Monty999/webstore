@@ -9,28 +9,28 @@
                 @method('post')
                 <div class="input-group input-group-outline my-3 bg-white">
                     <label class="form-label">اسم المنتج</label>
-                    <input type="text" name="product_name" class="form-control">
+                    <input type="text" name="name" class="form-control">
                 </div>
                 <div class="input-group input-group-outline my-3 bg-white">
                     <label class="form-label">سعر المنتج</label>
-                    <input type="text" name="product_price" class="form-control">
+                    <input type="text" name="price" class="form-control">
                 </div>
                 <div class="input-group input-group-outline my-3 bg-white">
                     <label class="form-label">تخفيض %</label>
-                    <input type="text" name="product_discount" class="form-control">
+                    <input type="text" name="discount" class="form-control">
                 </div>
                 <label class="text-dark">صنف المنتج :</label>
                 <div class="input-group input-group-outline  bg-white">
                     <select class="form-control" name="item_id" id="">
                         @foreach ($items as $item)
-                            <option value="{{ $item->id }}">{{ $item->item_name }}</option>
+                            <option value="{{ $item->id }}">{{ $item->name }}</option>
                         @endforeach
                     </select>
                 </div>
 
                 <label class="text-dark">صورة المنتج :</label>
                 <div class="input-group input-group-outline  bg-white">
-                    <input type="file" name="product_photo" class="form-control">
+                    <input type="file" name="photo" class="form-control">
                 </div>
                 <button type="submit" class="btn btn-success margin my-3 col-6">اضافة</button>
             </form>
@@ -93,27 +93,27 @@
                                                     <p class="text-dark text-center">{{ ++$i }}</p>
                                                 </td>
                                                 <td>
-                                                    <p class="text-dark text-center">{{ $product->product_name }}</p>
+                                                    <p class="text-dark text-center">{{ $product->name }}</p>
                                                 </td>
                                                 <td>
                                                     <p class="text-dark text-center">
-                                                        {{ number_format($product->product_price) }}</p>
+                                                        {{ number_format($product->price) }}</p>
                                                 </td>
                                                 <td>
-                                                    @if ($product->product_discount != null)
-                                                        <p class="text-dark text-center">{{ $product->product_discount }}%
+                                                    @if ($product->discount != null)
+                                                        <p class="text-dark text-center">{{ $product->discount }}%
                                                         </p>
                                                     @else
                                                         <p class="text-dark text-center">لايوجد تخفيض</p>
                                                     @endif
                                                 </td>
                                                 <td>
-                                                    <p class="text-dark text-center">{{ $product->item->item_name }}</p>
+                                                    <p class="text-dark text-center">{{ $product->item->name }}</p>
                                                 </td>
 
                                                 <td>
-                                                    @if ($product->product_photo != null)
-                                                        <img src="{{ asset($product->product_photo) }}" alt="">
+                                                    @if ($product->photo != null)
+                                                        <img src="{{ asset($product->photo) }}" alt="">
                                                     @else
                                                         <p class="text-dark text-center">لاتوجد صورة</p>
                                                     @endif

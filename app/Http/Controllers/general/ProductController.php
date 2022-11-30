@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Item;
 use App\Models\Product;
 use App\Models\Setting;
+use App\Services\CartService;
 use App\Services\ItemService;
 use App\Services\SettingService;
 use Illuminate\Http\Request;
@@ -17,11 +18,11 @@ class ProductController extends Controller
     {
 
         $item = ItemService::show($itemId);
-        $products = $item->products()->with("item")->paginate(6)->onEachSide(0);
+        // $products = $item->products()->with("item")->paginate(6)->onEachSide(0);
 
         $setting = Setting::latest()->firstOrNew();
 
-        return view("general.products", ["products" => $products, "setting" => $setting, "item" => $item]);
+        return view("general.products", ["setting" => $setting, "item" => $item]);
     }
 
     public function loadProductsByItemId($itemId, $pageNumber)
@@ -40,7 +41,7 @@ class ProductController extends Controller
     {
 
         $search = $request->search;
-        $products  = Product::where("product_name", "like", "%$search%")->with("item")->paginate(6, ['*'], 'page', $pageNumber)->onEachSide(0);
+        $products  = Product::where("name", "like", "%$search%")->with("item")->paginate(6, ['*'], 'page', $pageNumber)->onEachSide(0);
 
         $setting = Setting::latest()->firstOrNew();
 

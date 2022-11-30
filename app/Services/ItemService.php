@@ -35,15 +35,15 @@ class ItemService
 
         $data = $request->all();
 
-        if ($request->hasFile("item_photo")) {
-            // $photo = $request->file("item_photo")->store("items", "public");
-            $photo =  FileService::uploadFile($request->file("item_photo"), "items");
-            $data["item_photo"] = $photo;
+        if ($request->hasFile("photo")) {
+            // $photo = $request->file("photo")->store("items", "public");
+            $photo =  FileService::uploadFile($request->file("photo"), "items");
+            $data["photo"] = $photo;
         }
         $item =  Item::create($data);
 
-        if (isset($data["item_photo"]))
-            $item["live_photo_path"] = asset("storage/" . $data["item_photo"]);
+        if (isset($data["photo"]))
+            $item["live_photo_path"] = asset("storage/" . $data["photo"]);
 
 
 
@@ -57,8 +57,8 @@ class ItemService
             $q->paginate(5);
         }])->findOrFail($id);
 
-        if (isset($item->item_photo))
-            $item["live_photo_path"] = asset("storage/" . $item->item_photo);
+        if (isset($item->photo))
+            $item["live_photo_path"] = asset("storage/" . $item->photo);
         return $item;
     }
 
@@ -69,16 +69,16 @@ class ItemService
         $item = Item::findOrFail($id);
 
 
-        $data["item_photo"] = $item->item_photo;
-        if ($request->hasFile("item_photo")) {
-            // Storage::disk("public")->delete($item->item_photo);
-            // $photo = $request->file("item_photo")->store("items", "public");
-            FileService::deleteFile($item->item_photo);
-            $photo =  FileService::uploadFile($request->file("item_photo"), "items");
-            $data["item_photo"] = $photo;
+        $data["photo"] = $item->photo;
+        if ($request->hasFile("photo")) {
+            // Storage::disk("public")->delete($item->photo);
+            // $photo = $request->file("photo")->store("items", "public");
+            FileService::deleteFile($item->photo);
+            $photo =  FileService::uploadFile($request->file("photo"), "items");
+            $data["photo"] = $photo;
         }
         $item->update($data);
-        $item["live_photo_path"] = asset("storage/" . $data["item_photo"]);
+        $item["live_photo_path"] = asset("storage/" . $data["photo"]);
 
 
 
@@ -88,12 +88,12 @@ class ItemService
     public static function destroy($id)
     {
         $item = Item::findOrFail($id);
-        if (isset($item->item_photo))
-            $item["live_photo_path"] = asset("storage/" . $item->item_photo);
-        // Storage::disk("public")->delete($item->products->pluck("product_photo")->toArray());
-        // Storage::disk("public")->delete($item->item_photo);
-        FileService::deleteFiles($item->products->pluck("product_photo")->toArray());
-        FileService::deleteFile($item->item_photo);
+        if (isset($item->photo))
+            $item["live_photo_path"] = asset("storage/" . $item->photo);
+        // Storage::disk("public")->delete($item->products->pluck("photo")->toArray());
+        // Storage::disk("public")->delete($item->photo);
+        FileService::deleteFiles($item->products->pluck("photo")->toArray());
+        FileService::deleteFile($item->photo);
         $item->delete();
 
 

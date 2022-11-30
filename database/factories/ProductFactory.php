@@ -15,10 +15,10 @@ class ProductFactory extends Factory
     public function definition()
     {
         return [
-            "product_name" => $this->faker->name,
-            "product_price" => $this->faker->numberBetween(0, 100000),
-            "product_discount" => $this->faker->numberBetween(0, 100),
-            "product_photo" => $this->faker->image,
+            "name" => $this->faker->name,
+            "price" => $this->faker->numberBetween(0, 100000),
+            "discount" => $this->faker->numberBetween(0, 100),
+            "photo" => $this->faker->image,
             "item_id" => $this->faker->unique()->randomElement(Item::pluck("id")->toArray())
 
         ];

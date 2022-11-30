@@ -45,23 +45,23 @@ Route::group(["namespace" => "api"], function () {
 
 
             /// Items Routes ///
-            Route::delete("items/delete-all", "ItemController@destroyAll");
+            Route::delete("items/delete-all", "ItemController@destroyAll")->name("api.items.destroy.all");
             Route::apiResource("items", "ItemController", ["as" => "api"]);
 
 
             //// Products Routes ///
-            Route::delete("products/delete-all", "ProductController@destroyAll");
+            Route::delete("products/delete-all", "ProductController@destroyAll")->name("api.products.destroy.all");
             Route::apiResource("products", "ProductController", ["as" => "api"]);
 
             /// Roles & Permissions Routes ///
-            Route::delete("roles/delete-all", "RoleController@destroyAll");
+            Route::delete("roles/delete-all", "RoleController@destroyAll")->name("api.roles.destroy.all");
             Route::get("permissions", "PermissionController@index");
             Route::apiResource("roles", "RoleController", ["as" => "api"]);
 
 
             /// Settings Routes ///
-            Route::delete("settings/delete-all", "SettingController@destroyAll");
-            Route::get("settings/last", "SettingController@showLastSetting");
+            Route::delete("settings/delete-all", "SettingController@destroyAll")->name("api.settings.destroy.all");
+            Route::get("settings/last", "SettingController@showLastSetting")->name("api.settings.show.last");
             Route::apiResource("settings", "SettingController", ["as" => "api"]);
         }
     );

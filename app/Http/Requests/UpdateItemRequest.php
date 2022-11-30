@@ -24,8 +24,8 @@ class UpdateItemRequest extends FormRequest
     public function rules()
     {
         return [
-            "item_name" => "required",
-            "item_photo" => "image|nullable"
+            "name" => "required",
+            "photo" => "image|nullable"
 
         ];
     }
@@ -34,8 +34,8 @@ class UpdateItemRequest extends FormRequest
     {
 
         return [
-            "item_name.required" => "الرجاء كتابة اسم الصنف",
-            "item_photo.image" => "الرجاء رفع صورة فقط !",
+            "name.required" => "الرجاء كتابة اسم الصنف",
+            "photo.image" => "الرجاء رفع صورة فقط !",
 
         ];
     }

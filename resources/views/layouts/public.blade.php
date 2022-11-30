@@ -11,8 +11,7 @@
     use App\Models\Item;
     use App\Services\CheckService;
     use App\Services\GetService;
-    
-    $products = GetService::getCartProducts(CheckService::checkCartAndGetId());
+    use App\Services\CartService;
     
     $navItems = Item::all();
     
@@ -36,6 +35,9 @@
     <link rel="stylesheet" href="{{ asset('css/bootstrap.rtl.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
     <link rel="icon" href="{{ asset("storage/$store->store_logo") }}">
+
+    @livewireStyles
+
 
 </head>
 
@@ -71,7 +73,7 @@
                             <ul class="dropdown-menu text-center items-menu" aria-labelledby="navbarDropdown">
                                 @foreach ($navItems as $item)
                                     <li><a class="dropdown-item"
-                                            href="{{ route('products.view', $item->id) }}">{{ $item->item_name }}</a>
+                                            href="{{ route('products.view', $item->id) }}">{{ $item->name }}</a>
                                     </li>
                                     <hr class="dropdown-divider">
                                 @endforeach
@@ -87,81 +89,23 @@
                             <a class="nav-link active" href="{{ route('contact') }}">تواصل معنا</a>
                         </li>
                     </ul>
-                    <form id="product-search" class="d-flex">
+                    <livewire:general.search />
+                    {{-- <form id="product-search" class="d-flex">
                         @csrf
                         <input name="search" id="search" class="form-control me-2" type="search"
                             placeholder="بحث عن منتج" aria-label="Search">
                         <button class="btn btn-outline-light" type="submit">بحث</button>
-                    </form>
+                    </form> --}}
                 </div>
             </div>
         </nav>
 
     </header>
     <main class="">
+        <livewire:general.search-products />
         @yield('content')
     </main>
-    <div class="mycart" dir="ltr">
-        <div class="products">
-            @foreach ($products as $product)
-                <div class="d-flex flex-column justify-content-center align-items-center">
-                    <div id="product{{ $product->id }}" class="product product{{ $product->id }}">
-                        <form class="d-flex flex-column justify-content-center align-items-center product-delete"
-                            method="POST" id="">
-                            @csrf
-                            @method('DELETE')
-                            <input type="text" class="product-id" name="product_id" value="{{ $product->id }}"
-                                hidden>
-                            <input type="text" class="product-price" name="product_price"
-                                value="{{ $product->product_price }}" hidden>
-                            <h6 class="text-white product-name" name="product_name">
-                                {{ $product->product_name }}</h6>
-                            <h6 class="text-white product-new-price" dir="rtl" name="product_price">
-                                {{ number_format($product->product_price * $product->pivot->product_amount) }}
-
-                                {{ $store->store_currency }}
-
-                            </h6>
-                            <div class="form-group" dir="rtl">
-                                <label class="text-dark" for="">الكمية</label>
-                                <input min="1" type="number" value="{{ $product->pivot->product_amount }}"
-                                    class="form-control text-center product-amount" name="product_amount"
-                                    id="">
-                            </div>
-                            <div>
-                                <button type="button" class="btn btn-danger inside-cart-decrease">-</button>
-                                <button type="button" class="btn btn-success inside-cart-increase">+</button>
-                            </div>
-                            <button type="submit"
-                                class="btn btn-danger delete d-flex justify-content-center align-items-center">
-                                <i class="fa-solid fa-trash"></i>
-                                ازالة
-                            </button>
-                        </form>
-                    </div>
-                    <hr>
-                </div>
-            @endforeach
-            <div class="buttons d-flex justify-content-around">
-                <button type="button" id="delete-all"
-                    class="btn btn-danger d-flex justify-content-center align-items-center">
-                    <i class="fa-solid fa-trash"></i>
-                    ازالة الكل
-                </button>
-                <button type="button" id="buy-all"
-                    class="btn btn-success d-flex justify-content-center align-items-center">
-                    <i class="fa-solid fa-cash-register"></i>
-                    شراء الكل
-                </button>
-            </div>
-        </div>
-        <div class="container">
-            <div id="products-count" class="text-danger bg-white d-flex justify-content-center align-items-center">
-                0
-            </div>
-            <i class="fa-solid fa-cart-shopping" class="btn btn-primary"></i>
-        </div>
-    </div>
+    <livewire:general.cart :store="$store" />
     <footer dir="ltr" class="footer bg-dark d-flex flex-column justify-content-center align-items-center">
         <div class="made d-flex justify-content-center align-items-center">
             <p class="title">made by monty</p>
@@ -179,7 +123,9 @@
     <script src="{{ asset('js/script.js') }}"></script>
     @stack('scripts')
     @stack('ajax')
-    <script>
+    @livewireScripts
+
+    {{-- <script>
         //  $("input[type=date]").val(new Date().toISOString().slice(0, 10));
 
         // let addToCart = $(".add-to-cart");
@@ -190,8 +136,8 @@
             //  alert("success");
             let productId = $(this).parent().find(".product-id").val(),
                 productNewPrice = $(this).parent().find(".product-new-price").text(),
-                productPrice = $(this).parent().find(".product_price").text()
-            productName = $(this).parent().find(".product_name").text(),
+                productPrice = $(this).parent().find(".price").text()
+            productName = $(this).parent().find(".name").text(),
                 productAmount = $(this).parent().find(".product-amount").val();
 
             $.ajax({
@@ -224,11 +170,11 @@
                             '<input type="text" class="product-id" name="product_id" value="' +
                             productId +
                             '"hidden>' +
-                            '<input type="text" class="product-price" name="product_price"' +
+                            '<input type="text" class="product-price" name="price"' +
                             'value="' + productPrice + '" hidden>' +
-                            '<h6 class="text-white product-name" name="product_name">' +
+                            '<h6 class="text-white product-name" name="name">' +
                             '    ' + productName + '</h6>' +
-                            '<h6 class="text-white product-new-price" dir="rtl" name="product_price">' +
+                            '<h6 class="text-white product-new-price" dir="rtl" name="price">' +
                             '' + productNewPrice + '' +
 
                             '</h6>' +
@@ -272,7 +218,7 @@
 
             let productId = $(this).parent().parent().parent().parent().find(".product-id").val(),
                 productAmount = $(this).val(),
-                productPrice = $(".product" + productId + " .product_price"),
+                productPrice = $(".product" + productId + " .price"),
                 url = "{{ route('carts.update', '') }}/" + productId + "",
 
                 productNewPrice = parseFloat(productPrice.text().replace(/\D/g, "")) * productAmount;
@@ -707,7 +653,7 @@
 
 
         });
-    </script>
+    </script> --}}
 
 
 </body>

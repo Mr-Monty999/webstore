@@ -5,14 +5,14 @@
             "key": "baseUrl",
             "type": "string",
             "name": "string",
-            "value": "http:\/\/localhost"
+            "value": "http://localhost"
         }
     ],
     "info": {
         "name": "Api Documention",
         "_postman_id": "9d8eec82-8dc6-4719-a9c1-06033611b1d2",
-        "description": "\n    Images paths examples:\n    users images = localhost\/storage\/users\/img.jpg\n    items images = localhost\/storage\/items\/img.jpg\n    products images = localhost\/storage\/products\/img.jpg\n    settigs images = localhost\/storage\/settigs\/img.jpg\n\n    ",
-        "schema": "https:\/\/schema.getpostman.com\/json\/collection\/v2.1.0\/collection.json"
+        "description": "\n    Images paths examples:\n    users images = localhost/storage/users/img.jpg\n    items images = localhost/storage/items/img.jpg\n    products images = localhost/storage/products/img.jpg\n    settigs images = localhost/storage/settigs/img.jpg\n\n    ",
+        "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
     },
     "item": [
         {
@@ -24,19 +24,19 @@
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
-                            "path": "api\/oauth2-callback",
+                            "path": "api/oauth2-callback",
                             "query": [],
-                            "raw": "{{baseUrl}}\/api\/oauth2-callback"
+                            "raw": "{{baseUrl}}/api/oauth2-callback"
                         },
                         "method": "GET",
                         "header": [
                             {
                                 "key": "Content-Type",
-                                "value": "application\/json"
+                                "value": "application/json"
                             },
                             {
                                 "key": "Accept",
-                                "value": "application\/json"
+                                "value": "application/json"
                             }
                         ],
                         "body": null,
@@ -50,7 +50,7 @@
                             "header": [
                                 {
                                     "key": "content-type",
-                                    "value": "text\/html; charset=UTF-8"
+                                    "value": "text/html; charset=UTF-8"
                                 },
                                 {
                                     "key": "cache-control",
@@ -62,7 +62,7 @@
                                 }
                             ],
                             "code": 200,
-                            "body": "<!doctype html>\n<html lang=\"en-US\">\n<head>\n    <title>Swagger UI: OAuth2 Redirect<\/title>\n<\/head>\n<body>\n<script>\n    'use strict';\n    function run () {\n        var oauth2 = window.opener.swaggerUIRedirectOauth2;\n        var sentState = oauth2.state;\n        var redirectUrl = oauth2.redirectUrl;\n        var isValid, qp, arr;\n\n        if (\/code|token|error\/.test(window.location.hash)) {\n            qp = window.location.hash.substring(1).replace('?', '&');\n        } else {\n            qp = location.search.substring(1);\n        }\n\n        arr = qp.split(\"&\");\n        arr.forEach(function (v,i,_arr) { _arr[i] = '\"' + v.replace('=', '\":\"') + '\"';});\n        qp = qp ? JSON.parse('{' + arr.join() + '}',\n                function (key, value) {\n                    return key === \"\" ? value : decodeURIComponent(value);\n                }\n        ) : {};\n\n        isValid = qp.state === sentState;\n\n        if ((\n          oauth2.auth.schema.get(\"flow\") === \"accessCode\" ||\n          oauth2.auth.schema.get(\"flow\") === \"authorizationCode\" ||\n          oauth2.auth.schema.get(\"flow\") === \"authorization_code\"\n        ) && !oauth2.auth.code) {\n            if (!isValid) {\n                oauth2.errCb({\n                    authId: oauth2.auth.name,\n                    source: \"auth\",\n                    level: \"warning\",\n                    message: \"Authorization may be unsafe, passed state was changed in server. The passed state wasn't returned from auth server.\"\n                });\n            }\n\n            if (qp.code) {\n                delete oauth2.state;\n                oauth2.auth.code = qp.code;\n                oauth2.callback({auth: oauth2.auth, redirectUrl: redirectUrl});\n            } else {\n                let oauthErrorMsg;\n                if (qp.error) {\n                    oauthErrorMsg = \"[\"+qp.error+\"]: \" +\n                        (qp.error_description ? qp.error_description+ \". \" : \"no accessCode received from the server. \") +\n                        (qp.error_uri ? \"More info: \"+qp.error_uri : \"\");\n                }\n\n                oauth2.errCb({\n                    authId: oauth2.auth.name,\n                    source: \"auth\",\n                    level: \"error\",\n                    message: oauthErrorMsg || \"[Authorization failed]: no accessCode received from the server.\"\n                });\n            }\n        } else {\n            oauth2.callback({auth: oauth2.auth, token: qp, isValid: isValid, redirectUrl: redirectUrl});\n        }\n        window.close();\n    }\n\n    if (document.readyState !== 'loading') {\n        run();\n    } else {\n        document.addEventListener('DOMContentLoaded', function () {\n            run();\n        });\n    }\n<\/script>\n<\/body>\n<\/html>\n",
+                            "body": "<!doctype html>\n<html lang=\"en-US\">\n<head>\n    <title>Swagger UI: OAuth2 Redirect</title>\n</head>\n<body>\n<script>\n    'use strict';\n    function run () {\n        var oauth2 = window.opener.swaggerUIRedirectOauth2;\n        var sentState = oauth2.state;\n        var redirectUrl = oauth2.redirectUrl;\n        var isValid, qp, arr;\n\n        if (/code|token|error/.test(window.location.hash)) {\n            qp = window.location.hash.substring(1).replace('?', '&');\n        } else {\n            qp = location.search.substring(1);\n        }\n\n        arr = qp.split(\"&\");\n        arr.forEach(function (v,i,_arr) { _arr[i] = '\"' + v.replace('=', '\":\"') + '\"';});\n        qp = qp ? JSON.parse('{' + arr.join() + '}',\n                function (key, value) {\n                    return key === \"\" ? value : decodeURIComponent(value);\n                }\n        ) : {};\n\n        isValid = qp.state === sentState;\n\n        if ((\n          oauth2.auth.schema.get(\"flow\") === \"accessCode\" ||\n          oauth2.auth.schema.get(\"flow\") === \"authorizationCode\" ||\n          oauth2.auth.schema.get(\"flow\") === \"authorization_code\"\n        ) && !oauth2.auth.code) {\n            if (!isValid) {\n                oauth2.errCb({\n                    authId: oauth2.auth.name,\n                    source: \"auth\",\n                    level: \"warning\",\n                    message: \"Authorization may be unsafe, passed state was changed in server. The passed state wasn't returned from auth server.\"\n                });\n            }\n\n            if (qp.code) {\n                delete oauth2.state;\n                oauth2.auth.code = qp.code;\n                oauth2.callback({auth: oauth2.auth, redirectUrl: redirectUrl});\n            } else {\n                let oauthErrorMsg;\n                if (qp.error) {\n                    oauthErrorMsg = \"[\"+qp.error+\"]: \" +\n                        (qp.error_description ? qp.error_description+ \". \" : \"no accessCode received from the server. \") +\n                        (qp.error_uri ? \"More info: \"+qp.error_uri : \"\");\n                }\n\n                oauth2.errCb({\n                    authId: oauth2.auth.name,\n                    source: \"auth\",\n                    level: \"error\",\n                    message: oauthErrorMsg || \"[Authorization failed]: no accessCode received from the server.\"\n                });\n            }\n        } else {\n            oauth2.callback({auth: oauth2.auth, token: qp, isValid: isValid, redirectUrl: redirectUrl});\n        }\n        window.close();\n    }\n\n    if (document.readyState !== 'loading') {\n        run();\n    } else {\n        document.addEventListener('DOMContentLoaded', function () {\n            run();\n        });\n    }\n</script>\n</body>\n</html>\n",
                             "name": ""
                         }
                     ]
@@ -72,19 +72,19 @@
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
-                            "path": "api\/documentation",
+                            "path": "api/documentation",
                             "query": [],
-                            "raw": "{{baseUrl}}\/api\/documentation"
+                            "raw": "{{baseUrl}}/api/documentation"
                         },
                         "method": "GET",
                         "header": [
                             {
                                 "key": "Content-Type",
-                                "value": "application\/json"
+                                "value": "application/json"
                             },
                             {
                                 "key": "Accept",
-                                "value": "application\/json"
+                                "value": "application/json"
                             }
                         ],
                         "body": null,
@@ -102,7 +102,7 @@
                                 },
                                 {
                                     "key": "content-type",
-                                    "value": "application\/json"
+                                    "value": "application/json"
                                 },
                                 {
                                     "key": "access-control-allow-origin",
@@ -110,7 +110,7 @@
                                 }
                             ],
                             "code": 200,
-                            "body": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"UTF-8\">\n    <title>L5 Swagger UI<\/title>\n    <link rel=\"stylesheet\" type=\"text\/css\" href=\"http:\/\/localhost\/docs\/asset\/swagger-ui.css?v=0cc4180f1befeea306a82ff969b7fe7c\">\n    <link rel=\"icon\" type=\"image\/png\" href=\"http:\/\/localhost\/docs\/asset\/favicon-32x32.png?v=40d4f2c38d1cd854ad463f16373cbcb6\" sizes=\"32x32\"\/>\n    <link rel=\"icon\" type=\"image\/png\" href=\"http:\/\/localhost\/docs\/asset\/favicon-16x16.png?v=f0ae831196d55d8f4115b6c5e8ec5384\" sizes=\"16x16\"\/>\n    <style>\n    html\n    {\n        box-sizing: border-box;\n        overflow: -moz-scrollbars-vertical;\n        overflow-y: scroll;\n    }\n    *,\n    *:before,\n    *:after\n    {\n        box-sizing: inherit;\n    }\n\n    body {\n      margin:0;\n      background: #fafafa;\n    }\n    <\/style>\n<\/head>\n\n<body>\n<div id=\"swagger-ui\"><\/div>\n\n<script src=\"http:\/\/localhost\/docs\/asset\/swagger-ui-bundle.js?v=1af3ec62ad38bd8b4c1f99a31e07e58c\"><\/script>\n<script src=\"http:\/\/localhost\/docs\/asset\/swagger-ui-standalone-preset.js?v=0e73555b7119ba9593b450964ce857a0\"><\/script>\n<script>\n    window.onload = function() {\n        \/\/ Build a system\n        const ui = SwaggerUIBundle({\n            dom_id: '#swagger-ui',\n            url: \"http:\/\/localhost\/docs\/api-docs.json\",\n            operationsSorter: null,\n            configUrl: null,\n            validatorUrl: null,\n            oauth2RedirectUrl: \"http:\/\/localhost\/api\/oauth2-callback\",\n\n            requestInterceptor: function(request) {\n                request.headers['X-CSRF-TOKEN'] = '';\n                return request;\n            },\n\n            presets: [\n                SwaggerUIBundle.presets.apis,\n                SwaggerUIStandalonePreset\n            ],\n\n            plugins: [\n                SwaggerUIBundle.plugins.DownloadUrl\n            ],\n\n            layout: \"StandaloneLayout\",\n            docExpansion : \"none\",\n            deepLinking: true,\n            filter: true,\n            persistAuthorization: \"false\",\n\n        })\n\n        window.ui = ui\n\n            }\n<\/script>\n<\/body>\n<\/html>\n",
+                            "body": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"UTF-8\">\n    <title>L5 Swagger UI</title>\n    <link rel=\"stylesheet\" type=\"text/css\" href=\"http://localhost/docs/asset/swagger-ui.css?v=0cc4180f1befeea306a82ff969b7fe7c\">\n    <link rel=\"icon\" type=\"image/png\" href=\"http://localhost/docs/asset/favicon-32x32.png?v=40d4f2c38d1cd854ad463f16373cbcb6\" sizes=\"32x32\"/>\n    <link rel=\"icon\" type=\"image/png\" href=\"http://localhost/docs/asset/favicon-16x16.png?v=f0ae831196d55d8f4115b6c5e8ec5384\" sizes=\"16x16\"/>\n    <style>\n    html\n    {\n        box-sizing: border-box;\n        overflow: -moz-scrollbars-vertical;\n        overflow-y: scroll;\n    }\n    *,\n    *:before,\n    *:after\n    {\n        box-sizing: inherit;\n    }\n\n    body {\n      margin:0;\n      background: #fafafa;\n    }\n    </style>\n</head>\n\n<body>\n<div id=\"swagger-ui\"></div>\n\n<script src=\"http://localhost/docs/asset/swagger-ui-bundle.js?v=1af3ec62ad38bd8b4c1f99a31e07e58c\"></script>\n<script src=\"http://localhost/docs/asset/swagger-ui-standalone-preset.js?v=0e73555b7119ba9593b450964ce857a0\"></script>\n<script>\n    window.onload = function() {\n        // Build a system\n        const ui = SwaggerUIBundle({\n            dom_id: '#swagger-ui',\n            url: \"http://localhost/docs/api-docs.json\",\n            operationsSorter: null,\n            configUrl: null,\n            validatorUrl: null,\n            oauth2RedirectUrl: \"http://localhost/api/oauth2-callback\",\n\n            requestInterceptor: function(request) {\n                request.headers['X-CSRF-TOKEN'] = '';\n                return request;\n            },\n\n            presets: [\n                SwaggerUIBundle.presets.apis,\n                SwaggerUIStandalonePreset\n            ],\n\n            plugins: [\n                SwaggerUIBundle.plugins.DownloadUrl\n            ],\n\n            layout: \"StandaloneLayout\",\n            docExpansion : \"none\",\n            deepLinking: true,\n            filter: true,\n            persistAuthorization: \"false\",\n\n        })\n\n        window.ui = ui\n\n            }\n</script>\n</body>\n</html>\n",
                             "name": ""
                         }
                     ]
@@ -126,9 +126,9 @@
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
-                            "path": "api\/carts\/:cart_id\/products",
+                            "path": "api/carts/:cart_id/products",
                             "query": [],
-                            "raw": "{{baseUrl}}\/api\/carts\/:cart_id\/products",
+                            "raw": "{{baseUrl}}/api/carts/:cart_id/products",
                             "variable": [
                                 {
                                     "id": "cart_id",
@@ -142,11 +142,11 @@
                         "header": [
                             {
                                 "key": "Content-Type",
-                                "value": "application\/json"
+                                "value": "application/json"
                             },
                             {
                                 "key": "Accept",
-                                "value": "application\/json"
+                                "value": "application/json"
                             }
                         ],
                         "body": null,
@@ -159,7 +159,7 @@
                         {
                             "header": [],
                             "code": 200,
-                            "body": "[\n {\n\"id\": 1,\n\"product_name\": \"\u062f\u062c\u0627\u062c\",\n\"product_price\": 300,\n\"product_discount\": 10,\n\"product_photo\": null,\n\"item_id\": 1,\n\"created_at\": \"2022-11-14T18:56:02.000000Z\",\n\"updated_at\": \"2022-11-14T18:56:02.000000Z\",\n \"pivot\": {\n     \"cart_id\": \"cart_63735a019396e\",\n     \"product_id\": 1,\n     \"product_amount\": 1\n  }\n}\n]",
+                            "body": "[\n {\n\"id\": 1,\n\"name\": \"\u062f\u062c\u0627\u062c\",\n\"price\": 300,\n\"discount\": 10,\n\"photo\": null,\n\"item_id\": 1,\n\"created_at\": \"2022-11-14T18:56:02.000000Z\",\n\"updated_at\": \"2022-11-14T18:56:02.000000Z\",\n \"pivot\": {\n     \"cart_id\": \"cart_63735a019396e\",\n     \"product_id\": 1,\n     \"product_amount\": 1\n  }\n}\n]",
                             "name": ""
                         }
                     ]
@@ -169,19 +169,19 @@
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
-                            "path": "api\/carts\/intial",
+                            "path": "api/carts/intial",
                             "query": [],
-                            "raw": "{{baseUrl}}\/api\/carts\/intial"
+                            "raw": "{{baseUrl}}/api/carts/intial"
                         },
                         "method": "POST",
                         "header": [
                             {
                                 "key": "Content-Type",
-                                "value": "application\/json"
+                                "value": "application/json"
                             },
                             {
                                 "key": "Accept",
-                                "value": "application\/json"
+                                "value": "application/json"
                             }
                         ],
                         "body": null,
@@ -204,9 +204,9 @@
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
-                            "path": "api\/carts\/:cart\/products",
+                            "path": "api/carts/:cart/products",
                             "query": [],
-                            "raw": "{{baseUrl}}\/api\/carts\/:cart\/products",
+                            "raw": "{{baseUrl}}/api/carts/:cart/products",
                             "variable": [
                                 {
                                     "id": "cart",
@@ -220,11 +220,11 @@
                         "header": [
                             {
                                 "key": "Content-Type",
-                                "value": "application\/json"
+                                "value": "application/json"
                             },
                             {
                                 "key": "Accept",
-                                "value": "application\/json"
+                                "value": "application/json"
                             }
                         ],
                         "body": null,
@@ -247,9 +247,9 @@
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
-                            "path": "api\/carts\/:cart\/products",
+                            "path": "api/carts/:cart/products",
                             "query": [],
-                            "raw": "{{baseUrl}}\/api\/carts\/:cart\/products",
+                            "raw": "{{baseUrl}}/api/carts/:cart/products",
                             "variable": [
                                 {
                                     "id": "cart",
@@ -263,11 +263,11 @@
                         "header": [
                             {
                                 "key": "Content-Type",
-                                "value": "application\/json"
+                                "value": "application/json"
                             },
                             {
                                 "key": "Accept",
-                                "value": "application\/json"
+                                "value": "application/json"
                             }
                         ],
                         "body": {
@@ -283,7 +283,7 @@
                         {
                             "header": [],
                             "code": 201,
-                            "body": "{\n\"id\": 1,\n\"product_name\": \"\u062f\u062c\u0627\u062c\",\n\"product_price\": 300,\n\"product_discount\": 10,\n\"product_photo\": null,\n\"item_id\": 1,\n\"created_at\": \"2022-11-14T18:56:02.000000Z\",\n\"updated_at\": \"2022-11-14T18:56:02.000000Z\",\n\"pivot\": {\n\"cart_id\": \"cart_63728e5ab48c9\",\n\"product_id\": 1,\n\"product_amount\": 1\n}\n}",
+                            "body": "{\n\"id\": 1,\n\"name\": \"\u062f\u062c\u0627\u062c\",\n\"price\": 300,\n\"discount\": 10,\n\"photo\": null,\n\"item_id\": 1,\n\"created_at\": \"2022-11-14T18:56:02.000000Z\",\n\"updated_at\": \"2022-11-14T18:56:02.000000Z\",\n\"pivot\": {\n\"cart_id\": \"cart_63728e5ab48c9\",\n\"product_id\": 1,\n\"product_amount\": 1\n}\n}",
                             "name": ""
                         }
                     ]
@@ -293,9 +293,9 @@
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
-                            "path": "api\/carts\/:cart_id\/products\/:id",
+                            "path": "api/carts/:cart_id/products/:id",
                             "query": [],
-                            "raw": "{{baseUrl}}\/api\/carts\/:cart_id\/products\/:id",
+                            "raw": "{{baseUrl}}/api/carts/:cart_id/products/:id",
                             "variable": [
                                 {
                                     "id": "cart_id",
@@ -315,11 +315,11 @@
                         "header": [
                             {
                                 "key": "Content-Type",
-                                "value": "application\/json"
+                                "value": "application/json"
                             },
                             {
                                 "key": "Accept",
-                                "value": "application\/json"
+                                "value": "application/json"
                             }
                         ],
                         "body": null,
@@ -332,7 +332,7 @@
                         {
                             "header": [],
                             "code": 200,
-                            "body": "{\n\"id\": 1,\n\"product_name\": \"\u062f\u062c\u0627\u062c\",\n\"product_price\": 300,\n\"product_discount\": 10,\n\"product_photo\": null,\n\"item_id\": 1,\n\"created_at\": \"2022-11-14T18:56:02.000000Z\",\n\"updated_at\": \"2022-11-14T18:56:02.000000Z\",\n\"pivot\": {\n\"cart_id\": \"cart_63735a019396e\",\n\"product_id\": 1,\n\"product_amount\": 1\n}\n}",
+                            "body": "{\n\"id\": 1,\n\"name\": \"\u062f\u062c\u0627\u062c\",\n\"price\": 300,\n\"discount\": 10,\n\"photo\": null,\n\"item_id\": 1,\n\"created_at\": \"2022-11-14T18:56:02.000000Z\",\n\"updated_at\": \"2022-11-14T18:56:02.000000Z\",\n\"pivot\": {\n\"cart_id\": \"cart_63735a019396e\",\n\"product_id\": 1,\n\"product_amount\": 1\n}\n}",
                             "name": ""
                         }
                     ]
@@ -342,9 +342,9 @@
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
-                            "path": "api\/carts\/:cart_id\/products\/:id",
+                            "path": "api/carts/:cart_id/products/:id",
                             "query": [],
-                            "raw": "{{baseUrl}}\/api\/carts\/:cart_id\/products\/:id",
+                            "raw": "{{baseUrl}}/api/carts/:cart_id/products/:id",
                             "variable": [
                                 {
                                     "id": "cart_id",
@@ -364,11 +364,11 @@
                         "header": [
                             {
                                 "key": "Content-Type",
-                                "value": "application\/json"
+                                "value": "application/json"
                             },
                             {
                                 "key": "Accept",
-                                "value": "application\/json"
+                                "value": "application/json"
                             }
                         ],
                         "body": {
@@ -384,7 +384,7 @@
                         {
                             "header": [],
                             "code": 200,
-                            "body": "{\n\"id\": 1,\n\"product_name\": \"\u062f\u062c\u0627\u062c\",\n\"product_price\": 300,\n\"product_discount\": 10,\n\"product_photo\": null,\n\"item_id\": 1,\n\"created_at\": \"2022-11-14T18:56:02.000000Z\",\n\"updated_at\": \"2022-11-14T18:56:02.000000Z\",\n\"pivot\": {\n\"cart_id\": \"cart_63728e5ab48c9\",\n\"product_id\": 1,\n\"product_amount\": 309\n}\n}",
+                            "body": "{\n\"id\": 1,\n\"name\": \"\u062f\u062c\u0627\u062c\",\n\"price\": 300,\n\"discount\": 10,\n\"photo\": null,\n\"item_id\": 1,\n\"created_at\": \"2022-11-14T18:56:02.000000Z\",\n\"updated_at\": \"2022-11-14T18:56:02.000000Z\",\n\"pivot\": {\n\"cart_id\": \"cart_63728e5ab48c9\",\n\"product_id\": 1,\n\"product_amount\": 309\n}\n}",
                             "name": ""
                         }
                     ]
@@ -394,9 +394,9 @@
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
-                            "path": "api\/carts\/:cart_id\/products\/:id",
+                            "path": "api/carts/:cart_id/products/:id",
                             "query": [],
-                            "raw": "{{baseUrl}}\/api\/carts\/:cart_id\/products\/:id",
+                            "raw": "{{baseUrl}}/api/carts/:cart_id/products/:id",
                             "variable": [
                                 {
                                     "id": "cart_id",
@@ -416,11 +416,11 @@
                         "header": [
                             {
                                 "key": "Content-Type",
-                                "value": "application\/json"
+                                "value": "application/json"
                             },
                             {
                                 "key": "Accept",
-                                "value": "application\/json"
+                                "value": "application/json"
                             }
                         ],
                         "body": null,
@@ -433,7 +433,7 @@
                         {
                             "header": [],
                             "code": 200,
-                            "body": "{\n\"id\": 1,\n\"product_name\": \"\u062f\u062c\u0627\u062c\",\n\"product_price\": 300,\n\"product_discount\": 10,\n\"product_photo\": null,\n\"item_id\": 1,\n\"created_at\": \"2022-11-14T18:56:02.000000Z\",\n\"updated_at\": \"2022-11-14T18:56:02.000000Z\",\n\"pivot\": {\n\"cart_id\": \"cart_63728e5ab48c9\",\n\"product_id\": 1,\n\"product_amount\": 1\n}\n}",
+                            "body": "{\n\"id\": 1,\n\"name\": \"\u062f\u062c\u0627\u062c\",\n\"price\": 300,\n\"discount\": 10,\n\"photo\": null,\n\"item_id\": 1,\n\"created_at\": \"2022-11-14T18:56:02.000000Z\",\n\"updated_at\": \"2022-11-14T18:56:02.000000Z\",\n\"pivot\": {\n\"cart_id\": \"cart_63728e5ab48c9\",\n\"product_id\": 1,\n\"product_amount\": 1\n}\n}",
                             "name": ""
                         }
                     ]
@@ -449,19 +449,19 @@
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
-                            "path": "api\/feedbacks\/delete-all",
+                            "path": "api/feedbacks/delete-all",
                             "query": [],
-                            "raw": "{{baseUrl}}\/api\/feedbacks\/delete-all"
+                            "raw": "{{baseUrl}}/api/feedbacks/delete-all"
                         },
                         "method": "DELETE",
                         "header": [
                             {
                                 "key": "Content-Type",
-                                "value": "application\/json"
+                                "value": "application/json"
                             },
                             {
                                 "key": "Accept",
-                                "value": "application\/json"
+                                "value": "application/json"
                             }
                         ],
                         "body": null,
@@ -481,19 +481,19 @@
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
-                            "path": "api\/feedbacks",
+                            "path": "api/feedbacks",
                             "query": [],
-                            "raw": "{{baseUrl}}\/api\/feedbacks"
+                            "raw": "{{baseUrl}}/api/feedbacks"
                         },
                         "method": "GET",
                         "header": [
                             {
                                 "key": "Content-Type",
-                                "value": "application\/json"
+                                "value": "application/json"
                             },
                             {
                                 "key": "Accept",
-                                "value": "application\/json"
+                                "value": "application/json"
                             }
                         ],
                         "body": null,
@@ -503,7 +503,7 @@
                         {
                             "header": [],
                             "code": 200,
-                            "body": "{\n\"current_page\": 1,\n\"data\": [\n{\n\"id\": 1,\n\"name\": \"monty@gmail.com\",\n\"message\": \"\u0627\u0644\u0633\u0644\u0627\u0645 \u0639\u0644\u064a\u0643\u0645\",\n\"ip\": \"127.0.0.1\",\n\"created_at\": \"2022-11-15T09:32:51.000000Z\",\n\"updated_at\": \"2022-11-15T09:32:51.000000Z\"\n}\n],\n\"first_page_url\": \"http:\/\/localhost:8000\/api\/feedbacks?page=1\",\n\"from\": 1,\n\"last_page\": 1,\n\"last_page_url\": \"http:\/\/localhost:8000\/api\/feedbacks?page=1\",\n\"links\": [\n{\n\"url\": null,\n\"label\": \"&laquo; Previous\",\n\"active\": false\n},\n{\n\"url\": \"http:\/\/localhost:8000\/api\/feedbacks?page=1\",\n\"label\": \"1\",\n\"active\": true\n},\n{\n\"url\": null,\n\"label\": \"Next &raquo;\",\n\"active\": false\n}\n],\n\"next_page_url\": null,\n\"path\": \"http:\/\/localhost:8000\/api\/feedbacks\",\n\"per_page\": 5,\n\"prev_page_url\": null,\n\"to\": 1,\n\"total\": 1\n}",
+                            "body": "{\n\"current_page\": 1,\n\"data\": [\n{\n\"id\": 1,\n\"name\": \"monty@gmail.com\",\n\"message\": \"\u0627\u0644\u0633\u0644\u0627\u0645 \u0639\u0644\u064a\u0643\u0645\",\n\"ip\": \"127.0.0.1\",\n\"created_at\": \"2022-11-15T09:32:51.000000Z\",\n\"updated_at\": \"2022-11-15T09:32:51.000000Z\"\n}\n],\n\"first_page_url\": \"http://localhost:8000/api/feedbacks?page=1\",\n\"from\": 1,\n\"last_page\": 1,\n\"last_page_url\": \"http://localhost:8000/api/feedbacks?page=1\",\n\"links\": [\n{\n\"url\": null,\n\"label\": \"&laquo; Previous\",\n\"active\": false\n},\n{\n\"url\": \"http://localhost:8000/api/feedbacks?page=1\",\n\"label\": \"1\",\n\"active\": true\n},\n{\n\"url\": null,\n\"label\": \"Next &raquo;\",\n\"active\": false\n}\n],\n\"next_page_url\": null,\n\"path\": \"http://localhost:8000/api/feedbacks\",\n\"per_page\": 5,\n\"prev_page_url\": null,\n\"to\": 1,\n\"total\": 1\n}",
                             "name": ""
                         }
                     ]
@@ -513,19 +513,19 @@
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
-                            "path": "api\/feedbacks",
+                            "path": "api/feedbacks",
                             "query": [],
-                            "raw": "{{baseUrl}}\/api\/feedbacks"
+                            "raw": "{{baseUrl}}/api/feedbacks"
                         },
                         "method": "POST",
                         "header": [
                             {
                                 "key": "Content-Type",
-                                "value": "application\/json"
+                                "value": "application/json"
                             },
                             {
                                 "key": "Accept",
-                                "value": "application\/json"
+                                "value": "application/json"
                             }
                         ],
                         "body": {
@@ -544,9 +544,9 @@
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
-                            "path": "api\/feedbacks\/:id",
+                            "path": "api/feedbacks/:id",
                             "query": [],
-                            "raw": "{{baseUrl}}\/api\/feedbacks\/:id",
+                            "raw": "{{baseUrl}}/api/feedbacks/:id",
                             "variable": [
                                 {
                                     "id": "id",
@@ -560,11 +560,11 @@
                         "header": [
                             {
                                 "key": "Content-Type",
-                                "value": "application\/json"
+                                "value": "application/json"
                             },
                             {
                                 "key": "Accept",
-                                "value": "application\/json"
+                                "value": "application/json"
                             }
                         ],
                         "body": null,
@@ -584,9 +584,9 @@
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
-                            "path": "api\/feedbacks\/:id",
+                            "path": "api/feedbacks/:id",
                             "query": [],
-                            "raw": "{{baseUrl}}\/api\/feedbacks\/:id",
+                            "raw": "{{baseUrl}}/api/feedbacks/:id",
                             "variable": [
                                 {
                                     "id": "id",
@@ -600,11 +600,11 @@
                         "header": [
                             {
                                 "key": "Content-Type",
-                                "value": "application\/json"
+                                "value": "application/json"
                             },
                             {
                                 "key": "Accept",
-                                "value": "application\/json"
+                                "value": "application/json"
                             }
                         ],
                         "body": null,
@@ -617,9 +617,9 @@
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
-                            "path": "api\/feedbacks\/:id",
+                            "path": "api/feedbacks/:id",
                             "query": [],
-                            "raw": "{{baseUrl}}\/api\/feedbacks\/:id",
+                            "raw": "{{baseUrl}}/api/feedbacks/:id",
                             "variable": [
                                 {
                                     "id": "id",
@@ -633,11 +633,11 @@
                         "header": [
                             {
                                 "key": "Content-Type",
-                                "value": "application\/json"
+                                "value": "application/json"
                             },
                             {
                                 "key": "Accept",
-                                "value": "application\/json"
+                                "value": "application/json"
                             }
                         ],
                         "body": null,
@@ -663,9 +663,9 @@
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
-                            "path": "api\/items\/:id",
+                            "path": "api/items/:id",
                             "query": [],
-                            "raw": "{{baseUrl}}\/api\/items\/:id",
+                            "raw": "{{baseUrl}}/api/items/:id",
                             "variable": [
                                 {
                                     "id": "id",
@@ -679,11 +679,11 @@
                         "header": [
                             {
                                 "key": "Content-Type",
-                                "value": "application\/json"
+                                "value": "application/json"
                             },
                             {
                                 "key": "Accept",
-                                "value": "application\/json"
+                                "value": "application/json"
                             }
                         ],
                         "body": null,
@@ -693,7 +693,7 @@
                         {
                             "header": [],
                             "code": 200,
-                            "body": "{\n\"id\": 4,\n\"item_name\": \"\u0625\u0644\u0643\u062a\u0631\u0648\u0646\u064a\u0627\u062a\",\n\"item_photo\": \"items\/98RZDAC2vIBNC3zK5844F3I9vqMiKBQKUgLWBiOE.jpg\",\n\"created_at\": \"2022-11-15T11:17:04.000000Z\",\n\"updated_at\": \"2022-11-15T11:17:27.000000Z\",\n\"live_photo_path\": \"http:\/\/localhost:8000\/storage\/items\/98RZDAC2vIBNC3zK5844F3I9vqMiKBQKUgLWBiOE.jpg\",\n}",
+                            "body": "{\n\"id\": 4,\n\"name\": \"\u0625\u0644\u0643\u062a\u0631\u0648\u0646\u064a\u0627\u062a\",\n\"photo\": \"items/98RZDAC2vIBNC3zK5844F3I9vqMiKBQKUgLWBiOE.jpg\",\n\"created_at\": \"2022-11-15T11:17:04.000000Z\",\n\"updated_at\": \"2022-11-15T11:17:27.000000Z\",\n\"live_photo_path\": \"http://localhost:8000/storage/items/98RZDAC2vIBNC3zK5844F3I9vqMiKBQKUgLWBiOE.jpg\",\n}",
                             "name": ""
                         }
                     ]
@@ -703,19 +703,19 @@
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
-                            "path": "api\/items\/delete-all",
+                            "path": "api/items/delete-all",
                             "query": [],
-                            "raw": "{{baseUrl}}\/api\/items\/delete-all"
+                            "raw": "{{baseUrl}}/api/items/delete-all"
                         },
                         "method": "DELETE",
                         "header": [
                             {
                                 "key": "Content-Type",
-                                "value": "application\/json"
+                                "value": "application/json"
                             },
                             {
                                 "key": "Accept",
-                                "value": "application\/json"
+                                "value": "application/json"
                             }
                         ],
                         "body": null,
@@ -735,19 +735,19 @@
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
-                            "path": "api\/items",
+                            "path": "api/items",
                             "query": [],
-                            "raw": "{{baseUrl}}\/api\/items"
+                            "raw": "{{baseUrl}}/api/items"
                         },
                         "method": "GET",
                         "header": [
                             {
                                 "key": "Content-Type",
-                                "value": "application\/json"
+                                "value": "application/json"
                             },
                             {
                                 "key": "Accept",
-                                "value": "application\/json"
+                                "value": "application/json"
                             }
                         ],
                         "body": null,
@@ -757,7 +757,7 @@
                         {
                             "header": [],
                             "code": 200,
-                            "body": "{\n\"current_page\": 1,\n\"data\": [\n{\n\"id\": 1,\n\"item_name\": \"d\",\n\"item_photo\": null,\n\"created_at\": \"2022-11-14T18:55:53.000000Z\",\n\"updated_at\": \"2022-11-14T18:55:53.000000Z\",\n\"products\": [\n{\n\"id\": 1,\n\"product_name\": \"\u062f\u062c\u0627\u062c\",\n\"product_price\": 300,\n\"product_discount\": 10,\n\"product_photo\": null,\n\"item_id\": 1,\n\"created_at\": \"2022-11-14T18:56:02.000000Z\",\n\"updated_at\": \"2022-11-14T18:56:02.000000Z\"\n},\n{\n\"id\": 2,\n\"product_name\": \"\u0634\u0627\u0648\u0631\u0645\u0627\",\n\"product_price\": 300,\n\"product_discount\": 10,\n\"product_photo\": null,\n\"item_id\": 1,\n\"created_at\": \"2022-11-14T18:56:07.000000Z\",\n\"updated_at\": \"2022-11-14T18:56:07.000000Z\"\n}\n]\n}\n],\n\"first_page_url\": \"http:\/\/localhost:8000\/api\/items?page=1\",\n\"from\": 1,\n\"last_page\": 1,\n\"last_page_url\": \"http:\/\/localhost:8000\/api\/items?page=1\",\n\"links\": [\n{\n\"url\": null,\n\"label\": \"&laquo; Previous\",\n\"active\": false\n},\n{\n\"url\": \"http:\/\/localhost:8000\/api\/items?page=1\",\n\"label\": \"1\",\n\"active\": true\n},\n{\n\"url\": null,\n\"label\": \"Next &raquo;\",\n\"active\": false\n}\n],\n\"next_page_url\": null,\n\"path\": \"http:\/\/localhost:8000\/api\/items\",\n\"per_page\": 5,\n\"prev_page_url\": null,\n\"to\": 1,\n\"total\": 1\n}",
+                            "body": "{\n\"current_page\": 1,\n\"data\": [\n{\n\"id\": 1,\n\"name\": \"d\",\n\"photo\": null,\n\"created_at\": \"2022-11-14T18:55:53.000000Z\",\n\"updated_at\": \"2022-11-14T18:55:53.000000Z\",\n\"products\": [\n{\n\"id\": 1,\n\"name\": \"\u062f\u062c\u0627\u062c\",\n\"price\": 300,\n\"discount\": 10,\n\"photo\": null,\n\"item_id\": 1,\n\"created_at\": \"2022-11-14T18:56:02.000000Z\",\n\"updated_at\": \"2022-11-14T18:56:02.000000Z\"\n},\n{\n\"id\": 2,\n\"name\": \"\u0634\u0627\u0648\u0631\u0645\u0627\",\n\"price\": 300,\n\"discount\": 10,\n\"photo\": null,\n\"item_id\": 1,\n\"created_at\": \"2022-11-14T18:56:07.000000Z\",\n\"updated_at\": \"2022-11-14T18:56:07.000000Z\"\n}\n]\n}\n],\n\"first_page_url\": \"http://localhost:8000/api/items?page=1\",\n\"from\": 1,\n\"last_page\": 1,\n\"last_page_url\": \"http://localhost:8000/api/items?page=1\",\n\"links\": [\n{\n\"url\": null,\n\"label\": \"&laquo; Previous\",\n\"active\": false\n},\n{\n\"url\": \"http://localhost:8000/api/items?page=1\",\n\"label\": \"1\",\n\"active\": true\n},\n{\n\"url\": null,\n\"label\": \"Next &raquo;\",\n\"active\": false\n}\n],\n\"next_page_url\": null,\n\"path\": \"http://localhost:8000/api/items\",\n\"per_page\": 5,\n\"prev_page_url\": null,\n\"to\": 1,\n\"total\": 1\n}",
                             "name": ""
                         }
                     ]
@@ -767,32 +767,32 @@
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
-                            "path": "api\/items",
+                            "path": "api/items",
                             "query": [],
-                            "raw": "{{baseUrl}}\/api\/items"
+                            "raw": "{{baseUrl}}/api/items"
                         },
                         "method": "POST",
                         "header": [
                             {
                                 "key": "Content-Type",
-                                "value": "multipart\/form-data"
+                                "value": "multipart/form-data"
                             },
                             {
                                 "key": "Accept",
-                                "value": "application\/json"
+                                "value": "application/json"
                             }
                         ],
                         "body": {
                             "mode": "formdata",
                             "formdata": [
                                 {
-                                    "key": "item_name",
+                                    "key": "name",
                                     "value": "nemo",
                                     "type": "text",
                                     "description": ""
                                 },
                                 {
-                                    "key": "item_photo",
+                                    "key": "photo",
                                     "src": [],
                                     "type": "file"
                                 }
@@ -804,7 +804,7 @@
                         {
                             "header": [],
                             "code": 201,
-                            "body": "{\n\"id\": 4,\n\"item_name\": \"\u0625\u0644\u0643\u062a\u0631\u0648\u0646\u064a\u0627\u062a\",\n\"item_photo\": \"items\/98RZDAC2vIBNC3zK5844F3I9vqMiKBQKUgLWBiOE.jpg\",\n\"created_at\": \"2022-11-15T11:17:04.000000Z\",\n\"updated_at\": \"2022-11-15T11:17:27.000000Z\",\n\"live_photo_path\": \"http:\/\/localhost:8000\/storage\/items\/98RZDAC2vIBNC3zK5844F3I9vqMiKBQKUgLWBiOE.jpg\",\n}",
+                            "body": "{\n\"id\": 4,\n\"name\": \"\u0625\u0644\u0643\u062a\u0631\u0648\u0646\u064a\u0627\u062a\",\n\"photo\": \"items/98RZDAC2vIBNC3zK5844F3I9vqMiKBQKUgLWBiOE.jpg\",\n\"created_at\": \"2022-11-15T11:17:04.000000Z\",\n\"updated_at\": \"2022-11-15T11:17:27.000000Z\",\n\"live_photo_path\": \"http://localhost:8000/storage/items/98RZDAC2vIBNC3zK5844F3I9vqMiKBQKUgLWBiOE.jpg\",\n}",
                             "name": ""
                         }
                     ]
@@ -814,9 +814,9 @@
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
-                            "path": "api\/items\/:id",
+                            "path": "api/items/:id",
                             "query": [],
-                            "raw": "{{baseUrl}}\/api\/items\/:id",
+                            "raw": "{{baseUrl}}/api/items/:id",
                             "variable": [
                                 {
                                     "id": "id",
@@ -830,11 +830,11 @@
                         "header": [
                             {
                                 "key": "Content-Type",
-                                "value": "application\/json"
+                                "value": "application/json"
                             },
                             {
                                 "key": "Accept",
-                                "value": "application\/json"
+                                "value": "application/json"
                             }
                         ],
                         "body": null,
@@ -844,7 +844,7 @@
                         {
                             "header": [],
                             "code": 200,
-                            "body": "{\n\"id\": 1,\n\"item_name\": \"d\",\n\"item_photo\": \"items\/98RZDAC2vIBNC3zK5844F3I9vqMiKBQKUgLWBiOE.jpg\",\n\"created_at\": \"2022-11-14T18:55:53.000000Z\",\n\"updated_at\": \"2022-11-14T18:55:53.000000Z\",\n\"live_photo_path\": \"http:\/\/localhost:8000\/storage\/items\/98RZDAC2vIBNC3zK5844F3I9vqMiKBQKUgLWBiOE.jpg\",\n\"products\": [\n{\n\"id\": 1,\n\"product_name\": \"\u062f\u062c\u0627\u062c\",\n\"product_price\": 300,\n\"product_discount\": 10,\n\"product_photo\": null,\n\"item_id\": 1,\n\"created_at\": \"2022-11-14T18:56:02.000000Z\",\n\"updated_at\": \"2022-11-14T18:56:02.000000Z\"\n},\n{\n\"id\": 2,\n\"product_name\": \"\u0634\u0627\u0648\u0631\u0645\u0627\",\n\"product_price\": 300,\n\"product_discount\": 10,\n\"product_photo\": null,\n\"item_id\": 1,\n\"created_at\": \"2022-11-14T18:56:07.000000Z\",\n\"updated_at\": \"2022-11-14T18:56:07.000000Z\"\n}\n]\n}",
+                            "body": "{\n\"id\": 1,\n\"name\": \"d\",\n\"photo\": \"items/98RZDAC2vIBNC3zK5844F3I9vqMiKBQKUgLWBiOE.jpg\",\n\"created_at\": \"2022-11-14T18:55:53.000000Z\",\n\"updated_at\": \"2022-11-14T18:55:53.000000Z\",\n\"live_photo_path\": \"http://localhost:8000/storage/items/98RZDAC2vIBNC3zK5844F3I9vqMiKBQKUgLWBiOE.jpg\",\n\"products\": [\n{\n\"id\": 1,\n\"name\": \"\u062f\u062c\u0627\u062c\",\n\"price\": 300,\n\"discount\": 10,\n\"photo\": null,\n\"item_id\": 1,\n\"created_at\": \"2022-11-14T18:56:02.000000Z\",\n\"updated_at\": \"2022-11-14T18:56:02.000000Z\"\n},\n{\n\"id\": 2,\n\"name\": \"\u0634\u0627\u0648\u0631\u0645\u0627\",\n\"price\": 300,\n\"discount\": 10,\n\"photo\": null,\n\"item_id\": 1,\n\"created_at\": \"2022-11-14T18:56:07.000000Z\",\n\"updated_at\": \"2022-11-14T18:56:07.000000Z\"\n}\n]\n}",
                             "name": ""
                         }
                     ]
@@ -854,9 +854,9 @@
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
-                            "path": "api\/items\/:id",
+                            "path": "api/items/:id",
                             "query": [],
-                            "raw": "{{baseUrl}}\/api\/items\/:id",
+                            "raw": "{{baseUrl}}/api/items/:id",
                             "variable": [
                                 {
                                     "id": "id",
@@ -870,24 +870,24 @@
                         "header": [
                             {
                                 "key": "Content-Type",
-                                "value": "multipart\/form-data"
+                                "value": "multipart/form-data"
                             },
                             {
                                 "key": "Accept",
-                                "value": "application\/json"
+                                "value": "application/json"
                             }
                         ],
                         "body": {
                             "mode": "formdata",
                             "formdata": [
                                 {
-                                    "key": "item_name",
+                                    "key": "name",
                                     "value": "sed",
                                     "type": "text",
                                     "description": ""
                                 },
                                 {
-                                    "key": "item_photo",
+                                    "key": "photo",
                                     "src": [],
                                     "type": "file"
                                 },
@@ -904,7 +904,7 @@
                         {
                             "header": [],
                             "code": 200,
-                            "body": "{\n\"id\": 4,\n\"item_name\": \"\u0625\u0644\u0643\u062a\u0631\u0648\u0646\u064a\u0627\u062a\",\n\"item_photo\": \"items\/98RZDAC2vIBNC3zK5844F3I9vqMiKBQKUgLWBiOE.jpg\",\n\"created_at\": \"2022-11-15T11:17:04.000000Z\",\n\"updated_at\": \"2022-11-15T11:17:27.000000Z\",\n\"live_photo_path\": \"http:\/\/localhost:8000\/storage\/items\/98RZDAC2vIBNC3zK5844F3I9vqMiKBQKUgLWBiOE.jpg\",\n}",
+                            "body": "{\n\"id\": 4,\n\"name\": \"\u0625\u0644\u0643\u062a\u0631\u0648\u0646\u064a\u0627\u062a\",\n\"photo\": \"items/98RZDAC2vIBNC3zK5844F3I9vqMiKBQKUgLWBiOE.jpg\",\n\"created_at\": \"2022-11-15T11:17:04.000000Z\",\n\"updated_at\": \"2022-11-15T11:17:27.000000Z\",\n\"live_photo_path\": \"http://localhost:8000/storage/items/98RZDAC2vIBNC3zK5844F3I9vqMiKBQKUgLWBiOE.jpg\",\n}",
                             "name": ""
                         }
                     ]
@@ -920,19 +920,19 @@
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
-                            "path": "api\/permissions",
+                            "path": "api/permissions",
                             "query": [],
-                            "raw": "{{baseUrl}}\/api\/permissions"
+                            "raw": "{{baseUrl}}/api/permissions"
                         },
                         "method": "GET",
                         "header": [
                             {
                                 "key": "Content-Type",
-                                "value": "application\/json"
+                                "value": "application/json"
                             },
                             {
                                 "key": "Accept",
-                                "value": "application\/json"
+                                "value": "application/json"
                             }
                         ],
                         "body": null,
@@ -958,9 +958,9 @@
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
-                            "path": "api\/products\/:id",
+                            "path": "api/products/:id",
                             "query": [],
-                            "raw": "{{baseUrl}}\/api\/products\/:id",
+                            "raw": "{{baseUrl}}/api/products/:id",
                             "variable": [
                                 {
                                     "id": "id",
@@ -974,11 +974,11 @@
                         "header": [
                             {
                                 "key": "Content-Type",
-                                "value": "application\/json"
+                                "value": "application/json"
                             },
                             {
                                 "key": "Accept",
-                                "value": "application\/json"
+                                "value": "application/json"
                             }
                         ],
                         "body": null,
@@ -988,7 +988,7 @@
                         {
                             "header": [],
                             "code": 200,
-                            "body": "{\n\"id\": 4,\n\"product_name\": \"\u0633\u0645\u0643\",\n\"product_price\": 2399,\n\"product_discount\": 0,\n\"product_photo\": \"products\/w4wDcFUGwu6ra7Z03fcgBMd4C7gIh8ixJ1RZMnE0.jpg\",\n\"item_id\": 1,\n\"created_at\": \"2022-11-15T10:55:09.000000Z\",\n\"updated_at\": \"2022-11-15T10:55:09.000000Z\",\n\"live_photo_path\": \"http:\/\/localhost:8000\/storage\/products\/w4wDcFUGwu6ra7Z03fcgBMd4C7gIh8ixJ1RZMnE0.jpg\",\n\"item\": {\n\"id\": 1,\n\"item_name\": \"d\",\n\"item_photo\": null,\n\"created_at\": \"2022-11-14T18:55:53.000000Z\",\n\"updated_at\": \"2022-11-14T18:55:53.000000Z\"\n}\n}",
+                            "body": "{\n\"id\": 4,\n\"name\": \"\u0633\u0645\u0643\",\n\"price\": 2399,\n\"discount\": 0,\n\"photo\": \"products/w4wDcFUGwu6ra7Z03fcgBMd4C7gIh8ixJ1RZMnE0.jpg\",\n\"item_id\": 1,\n\"created_at\": \"2022-11-15T10:55:09.000000Z\",\n\"updated_at\": \"2022-11-15T10:55:09.000000Z\",\n\"live_photo_path\": \"http://localhost:8000/storage/products/w4wDcFUGwu6ra7Z03fcgBMd4C7gIh8ixJ1RZMnE0.jpg\",\n\"item\": {\n\"id\": 1,\n\"name\": \"d\",\n\"photo\": null,\n\"created_at\": \"2022-11-14T18:55:53.000000Z\",\n\"updated_at\": \"2022-11-14T18:55:53.000000Z\"\n}\n}",
                             "name": ""
                         }
                     ]
@@ -998,9 +998,9 @@
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
-                            "path": "api\/products\/:id",
+                            "path": "api/products/:id",
                             "query": [],
-                            "raw": "{{baseUrl}}\/api\/products\/:id",
+                            "raw": "{{baseUrl}}/api/products/:id",
                             "variable": [
                                 {
                                     "id": "id",
@@ -1014,30 +1014,30 @@
                         "header": [
                             {
                                 "key": "Content-Type",
-                                "value": "multipart\/form-data"
+                                "value": "multipart/form-data"
                             },
                             {
                                 "key": "Accept",
-                                "value": "application\/json"
+                                "value": "application/json"
                             }
                         ],
                         "body": {
                             "mode": "formdata",
                             "formdata": [
                                 {
-                                    "key": "product_name",
+                                    "key": "name",
                                     "value": "harum",
                                     "type": "text",
                                     "description": ""
                                 },
                                 {
-                                    "key": "product_price",
+                                    "key": "price",
                                     "value": 7244.885,
                                     "type": "text",
                                     "description": ""
                                 },
                                 {
-                                    "key": "product_discount",
+                                    "key": "discount",
                                     "value": 447,
                                     "type": "text",
                                     "description": ""
@@ -1049,7 +1049,7 @@
                                     "description": ""
                                 },
                                 {
-                                    "key": "product_photo",
+                                    "key": "photo",
                                     "src": [],
                                     "type": "file"
                                 },
@@ -1066,7 +1066,7 @@
                         {
                             "header": [],
                             "code": 200,
-                            "body": "{\n\"id\": 4,\n\"product_name\": \"\u0633\u0645\u0643\",\n\"product_price\": 2399,\n\"product_discount\": 0,\n\"product_photo\": \"products\/w4wDcFUGwu6ra7Z03fcgBMd4C7gIh8ixJ1RZMnE0.jpg\",\n\"item_id\": 1,\n\"created_at\": \"2022-11-15T10:55:09.000000Z\",\n\"updated_at\": \"2022-11-15T10:55:09.000000Z\",\n\"live_photo_path\": \"http:\/\/localhost:8000\/storage\/products\/w4wDcFUGwu6ra7Z03fcgBMd4C7gIh8ixJ1RZMnE0.jpg\",\n\"item\": {\n\"id\": 1,\n\"item_name\": \"d\",\n\"item_photo\": null,\n\"created_at\": \"2022-11-14T18:55:53.000000Z\",\n\"updated_at\": \"2022-11-14T18:55:53.000000Z\"\n}\n}",
+                            "body": "{\n\"id\": 4,\n\"name\": \"\u0633\u0645\u0643\",\n\"price\": 2399,\n\"discount\": 0,\n\"photo\": \"products/w4wDcFUGwu6ra7Z03fcgBMd4C7gIh8ixJ1RZMnE0.jpg\",\n\"item_id\": 1,\n\"created_at\": \"2022-11-15T10:55:09.000000Z\",\n\"updated_at\": \"2022-11-15T10:55:09.000000Z\",\n\"live_photo_path\": \"http://localhost:8000/storage/products/w4wDcFUGwu6ra7Z03fcgBMd4C7gIh8ixJ1RZMnE0.jpg\",\n\"item\": {\n\"id\": 1,\n\"name\": \"d\",\n\"photo\": null,\n\"created_at\": \"2022-11-14T18:55:53.000000Z\",\n\"updated_at\": \"2022-11-14T18:55:53.000000Z\"\n}\n}",
                             "name": ""
                         }
                     ]
@@ -1076,9 +1076,9 @@
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
-                            "path": "api\/products\/:id",
+                            "path": "api/products/:id",
                             "query": [],
-                            "raw": "{{baseUrl}}\/api\/products\/:id",
+                            "raw": "{{baseUrl}}/api/products/:id",
                             "variable": [
                                 {
                                     "id": "id",
@@ -1092,11 +1092,11 @@
                         "header": [
                             {
                                 "key": "Content-Type",
-                                "value": "application\/json"
+                                "value": "application/json"
                             },
                             {
                                 "key": "Accept",
-                                "value": "application\/json"
+                                "value": "application/json"
                             }
                         ],
                         "body": null,
@@ -1106,7 +1106,7 @@
                         {
                             "header": [],
                             "code": 200,
-                            "body": "{\n\"id\": 4,\n\"product_name\": \"\u0633\u0645\u0643\",\n\"product_price\": 2399,\n\"product_discount\": 0,\n\"product_photo\": \"products\/w4wDcFUGwu6ra7Z03fcgBMd4C7gIh8ixJ1RZMnE0.jpg\",\n\"item_id\": 1,\n\"created_at\": \"2022-11-15T10:55:09.000000Z\",\n\"updated_at\": \"2022-11-15T10:55:09.000000Z\",\n\"live_photo_path\": \"http:\/\/localhost:8000\/storage\/products\/w4wDcFUGwu6ra7Z03fcgBMd4C7gIh8ixJ1RZMnE0.jpg\",\n\"item\": {\n\"id\": 1,\n\"item_name\": \"d\",\n\"item_photo\": null,\n\"created_at\": \"2022-11-14T18:55:53.000000Z\",\n\"updated_at\": \"2022-11-14T18:55:53.000000Z\"\n}\n}",
+                            "body": "{\n\"id\": 4,\n\"name\": \"\u0633\u0645\u0643\",\n\"price\": 2399,\n\"discount\": 0,\n\"photo\": \"products/w4wDcFUGwu6ra7Z03fcgBMd4C7gIh8ixJ1RZMnE0.jpg\",\n\"item_id\": 1,\n\"created_at\": \"2022-11-15T10:55:09.000000Z\",\n\"updated_at\": \"2022-11-15T10:55:09.000000Z\",\n\"live_photo_path\": \"http://localhost:8000/storage/products/w4wDcFUGwu6ra7Z03fcgBMd4C7gIh8ixJ1RZMnE0.jpg\",\n\"item\": {\n\"id\": 1,\n\"name\": \"d\",\n\"photo\": null,\n\"created_at\": \"2022-11-14T18:55:53.000000Z\",\n\"updated_at\": \"2022-11-14T18:55:53.000000Z\"\n}\n}",
                             "name": ""
                         }
                     ]
@@ -1116,19 +1116,19 @@
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
-                            "path": "api\/products",
+                            "path": "api/products",
                             "query": [],
-                            "raw": "{{baseUrl}}\/api\/products"
+                            "raw": "{{baseUrl}}/api/products"
                         },
                         "method": "GET",
                         "header": [
                             {
                                 "key": "Content-Type",
-                                "value": "application\/json"
+                                "value": "application/json"
                             },
                             {
                                 "key": "Accept",
-                                "value": "application\/json"
+                                "value": "application/json"
                             }
                         ],
                         "body": null,
@@ -1138,7 +1138,7 @@
                         {
                             "header": [],
                             "code": 200,
-                            "body": "{\n\"current_page\": 1,\n\"data\": [\n{\n\"id\": 1,\n\"product_name\": \"\u062f\u062c\u0627\u062c\",\n\"product_price\": 300,\n\"product_discount\": 10,\n\"product_photo\": null,\n\"item_id\": 1,\n\"created_at\": \"2022-11-14T18:56:02.000000Z\",\n\"updated_at\": \"2022-11-14T18:56:02.000000Z\",\n\"item\": {\n\"id\": 1,\n\"item_name\": \"d\",\n\"item_photo\": null,\n\"created_at\": \"2022-11-14T18:55:53.000000Z\",\n\"updated_at\": \"2022-11-14T18:55:53.000000Z\"\n}\n},\n{\n\"id\": 2,\n\"product_name\": \"\u0634\u0627\u0648\u0631\u0645\u0627\",\n\"product_price\": 300,\n\"product_discount\": 10,\n\"product_photo\": null,\n\"item_id\": 1,\n\"created_at\": \"2022-11-14T18:56:07.000000Z\",\n\"updated_at\": \"2022-11-14T18:56:07.000000Z\",\n\"item\": {\n\"id\": 1,\n\"item_name\": \"d\",\n\"item_photo\": null,\n\"created_at\": \"2022-11-14T18:55:53.000000Z\",\n\"updated_at\": \"2022-11-14T18:55:53.000000Z\"\n}\n}\n],\n\"first_page_url\": \"http:\/\/localhost:8000\/api\/products?page=1\",\n\"from\": 1,\n\"last_page\": 1,\n\"last_page_url\": \"http:\/\/localhost:8000\/api\/products?page=1\",\n\"links\": [\n{\n\"url\": null,\n\"label\": \"&laquo; Previous\",\n\"active\": false\n},\n{\n\"url\": \"http:\/\/localhost:8000\/api\/products?page=1\",\n\"label\": \"1\",\n\"active\": true\n},\n{\n\"url\": null,\n\"label\": \"Next &raquo;\",\n\"active\": false\n}\n],\n\"next_page_url\": null,\n\"path\": \"http:\/\/localhost:8000\/api\/products\",\n\"per_page\": 5,\n\"prev_page_url\": null,\n\"to\": 2,\n\"total\": 2\n}",
+                            "body": "{\n\"current_page\": 1,\n\"data\": [\n{\n\"id\": 1,\n\"name\": \"\u062f\u062c\u0627\u062c\",\n\"price\": 300,\n\"discount\": 10,\n\"photo\": null,\n\"item_id\": 1,\n\"created_at\": \"2022-11-14T18:56:02.000000Z\",\n\"updated_at\": \"2022-11-14T18:56:02.000000Z\",\n\"item\": {\n\"id\": 1,\n\"name\": \"d\",\n\"photo\": null,\n\"created_at\": \"2022-11-14T18:55:53.000000Z\",\n\"updated_at\": \"2022-11-14T18:55:53.000000Z\"\n}\n},\n{\n\"id\": 2,\n\"name\": \"\u0634\u0627\u0648\u0631\u0645\u0627\",\n\"price\": 300,\n\"discount\": 10,\n\"photo\": null,\n\"item_id\": 1,\n\"created_at\": \"2022-11-14T18:56:07.000000Z\",\n\"updated_at\": \"2022-11-14T18:56:07.000000Z\",\n\"item\": {\n\"id\": 1,\n\"name\": \"d\",\n\"photo\": null,\n\"created_at\": \"2022-11-14T18:55:53.000000Z\",\n\"updated_at\": \"2022-11-14T18:55:53.000000Z\"\n}\n}\n],\n\"first_page_url\": \"http://localhost:8000/api/products?page=1\",\n\"from\": 1,\n\"last_page\": 1,\n\"last_page_url\": \"http://localhost:8000/api/products?page=1\",\n\"links\": [\n{\n\"url\": null,\n\"label\": \"&laquo; Previous\",\n\"active\": false\n},\n{\n\"url\": \"http://localhost:8000/api/products?page=1\",\n\"label\": \"1\",\n\"active\": true\n},\n{\n\"url\": null,\n\"label\": \"Next &raquo;\",\n\"active\": false\n}\n],\n\"next_page_url\": null,\n\"path\": \"http://localhost:8000/api/products\",\n\"per_page\": 5,\n\"prev_page_url\": null,\n\"to\": 2,\n\"total\": 2\n}",
                             "name": ""
                         }
                     ]
@@ -1148,38 +1148,38 @@
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
-                            "path": "api\/products",
+                            "path": "api/products",
                             "query": [],
-                            "raw": "{{baseUrl}}\/api\/products"
+                            "raw": "{{baseUrl}}/api/products"
                         },
                         "method": "POST",
                         "header": [
                             {
                                 "key": "Content-Type",
-                                "value": "multipart\/form-data"
+                                "value": "multipart/form-data"
                             },
                             {
                                 "key": "Accept",
-                                "value": "application\/json"
+                                "value": "application/json"
                             }
                         ],
                         "body": {
                             "mode": "formdata",
                             "formdata": [
                                 {
-                                    "key": "product_name",
+                                    "key": "name",
                                     "value": "omnis",
                                     "type": "text",
                                     "description": ""
                                 },
                                 {
-                                    "key": "product_price",
+                                    "key": "price",
                                     "value": 12865440.4,
                                     "type": "text",
                                     "description": ""
                                 },
                                 {
-                                    "key": "product_discount",
+                                    "key": "discount",
                                     "value": 24544.6393,
                                     "type": "text",
                                     "description": ""
@@ -1191,7 +1191,7 @@
                                     "description": ""
                                 },
                                 {
-                                    "key": "product_photo",
+                                    "key": "photo",
                                     "src": [],
                                     "type": "file"
                                 }
@@ -1203,7 +1203,7 @@
                         {
                             "header": [],
                             "code": 201,
-                            "body": "{\n\"product_name\": \"\u0633\u0645\u0643\",\n\"product_price\": \"2399\",\n\"item_id\": \"1\",\n\"product_photo\": \"products\/w4wDcFUGwu6ra7Z03fcgBMd4C7gIh8ixJ1RZMnE0.jpg\",\n\"product_discount\": 0,\n\"updated_at\": \"2022-11-15T10:55:09.000000Z\",\n\"created_at\": \"2022-11-15T10:55:09.000000Z\",\n\"id\": 4,\n\"live_photo_path\": \"http:\/\/localhost:8000\/storage\/products\/w4wDcFUGwu6ra7Z03fcgBMd4C7gIh8ixJ1RZMnE0.jpg\"\n}",
+                            "body": "{\n\"name\": \"\u0633\u0645\u0643\",\n\"price\": \"2399\",\n\"item_id\": \"1\",\n\"photo\": \"products/w4wDcFUGwu6ra7Z03fcgBMd4C7gIh8ixJ1RZMnE0.jpg\",\n\"discount\": 0,\n\"updated_at\": \"2022-11-15T10:55:09.000000Z\",\n\"created_at\": \"2022-11-15T10:55:09.000000Z\",\n\"id\": 4,\n\"live_photo_path\": \"http://localhost:8000/storage/products/w4wDcFUGwu6ra7Z03fcgBMd4C7gIh8ixJ1RZMnE0.jpg\"\n}",
                             "name": ""
                         }
                     ]
@@ -1213,19 +1213,19 @@
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
-                            "path": "api\/products\/delete-all",
+                            "path": "api/products/delete-all",
                             "query": [],
-                            "raw": "{{baseUrl}}\/api\/products\/delete-all"
+                            "raw": "{{baseUrl}}/api/products/delete-all"
                         },
                         "method": "DELETE",
                         "header": [
                             {
                                 "key": "Content-Type",
-                                "value": "application\/json"
+                                "value": "application/json"
                             },
                             {
                                 "key": "Accept",
-                                "value": "application\/json"
+                                "value": "application/json"
                             }
                         ],
                         "body": null,
@@ -1251,9 +1251,9 @@
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
-                            "path": "api\/roles\/:id",
+                            "path": "api/roles/:id",
                             "query": [],
-                            "raw": "{{baseUrl}}\/api\/roles\/:id",
+                            "raw": "{{baseUrl}}/api/roles/:id",
                             "variable": [
                                 {
                                     "id": "id",
@@ -1267,11 +1267,11 @@
                         "header": [
                             {
                                 "key": "Content-Type",
-                                "value": "application\/json"
+                                "value": "application/json"
                             },
                             {
                                 "key": "Accept",
-                                "value": "application\/json"
+                                "value": "application/json"
                             }
                         ],
                         "body": null,
@@ -1291,19 +1291,19 @@
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
-                            "path": "api\/roles\/delete-all",
+                            "path": "api/roles/delete-all",
                             "query": [],
-                            "raw": "{{baseUrl}}\/api\/roles\/delete-all"
+                            "raw": "{{baseUrl}}/api/roles/delete-all"
                         },
                         "method": "DELETE",
                         "header": [
                             {
                                 "key": "Content-Type",
-                                "value": "application\/json"
+                                "value": "application/json"
                             },
                             {
                                 "key": "Accept",
-                                "value": "application\/json"
+                                "value": "application/json"
                             }
                         ],
                         "body": null,
@@ -1323,19 +1323,19 @@
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
-                            "path": "api\/roles",
+                            "path": "api/roles",
                             "query": [],
-                            "raw": "{{baseUrl}}\/api\/roles"
+                            "raw": "{{baseUrl}}/api/roles"
                         },
                         "method": "GET",
                         "header": [
                             {
                                 "key": "Content-Type",
-                                "value": "application\/json"
+                                "value": "application/json"
                             },
                             {
                                 "key": "Accept",
-                                "value": "application\/json"
+                                "value": "application/json"
                             }
                         ],
                         "body": null,
@@ -1345,7 +1345,7 @@
                         {
                             "header": [],
                             "code": 200,
-                            "body": "{\n\"current_page\": 1,\n\"data\": [\n{\n\"id\": 1,\n\"name\": \"owner\",\n\"guard_name\": \"web\",\n\"created_at\": \"2022-11-14T18:51:06.000000Z\",\n\"updated_at\": \"2022-11-14T18:51:06.000000Z\",\n\"permissions\": []\n},\n{\n\"id\": 2,\n\"name\": \"admin\",\n\"guard_name\": \"web\",\n\"created_at\": \"2022-11-14T18:51:07.000000Z\",\n\"updated_at\": \"2022-11-14T18:51:07.000000Z\",\n\"permissions\": [\n{\n\"id\": 1,\n\"name\": \"view-dashboard\",\n\"guard_name\": \"web\",\n\"created_at\": \"2022-11-14T18:51:07.000000Z\",\n\"updated_at\": \"2022-11-14T18:51:07.000000Z\",\n\"pivot\": {\n\"role_id\": 2,\n\"permission_id\": 1\n}\n},\n{\n\"id\": 2,\n\"name\": \"view-users\",\n\"guard_name\": \"web\",\n\"created_at\": \"2022-11-14T18:51:07.000000Z\",\n\"updated_at\": \"2022-11-14T18:51:07.000000Z\",\n\"pivot\": {\n\"role_id\": 2,\n\"permission_id\": 2\n}\n},\n{\n\"id\": 3,\n\"name\": \"create-users\",\n\"guard_name\": \"web\",\n\"created_at\": \"2022-11-14T18:51:08.000000Z\",\n\"updated_at\": \"2022-11-14T18:51:08.000000Z\",\n\"pivot\": {\n\"role_id\": 2,\n\"permission_id\": 3\n}\n},\n{\n\"id\": 4,\n\"name\": \"edit-users\",\n\"guard_name\": \"web\",\n\"created_at\": \"2022-11-14T18:51:08.000000Z\",\n\"updated_at\": \"2022-11-14T18:51:08.000000Z\",\n\"pivot\": {\n\"role_id\": 2,\n\"permission_id\": 4\n}\n},\n{\n\"id\": 5,\n\"name\": \"delete-users\",\n\"guard_name\": \"web\",\n\"created_at\": \"2022-11-14T18:51:08.000000Z\",\n\"updated_at\": \"2022-11-14T18:51:08.000000Z\",\n\"pivot\": {\n\"role_id\": 2,\n\"permission_id\": 5\n}\n},\n{\n\"id\": 6,\n\"name\": \"view-items\",\n\"guard_name\": \"web\",\n\"created_at\": \"2022-11-14T18:51:09.000000Z\",\n\"updated_at\": \"2022-11-14T18:51:09.000000Z\",\n\"pivot\": {\n\"role_id\": 2,\n\"permission_id\": 6\n}\n},\n{\n\"id\": 7,\n\"name\": \"create-items\",\n\"guard_name\": \"web\",\n\"created_at\": \"2022-11-14T18:51:09.000000Z\",\n\"updated_at\": \"2022-11-14T18:51:09.000000Z\",\n\"pivot\": {\n\"role_id\": 2,\n\"permission_id\": 7\n}\n},\n{\n\"id\": 8,\n\"name\": \"edit-items\",\n\"guard_name\": \"web\",\n\"created_at\": \"2022-11-14T18:51:09.000000Z\",\n\"updated_at\": \"2022-11-14T18:51:09.000000Z\",\n\"pivot\": {\n\"role_id\": 2,\n\"permission_id\": 8\n}\n},\n{\n\"id\": 9,\n\"name\": \"delete-items\",\n\"guard_name\": \"web\",\n\"created_at\": \"2022-11-14T18:51:09.000000Z\",\n\"updated_at\": \"2022-11-14T18:51:09.000000Z\",\n\"pivot\": {\n\"role_id\": 2,\n\"permission_id\": 9\n}\n},\n{\n\"id\": 10,\n\"name\": \"view-products\",\n\"guard_name\": \"web\",\n\"created_at\": \"2022-11-14T18:51:10.000000Z\",\n\"updated_at\": \"2022-11-14T18:51:10.000000Z\",\n\"pivot\": {\n\"role_id\": 2,\n\"permission_id\": 10\n}\n},\n{\n\"id\": 11,\n\"name\": \"create-products\",\n\"guard_name\": \"web\",\n\"created_at\": \"2022-11-14T18:51:10.000000Z\",\n\"updated_at\": \"2022-11-14T18:51:10.000000Z\",\n\"pivot\": {\n\"role_id\": 2,\n\"permission_id\": 11\n}\n},\n{\n\"id\": 12,\n\"name\": \"edit-products\",\n\"guard_name\": \"web\",\n\"created_at\": \"2022-11-14T18:51:10.000000Z\",\n\"updated_at\": \"2022-11-14T18:51:10.000000Z\",\n\"pivot\": {\n\"role_id\": 2,\n\"permission_id\": 12\n}\n},\n{\n\"id\": 13,\n\"name\": \"delete-products\",\n\"guard_name\": \"web\",\n\"created_at\": \"2022-11-14T18:51:10.000000Z\",\n\"updated_at\": \"2022-11-14T18:51:10.000000Z\",\n\"pivot\": {\n\"role_id\": 2,\n\"permission_id\": 13\n}\n},\n{\n\"id\": 14,\n\"name\": \"view-settings\",\n\"guard_name\": \"web\",\n\"created_at\": \"2022-11-14T18:51:11.000000Z\",\n\"updated_at\": \"2022-11-14T18:51:11.000000Z\",\n\"pivot\": {\n\"role_id\": 2,\n\"permission_id\": 14\n}\n},\n{\n\"id\": 15,\n\"name\": \"create-settings\",\n\"guard_name\": \"web\",\n\"created_at\": \"2022-11-14T18:51:11.000000Z\",\n\"updated_at\": \"2022-11-14T18:51:11.000000Z\",\n\"pivot\": {\n\"role_id\": 2,\n\"permission_id\": 15\n}\n},\n{\n\"id\": 16,\n\"name\": \"edit-settings\",\n\"guard_name\": \"web\",\n\"created_at\": \"2022-11-14T18:51:11.000000Z\",\n\"updated_at\": \"2022-11-14T18:51:11.000000Z\",\n\"pivot\": {\n\"role_id\": 2,\n\"permission_id\": 16\n}\n},\n{\n\"id\": 17,\n\"name\": \"delete-settings\",\n\"guard_name\": \"web\",\n\"created_at\": \"2022-11-14T18:51:12.000000Z\",\n\"updated_at\": \"2022-11-14T18:51:12.000000Z\",\n\"pivot\": {\n\"role_id\": 2,\n\"permission_id\": 17\n}\n},\n{\n\"id\": 18,\n\"name\": \"view-feedbacks\",\n\"guard_name\": \"web\",\n\"created_at\": \"2022-11-14T18:51:12.000000Z\",\n\"updated_at\": \"2022-11-14T18:51:12.000000Z\",\n\"pivot\": {\n\"role_id\": 2,\n\"permission_id\": 18\n}\n},\n{\n\"id\": 19,\n\"name\": \"delete-feedbacks\",\n\"guard_name\": \"web\",\n\"created_at\": \"2022-11-14T18:51:12.000000Z\",\n\"updated_at\": \"2022-11-14T18:51:12.000000Z\",\n\"pivot\": {\n\"role_id\": 2,\n\"permission_id\": 19\n}\n},\n{\n\"id\": 20,\n\"name\": \"view-roles\",\n\"guard_name\": \"web\",\n\"created_at\": \"2022-11-14T18:51:13.000000Z\",\n\"updated_at\": \"2022-11-14T18:51:13.000000Z\",\n\"pivot\": {\n\"role_id\": 2,\n\"permission_id\": 20\n}\n},\n{\n\"id\": 21,\n\"name\": \"create-roles\",\n\"guard_name\": \"web\",\n\"created_at\": \"2022-11-14T18:51:13.000000Z\",\n\"updated_at\": \"2022-11-14T18:51:13.000000Z\",\n\"pivot\": {\n\"role_id\": 2,\n\"permission_id\": 21\n}\n},\n{\n\"id\": 22,\n\"name\": \"edit-roles\",\n\"guard_name\": \"web\",\n\"created_at\": \"2022-11-14T18:51:13.000000Z\",\n\"updated_at\": \"2022-11-14T18:51:13.000000Z\",\n\"pivot\": {\n\"role_id\": 2,\n\"permission_id\": 22\n}\n},\n{\n\"id\": 23,\n\"name\": \"delete-roles\",\n\"guard_name\": \"web\",\n\"created_at\": \"2022-11-14T18:51:14.000000Z\",\n\"updated_at\": \"2022-11-14T18:51:14.000000Z\",\n\"pivot\": {\n\"role_id\": 2,\n\"permission_id\": 23\n}\n}\n]\n},\n{\n\"id\": 3,\n\"name\": \"g\",\n\"guard_name\": \"web\",\n\"created_at\": \"2022-11-14T20:43:16.000000Z\",\n\"updated_at\": \"2022-11-14T20:43:16.000000Z\",\n\"permissions\": [\n{\n\"id\": 1,\n\"name\": \"view-dashboard\",\n\"guard_name\": \"web\",\n\"created_at\": \"2022-11-14T18:51:07.000000Z\",\n\"updated_at\": \"2022-11-14T18:51:07.000000Z\",\n\"pivot\": {\n\"role_id\": 3,\n\"permission_id\": 1\n}\n},\n{\n\"id\": 2,\n\"name\": \"view-users\",\n\"guard_name\": \"web\",\n\"created_at\": \"2022-11-14T18:51:07.000000Z\",\n\"updated_at\": \"2022-11-14T18:51:07.000000Z\",\n\"pivot\": {\n\"role_id\": 3,\n\"permission_id\": 2\n}\n},\n{\n\"id\": 3,\n\"name\": \"create-users\",\n\"guard_name\": \"web\",\n\"created_at\": \"2022-11-14T18:51:08.000000Z\",\n\"updated_at\": \"2022-11-14T18:51:08.000000Z\",\n\"pivot\": {\n\"role_id\": 3,\n\"permission_id\": 3\n}\n},\n{\n\"id\": 4,\n\"name\": \"edit-users\",\n\"guard_name\": \"web\",\n\"created_at\": \"2022-11-14T18:51:08.000000Z\",\n\"updated_at\": \"2022-11-14T18:51:08.000000Z\",\n\"pivot\": {\n\"role_id\": 3,\n\"permission_id\": 4\n}\n},\n{\n\"id\": 5,\n\"name\": \"delete-users\",\n\"guard_name\": \"web\",\n\"created_at\": \"2022-11-14T18:51:08.000000Z\",\n\"updated_at\": \"2022-11-14T18:51:08.000000Z\",\n\"pivot\": {\n\"role_id\": 3,\n\"permission_id\": 5\n}\n},\n{\n\"id\": 6,\n\"name\": \"view-items\",\n\"guard_name\": \"web\",\n\"created_at\": \"2022-11-14T18:51:09.000000Z\",\n\"updated_at\": \"2022-11-14T18:51:09.000000Z\",\n\"pivot\": {\n\"role_id\": 3,\n\"permission_id\": 6\n}\n},\n{\n\"id\": 7,\n\"name\": \"create-items\",\n\"guard_name\": \"web\",\n\"created_at\": \"2022-11-14T18:51:09.000000Z\",\n\"updated_at\": \"2022-11-14T18:51:09.000000Z\",\n\"pivot\": {\n\"role_id\": 3,\n\"permission_id\": 7\n}\n},\n{\n\"id\": 8,\n\"name\": \"edit-items\",\n\"guard_name\": \"web\",\n\"created_at\": \"2022-11-14T18:51:09.000000Z\",\n\"updated_at\": \"2022-11-14T18:51:09.000000Z\",\n\"pivot\": {\n\"role_id\": 3,\n\"permission_id\": 8\n}\n},\n{\n\"id\": 9,\n\"name\": \"delete-items\",\n\"guard_name\": \"web\",\n\"created_at\": \"2022-11-14T18:51:09.000000Z\",\n\"updated_at\": \"2022-11-14T18:51:09.000000Z\",\n\"pivot\": {\n\"role_id\": 3,\n\"permission_id\": 9\n}\n},\n{\n\"id\": 10,\n\"name\": \"view-products\",\n\"guard_name\": \"web\",\n\"created_at\": \"2022-11-14T18:51:10.000000Z\",\n\"updated_at\": \"2022-11-14T18:51:10.000000Z\",\n\"pivot\": {\n\"role_id\": 3,\n\"permission_id\": 10\n}\n},\n{\n\"id\": 11,\n\"name\": \"create-products\",\n\"guard_name\": \"web\",\n\"created_at\": \"2022-11-14T18:51:10.000000Z\",\n\"updated_at\": \"2022-11-14T18:51:10.000000Z\",\n\"pivot\": {\n\"role_id\": 3,\n\"permission_id\": 11\n}\n},\n{\n\"id\": 12,\n\"name\": \"edit-products\",\n\"guard_name\": \"web\",\n\"created_at\": \"2022-11-14T18:51:10.000000Z\",\n\"updated_at\": \"2022-11-14T18:51:10.000000Z\",\n\"pivot\": {\n\"role_id\": 3,\n\"permission_id\": 12\n}\n},\n{\n\"id\": 13,\n\"name\": \"delete-products\",\n\"guard_name\": \"web\",\n\"created_at\": \"2022-11-14T18:51:10.000000Z\",\n\"updated_at\": \"2022-11-14T18:51:10.000000Z\",\n\"pivot\": {\n\"role_id\": 3,\n\"permission_id\": 13\n}\n},\n{\n\"id\": 14,\n\"name\": \"view-settings\",\n\"guard_name\": \"web\",\n\"created_at\": \"2022-11-14T18:51:11.000000Z\",\n\"updated_at\": \"2022-11-14T18:51:11.000000Z\",\n\"pivot\": {\n\"role_id\": 3,\n\"permission_id\": 14\n}\n},\n{\n\"id\": 15,\n\"name\": \"create-settings\",\n\"guard_name\": \"web\",\n\"created_at\": \"2022-11-14T18:51:11.000000Z\",\n\"updated_at\": \"2022-11-14T18:51:11.000000Z\",\n\"pivot\": {\n\"role_id\": 3,\n\"permission_id\": 15\n}\n},\n{\n\"id\": 16,\n\"name\": \"edit-settings\",\n\"guard_name\": \"web\",\n\"created_at\": \"2022-11-14T18:51:11.000000Z\",\n\"updated_at\": \"2022-11-14T18:51:11.000000Z\",\n\"pivot\": {\n\"role_id\": 3,\n\"permission_id\": 16\n}\n},\n{\n\"id\": 17,\n\"name\": \"delete-settings\",\n\"guard_name\": \"web\",\n\"created_at\": \"2022-11-14T18:51:12.000000Z\",\n\"updated_at\": \"2022-11-14T18:51:12.000000Z\",\n\"pivot\": {\n\"role_id\": 3,\n\"permission_id\": 17\n}\n},\n{\n\"id\": 18,\n\"name\": \"view-feedbacks\",\n\"guard_name\": \"web\",\n\"created_at\": \"2022-11-14T18:51:12.000000Z\",\n\"updated_at\": \"2022-11-14T18:51:12.000000Z\",\n\"pivot\": {\n\"role_id\": 3,\n\"permission_id\": 18\n}\n},\n{\n\"id\": 19,\n\"name\": \"delete-feedbacks\",\n\"guard_name\": \"web\",\n\"created_at\": \"2022-11-14T18:51:12.000000Z\",\n\"updated_at\": \"2022-11-14T18:51:12.000000Z\",\n\"pivot\": {\n\"role_id\": 3,\n\"permission_id\": 19\n}\n},\n{\n\"id\": 20,\n\"name\": \"view-roles\",\n\"guard_name\": \"web\",\n\"created_at\": \"2022-11-14T18:51:13.000000Z\",\n\"updated_at\": \"2022-11-14T18:51:13.000000Z\",\n\"pivot\": {\n\"role_id\": 3,\n\"permission_id\": 20\n}\n},\n{\n\"id\": 21,\n\"name\": \"create-roles\",\n\"guard_name\": \"web\",\n\"created_at\": \"2022-11-14T18:51:13.000000Z\",\n\"updated_at\": \"2022-11-14T18:51:13.000000Z\",\n\"pivot\": {\n\"role_id\": 3,\n\"permission_id\": 21\n}\n},\n{\n\"id\": 22,\n\"name\": \"edit-roles\",\n\"guard_name\": \"web\",\n\"created_at\": \"2022-11-14T18:51:13.000000Z\",\n\"updated_at\": \"2022-11-14T18:51:13.000000Z\",\n\"pivot\": {\n\"role_id\": 3,\n\"permission_id\": 22\n}\n},\n{\n\"id\": 23,\n\"name\": \"delete-roles\",\n\"guard_name\": \"web\",\n\"created_at\": \"2022-11-14T18:51:14.000000Z\",\n\"updated_at\": \"2022-11-14T18:51:14.000000Z\",\n\"pivot\": {\n\"role_id\": 3,\n\"permission_id\": 23\n}\n}\n]\n}\n],\n\"first_page_url\": \"http:\/\/localhost:8000\/api\/roles?page=1\",\n\"from\": 1,\n\"last_page\": 1,\n\"last_page_url\": \"http:\/\/localhost:8000\/api\/roles?page=1\",\n\"links\": [\n{\n\"url\": null,\n\"label\": \"&laquo; Previous\",\n\"active\": false\n},\n{\n\"url\": \"http:\/\/localhost:8000\/api\/roles?page=1\",\n\"label\": \"1\",\n\"active\": true\n},\n{\n\"url\": null,\n\"label\": \"Next &raquo;\",\n\"active\": false\n}\n],\n\"next_page_url\": null,\n\"path\": \"http:\/\/localhost:8000\/api\/roles\",\n\"per_page\": 5,\n\"prev_page_url\": null,\n\"to\": 3,\n\"total\": 3\n}",
+                            "body": "{\n\"current_page\": 1,\n\"data\": [\n{\n\"id\": 1,\n\"name\": \"owner\",\n\"guard_name\": \"web\",\n\"created_at\": \"2022-11-14T18:51:06.000000Z\",\n\"updated_at\": \"2022-11-14T18:51:06.000000Z\",\n\"permissions\": []\n},\n{\n\"id\": 2,\n\"name\": \"admin\",\n\"guard_name\": \"web\",\n\"created_at\": \"2022-11-14T18:51:07.000000Z\",\n\"updated_at\": \"2022-11-14T18:51:07.000000Z\",\n\"permissions\": [\n{\n\"id\": 1,\n\"name\": \"view-dashboard\",\n\"guard_name\": \"web\",\n\"created_at\": \"2022-11-14T18:51:07.000000Z\",\n\"updated_at\": \"2022-11-14T18:51:07.000000Z\",\n\"pivot\": {\n\"role_id\": 2,\n\"permission_id\": 1\n}\n},\n{\n\"id\": 2,\n\"name\": \"view-users\",\n\"guard_name\": \"web\",\n\"created_at\": \"2022-11-14T18:51:07.000000Z\",\n\"updated_at\": \"2022-11-14T18:51:07.000000Z\",\n\"pivot\": {\n\"role_id\": 2,\n\"permission_id\": 2\n}\n},\n{\n\"id\": 3,\n\"name\": \"create-users\",\n\"guard_name\": \"web\",\n\"created_at\": \"2022-11-14T18:51:08.000000Z\",\n\"updated_at\": \"2022-11-14T18:51:08.000000Z\",\n\"pivot\": {\n\"role_id\": 2,\n\"permission_id\": 3\n}\n},\n{\n\"id\": 4,\n\"name\": \"edit-users\",\n\"guard_name\": \"web\",\n\"created_at\": \"2022-11-14T18:51:08.000000Z\",\n\"updated_at\": \"2022-11-14T18:51:08.000000Z\",\n\"pivot\": {\n\"role_id\": 2,\n\"permission_id\": 4\n}\n},\n{\n\"id\": 5,\n\"name\": \"delete-users\",\n\"guard_name\": \"web\",\n\"created_at\": \"2022-11-14T18:51:08.000000Z\",\n\"updated_at\": \"2022-11-14T18:51:08.000000Z\",\n\"pivot\": {\n\"role_id\": 2,\n\"permission_id\": 5\n}\n},\n{\n\"id\": 6,\n\"name\": \"view-items\",\n\"guard_name\": \"web\",\n\"created_at\": \"2022-11-14T18:51:09.000000Z\",\n\"updated_at\": \"2022-11-14T18:51:09.000000Z\",\n\"pivot\": {\n\"role_id\": 2,\n\"permission_id\": 6\n}\n},\n{\n\"id\": 7,\n\"name\": \"create-items\",\n\"guard_name\": \"web\",\n\"created_at\": \"2022-11-14T18:51:09.000000Z\",\n\"updated_at\": \"2022-11-14T18:51:09.000000Z\",\n\"pivot\": {\n\"role_id\": 2,\n\"permission_id\": 7\n}\n},\n{\n\"id\": 8,\n\"name\": \"edit-items\",\n\"guard_name\": \"web\",\n\"created_at\": \"2022-11-14T18:51:09.000000Z\",\n\"updated_at\": \"2022-11-14T18:51:09.000000Z\",\n\"pivot\": {\n\"role_id\": 2,\n\"permission_id\": 8\n}\n},\n{\n\"id\": 9,\n\"name\": \"delete-items\",\n\"guard_name\": \"web\",\n\"created_at\": \"2022-11-14T18:51:09.000000Z\",\n\"updated_at\": \"2022-11-14T18:51:09.000000Z\",\n\"pivot\": {\n\"role_id\": 2,\n\"permission_id\": 9\n}\n},\n{\n\"id\": 10,\n\"name\": \"view-products\",\n\"guard_name\": \"web\",\n\"created_at\": \"2022-11-14T18:51:10.000000Z\",\n\"updated_at\": \"2022-11-14T18:51:10.000000Z\",\n\"pivot\": {\n\"role_id\": 2,\n\"permission_id\": 10\n}\n},\n{\n\"id\": 11,\n\"name\": \"create-products\",\n\"guard_name\": \"web\",\n\"created_at\": \"2022-11-14T18:51:10.000000Z\",\n\"updated_at\": \"2022-11-14T18:51:10.000000Z\",\n\"pivot\": {\n\"role_id\": 2,\n\"permission_id\": 11\n}\n},\n{\n\"id\": 12,\n\"name\": \"edit-products\",\n\"guard_name\": \"web\",\n\"created_at\": \"2022-11-14T18:51:10.000000Z\",\n\"updated_at\": \"2022-11-14T18:51:10.000000Z\",\n\"pivot\": {\n\"role_id\": 2,\n\"permission_id\": 12\n}\n},\n{\n\"id\": 13,\n\"name\": \"delete-products\",\n\"guard_name\": \"web\",\n\"created_at\": \"2022-11-14T18:51:10.000000Z\",\n\"updated_at\": \"2022-11-14T18:51:10.000000Z\",\n\"pivot\": {\n\"role_id\": 2,\n\"permission_id\": 13\n}\n},\n{\n\"id\": 14,\n\"name\": \"view-settings\",\n\"guard_name\": \"web\",\n\"created_at\": \"2022-11-14T18:51:11.000000Z\",\n\"updated_at\": \"2022-11-14T18:51:11.000000Z\",\n\"pivot\": {\n\"role_id\": 2,\n\"permission_id\": 14\n}\n},\n{\n\"id\": 15,\n\"name\": \"create-settings\",\n\"guard_name\": \"web\",\n\"created_at\": \"2022-11-14T18:51:11.000000Z\",\n\"updated_at\": \"2022-11-14T18:51:11.000000Z\",\n\"pivot\": {\n\"role_id\": 2,\n\"permission_id\": 15\n}\n},\n{\n\"id\": 16,\n\"name\": \"edit-settings\",\n\"guard_name\": \"web\",\n\"created_at\": \"2022-11-14T18:51:11.000000Z\",\n\"updated_at\": \"2022-11-14T18:51:11.000000Z\",\n\"pivot\": {\n\"role_id\": 2,\n\"permission_id\": 16\n}\n},\n{\n\"id\": 17,\n\"name\": \"delete-settings\",\n\"guard_name\": \"web\",\n\"created_at\": \"2022-11-14T18:51:12.000000Z\",\n\"updated_at\": \"2022-11-14T18:51:12.000000Z\",\n\"pivot\": {\n\"role_id\": 2,\n\"permission_id\": 17\n}\n},\n{\n\"id\": 18,\n\"name\": \"view-feedbacks\",\n\"guard_name\": \"web\",\n\"created_at\": \"2022-11-14T18:51:12.000000Z\",\n\"updated_at\": \"2022-11-14T18:51:12.000000Z\",\n\"pivot\": {\n\"role_id\": 2,\n\"permission_id\": 18\n}\n},\n{\n\"id\": 19,\n\"name\": \"delete-feedbacks\",\n\"guard_name\": \"web\",\n\"created_at\": \"2022-11-14T18:51:12.000000Z\",\n\"updated_at\": \"2022-11-14T18:51:12.000000Z\",\n\"pivot\": {\n\"role_id\": 2,\n\"permission_id\": 19\n}\n},\n{\n\"id\": 20,\n\"name\": \"view-roles\",\n\"guard_name\": \"web\",\n\"created_at\": \"2022-11-14T18:51:13.000000Z\",\n\"updated_at\": \"2022-11-14T18:51:13.000000Z\",\n\"pivot\": {\n\"role_id\": 2,\n\"permission_id\": 20\n}\n},\n{\n\"id\": 21,\n\"name\": \"create-roles\",\n\"guard_name\": \"web\",\n\"created_at\": \"2022-11-14T18:51:13.000000Z\",\n\"updated_at\": \"2022-11-14T18:51:13.000000Z\",\n\"pivot\": {\n\"role_id\": 2,\n\"permission_id\": 21\n}\n},\n{\n\"id\": 22,\n\"name\": \"edit-roles\",\n\"guard_name\": \"web\",\n\"created_at\": \"2022-11-14T18:51:13.000000Z\",\n\"updated_at\": \"2022-11-14T18:51:13.000000Z\",\n\"pivot\": {\n\"role_id\": 2,\n\"permission_id\": 22\n}\n},\n{\n\"id\": 23,\n\"name\": \"delete-roles\",\n\"guard_name\": \"web\",\n\"created_at\": \"2022-11-14T18:51:14.000000Z\",\n\"updated_at\": \"2022-11-14T18:51:14.000000Z\",\n\"pivot\": {\n\"role_id\": 2,\n\"permission_id\": 23\n}\n}\n]\n},\n{\n\"id\": 3,\n\"name\": \"g\",\n\"guard_name\": \"web\",\n\"created_at\": \"2022-11-14T20:43:16.000000Z\",\n\"updated_at\": \"2022-11-14T20:43:16.000000Z\",\n\"permissions\": [\n{\n\"id\": 1,\n\"name\": \"view-dashboard\",\n\"guard_name\": \"web\",\n\"created_at\": \"2022-11-14T18:51:07.000000Z\",\n\"updated_at\": \"2022-11-14T18:51:07.000000Z\",\n\"pivot\": {\n\"role_id\": 3,\n\"permission_id\": 1\n}\n},\n{\n\"id\": 2,\n\"name\": \"view-users\",\n\"guard_name\": \"web\",\n\"created_at\": \"2022-11-14T18:51:07.000000Z\",\n\"updated_at\": \"2022-11-14T18:51:07.000000Z\",\n\"pivot\": {\n\"role_id\": 3,\n\"permission_id\": 2\n}\n},\n{\n\"id\": 3,\n\"name\": \"create-users\",\n\"guard_name\": \"web\",\n\"created_at\": \"2022-11-14T18:51:08.000000Z\",\n\"updated_at\": \"2022-11-14T18:51:08.000000Z\",\n\"pivot\": {\n\"role_id\": 3,\n\"permission_id\": 3\n}\n},\n{\n\"id\": 4,\n\"name\": \"edit-users\",\n\"guard_name\": \"web\",\n\"created_at\": \"2022-11-14T18:51:08.000000Z\",\n\"updated_at\": \"2022-11-14T18:51:08.000000Z\",\n\"pivot\": {\n\"role_id\": 3,\n\"permission_id\": 4\n}\n},\n{\n\"id\": 5,\n\"name\": \"delete-users\",\n\"guard_name\": \"web\",\n\"created_at\": \"2022-11-14T18:51:08.000000Z\",\n\"updated_at\": \"2022-11-14T18:51:08.000000Z\",\n\"pivot\": {\n\"role_id\": 3,\n\"permission_id\": 5\n}\n},\n{\n\"id\": 6,\n\"name\": \"view-items\",\n\"guard_name\": \"web\",\n\"created_at\": \"2022-11-14T18:51:09.000000Z\",\n\"updated_at\": \"2022-11-14T18:51:09.000000Z\",\n\"pivot\": {\n\"role_id\": 3,\n\"permission_id\": 6\n}\n},\n{\n\"id\": 7,\n\"name\": \"create-items\",\n\"guard_name\": \"web\",\n\"created_at\": \"2022-11-14T18:51:09.000000Z\",\n\"updated_at\": \"2022-11-14T18:51:09.000000Z\",\n\"pivot\": {\n\"role_id\": 3,\n\"permission_id\": 7\n}\n},\n{\n\"id\": 8,\n\"name\": \"edit-items\",\n\"guard_name\": \"web\",\n\"created_at\": \"2022-11-14T18:51:09.000000Z\",\n\"updated_at\": \"2022-11-14T18:51:09.000000Z\",\n\"pivot\": {\n\"role_id\": 3,\n\"permission_id\": 8\n}\n},\n{\n\"id\": 9,\n\"name\": \"delete-items\",\n\"guard_name\": \"web\",\n\"created_at\": \"2022-11-14T18:51:09.000000Z\",\n\"updated_at\": \"2022-11-14T18:51:09.000000Z\",\n\"pivot\": {\n\"role_id\": 3,\n\"permission_id\": 9\n}\n},\n{\n\"id\": 10,\n\"name\": \"view-products\",\n\"guard_name\": \"web\",\n\"created_at\": \"2022-11-14T18:51:10.000000Z\",\n\"updated_at\": \"2022-11-14T18:51:10.000000Z\",\n\"pivot\": {\n\"role_id\": 3,\n\"permission_id\": 10\n}\n},\n{\n\"id\": 11,\n\"name\": \"create-products\",\n\"guard_name\": \"web\",\n\"created_at\": \"2022-11-14T18:51:10.000000Z\",\n\"updated_at\": \"2022-11-14T18:51:10.000000Z\",\n\"pivot\": {\n\"role_id\": 3,\n\"permission_id\": 11\n}\n},\n{\n\"id\": 12,\n\"name\": \"edit-products\",\n\"guard_name\": \"web\",\n\"created_at\": \"2022-11-14T18:51:10.000000Z\",\n\"updated_at\": \"2022-11-14T18:51:10.000000Z\",\n\"pivot\": {\n\"role_id\": 3,\n\"permission_id\": 12\n}\n},\n{\n\"id\": 13,\n\"name\": \"delete-products\",\n\"guard_name\": \"web\",\n\"created_at\": \"2022-11-14T18:51:10.000000Z\",\n\"updated_at\": \"2022-11-14T18:51:10.000000Z\",\n\"pivot\": {\n\"role_id\": 3,\n\"permission_id\": 13\n}\n},\n{\n\"id\": 14,\n\"name\": \"view-settings\",\n\"guard_name\": \"web\",\n\"created_at\": \"2022-11-14T18:51:11.000000Z\",\n\"updated_at\": \"2022-11-14T18:51:11.000000Z\",\n\"pivot\": {\n\"role_id\": 3,\n\"permission_id\": 14\n}\n},\n{\n\"id\": 15,\n\"name\": \"create-settings\",\n\"guard_name\": \"web\",\n\"created_at\": \"2022-11-14T18:51:11.000000Z\",\n\"updated_at\": \"2022-11-14T18:51:11.000000Z\",\n\"pivot\": {\n\"role_id\": 3,\n\"permission_id\": 15\n}\n},\n{\n\"id\": 16,\n\"name\": \"edit-settings\",\n\"guard_name\": \"web\",\n\"created_at\": \"2022-11-14T18:51:11.000000Z\",\n\"updated_at\": \"2022-11-14T18:51:11.000000Z\",\n\"pivot\": {\n\"role_id\": 3,\n\"permission_id\": 16\n}\n},\n{\n\"id\": 17,\n\"name\": \"delete-settings\",\n\"guard_name\": \"web\",\n\"created_at\": \"2022-11-14T18:51:12.000000Z\",\n\"updated_at\": \"2022-11-14T18:51:12.000000Z\",\n\"pivot\": {\n\"role_id\": 3,\n\"permission_id\": 17\n}\n},\n{\n\"id\": 18,\n\"name\": \"view-feedbacks\",\n\"guard_name\": \"web\",\n\"created_at\": \"2022-11-14T18:51:12.000000Z\",\n\"updated_at\": \"2022-11-14T18:51:12.000000Z\",\n\"pivot\": {\n\"role_id\": 3,\n\"permission_id\": 18\n}\n},\n{\n\"id\": 19,\n\"name\": \"delete-feedbacks\",\n\"guard_name\": \"web\",\n\"created_at\": \"2022-11-14T18:51:12.000000Z\",\n\"updated_at\": \"2022-11-14T18:51:12.000000Z\",\n\"pivot\": {\n\"role_id\": 3,\n\"permission_id\": 19\n}\n},\n{\n\"id\": 20,\n\"name\": \"view-roles\",\n\"guard_name\": \"web\",\n\"created_at\": \"2022-11-14T18:51:13.000000Z\",\n\"updated_at\": \"2022-11-14T18:51:13.000000Z\",\n\"pivot\": {\n\"role_id\": 3,\n\"permission_id\": 20\n}\n},\n{\n\"id\": 21,\n\"name\": \"create-roles\",\n\"guard_name\": \"web\",\n\"created_at\": \"2022-11-14T18:51:13.000000Z\",\n\"updated_at\": \"2022-11-14T18:51:13.000000Z\",\n\"pivot\": {\n\"role_id\": 3,\n\"permission_id\": 21\n}\n},\n{\n\"id\": 22,\n\"name\": \"edit-roles\",\n\"guard_name\": \"web\",\n\"created_at\": \"2022-11-14T18:51:13.000000Z\",\n\"updated_at\": \"2022-11-14T18:51:13.000000Z\",\n\"pivot\": {\n\"role_id\": 3,\n\"permission_id\": 22\n}\n},\n{\n\"id\": 23,\n\"name\": \"delete-roles\",\n\"guard_name\": \"web\",\n\"created_at\": \"2022-11-14T18:51:14.000000Z\",\n\"updated_at\": \"2022-11-14T18:51:14.000000Z\",\n\"pivot\": {\n\"role_id\": 3,\n\"permission_id\": 23\n}\n}\n]\n}\n],\n\"first_page_url\": \"http://localhost:8000/api/roles?page=1\",\n\"from\": 1,\n\"last_page\": 1,\n\"last_page_url\": \"http://localhost:8000/api/roles?page=1\",\n\"links\": [\n{\n\"url\": null,\n\"label\": \"&laquo; Previous\",\n\"active\": false\n},\n{\n\"url\": \"http://localhost:8000/api/roles?page=1\",\n\"label\": \"1\",\n\"active\": true\n},\n{\n\"url\": null,\n\"label\": \"Next &raquo;\",\n\"active\": false\n}\n],\n\"next_page_url\": null,\n\"path\": \"http://localhost:8000/api/roles\",\n\"per_page\": 5,\n\"prev_page_url\": null,\n\"to\": 3,\n\"total\": 3\n}",
                             "name": ""
                         }
                     ]
@@ -1355,19 +1355,19 @@
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
-                            "path": "api\/roles",
+                            "path": "api/roles",
                             "query": [],
-                            "raw": "{{baseUrl}}\/api\/roles"
+                            "raw": "{{baseUrl}}/api/roles"
                         },
                         "method": "POST",
                         "header": [
                             {
                                 "key": "Content-Type",
-                                "value": "application\/json"
+                                "value": "application/json"
                             },
                             {
                                 "key": "Accept",
-                                "value": "application\/json"
+                                "value": "application/json"
                             }
                         ],
                         "body": {
@@ -1390,9 +1390,9 @@
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
-                            "path": "api\/roles\/:id",
+                            "path": "api/roles/:id",
                             "query": [],
-                            "raw": "{{baseUrl}}\/api\/roles\/:id",
+                            "raw": "{{baseUrl}}/api/roles/:id",
                             "variable": [
                                 {
                                     "id": "id",
@@ -1406,11 +1406,11 @@
                         "header": [
                             {
                                 "key": "Content-Type",
-                                "value": "application\/json"
+                                "value": "application/json"
                             },
                             {
                                 "key": "Accept",
-                                "value": "application\/json"
+                                "value": "application/json"
                             }
                         ],
                         "body": {
@@ -1433,9 +1433,9 @@
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
-                            "path": "api\/roles\/:id",
+                            "path": "api/roles/:id",
                             "query": [],
-                            "raw": "{{baseUrl}}\/api\/roles\/:id",
+                            "raw": "{{baseUrl}}/api/roles/:id",
                             "variable": [
                                 {
                                     "id": "id",
@@ -1449,11 +1449,11 @@
                         "header": [
                             {
                                 "key": "Content-Type",
-                                "value": "application\/json"
+                                "value": "application/json"
                             },
                             {
                                 "key": "Accept",
-                                "value": "application\/json"
+                                "value": "application/json"
                             }
                         ],
                         "body": null,
@@ -1479,19 +1479,19 @@
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
-                            "path": "api\/settings\/delete-all",
+                            "path": "api/settings/delete-all",
                             "query": [],
-                            "raw": "{{baseUrl}}\/api\/settings\/delete-all"
+                            "raw": "{{baseUrl}}/api/settings/delete-all"
                         },
                         "method": "DELETE",
                         "header": [
                             {
                                 "key": "Content-Type",
-                                "value": "application\/json"
+                                "value": "application/json"
                             },
                             {
                                 "key": "Accept",
-                                "value": "application\/json"
+                                "value": "application/json"
                             }
                         ],
                         "body": null,
@@ -1511,19 +1511,19 @@
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
-                            "path": "api\/settings\/last",
+                            "path": "api/settings/last",
                             "query": [],
-                            "raw": "{{baseUrl}}\/api\/settings\/last"
+                            "raw": "{{baseUrl}}/api/settings/last"
                         },
                         "method": "GET",
                         "header": [
                             {
                                 "key": "Content-Type",
-                                "value": "application\/json"
+                                "value": "application/json"
                             },
                             {
                                 "key": "Accept",
-                                "value": "application\/json"
+                                "value": "application/json"
                             }
                         ],
                         "body": null,
@@ -1533,7 +1533,7 @@
                         {
                             "header": [],
                             "code": 200,
-                            "body": "{\n\"id\": 2,\n\"store_name\": \"ahmed\",\n\"store_logo\": \"settings\/PL0BDCObJlCEHvLcGKFnAUMQmf6BzaA7AKvn74iz.jpg\",\n\"store_currency\": null,\n\"home_title\": null,\n\"whatsapp_phone\": null,\n\"contact_phone1\": null,\n\"contact_phone2\": null,\n\"contact_address\": null,\n\"created_at\": \"2022-11-15T11:35:30.000000Z\",\n\"updated_at\": \"2022-11-15T11:35:30.000000Z\"\n}",
+                            "body": "{\n\"id\": 2,\n\"store_name\": \"ahmed\",\n\"store_logo\": \"settings/PL0BDCObJlCEHvLcGKFnAUMQmf6BzaA7AKvn74iz.jpg\",\n\"store_currency\": null,\n\"home_title\": null,\n\"whatsapp_phone\": null,\n\"contact_phone1\": null,\n\"contact_phone2\": null,\n\"contact_address\": null,\n\"created_at\": \"2022-11-15T11:35:30.000000Z\",\n\"updated_at\": \"2022-11-15T11:35:30.000000Z\"\n}",
                             "name": ""
                         }
                     ]
@@ -1543,19 +1543,19 @@
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
-                            "path": "api\/settings",
+                            "path": "api/settings",
                             "query": [],
-                            "raw": "{{baseUrl}}\/api\/settings"
+                            "raw": "{{baseUrl}}/api/settings"
                         },
                         "method": "GET",
                         "header": [
                             {
                                 "key": "Content-Type",
-                                "value": "application\/json"
+                                "value": "application/json"
                             },
                             {
                                 "key": "Accept",
-                                "value": "application\/json"
+                                "value": "application/json"
                             }
                         ],
                         "body": null,
@@ -1565,7 +1565,7 @@
                         {
                             "header": [],
                             "code": 200,
-                            "body": "{\n\"current_page\": 1,\n\"data\": [\n{\n\"id\": 1,\n\"store_name\": \"monty\",\n\"store_logo\": null,\n\"store_currency\": null,\n\"home_title\": null,\n\"whatsapp_phone\": null,\n\"contact_phone1\": null,\n\"contact_phone2\": null,\n\"contact_address\": null,\n\"created_at\": \"2022-11-15T11:34:29.000000Z\",\n\"updated_at\": \"2022-11-15T11:34:29.000000Z\"\n},\n{\n\"id\": 2,\n\"store_name\": \"ahmed\",\n\"store_logo\": \"settings\/PL0BDCObJlCEHvLcGKFnAUMQmf6BzaA7AKvn74iz.jpg\",\n\"store_currency\": null,\n\"home_title\": null,\n\"whatsapp_phone\": null,\n\"contact_phone1\": null,\n\"contact_phone2\": null,\n\"contact_address\": null,\n\"created_at\": \"2022-11-15T11:35:30.000000Z\",\n\"updated_at\": \"2022-11-15T11:35:30.000000Z\"\n}\n],\n\"first_page_url\": \"http:\/\/localhost:8000\/api\/settings?page=1\",\n\"from\": 1,\n\"last_page\": 1,\n\"last_page_url\": \"http:\/\/localhost:8000\/api\/settings?page=1\",\n\"links\": [\n{\n\"url\": null,\n\"label\": \"&laquo; Previous\",\n\"active\": false\n},\n{\n\"url\": \"http:\/\/localhost:8000\/api\/settings?page=1\",\n\"label\": \"1\",\n\"active\": true\n},\n{\n\"url\": null,\n\"label\": \"Next &raquo;\",\n\"active\": false\n}\n],\n\"next_page_url\": null,\n\"path\": \"http:\/\/localhost:8000\/api\/settings\",\n\"per_page\": 5,\n\"prev_page_url\": null,\n\"to\": 2,\n\"total\": 2\n}",
+                            "body": "{\n\"current_page\": 1,\n\"data\": [\n{\n\"id\": 1,\n\"store_name\": \"monty\",\n\"store_logo\": null,\n\"store_currency\": null,\n\"home_title\": null,\n\"whatsapp_phone\": null,\n\"contact_phone1\": null,\n\"contact_phone2\": null,\n\"contact_address\": null,\n\"created_at\": \"2022-11-15T11:34:29.000000Z\",\n\"updated_at\": \"2022-11-15T11:34:29.000000Z\"\n},\n{\n\"id\": 2,\n\"store_name\": \"ahmed\",\n\"store_logo\": \"settings/PL0BDCObJlCEHvLcGKFnAUMQmf6BzaA7AKvn74iz.jpg\",\n\"store_currency\": null,\n\"home_title\": null,\n\"whatsapp_phone\": null,\n\"contact_phone1\": null,\n\"contact_phone2\": null,\n\"contact_address\": null,\n\"created_at\": \"2022-11-15T11:35:30.000000Z\",\n\"updated_at\": \"2022-11-15T11:35:30.000000Z\"\n}\n],\n\"first_page_url\": \"http://localhost:8000/api/settings?page=1\",\n\"from\": 1,\n\"last_page\": 1,\n\"last_page_url\": \"http://localhost:8000/api/settings?page=1\",\n\"links\": [\n{\n\"url\": null,\n\"label\": \"&laquo; Previous\",\n\"active\": false\n},\n{\n\"url\": \"http://localhost:8000/api/settings?page=1\",\n\"label\": \"1\",\n\"active\": true\n},\n{\n\"url\": null,\n\"label\": \"Next &raquo;\",\n\"active\": false\n}\n],\n\"next_page_url\": null,\n\"path\": \"http://localhost:8000/api/settings\",\n\"per_page\": 5,\n\"prev_page_url\": null,\n\"to\": 2,\n\"total\": 2\n}",
                             "name": ""
                         }
                     ]
@@ -1575,19 +1575,19 @@
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
-                            "path": "api\/settings",
+                            "path": "api/settings",
                             "query": [],
-                            "raw": "{{baseUrl}}\/api\/settings"
+                            "raw": "{{baseUrl}}/api/settings"
                         },
                         "method": "POST",
                         "header": [
                             {
                                 "key": "Content-Type",
-                                "value": "multipart\/form-data"
+                                "value": "multipart/form-data"
                             },
                             {
                                 "key": "Accept",
-                                "value": "application\/json"
+                                "value": "application/json"
                             }
                         ],
                         "body": {
@@ -1612,7 +1612,7 @@
                         {
                             "header": [],
                             "code": 201,
-                            "body": "{\n\"id\": 2,\n\"store_name\": \"ahmed\",\n\"store_logo\": \"settings\/PL0BDCObJlCEHvLcGKFnAUMQmf6BzaA7AKvn74iz.jpg\",\n\"store_currency\": null,\n\"home_title\": null,\n\"whatsapp_phone\": null,\n\"contact_phone1\": null,\n\"contact_phone2\": null,\n\"contact_address\": null,\n\"created_at\": \"2022-11-15T11:35:30.000000Z\",\n\"updated_at\": \"2022-11-15T11:35:30.000000Z\"\n}",
+                            "body": "{\n\"id\": 2,\n\"store_name\": \"ahmed\",\n\"store_logo\": \"settings/PL0BDCObJlCEHvLcGKFnAUMQmf6BzaA7AKvn74iz.jpg\",\n\"store_currency\": null,\n\"home_title\": null,\n\"whatsapp_phone\": null,\n\"contact_phone1\": null,\n\"contact_phone2\": null,\n\"contact_address\": null,\n\"created_at\": \"2022-11-15T11:35:30.000000Z\",\n\"updated_at\": \"2022-11-15T11:35:30.000000Z\"\n}",
                             "name": ""
                         }
                     ]
@@ -1622,9 +1622,9 @@
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
-                            "path": "api\/settings\/:id",
+                            "path": "api/settings/:id",
                             "query": [],
-                            "raw": "{{baseUrl}}\/api\/settings\/:id",
+                            "raw": "{{baseUrl}}/api/settings/:id",
                             "variable": [
                                 {
                                     "id": "id",
@@ -1638,11 +1638,11 @@
                         "header": [
                             {
                                 "key": "Content-Type",
-                                "value": "application\/json"
+                                "value": "application/json"
                             },
                             {
                                 "key": "Accept",
-                                "value": "application\/json"
+                                "value": "application/json"
                             }
                         ],
                         "body": null,
@@ -1652,7 +1652,7 @@
                         {
                             "header": [],
                             "code": 200,
-                            "body": "{\n\"id\": 2,\n\"store_name\": \"ahmed\",\n\"store_logo\": \"settings\/PL0BDCObJlCEHvLcGKFnAUMQmf6BzaA7AKvn74iz.jpg\",\n\"store_currency\": null,\n\"home_title\": null,\n\"whatsapp_phone\": null,\n\"contact_phone1\": null,\n\"contact_phone2\": null,\n\"contact_address\": null,\n\"created_at\": \"2022-11-15T11:35:30.000000Z\",\n\"updated_at\": \"2022-11-15T11:35:30.000000Z\"\n}",
+                            "body": "{\n\"id\": 2,\n\"store_name\": \"ahmed\",\n\"store_logo\": \"settings/PL0BDCObJlCEHvLcGKFnAUMQmf6BzaA7AKvn74iz.jpg\",\n\"store_currency\": null,\n\"home_title\": null,\n\"whatsapp_phone\": null,\n\"contact_phone1\": null,\n\"contact_phone2\": null,\n\"contact_address\": null,\n\"created_at\": \"2022-11-15T11:35:30.000000Z\",\n\"updated_at\": \"2022-11-15T11:35:30.000000Z\"\n}",
                             "name": ""
                         }
                     ]
@@ -1662,9 +1662,9 @@
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
-                            "path": "api\/settings\/:id",
+                            "path": "api/settings/:id",
                             "query": [],
-                            "raw": "{{baseUrl}}\/api\/settings\/:id",
+                            "raw": "{{baseUrl}}/api/settings/:id",
                             "variable": [
                                 {
                                     "id": "id",
@@ -1678,11 +1678,11 @@
                         "header": [
                             {
                                 "key": "Content-Type",
-                                "value": "multipart\/form-data"
+                                "value": "multipart/form-data"
                             },
                             {
                                 "key": "Accept",
-                                "value": "application\/json"
+                                "value": "application/json"
                             }
                         ],
                         "body": {
@@ -1712,7 +1712,7 @@
                         {
                             "header": [],
                             "code": 200,
-                            "body": "{\n\"id\": 2,\n\"store_name\": \"ahmed\",\n\"store_logo\": \"settings\/PL0BDCObJlCEHvLcGKFnAUMQmf6BzaA7AKvn74iz.jpg\",\n\"store_currency\": null,\n\"home_title\": null,\n\"whatsapp_phone\": null,\n\"contact_phone1\": null,\n\"contact_phone2\": null,\n\"contact_address\": null,\n\"created_at\": \"2022-11-15T11:35:30.000000Z\",\n\"updated_at\": \"2022-11-15T11:35:30.000000Z\"\n}",
+                            "body": "{\n\"id\": 2,\n\"store_name\": \"ahmed\",\n\"store_logo\": \"settings/PL0BDCObJlCEHvLcGKFnAUMQmf6BzaA7AKvn74iz.jpg\",\n\"store_currency\": null,\n\"home_title\": null,\n\"whatsapp_phone\": null,\n\"contact_phone1\": null,\n\"contact_phone2\": null,\n\"contact_address\": null,\n\"created_at\": \"2022-11-15T11:35:30.000000Z\",\n\"updated_at\": \"2022-11-15T11:35:30.000000Z\"\n}",
                             "name": ""
                         }
                     ]
@@ -1722,9 +1722,9 @@
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
-                            "path": "api\/settings\/:id",
+                            "path": "api/settings/:id",
                             "query": [],
-                            "raw": "{{baseUrl}}\/api\/settings\/:id",
+                            "raw": "{{baseUrl}}/api/settings/:id",
                             "variable": [
                                 {
                                     "id": "id",
@@ -1738,11 +1738,11 @@
                         "header": [
                             {
                                 "key": "Content-Type",
-                                "value": "application\/json"
+                                "value": "application/json"
                             },
                             {
                                 "key": "Accept",
-                                "value": "application\/json"
+                                "value": "application/json"
                             }
                         ],
                         "body": null,
@@ -1752,7 +1752,7 @@
                         {
                             "header": [],
                             "code": 200,
-                            "body": "{\n\"id\": 2,\n\"store_name\": \"ahmed\",\n\"store_logo\": \"settings\/PL0BDCObJlCEHvLcGKFnAUMQmf6BzaA7AKvn74iz.jpg\",\n\"store_currency\": null,\n\"home_title\": null,\n\"whatsapp_phone\": null,\n\"contact_phone1\": null,\n\"contact_phone2\": null,\n\"contact_address\": null,\n\"created_at\": \"2022-11-15T11:35:30.000000Z\",\n\"updated_at\": \"2022-11-15T11:35:30.000000Z\"\n}",
+                            "body": "{\n\"id\": 2,\n\"store_name\": \"ahmed\",\n\"store_logo\": \"settings/PL0BDCObJlCEHvLcGKFnAUMQmf6BzaA7AKvn74iz.jpg\",\n\"store_currency\": null,\n\"home_title\": null,\n\"whatsapp_phone\": null,\n\"contact_phone1\": null,\n\"contact_phone2\": null,\n\"contact_address\": null,\n\"created_at\": \"2022-11-15T11:35:30.000000Z\",\n\"updated_at\": \"2022-11-15T11:35:30.000000Z\"\n}",
                             "name": ""
                         }
                     ]
@@ -1768,19 +1768,19 @@
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
-                            "path": "api\/users\/login",
+                            "path": "api/users/login",
                             "query": [],
-                            "raw": "{{baseUrl}}\/api\/users\/login"
+                            "raw": "{{baseUrl}}/api/users/login"
                         },
                         "method": "POST",
                         "header": [
                             {
                                 "key": "Content-Type",
-                                "value": "application\/json"
+                                "value": "application/json"
                             },
                             {
                                 "key": "Accept",
-                                "value": "application\/json"
+                                "value": "application/json"
                             }
                         ],
                         "body": {
@@ -1806,19 +1806,19 @@
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
-                            "path": "api\/users\/delete-all",
+                            "path": "api/users/delete-all",
                             "query": [],
-                            "raw": "{{baseUrl}}\/api\/users\/delete-all"
+                            "raw": "{{baseUrl}}/api/users/delete-all"
                         },
                         "method": "DELETE",
                         "header": [
                             {
                                 "key": "Content-Type",
-                                "value": "application\/json"
+                                "value": "application/json"
                             },
                             {
                                 "key": "Accept",
-                                "value": "application\/json"
+                                "value": "application/json"
                             }
                         ],
                         "body": null,
@@ -1838,9 +1838,9 @@
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
-                            "path": "api\/users\/:user\/privacy",
+                            "path": "api/users/:user/privacy",
                             "query": [],
-                            "raw": "{{baseUrl}}\/api\/users\/:user\/privacy",
+                            "raw": "{{baseUrl}}/api/users/:user/privacy",
                             "variable": [
                                 {
                                     "id": "user",
@@ -1854,11 +1854,11 @@
                         "header": [
                             {
                                 "key": "Content-Type",
-                                "value": "multipart\/form-data"
+                                "value": "multipart/form-data"
                             },
                             {
                                 "key": "Accept",
-                                "value": "application\/json"
+                                "value": "application/json"
                             }
                         ],
                         "body": {
@@ -1888,7 +1888,7 @@
                         {
                             "header": [],
                             "code": 200,
-                            "body": "{\n\"id\": 1,\n\"name\": \"owner\",\n\"photo\": null,\n\"email_verified_at\": null,\n\"created_at\": \"2022-11-14T18:51:05.000000Z\",\n\"updated_at\": \"2022-11-14T18:51:05.000000Z\",\n\"live_photo_path\": \"http:\/\/localhost:8000\/storage\",\n\"roles\": [\n{\n\"id\": 1,\n\"name\": \"owner\",\n\"guard_name\": \"web\",\n\"created_at\": \"2022-11-14T18:51:06.000000Z\",\n\"updated_at\": \"2022-11-14T18:51:06.000000Z\",\n\"pivot\": {\n\"model_id\": 1,\n\"role_id\": 1,\n\"model_type\": \"App\\\\Models\\\\User\"\n},\n\"permissions\": []\n}\n]\n}",
+                            "body": "{\n\"id\": 1,\n\"name\": \"owner\",\n\"photo\": null,\n\"email_verified_at\": null,\n\"created_at\": \"2022-11-14T18:51:05.000000Z\",\n\"updated_at\": \"2022-11-14T18:51:05.000000Z\",\n\"live_photo_path\": \"http://localhost:8000/storage\",\n\"roles\": [\n{\n\"id\": 1,\n\"name\": \"owner\",\n\"guard_name\": \"web\",\n\"created_at\": \"2022-11-14T18:51:06.000000Z\",\n\"updated_at\": \"2022-11-14T18:51:06.000000Z\",\n\"pivot\": {\n\"model_id\": 1,\n\"role_id\": 1,\n\"model_type\": \"App\\\\Models\\\\User\"\n},\n\"permissions\": []\n}\n]\n}",
                             "name": ""
                         }
                     ]
@@ -1898,19 +1898,19 @@
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
-                            "path": "api\/users",
+                            "path": "api/users",
                             "query": [],
-                            "raw": "{{baseUrl}}\/api\/users"
+                            "raw": "{{baseUrl}}/api/users"
                         },
                         "method": "GET",
                         "header": [
                             {
                                 "key": "Content-Type",
-                                "value": "application\/json"
+                                "value": "application/json"
                             },
                             {
                                 "key": "Accept",
-                                "value": "application\/json"
+                                "value": "application/json"
                             }
                         ],
                         "body": null,
@@ -1920,7 +1920,7 @@
                         {
                             "header": [],
                             "code": 200,
-                            "body": "{\n\"current_page\": 1,\n\"data\": [\n{\n\"id\": 3,\n\"name\": \"f\",\n\"photo\": \"users\/nCOQdMlXQVHwk9eVdvy1M0FHVTTiCvlL6SpcNm7l.jpg\",\n\"email_verified_at\": null,\n\"created_at\": \"2022-11-15T12:01:24.000000Z\",\n\"updated_at\": \"2022-11-15T12:01:24.000000Z\",\n\"roles\": []\n},\n{\n\"id\": 4,\n\"name\": \"owner\",\n\"photo\": null,\n\"email_verified_at\": null,\n\"created_at\": \"2022-11-15T12:07:34.000000Z\",\n\"updated_at\": \"2022-11-15T12:07:34.000000Z\",\n\"roles\": [\n{\n\"id\": 1,\n\"name\": \"owner\",\n\"guard_name\": \"web\",\n\"created_at\": \"2022-11-14T18:51:06.000000Z\",\n\"updated_at\": \"2022-11-14T18:51:06.000000Z\",\n\"pivot\": {\n\"model_id\": 4,\n\"role_id\": 1,\n\"model_type\": \"App\\\\Models\\\\User\"\n},\n\"permissions\": []\n}\n]\n}\n],\n\"first_page_url\": \"http:\/\/localhost:8000\/api\/users?page=1\",\n\"from\": 1,\n\"last_page\": 1,\n\"last_page_url\": \"http:\/\/localhost:8000\/api\/users?page=1\",\n\"links\": [\n{\n\"url\": null,\n\"label\": \"&laquo; Previous\",\n\"active\": false\n},\n{\n\"url\": \"http:\/\/localhost:8000\/api\/users?page=1\",\n\"label\": \"1\",\n\"active\": true\n},\n{\n\"url\": null,\n\"label\": \"Next &raquo;\",\n\"active\": false\n}\n],\n\"next_page_url\": null,\n\"path\": \"http:\/\/localhost:8000\/api\/users\",\n\"per_page\": 5,\n\"prev_page_url\": null,\n\"to\": 2,\n\"total\": 2\n}",
+                            "body": "{\n\"current_page\": 1,\n\"data\": [\n{\n\"id\": 3,\n\"name\": \"f\",\n\"photo\": \"users/nCOQdMlXQVHwk9eVdvy1M0FHVTTiCvlL6SpcNm7l.jpg\",\n\"email_verified_at\": null,\n\"created_at\": \"2022-11-15T12:01:24.000000Z\",\n\"updated_at\": \"2022-11-15T12:01:24.000000Z\",\n\"roles\": []\n},\n{\n\"id\": 4,\n\"name\": \"owner\",\n\"photo\": null,\n\"email_verified_at\": null,\n\"created_at\": \"2022-11-15T12:07:34.000000Z\",\n\"updated_at\": \"2022-11-15T12:07:34.000000Z\",\n\"roles\": [\n{\n\"id\": 1,\n\"name\": \"owner\",\n\"guard_name\": \"web\",\n\"created_at\": \"2022-11-14T18:51:06.000000Z\",\n\"updated_at\": \"2022-11-14T18:51:06.000000Z\",\n\"pivot\": {\n\"model_id\": 4,\n\"role_id\": 1,\n\"model_type\": \"App\\\\Models\\\\User\"\n},\n\"permissions\": []\n}\n]\n}\n],\n\"first_page_url\": \"http://localhost:8000/api/users?page=1\",\n\"from\": 1,\n\"last_page\": 1,\n\"last_page_url\": \"http://localhost:8000/api/users?page=1\",\n\"links\": [\n{\n\"url\": null,\n\"label\": \"&laquo; Previous\",\n\"active\": false\n},\n{\n\"url\": \"http://localhost:8000/api/users?page=1\",\n\"label\": \"1\",\n\"active\": true\n},\n{\n\"url\": null,\n\"label\": \"Next &raquo;\",\n\"active\": false\n}\n],\n\"next_page_url\": null,\n\"path\": \"http://localhost:8000/api/users\",\n\"per_page\": 5,\n\"prev_page_url\": null,\n\"to\": 2,\n\"total\": 2\n}",
                             "name": ""
                         }
                     ]
@@ -1930,19 +1930,19 @@
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
-                            "path": "api\/users",
+                            "path": "api/users",
                             "query": [],
-                            "raw": "{{baseUrl}}\/api\/users"
+                            "raw": "{{baseUrl}}/api/users"
                         },
                         "method": "POST",
                         "header": [
                             {
                                 "key": "Content-Type",
-                                "value": "multipart\/form-data"
+                                "value": "multipart/form-data"
                             },
                             {
                                 "key": "Accept",
-                                "value": "application\/json"
+                                "value": "application/json"
                             }
                         ],
                         "body": {
@@ -1973,7 +1973,7 @@
                         {
                             "header": [],
                             "code": 201,
-                            "body": "{\n\"name\": \"f\",\n\"photo\": \"users\/nCOQdMlXQVHwk9eVdvy1M0FHVTTiCvlL6SpcNm7l.jpg\",\n\"updated_at\": \"2022-11-15T12:01:24.000000Z\",\n\"created_at\": \"2022-11-15T12:01:24.000000Z\",\n\"id\": 3,\n\"live_photo_path\": \"http:\/\/localhost:8000\/storage\/users\/nCOQdMlXQVHwk9eVdvy1M0FHVTTiCvlL6SpcNm7l.jpg\",\n\"permissions\": [],\n\"roles\": []\n}",
+                            "body": "{\n\"name\": \"f\",\n\"photo\": \"users/nCOQdMlXQVHwk9eVdvy1M0FHVTTiCvlL6SpcNm7l.jpg\",\n\"updated_at\": \"2022-11-15T12:01:24.000000Z\",\n\"created_at\": \"2022-11-15T12:01:24.000000Z\",\n\"id\": 3,\n\"live_photo_path\": \"http://localhost:8000/storage/users/nCOQdMlXQVHwk9eVdvy1M0FHVTTiCvlL6SpcNm7l.jpg\",\n\"permissions\": [],\n\"roles\": []\n}",
                             "name": ""
                         }
                     ]
@@ -1983,9 +1983,9 @@
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
-                            "path": "api\/users\/:id",
+                            "path": "api/users/:id",
                             "query": [],
-                            "raw": "{{baseUrl}}\/api\/users\/:id",
+                            "raw": "{{baseUrl}}/api/users/:id",
                             "variable": [
                                 {
                                     "id": "id",
@@ -1999,11 +1999,11 @@
                         "header": [
                             {
                                 "key": "Content-Type",
-                                "value": "application\/json"
+                                "value": "application/json"
                             },
                             {
                                 "key": "Accept",
-                                "value": "application\/json"
+                                "value": "application/json"
                             }
                         ],
                         "body": null,
@@ -2013,7 +2013,7 @@
                         {
                             "header": [],
                             "code": 200,
-                            "body": "{\n\"id\": 4,\n\"name\": \"owner\",\n\"photo\": null,\n\"email_verified_at\": null,\n\"created_at\": \"2022-11-15T12:07:34.000000Z\",\n\"updated_at\": \"2022-11-15T12:07:34.000000Z\",\n\"live_photo_path\": \"http:\/\/localhost:8000\/storage\",\n\"roles\": [\n{\n\"id\": 1,\n\"name\": \"owner\",\n\"guard_name\": \"web\",\n\"created_at\": \"2022-11-14T18:51:06.000000Z\",\n\"updated_at\": \"2022-11-14T18:51:06.000000Z\",\n\"pivot\": {\n\"model_id\": 4,\n\"role_id\": 1,\n\"model_type\": \"App\\\\Models\\\\User\"\n},\n\"permissions\": []\n}\n]\n}",
+                            "body": "{\n\"id\": 4,\n\"name\": \"owner\",\n\"photo\": null,\n\"email_verified_at\": null,\n\"created_at\": \"2022-11-15T12:07:34.000000Z\",\n\"updated_at\": \"2022-11-15T12:07:34.000000Z\",\n\"live_photo_path\": \"http://localhost:8000/storage\",\n\"roles\": [\n{\n\"id\": 1,\n\"name\": \"owner\",\n\"guard_name\": \"web\",\n\"created_at\": \"2022-11-14T18:51:06.000000Z\",\n\"updated_at\": \"2022-11-14T18:51:06.000000Z\",\n\"pivot\": {\n\"model_id\": 4,\n\"role_id\": 1,\n\"model_type\": \"App\\\\Models\\\\User\"\n},\n\"permissions\": []\n}\n]\n}",
                             "name": ""
                         }
                     ]
@@ -2023,9 +2023,9 @@
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
-                            "path": "api\/users\/:id",
+                            "path": "api/users/:id",
                             "query": [],
-                            "raw": "{{baseUrl}}\/api\/users\/:id",
+                            "raw": "{{baseUrl}}/api/users/:id",
                             "variable": [
                                 {
                                     "id": "id",
@@ -2039,11 +2039,11 @@
                         "header": [
                             {
                                 "key": "Content-Type",
-                                "value": "multipart\/form-data"
+                                "value": "multipart/form-data"
                             },
                             {
                                 "key": "Accept",
-                                "value": "application\/json"
+                                "value": "application/json"
                             }
                         ],
                         "body": {
@@ -2073,7 +2073,7 @@
                         {
                             "header": [],
                             "code": 200,
-                            "body": "{\n\"id\": 1,\n\"name\": \"owner\",\n\"photo\": null,\n\"email_verified_at\": null,\n\"created_at\": \"2022-11-14T18:51:05.000000Z\",\n\"updated_at\": \"2022-11-14T18:51:05.000000Z\",\n\"live_photo_path\": \"http:\/\/localhost:8000\/storage\",\n\"roles\": [\n{\n\"id\": 1,\n\"name\": \"owner\",\n\"guard_name\": \"web\",\n\"created_at\": \"2022-11-14T18:51:06.000000Z\",\n\"updated_at\": \"2022-11-14T18:51:06.000000Z\",\n\"pivot\": {\n\"model_id\": 1,\n\"role_id\": 1,\n\"model_type\": \"App\\\\Models\\\\User\"\n},\n\"permissions\": []\n}\n]\n}",
+                            "body": "{\n\"id\": 1,\n\"name\": \"owner\",\n\"photo\": null,\n\"email_verified_at\": null,\n\"created_at\": \"2022-11-14T18:51:05.000000Z\",\n\"updated_at\": \"2022-11-14T18:51:05.000000Z\",\n\"live_photo_path\": \"http://localhost:8000/storage\",\n\"roles\": [\n{\n\"id\": 1,\n\"name\": \"owner\",\n\"guard_name\": \"web\",\n\"created_at\": \"2022-11-14T18:51:06.000000Z\",\n\"updated_at\": \"2022-11-14T18:51:06.000000Z\",\n\"pivot\": {\n\"model_id\": 1,\n\"role_id\": 1,\n\"model_type\": \"App\\\\Models\\\\User\"\n},\n\"permissions\": []\n}\n]\n}",
                             "name": ""
                         }
                     ]
@@ -2083,9 +2083,9 @@
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
-                            "path": "api\/users\/:id",
+                            "path": "api/users/:id",
                             "query": [],
-                            "raw": "{{baseUrl}}\/api\/users\/:id",
+                            "raw": "{{baseUrl}}/api/users/:id",
                             "variable": [
                                 {
                                     "id": "id",
@@ -2099,11 +2099,11 @@
                         "header": [
                             {
                                 "key": "Content-Type",
-                                "value": "application\/json"
+                                "value": "application/json"
                             },
                             {
                                 "key": "Accept",
-                                "value": "application\/json"
+                                "value": "application/json"
                             }
                         ],
                         "body": null,
@@ -2113,7 +2113,7 @@
                         {
                             "header": [],
                             "code": 200,
-                            "body": "{\n\"id\": 1,\n\"name\": \"owner\",\n\"photo\": \"users\/XsT2cz0DW3fcyk1koDBNsD0rjHxLgmmks5hy2tG4.jpg\",\n\"email_verified_at\": null,\n\"created_at\": \"2022-11-14T18:51:05.000000Z\",\n\"updated_at\": \"2022-11-15T12:05:31.000000Z\",\n\"live_photo_path\": \"http:\/\/localhost:8000\/storage\/users\/XsT2cz0DW3fcyk1koDBNsD0rjHxLgmmks5hy2tG4.jpg\"\n}",
+                            "body": "{\n\"id\": 1,\n\"name\": \"owner\",\n\"photo\": \"users/XsT2cz0DW3fcyk1koDBNsD0rjHxLgmmks5hy2tG4.jpg\",\n\"email_verified_at\": null,\n\"created_at\": \"2022-11-14T18:51:05.000000Z\",\n\"updated_at\": \"2022-11-15T12:05:31.000000Z\",\n\"live_photo_path\": \"http://localhost:8000/storage/users/XsT2cz0DW3fcyk1koDBNsD0rjHxLgmmks5hy2tG4.jpg\"\n}",
                             "name": ""
                         }
                     ]

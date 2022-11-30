@@ -37,18 +37,18 @@ class ProductService
 
 
         $productDiscount = 0;
-        if (trim($request->product_discount) != "")
-            $productDiscount = trim($request->product_discount);
+        if (trim($request->discount) != "")
+            $productDiscount = trim($request->discount);
 
         $photo = null;
-        if ($request->hasFile("product_photo")) {
-            // $photo = $request->file("product_photo")->store("products", "public");
-            $photo =  FileService::uploadFile($request->file("product_photo"), "products");
+        if ($request->hasFile("photo")) {
+            // $photo = $request->file("photo")->store("products", "public");
+            $photo =  FileService::uploadFile($request->file("photo"), "products");
         }
 
 
-        $data["product_photo"] = $photo;
-        $data["product_discount"] = $productDiscount;
+        $data["photo"] = $photo;
+        $data["discount"] = $productDiscount;
         $product = Product::create($data);
 
         if (isset($photo))
@@ -65,8 +65,8 @@ class ProductService
     {
 
         $product = Product::with("item")->findOrFail($id);
-        if (isset($product->product_photo))
-            $product["live_photo_path"] = asset("storage/$product->product_photo");
+        if (isset($product->photo))
+            $product["live_photo_path"] = asset("storage/$product->photo");
         return $product;
     }
 
@@ -82,20 +82,20 @@ class ProductService
 
 
         $productDiscount = 0;
-        if (trim($request->product_discount) != "")
-            $productDiscount = trim($request->product_discount);
+        if (trim($request->discount) != "")
+            $productDiscount = trim($request->discount);
 
-        $photo = $product->product_photo;
-        if ($request->hasFile("product_photo")) {
-            // Storage::disk("public")->delete($product->product_photo);
-            // $photo = $request->file("product_photo")->store("products", "public");
-            FileService::deleteFile($product->product_photo);
-            $photo =  FileService::uploadFile($request->file("product_photo"), "products");
+        $photo = $product->photo;
+        if ($request->hasFile("photo")) {
+            // Storage::disk("public")->delete($product->photo);
+            // $photo = $request->file("photo")->store("products", "public");
+            FileService::deleteFile($product->photo);
+            $photo =  FileService::uploadFile($request->file("photo"), "products");
         }
 
 
-        $data["product_photo"] = $photo;
-        $data["product_discount"] = $productDiscount;
+        $data["photo"] = $photo;
+        $data["discount"] = $productDiscount;
 
         $product->update($data);
         $product["live_photo_path"] = asset("storage/$photo");
@@ -109,14 +109,14 @@ class ProductService
     public static function destroy($id)
     {
         $product = Product::with("item")->findOrFail($id);
-        if (isset($product->product_photo))
-            $product["live_photo_path"] = asset("storage/$product->product_photo");
+        if (isset($product->photo))
+            $product["live_photo_path"] = asset("storage/$product->photo");
         $product->delete();
 
 
         //Delete Old Photo
-        // Storage::disk("public")->delete($product->product_photo);
-        FileService::deleteFile($product->product_photo);
+        // Storage::disk("public")->delete($product->photo);
+        FileService::deleteFile($product->photo);
 
         return $product;
     }

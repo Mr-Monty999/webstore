@@ -10,7 +10,7 @@ class Item extends Model
     use HasFactory;
     protected $table = "items";
 
-    protected $fillable = ["item_name", "item_photo"];
+    protected $guarded = ["id"];
 
 
     public function products()

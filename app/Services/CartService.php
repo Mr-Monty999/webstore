@@ -4,6 +4,9 @@ namespace App\Services;
 
 use App\Models\Cart;
 use Cookie;
+use Exception;
+use File;
+use Illuminate\Support\Facades\File as FacadesFile;
 use Request;
 use Validator;
 
@@ -55,7 +58,12 @@ class CartService
     }
     public static function show($cartId, $productId)
     {
-        $product = Cart::findOrFail($cartId)->products()->wherePivot("product_id", $productId)->firstOrFail();
+        $product = Cart::findOrFail($cartId)->products()->wherePivot("product_id", $productId)->first();
+        return $product;
+    }
+    public static function cartHasProduct($cartId, $productId)
+    {
+        $product = Cart::findOrFail($cartId)->products()->wherePivot("product_id", $productId)->exists();
         return $product;
     }
     public static function update($cartId, $productId, $data)

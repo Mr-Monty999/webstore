@@ -8,7 +8,7 @@
                 @csrf
                 <div class="input-group input-group-outline my-3 bg-white">
                     <label class="form-label">اسم الصنف</label>
-                    <input type="text" name="item_name" class="form-control">
+                    <input type="text" name="name" class="form-control">
                 </div>
                 <button type="submit" class="btn btn-success margin col-6">اضافة</button>
             </form>

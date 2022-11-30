@@ -1,23 +1,22 @@
 name: products
-description: ''
+description: ""
 endpoints:
-  -
-    httpMethods:
+  - httpMethods:
       - GET
-    uri: 'api/products/{id}'
+    uri: "api/products/{id}"
     metadata:
-      title: 'Display the specified product with it item.'
-      description: ''
+      title: "Display the specified product with it item."
+      description: ""
       authenticated: true
       custom: []
     headers:
-      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Authorization: "Bearer {YOUR_AUTH_KEY}"
       Content-Type: application/json
       Accept: application/json
     urlParameters:
       id:
         name: id
-        description: 'The ID of the product.'
+        description: "The ID of the product."
         required: true
         example: 6
         type: integer
@@ -25,131 +24,127 @@ endpoints:
     queryParameters: []
     bodyParameters: []
     responses:
-      -
-        status: 200
+      - status: 200
         content: |-
           {
           "id": 4,
-          "product_name": "سمك",
-          "product_price": 2399,
-          "product_discount": 0,
-          "product_photo": "products/w4wDcFUGwu6ra7Z03fcgBMd4C7gIh8ixJ1RZMnE0.jpg",
+          "name": "سمك",
+          "price": 2399,
+          "discount": 0,
+          "photo": "products/w4wDcFUGwu6ra7Z03fcgBMd4C7gIh8ixJ1RZMnE0.jpg",
           "item_id": 1,
           "created_at": "2022-11-15T10:55:09.000000Z",
           "updated_at": "2022-11-15T10:55:09.000000Z",
           "live_photo_path": "http://localhost:8000/storage/products/w4wDcFUGwu6ra7Z03fcgBMd4C7gIh8ixJ1RZMnE0.jpg",
           "item": {
           "id": 1,
-          "item_name": "d",
-          "item_photo": null,
+          "name": "d",
+          "photo": null,
           "created_at": "2022-11-14T18:55:53.000000Z",
           "updated_at": "2022-11-14T18:55:53.000000Z"
           }
           }
         headers: []
-        description: '200'
+        description: "200"
     responseFields: []
-  -
-    httpMethods:
+  - httpMethods:
       - PUT
       - PATCH
-    uri: 'api/products/{id}'
+    uri: "api/products/{id}"
     metadata:
-      title: 'Update the specified product in database.'
-      description: ''
+      title: "Update the specified product in database."
+      description: ""
       authenticated: true
       custom: []
     headers:
-      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Authorization: "Bearer {YOUR_AUTH_KEY}"
       Content-Type: multipart/form-data
       Accept: application/json
     urlParameters:
       id:
         name: id
-        description: 'The ID of the product.'
+        description: "The ID of the product."
         required: true
         example: 2
         type: integer
         custom: []
     queryParameters: []
     bodyParameters:
-      product_name:
-        name: product_name
-        description: ''
+      name:
+        name: name
+        description: ""
         required: true
         example: harum
         type: string
         custom: []
-      product_price:
-        name: product_price
-        description: ''
+      price:
+        name: price
+        description: ""
         required: true
         example: 7244.885
         type: number
         custom: []
-      product_photo:
-        name: product_photo
-        description: 'Must be an image.'
+      photo:
+        name: photo
+        description: "Must be an image."
         required: false
         example: null
         type: file
         custom: []
-      product_discount:
-        name: product_discount
-        description: ''
+      discount:
+        name: discount
+        description: ""
         required: false
         example: 447.0
         type: number
         custom: []
       item_id:
         name: item_id
-        description: ''
+        description: ""
         required: true
         example: 26135.61967
         type: number
         custom: []
     responses:
-      -
-        status: 200
+      - status: 200
         content: |-
           {
           "id": 4,
-          "product_name": "سمك",
-          "product_price": 2399,
-          "product_discount": 0,
-          "product_photo": "products/w4wDcFUGwu6ra7Z03fcgBMd4C7gIh8ixJ1RZMnE0.jpg",
+          "name": "سمك",
+          "price": 2399,
+          "discount": 0,
+          "photo": "products/w4wDcFUGwu6ra7Z03fcgBMd4C7gIh8ixJ1RZMnE0.jpg",
           "item_id": 1,
           "created_at": "2022-11-15T10:55:09.000000Z",
           "updated_at": "2022-11-15T10:55:09.000000Z",
           "live_photo_path": "http://localhost:8000/storage/products/w4wDcFUGwu6ra7Z03fcgBMd4C7gIh8ixJ1RZMnE0.jpg",
           "item": {
           "id": 1,
-          "item_name": "d",
-          "item_photo": null,
+          "name": "d",
+          "photo": null,
           "created_at": "2022-11-14T18:55:53.000000Z",
           "updated_at": "2022-11-14T18:55:53.000000Z"
           }
           }
         headers: []
-        description: '200'
+        description: "200"
     responseFields: []
-  -
-    httpMethods:
+  - httpMethods:
       - DELETE
-    uri: 'api/products/{id}'
+    uri: "api/products/{id}"
     metadata:
-      title: 'Remove the specified product from database.'
-      description: ''
+      title: "Remove the specified product from database."
+      description: ""
       authenticated: true
       custom: []
     headers:
-      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Authorization: "Bearer {YOUR_AUTH_KEY}"
       Content-Type: application/json
       Accept: application/json
     urlParameters:
       id:
         name: id
-        description: 'The ID of the product.'
+        description: "The ID of the product."
         required: true
         example: 15
         type: integer
@@ -157,83 +152,80 @@ endpoints:
     queryParameters: []
     bodyParameters: []
     responses:
-      -
-        status: 200
+      - status: 200
         content: |-
           {
           "id": 4,
-          "product_name": "سمك",
-          "product_price": 2399,
-          "product_discount": 0,
-          "product_photo": "products/w4wDcFUGwu6ra7Z03fcgBMd4C7gIh8ixJ1RZMnE0.jpg",
+          "name": "سمك",
+          "price": 2399,
+          "discount": 0,
+          "photo": "products/w4wDcFUGwu6ra7Z03fcgBMd4C7gIh8ixJ1RZMnE0.jpg",
           "item_id": 1,
           "created_at": "2022-11-15T10:55:09.000000Z",
           "updated_at": "2022-11-15T10:55:09.000000Z",
           "live_photo_path": "http://localhost:8000/storage/products/w4wDcFUGwu6ra7Z03fcgBMd4C7gIh8ixJ1RZMnE0.jpg",
           "item": {
           "id": 1,
-          "item_name": "d",
-          "item_photo": null,
+          "name": "d",
+          "photo": null,
           "created_at": "2022-11-14T18:55:53.000000Z",
           "updated_at": "2022-11-14T18:55:53.000000Z"
           }
           }
         headers: []
-        description: '200'
+        description: "200"
     responseFields: []
-  -
-    httpMethods:
+  - httpMethods:
       - GET
     uri: api/products
     metadata:
-      title: 'Display all the products (paginated) with their item .'
-      description: ''
+      title: "Display all the products (paginated) with their item ."
+      description: ""
       authenticated: true
       custom: []
     headers:
-      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Authorization: "Bearer {YOUR_AUTH_KEY}"
       Content-Type: application/json
       Accept: application/json
     urlParameters: []
     queryParameters: []
     bodyParameters: []
     responses:
-      -
-        status: 200
+      - status: 200
         content: |-
           {
           "current_page": 1,
           "data": [
           {
           "id": 1,
-          "product_name": "دجاج",
-          "product_price": 300,
-          "product_discount": 10,
-          "product_photo": null,
+          "name": "دجاج",
+          "price": 300,
+          "discount": 10,
+          "photo": null,
           "item_id": 1,
           "created_at": "2022-11-14T18:56:02.000000Z",
           "updated_at": "2022-11-14T18:56:02.000000Z",
           "item": {
           "id": 1,
-          "item_name": "d",
-          "item_photo": null,
+          "name": "d",
+          "photo": null,
           "created_at": "2022-11-14T18:55:53.000000Z",
           "updated_at": "2022-11-14T18:55:53.000000Z"
           }
           },
           {
           "id": 2,
-          "product_name": "شاورما",
-          "product_price": 300,
-          "product_discount": 10,
-          "product_photo": null,
+          "name": "شاورما",
+          "price": 300,
+          "discount": 10,
+          "photo": null,
           "item_id": 1,
           "created_at": "2022-11-14T18:56:07.000000Z",
           "updated_at": "2022-11-14T18:56:07.000000Z",
           "item": {
           "id": 1,
-          "item_name": "d",
-          "item_photo": null,
+          "name": "d",
+          "photo": null,
           "created_at": "2022-11-14T18:55:53.000000Z",
           "updated_at": "2022-11-14T18:55:53.000000Z"
           }
@@ -268,97 +260,93 @@ endpoints:
           "total": 2
           }
         headers: []
-        description: '200'
+        description: "200"
     responseFields: []
-  -
-    httpMethods:
+  - httpMethods:
       - POST
     uri: api/products
     metadata:
-      title: 'Store a newly created product in database.'
-      description: ''
+      title: "Store a newly created product in database."
+      description: ""
       authenticated: true
       custom: []
     headers:
-      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Authorization: "Bearer {YOUR_AUTH_KEY}"
       Content-Type: multipart/form-data
       Accept: application/json
     urlParameters: []
     queryParameters: []
     bodyParameters:
-      product_name:
-        name: product_name
-        description: ''
+      name:
+        name: name
+        description: ""
         required: true
         example: omnis
         type: string
         custom: []
-      product_price:
-        name: product_price
-        description: ''
+      price:
+        name: price
+        description: ""
         required: true
         example: 12865440.4
         type: number
         custom: []
-      product_photo:
-        name: product_photo
-        description: 'Must be an image.'
+      photo:
+        name: photo
+        description: "Must be an image."
         required: false
         example: null
         type: file
         custom: []
-      product_discount:
-        name: product_discount
-        description: ''
+      discount:
+        name: discount
+        description: ""
         required: false
         example: 24544.6393
         type: number
         custom: []
       item_id:
         name: item_id
-        description: ''
+        description: ""
         required: true
         example: 6465321.0
         type: number
         custom: []
     responses:
-      -
-        status: 201
+      - status: 201
         content: |-
           {
-          "product_name": "سمك",
-          "product_price": "2399",
+          "name": "سمك",
+          "price": "2399",
           "item_id": "1",
-          "product_photo": "products/w4wDcFUGwu6ra7Z03fcgBMd4C7gIh8ixJ1RZMnE0.jpg",
-          "product_discount": 0,
+          "photo": "products/w4wDcFUGwu6ra7Z03fcgBMd4C7gIh8ixJ1RZMnE0.jpg",
+          "discount": 0,
           "updated_at": "2022-11-15T10:55:09.000000Z",
           "created_at": "2022-11-15T10:55:09.000000Z",
           "id": 4,
           "live_photo_path": "http://localhost:8000/storage/products/w4wDcFUGwu6ra7Z03fcgBMd4C7gIh8ixJ1RZMnE0.jpg"
           }
         headers: []
-        description: '201'
+        description: "201"
     responseFields: []
-  -
-    httpMethods:
+  - httpMethods:
       - DELETE
     uri: api/products/delete-all
     metadata:
-      title: 'Remove all the products from database.'
-      description: ''
+      title: "Remove all the products from database."
+      description: ""
       authenticated: true
       custom: []
     headers:
-      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Authorization: "Bearer {YOUR_AUTH_KEY}"
       Content-Type: application/json
       Accept: application/json
     urlParameters: []
     queryParameters: []
     bodyParameters: []
     responses:
-      -
-        status: 200
-        content: '{}'
+      - status: 200
+        content: "{}"
         headers: []
-        description: '200'
+        description: "200"
     responseFields: []

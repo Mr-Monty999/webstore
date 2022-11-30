@@ -28,7 +28,7 @@
                                        <p class="text-dark text-center">{{ ++$i }}</p>
                                    </td>
                                    <td>
-                                       <p class="text-dark text-center">{{ $item->item_name }}</p>
+                                       <p class="text-dark text-center">{{ $item->name }}</p>
                                    </td>
 
                                    <td class="align-middle text-center">

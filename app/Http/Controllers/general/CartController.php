@@ -23,7 +23,7 @@ class CartController extends Controller
     public function index()
     {
 
-        $products = CartService::showCartProducts(Cookie::get("cart_uid"));
+        $products = CartService::showCartProducts(Cookie::get("cart_id"));
         return response()->json($products);
     }
 
@@ -42,7 +42,7 @@ class CartController extends Controller
     public function store(StoreProductCartRequest $request)
     {
 
-        $cart =  CartService::storeProduct($request->product_id, Cookie::get("cart_uid"));
+        $cart =  CartService::storeProduct($request->product_id, Cookie::get("cart_id"));
 
         return response()->json($cart, 201);
     }
@@ -69,7 +69,7 @@ class CartController extends Controller
      */
     public function update(UpdateProductCartRequest $request, $productId)
     {
-        $cart =  CartService::update(Cookie::get("cart_uid"), $productId, $request->all());
+        $cart =  CartService::update(Cookie::get("cart_id"), $productId, $request->all());
 
         return response()->json($cart);
     }
@@ -82,13 +82,13 @@ class CartController extends Controller
      */
     public function destroy(Request $request, $productId)
     {
-        $cart =  CartService::destroy(Cookie::get("cart_uid"), $request->product_id);
+        $cart =  CartService::destroy(Cookie::get("cart_id"), $request->product_id);
 
         return response()->json($cart);
     }
     public function destroyAll()
     {
-        $cart =  CartService::destroyAll(Cookie::get("cart_uid"));
+        $cart =  CartService::destroyAll(Cookie::get("cart_id"));
 
         return response()->json($cart);
     }

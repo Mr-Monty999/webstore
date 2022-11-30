@@ -1,8 +1,9 @@
  @extends('layouts.public')
  @section('content')
-     @include('general.sub-products')
+     {{-- @include('general.sub-products') --}}
+     <livewire:general.sub-products :item="$item" :setting="$setting" />
  @endsection
- @push('ajax')
+ {{-- @push('ajax')
      <script>
          //  $("input[type=date]").val(new Date().toISOString().slice(0, 10));
 
@@ -38,5 +39,5 @@
 
 
          });
-     </script>
- @endpush
+     </script> 
+  @endpush --}}

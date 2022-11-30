@@ -1,13 +1,12 @@
 name: carts
-description: ''
+description: ""
 endpoints:
-  -
-    httpMethods:
+  - httpMethods:
       - GET
-    uri: 'api/carts/{cart_id}/products'
+    uri: "api/carts/{cart_id}/products"
     metadata:
-      title: 'Get Cart Products'
-      description: ''
+      title: "Get Cart Products"
+      description: ""
       authenticated: false
       custom: []
     headers:
@@ -16,7 +15,7 @@ endpoints:
     urlParameters:
       cart_id:
         name: cart_id
-        description: 'The ID of the cart.'
+        description: "The ID of the cart."
         required: true
         example: assumenda
         type: string
@@ -24,16 +23,15 @@ endpoints:
     queryParameters: []
     bodyParameters: []
     responses:
-      -
-        status: 200
+      - status: 200
         content: |-
           [
            {
           "id": 1,
-          "product_name": "دجاج",
-          "product_price": 300,
-          "product_discount": 10,
-          "product_photo": null,
+          "name": "دجاج",
+          "price": 300,
+          "discount": 10,
+          "photo": null,
           "item_id": 1,
           "created_at": "2022-11-14T18:56:02.000000Z",
           "updated_at": "2022-11-14T18:56:02.000000Z",
@@ -45,15 +43,14 @@ endpoints:
           }
           ]
         headers: []
-        description: '200'
+        description: "200"
     responseFields: []
-  -
-    httpMethods:
+  - httpMethods:
       - POST
     uri: api/carts/intial
     metadata:
-      title: 'Inital New Cart'
-      description: ''
+      title: "Inital New Cart"
+      description: ""
       authenticated: false
       custom: []
     headers:
@@ -63,8 +60,7 @@ endpoints:
     queryParameters: []
     bodyParameters: []
     responses:
-      -
-        status: 201
+      - status: 201
         content: |-
           {
           "id": "cart_6373591c94f01",
@@ -72,15 +68,14 @@ endpoints:
           "created_at": "2022-11-15T09:17:16.000000Z"
           }
         headers: []
-        description: '201'
+        description: "201"
     responseFields: []
-  -
-    httpMethods:
+  - httpMethods:
       - DELETE
-    uri: 'api/carts/{cart}/products'
+    uri: "api/carts/{cart}/products"
     metadata:
-      title: 'Remove All Products From Cart'
-      description: ''
+      title: "Remove All Products From Cart"
+      description: ""
       authenticated: false
       custom: []
     headers:
@@ -89,7 +84,7 @@ endpoints:
     urlParameters:
       cart:
         name: cart
-        description: 'The ID of the cart.'
+        description: "The ID of the cart."
         required: true
         example: voluptas
         type: string
@@ -97,19 +92,17 @@ endpoints:
     queryParameters: []
     bodyParameters: []
     responses:
-      -
-        status: 200
-        content: '1'
+      - status: 200
+        content: "1"
         headers: []
-        description: '200'
+        description: "200"
     responseFields: []
-  -
-    httpMethods:
+  - httpMethods:
       - POST
-    uri: 'api/carts/{cart}/products'
+    uri: "api/carts/{cart}/products"
     metadata:
-      title: 'Store Products in Cart'
-      description: ''
+      title: "Store Products in Cart"
+      description: ""
       authenticated: false
       custom: []
     headers:
@@ -118,7 +111,7 @@ endpoints:
     urlParameters:
       cart:
         name: cart
-        description: 'The ID of the cart.'
+        description: "The ID of the cart."
         required: true
         example: omnis
         type: string
@@ -127,21 +120,20 @@ endpoints:
     bodyParameters:
       product_id:
         name: product_id
-        description: ''
+        description: ""
         required: true
         example: 15
         type: integer
         custom: []
     responses:
-      -
-        status: 201
+      - status: 201
         content: |-
           {
           "id": 1,
-          "product_name": "دجاج",
-          "product_price": 300,
-          "product_discount": 10,
-          "product_photo": null,
+          "name": "دجاج",
+          "price": 300,
+          "discount": 10,
+          "photo": null,
           "item_id": 1,
           "created_at": "2022-11-14T18:56:02.000000Z",
           "updated_at": "2022-11-14T18:56:02.000000Z",
@@ -152,15 +144,14 @@ endpoints:
           }
           }
         headers: []
-        description: '201'
+        description: "201"
     responseFields: []
-  -
-    httpMethods:
+  - httpMethods:
       - GET
-    uri: 'api/carts/{cart_id}/products/{id}'
+    uri: "api/carts/{cart_id}/products/{id}"
     metadata:
-      title: 'Show specified Product in Cart'
-      description: ''
+      title: "Show specified Product in Cart"
+      description: ""
       authenticated: false
       custom: []
     headers:
@@ -169,14 +160,14 @@ endpoints:
     urlParameters:
       cart_id:
         name: cart_id
-        description: 'The ID of the cart.'
+        description: "The ID of the cart."
         required: true
         example: et
         type: string
         custom: []
       id:
         name: id
-        description: 'The ID of the product.'
+        description: "The ID of the product."
         required: true
         example: 15
         type: integer
@@ -184,15 +175,14 @@ endpoints:
     queryParameters: []
     bodyParameters: []
     responses:
-      -
-        status: 200
+      - status: 200
         content: |-
           {
           "id": 1,
-          "product_name": "دجاج",
-          "product_price": 300,
-          "product_discount": 10,
-          "product_photo": null,
+          "name": "دجاج",
+          "price": 300,
+          "discount": 10,
+          "photo": null,
           "item_id": 1,
           "created_at": "2022-11-14T18:56:02.000000Z",
           "updated_at": "2022-11-14T18:56:02.000000Z",
@@ -203,16 +193,15 @@ endpoints:
           }
           }
         headers: []
-        description: '200'
+        description: "200"
     responseFields: []
-  -
-    httpMethods:
+  - httpMethods:
       - PUT
       - PATCH
-    uri: 'api/carts/{cart_id}/products/{id}'
+    uri: "api/carts/{cart_id}/products/{id}"
     metadata:
-      title: 'Update specified product in the cart'
-      description: ''
+      title: "Update specified product in the cart"
+      description: ""
       authenticated: false
       custom: []
     headers:
@@ -221,14 +210,14 @@ endpoints:
     urlParameters:
       cart_id:
         name: cart_id
-        description: 'The ID of the cart.'
+        description: "The ID of the cart."
         required: true
         example: nobis
         type: string
         custom: []
       id:
         name: id
-        description: 'The ID of the product.'
+        description: "The ID of the product."
         required: true
         example: 15
         type: integer
@@ -237,21 +226,20 @@ endpoints:
     bodyParameters:
       product_amount:
         name: product_amount
-        description: ''
+        description: ""
         required: false
         example: 197679.9098
         type: number
         custom: []
     responses:
-      -
-        status: 200
+      - status: 200
         content: |-
           {
           "id": 1,
-          "product_name": "دجاج",
-          "product_price": 300,
-          "product_discount": 10,
-          "product_photo": null,
+          "name": "دجاج",
+          "price": 300,
+          "discount": 10,
+          "photo": null,
           "item_id": 1,
           "created_at": "2022-11-14T18:56:02.000000Z",
           "updated_at": "2022-11-14T18:56:02.000000Z",
@@ -262,15 +250,14 @@ endpoints:
           }
           }
         headers: []
-        description: '200'
+        description: "200"
     responseFields: []
-  -
-    httpMethods:
+  - httpMethods:
       - DELETE
-    uri: 'api/carts/{cart_id}/products/{id}'
+    uri: "api/carts/{cart_id}/products/{id}"
     metadata:
-      title: 'Remove the specified product from cart'
-      description: ''
+      title: "Remove the specified product from cart"
+      description: ""
       authenticated: false
       custom: []
     headers:
@@ -279,14 +266,14 @@ endpoints:
     urlParameters:
       cart_id:
         name: cart_id
-        description: 'The ID of the cart.'
+        description: "The ID of the cart."
         required: true
         example: recusandae
         type: string
         custom: []
       id:
         name: id
-        description: 'The ID of the product.'
+        description: "The ID of the product."
         required: true
         example: 7
         type: integer
@@ -294,15 +281,14 @@ endpoints:
     queryParameters: []
     bodyParameters: []
     responses:
-      -
-        status: 200
+      - status: 200
         content: |-
           {
           "id": 1,
-          "product_name": "دجاج",
-          "product_price": 300,
-          "product_discount": 10,
-          "product_photo": null,
+          "name": "دجاج",
+          "price": 300,
+          "discount": 10,
+          "photo": null,
           "item_id": 1,
           "created_at": "2022-11-14T18:56:02.000000Z",
           "updated_at": "2022-11-14T18:56:02.000000Z",
@@ -313,5 +299,5 @@ endpoints:
           }
           }
         headers: []
-        description: '200'
+        description: "200"
     responseFields: []

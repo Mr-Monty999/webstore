@@ -22,10 +22,10 @@ class CartController extends Controller
      * @response 200 [
      *  {
      *"id": 1,
-     *"product_name": "دجاج",
-     *"product_price": 300,
-     *"product_discount": 10,
-     *"product_photo": null,
+     *"name": "دجاج",
+     *"price": 300,
+     *"discount": 10,
+     *"photo": null,
      *"item_id": 1,
      *"created_at": "2022-11-14T18:56:02.000000Z",
      *"updated_at": "2022-11-14T18:56:02.000000Z",
@@ -66,10 +66,10 @@ class CartController extends Controller
      *@urlParam cart string required The ID of the cart.
      *@response 201 {
     "id": 1,
-    "product_name": "دجاج",
-    "product_price": 300,
-    "product_discount": 10,
-    "product_photo": null,
+    "name": "دجاج",
+    "price": 300,
+    "discount": 10,
+    "photo": null,
     "item_id": 1,
     "created_at": "2022-11-14T18:56:02.000000Z",
     "updated_at": "2022-11-14T18:56:02.000000Z",
@@ -93,10 +93,10 @@ class CartController extends Controller
      *@urlParam cart_id string required The ID of the cart.
      * @response {
     "id": 1,
-    "product_name": "دجاج",
-    "product_price": 300,
-    "product_discount": 10,
-    "product_photo": null,
+    "name": "دجاج",
+    "price": 300,
+    "discount": 10,
+    "photo": null,
     "item_id": 1,
     "created_at": "2022-11-14T18:56:02.000000Z",
     "updated_at": "2022-11-14T18:56:02.000000Z",
@@ -121,10 +121,10 @@ class CartController extends Controller
      *@urlParam cart_id string required The ID of the cart.
      @response {
     "id": 1,
-    "product_name": "دجاج",
-    "product_price": 300,
-    "product_discount": 10,
-    "product_photo": null,
+    "name": "دجاج",
+    "price": 300,
+    "discount": 10,
+    "photo": null,
     "item_id": 1,
     "created_at": "2022-11-14T18:56:02.000000Z",
     "updated_at": "2022-11-14T18:56:02.000000Z",
@@ -149,10 +149,10 @@ class CartController extends Controller
      *@urlParam cart_id string required The ID of the cart.
      * @response {
     "id": 1,
-    "product_name": "دجاج",
-    "product_price": 300,
-    "product_discount": 10,
-    "product_photo": null,
+    "name": "دجاج",
+    "price": 300,
+    "discount": 10,
+    "photo": null,
     "item_id": 1,
     "created_at": "2022-11-14T18:56:02.000000Z",
     "updated_at": "2022-11-14T18:56:02.000000Z",

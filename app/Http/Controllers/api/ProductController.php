@@ -30,34 +30,34 @@ class ProductController extends Controller
     "data": [
         {
             "id": 1,
-            "product_name": "دجاج",
-            "product_price": 300,
-            "product_discount": 10,
-            "product_photo": null,
+            "name": "دجاج",
+            "price": 300,
+            "discount": 10,
+            "photo": null,
             "item_id": 1,
             "created_at": "2022-11-14T18:56:02.000000Z",
             "updated_at": "2022-11-14T18:56:02.000000Z",
             "item": {
                 "id": 1,
-                "item_name": "d",
-                "item_photo": null,
+                "name": "d",
+                "photo": null,
                 "created_at": "2022-11-14T18:55:53.000000Z",
                 "updated_at": "2022-11-14T18:55:53.000000Z"
             }
         },
         {
             "id": 2,
-            "product_name": "شاورما",
-            "product_price": 300,
-            "product_discount": 10,
-            "product_photo": null,
+            "name": "شاورما",
+            "price": 300,
+            "discount": 10,
+            "photo": null,
             "item_id": 1,
             "created_at": "2022-11-14T18:56:07.000000Z",
             "updated_at": "2022-11-14T18:56:07.000000Z",
             "item": {
                 "id": 1,
-                "item_name": "d",
-                "item_photo": null,
+                "name": "d",
+                "photo": null,
                 "created_at": "2022-11-14T18:55:53.000000Z",
                 "updated_at": "2022-11-14T18:55:53.000000Z"
             }
@@ -103,11 +103,11 @@ class ProductController extends Controller
     /**
      * Store a newly created product in database.
      *@response 201 {
-    "product_name": "سمك",
-    "product_price": "2399",
+    "name": "سمك",
+    "price": "2399",
     "item_id": "1",
-    "product_photo": "products/w4wDcFUGwu6ra7Z03fcgBMd4C7gIh8ixJ1RZMnE0.jpg",
-    "product_discount": 0,
+    "photo": "products/w4wDcFUGwu6ra7Z03fcgBMd4C7gIh8ixJ1RZMnE0.jpg",
+    "discount": 0,
     "updated_at": "2022-11-15T10:55:09.000000Z",
     "created_at": "2022-11-15T10:55:09.000000Z",
     "id": 4,
@@ -127,18 +127,18 @@ class ProductController extends Controller
      * Display the specified product with it item.
      *@response{
     "id": 4,
-    "product_name": "سمك",
-    "product_price": 2399,
-    "product_discount": 0,
-    "product_photo": "products/w4wDcFUGwu6ra7Z03fcgBMd4C7gIh8ixJ1RZMnE0.jpg",
+    "name": "سمك",
+    "price": 2399,
+    "discount": 0,
+    "photo": "products/w4wDcFUGwu6ra7Z03fcgBMd4C7gIh8ixJ1RZMnE0.jpg",
     "item_id": 1,
     "created_at": "2022-11-15T10:55:09.000000Z",
     "updated_at": "2022-11-15T10:55:09.000000Z",
     "live_photo_path": "http://localhost:8000/storage/products/w4wDcFUGwu6ra7Z03fcgBMd4C7gIh8ixJ1RZMnE0.jpg",
     "item": {
         "id": 1,
-        "item_name": "d",
-        "item_photo": null,
+        "name": "d",
+        "photo": null,
         "created_at": "2022-11-14T18:55:53.000000Z",
         "updated_at": "2022-11-14T18:55:53.000000Z"
     }
@@ -157,18 +157,18 @@ class ProductController extends Controller
      * Update the specified product in database.
      *@response {
     "id": 4,
-    "product_name": "سمك",
-    "product_price": 2399,
-    "product_discount": 0,
-    "product_photo": "products/w4wDcFUGwu6ra7Z03fcgBMd4C7gIh8ixJ1RZMnE0.jpg",
+    "name": "سمك",
+    "price": 2399,
+    "discount": 0,
+    "photo": "products/w4wDcFUGwu6ra7Z03fcgBMd4C7gIh8ixJ1RZMnE0.jpg",
     "item_id": 1,
     "created_at": "2022-11-15T10:55:09.000000Z",
     "updated_at": "2022-11-15T10:55:09.000000Z",
     "live_photo_path": "http://localhost:8000/storage/products/w4wDcFUGwu6ra7Z03fcgBMd4C7gIh8ixJ1RZMnE0.jpg",
     "item": {
         "id": 1,
-        "item_name": "d",
-        "item_photo": null,
+        "name": "d",
+        "photo": null,
         "created_at": "2022-11-14T18:55:53.000000Z",
         "updated_at": "2022-11-14T18:55:53.000000Z"
     }
@@ -187,18 +187,18 @@ class ProductController extends Controller
      * Remove the specified product from database.
      *@response {
     "id": 4,
-    "product_name": "سمك",
-    "product_price": 2399,
-    "product_discount": 0,
-    "product_photo": "products/w4wDcFUGwu6ra7Z03fcgBMd4C7gIh8ixJ1RZMnE0.jpg",
+    "name": "سمك",
+    "price": 2399,
+    "discount": 0,
+    "photo": "products/w4wDcFUGwu6ra7Z03fcgBMd4C7gIh8ixJ1RZMnE0.jpg",
     "item_id": 1,
     "created_at": "2022-11-15T10:55:09.000000Z",
     "updated_at": "2022-11-15T10:55:09.000000Z",
     "live_photo_path": "http://localhost:8000/storage/products/w4wDcFUGwu6ra7Z03fcgBMd4C7gIh8ixJ1RZMnE0.jpg",
     "item": {
         "id": 1,
-        "item_name": "d",
-        "item_photo": null,
+        "name": "d",
+        "photo": null,
         "created_at": "2022-11-14T18:55:53.000000Z",
         "updated_at": "2022-11-14T18:55:53.000000Z"
     }

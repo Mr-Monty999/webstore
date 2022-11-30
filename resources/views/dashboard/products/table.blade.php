@@ -35,27 +35,27 @@
                                           <p class="text-dark text-center">{{ ++$i }}</p>
                                       </td>
                                       <td>
-                                          <p class="text-dark text-center">{{ $product->product_name }}</p>
+                                          <p class="text-dark text-center">{{ $product->name }}</p>
                                       </td>
                                       <td>
                                           <p class="text-dark text-center">
-                                              {{ number_format($product->product_price) }}</p>
+                                              {{ number_format($product->price) }}</p>
                                       </td>
                                       <td>
-                                          @if ($product->product_discount != null)
-                                              <p class="text-dark text-center">{{ $product->product_discount }}%
+                                          @if ($product->discount != null)
+                                              <p class="text-dark text-center">{{ $product->discount }}%
                                               </p>
                                           @else
                                               <p class="text-dark text-center">لايوجد تخفيض</p>
                                           @endif
                                       </td>
                                       <td>
-                                          <p class="text-dark text-center">{{ $product->item->item_name }}</p>
+                                          <p class="text-dark text-center">{{ $product->item->name }}</p>
                                       </td>
 
                                       <td>
-                                          @if ($product->product_photo != null)
-                                              <img src="{{ asset("storage/$product->product_photo") }}" alt="">
+                                          @if ($product->photo != null)
+                                              <img src="{{ asset("storage/$product->photo") }}" alt="">
                                           @else
                                               <p class="text-dark text-center">لاتوجد صورة</p>
                                           @endif

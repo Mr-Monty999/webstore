@@ -8,7 +8,7 @@
             @method('PUT')
             <div class="input-group input-group-outline my-3 bg-white is-filled focus is-focused">
                 <label class="form-label">اسم الصنف</label>
-                <input type="text" name="item_name" value="{{ $item->item_name }}" class="form-control">
+                <input type="text" name="name" value="{{ $item->name }}" class="form-control">
             </div>
             <button type="submit" class="btn btn-success margin">تعديل</button>
             <a href="{{ URL::previous() }}" class="btn btn-dark">رجوع</a>

@@ -7,21 +7,20 @@ use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\URL;
 
-trait CheckService
+class CheckService
 {
     public static function checkCartAndGetId()
     {
-        $uid = uniqid('cart_');
+        $cart_id = uniqid('cart_');
 
-        if (!Cookie::has('cart_uid')) {
-            Cookie::queue('cart_uid', $uid, 99999999, '/');
-            Cart::create(['id' => $uid]);
+        if (!Cookie::has('cart_id')) {
+            Cookie::queue('cart_id', $cart_id, 99999999, '/');
+            Cart::create(['id' => $cart_id]);
         } else {
-            $uid = Cookie::get('cart_uid');
-
-            Cart::firstOrCreate(['id' => $uid]);
+            $cart_id = Cookie::get('cart_id');
+            Cart::firstOrCreate(['id' => $cart_id]);
         }
 
-        return $uid;
+        return $cart_id;
     }
 }
