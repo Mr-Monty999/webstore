@@ -25,7 +25,7 @@ Route::get("storage-link", function () {
 
 
 /// General Pages Routes
-Route::group(["middleware" => "cart"], function () {
+Route::group(["middleware" => ["cart", "vistors"]], function () {
     Route::group(["namespace" => "general"], function () {
 
         Route::get("/", "HomeController@index")->name("home");
